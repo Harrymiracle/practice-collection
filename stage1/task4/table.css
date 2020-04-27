@@ -1,0 +1,43 @@
+/**
+ * display table属性实现
+ * html和body设置百分百宽高，
+ * wrap类设置display: table并继承外部宽高，
+ * outer类设置display: table-cell可以设置  垂直居中，
+ * inner列设置margin: 0 auto 达到 水平居中。
+ **/
+html, body {
+    width: 100%;
+    height: 100%;
+}
+.wrap {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+.outer {
+    display: table-cell;
+    vertical-align: middle;
+}
+.inner {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    margin: 0 auto;
+    background: #e0e0e0;
+}
+.corner {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: #ffcc00;
+}
+.corner-top {
+    top: 0;
+    left: 0;
+    border-radius: 0 0 50px;
+}
+.corner-bot {
+    bottom: 0;
+    right: 0;
+    border-radius: 50px 0 0;
+}
