@@ -39,6 +39,7 @@
         }
 
         function deal(func, succ) {
+            // 取第二个参数后面的参数（有可能没有值）
             var args = [].slice.call(arguments, 2);
             return function (e) {
                 try {
@@ -57,14 +58,17 @@
             };
         }
 
+        // 获取输入框的值并校验后返回输入框的值
         function getInputValue() {
             var numStr = $('input').value;
             if (!validate(numStr)) throw new Error('input error');
             return parseInt(numStr);
         }
 
+        // 获取点击的div的index值
         function getClickIndex(e) {
             var node = e.target;
+            // 用call调用数组的indexOf方法获取触发点击事件的元素在父元素中的位置
             return [].indexOf.call(node.parentNode.children, node);
         }
 
@@ -72,11 +76,12 @@
             return /^\d+$/.test(str);
         }
 
-        $('#left-in').onclick = deal([].unshift, null, getInputValue);
-        $('#right-in').onclick = deal([].push, null, getInputValue);
-        $('#left-out').onclick = deal([].shift, window.alert);
-        $('#right-out').onclick = deal([].pop, window.alert);
-        $('#result').onclick = deal([].splice, null, getClickIndex, 1);
+        // 给按钮和输入框增加点击事件，同时传入对应的数组处理方法和回调
+        $('#left-in').onclick = deal([].unshift, null, getInputValue);  // 输入框
+        $('#right-in').onclick = deal([].push, null, getInputValue);    // 输入框
+        $('#left-out').onclick = deal([].shift, window.alert);  // alert
+        $('#right-out').onclick = deal([].pop, window.alert);   // alert
+        $('#result').onclick = deal([].splice, null, getClickIndex, 1);     // 获取index值
     </script>
 </body>
 
