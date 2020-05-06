@@ -17,10 +17,10 @@ function addEvent(target, type, handler) {
 
 
 /**
- * 判断是否是正整数 并且不带符号
+ * 判断是否是数字 可以带符号
  *
  * @param 输入的数字
  */
-function isPositiveInt(num) {
-    return /^[0-9]+$/.test(num);
+function isNum(num) {
+    return /^([+-])?\d+(\.\d+)?$/.test(num);
 }

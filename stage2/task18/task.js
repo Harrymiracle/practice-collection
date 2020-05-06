@@ -34,31 +34,31 @@ function addEventDivs() {
 }
 
 /* 给输入框增加事件 */
-addEvent(typein, 'keyup', function (e) {
-    if (!isPositiveInt(e.target.value)) {
-        alert('请正确输入不带符号的正整数');
-        return false;
-    }
-})
+// addEvent(typein, 'keyup', function (e) {
+//     if (!isNum(e.target.value)) {
+//         alert('请正确输入数字');
+//         return false;
+//     }
+// })
 
 /* 给四个按钮增加事件 */
 addEvent(leftin, 'click', function () {
     let val = typein.value;
-    if (isPositiveInt(val)) {
+    if (isNum(val)) {
         resArr.unshift(val);
         renderRes();
     } else {
-        alert('请正确输入不带符号的正整数');
+        alert('请正确输入数字');
     }
 })
 
 addEvent(rightin, 'click', function () {
     let val = typein.value;
-    if (isPositiveInt(val)) {
+    if (isNum(val)) {
         resArr.push(val);
         renderRes();
     } else {
-        alert('请正确输入不带符号的正整数');
+        alert('请正确输入数字');
     }
 })
 
