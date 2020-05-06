@@ -87,18 +87,11 @@ function addEvent(target, type, handler) {
  * @returns
  */
 function validateVal(cityVal, aqiValue) {
-    var regCn = /^[\u4e00-\u9fa5]+$/;
-    var regEn = /^[a-zA-z ]+$/;
-
-    if (!(regCn.test(cityVal) || regEn.test(cityVal))) {
+    if (!(/^[a-zA-z \u4e00-\u9fa5]+$/.test(cityVal))) {
         alert('城市名必须为中文或是英文字符');
         return false;
     }
-    if (isNaN(aqiValue)) {
-        alert('请输入数字');
-        return false;
-    }
-    if (/\./.test(aqiValue)) {
+    if(!/^([+-])?\d+$/.test(aqiValue)){
         alert('请输入整数');
         return false;
     }
