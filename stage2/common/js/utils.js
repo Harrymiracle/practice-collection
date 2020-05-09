@@ -15,6 +15,13 @@ function addEvent(target, type, handler) {
     }
 }
 
+function qs(el) {
+    return document.querySelector(el);
+}
+
+function qsa(els) {
+    return document.querySelectorAll(els);
+}
 
 /**
  * 判断是否是数字 可以带符号

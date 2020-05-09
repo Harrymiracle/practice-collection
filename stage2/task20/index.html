@@ -57,7 +57,7 @@
                 let copy = item;
                 if (content != null && content.length > 0) {
                     /***
-                     * 关键一步 在搜索input有值的时候，遍历每一个队列元素，讲含有要搜索内容的地方替换
+                     * 关键一步 在搜索input有值的时候，遍历每一个队列元素，将含有要搜索内容的地方替换
                     */
                     copy = copy.replace(new RegExp(content, 'g'), '<span class="select">' + content + '</span>');
                 }
