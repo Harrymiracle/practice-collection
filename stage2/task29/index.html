@@ -114,8 +114,10 @@
             }
             tip.innerHTML = msg;
             if (validated) {
+                txt_in.className = 'txt-in border-pass';
                 tip.className = 'tip txt-pass';
             } else {
+                txt_in.className = 'txt-in border-red';
                 tip.className = 'tip txt-red';
             }
         }
