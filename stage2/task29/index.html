@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>百度前端技术学院任务二十九（第二阶段）</title>
+    <style>
+        .wrap {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            transform: translate(-50%, -50%);
+        }
+
+        .row {
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .labeler {
+            display: inline-block;
+            width: 60px;
+            text-align: center;
+        }
+
+        .txt-in {
+            width: 300px;
+            padding: 10px 16px;
+            border: 1px solid #6687b3;
+            outline: none;
+            border-radius: 2px;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            margin-left: 6px;
+            background-color: #2F79BA;
+            color: #ffffff;
+            border: none;
+            border-radius: 2px;
+        }
+
+        .tip {
+            position: absolute;
+            left: 62px;
+            top: 40px;
+            font-size: 12px;
+        }
+
+        .border-red {
+            border-color: #ff0000;
+        }
+
+        .border-pass {
+            border-color: #2e6da4;
+        }
+
+        .txt-red {
+            color: #ff0000;
+        }
+
+        .txt-pass {
+            color: #2e6da4;
+        }
+    </style>
+</head>
+
+<script src="../common/js/utils.js"></script>
+
+<body>
+    <div class="wrap">
+        <div class="row">
+            <span class="labeler">名 称</span>
+            <input type="text" placeholder="长度为4~16个字符" class="txt-in">
+            <button class="btn">验 证</button>
+            <span class="tip"></span>
+        </div>
+    </div>
+
+    <script>
+        let txt_in = qs('.txt-in');
+        let btn = qs('.btn');
+        let tip = qs('.tip');
+
+        function validated(el) {
+            let txt = el.value.trim();
+            let txt_len = 0;
+            let msg = '';
+            let validated = false;
+            if (txt === '') {
+                msg = '不能为空';
+                validated = false;
+            } else {
+                // 匹配非双字节的字符
+                let reg = /[^\x00-\xff]/g;
+                for (let i = 0, len = txt.length; i < len; i++) {
+                    let a = txt.charAt(i);
+                    if (a.match(reg) != null) {
+                        txt_len += 2;
+                    } else {
+                        txt_len += 1;
+                    }
+                }
+                if (txt_len > 3 && txt_len < 17) {
+                    msg = '格式正确';
+                    validated = true;
+                } else {
+                    msg = '字符数应为4~16位';
+                    validated = false;
+                }
+            }
+            tip.innerHTML = msg;
+            if (validated) {
+                tip.className = 'tip txt-pass';
+            } else {
+                tip.className = 'tip txt-red';
+            }
+        }
+
+        addEvent(txt_in, 'keyup', function (e) {
+            validated(e.target);
+        });
+
+        addEvent(btn, 'click', function () {
+            validated(txt_in);
+        });
+    </script>
+</body>
+
+</html>
