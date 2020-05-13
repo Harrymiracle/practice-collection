@@ -85,7 +85,7 @@
         let btn = qs('.btn');
         let tip = qs('.tip');
 
-        function validated(el) {
+        function validate(el) {
             let txt = el.value.trim();
             let txt_len = 0;
             let msg = '';
@@ -123,11 +123,11 @@
         }
 
         addEvent(txt_in, 'keyup', function (e) {
-            validated(e.target);
+            validate(e.target);
         });
 
         addEvent(btn, 'click', function () {
-            validated(txt_in);
+            validate(txt_in);
         });
     </script>
 </body>
