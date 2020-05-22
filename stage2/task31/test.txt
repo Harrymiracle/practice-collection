@@ -1,4 +1,0 @@
-This is a test.
-
-On dev add another test.
-On master, add a master msg.
