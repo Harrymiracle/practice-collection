@@ -13,4 +13,4 @@ let res = add(a,b)
 let result = mult(a,b)
 
 console.log('最终结果res:------', res)
-console.log(result)
+console.log('不能惹是生非', result)
