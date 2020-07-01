@@ -7,4 +7,4 @@ function add(x,y){
 
 let res = add(a,b)
 
-console.log(res)
+console.log('最终结果res：', res)
