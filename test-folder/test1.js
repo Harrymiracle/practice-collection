@@ -5,6 +5,12 @@ function add(x,y){
     return x + y
 }
 
-let res = add(a,b)
+function mult(x,y){
+    return x*y
+}
 
-console.log('最终结果res：', res)
+let res = add(a,b)
+let result = mult(a,b)
+
+console.log('最终结果res:------', res)
+console.log(result)
