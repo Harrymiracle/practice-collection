@@ -44,6 +44,8 @@
         for (let i = 0, len = sortedData.length; i < len; i++) {
             if (sortedData[i][1] >= 60) {
                 txt += '<li>第' + rank[i] + '名：' + sortedData[i][0] + '，' + sortedData[i][1] + '</li>';
+            } else {
+              break;
             }
         }
         

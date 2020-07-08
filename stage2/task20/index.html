@@ -109,7 +109,7 @@
         rightin.onclick = actions([].push, null, getInputText);
         leftout.onclick = actions([].shift, window.alert);
         rightout.onclick = actions([].pop, window.alert);
-        resBox.onclick = actions([].splice, null, getClickIndex, 1);
+        resBox.onclick = actions([].splice, window.alert, getClickIndex, 1);
         searchBtn.onclick = function () {
             render(searchText.value.trim());
         }

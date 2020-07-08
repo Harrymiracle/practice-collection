@@ -11,17 +11,17 @@ let typein = document.querySelector('.typein'),
     resContainer = document.querySelector('.resContainer');
 
 let queue = {
-    arr: [],
+    arr: [], // 存储输入的数据
     leftin: function (val) {
-        this.arr.unshift(val);
-        this.render();
+        this.arr.unshift(val); // 处理数据
+        this.render();  // 处理UI展示
     },
     rightin: function (val) {
         this.arr.push(val);
         this.render();
     },
     leftout: function (val) {
-        if (this.isEmpty) {
+        if (this.isEmpty()) {
             alert('队列已为空！');
             return false;
         }
@@ -30,7 +30,7 @@ let queue = {
         this.render();
     },
     rightout: function (val) {
-        if (this.isEmpty) {
+        if (this.isEmpty()) {
             alert('队列已为空！');
             return false;
         }
@@ -57,6 +57,7 @@ let queue = {
     }
 }
 
+// 增加事件监听
 function addEventDivs() {
     let lists = resContainer.childNodes;
     for (let i = 0, len = lists.length; i < len; i++) {

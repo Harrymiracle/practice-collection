@@ -58,8 +58,8 @@ function delBtnHandle(event) {
         delete aqiData[key];
         console.log(aqiData)
         pTr.parentNode.removeChild(pTr);
+        // renderAqiList();
     }
-    renderAqiList();
 }
 
 /**
