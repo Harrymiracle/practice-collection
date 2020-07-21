@@ -18,7 +18,8 @@ TagCreater.prototype = {
     constructor: TagCreater,    // 重置构造函数对象
     pushQueue: function (item) {    // 尾部逐个添加
         for (let i = 0, len = item.length; i < len; i++) {
-            if (this.queue.indexOf(item[i]) > -1) {
+            // 该项为空或是已经有该项 跳过
+            if (!item[i] || this.queue.indexOf(item[i]) > -1) {
                 continue;
             }
             this.queue.push(item[i]);   // queue先添加
