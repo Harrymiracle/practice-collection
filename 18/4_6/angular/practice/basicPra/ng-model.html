@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>ng-model 指令</title>
+    <style>
+        input.ng-invalid {
+            background-color: lightblue;
+        }
+        /* input.ng-dirty { */
+        /* background-color: yellowgreen; */
+        /* } */
+    </style>
+</head>
+<script src="../js/angular-1.5.0.js"></script>
+
+<body>
+    <!-- <div ng-app="myapp"> -->
+    <div ng-app="" ng-init="text='test@runoob.com'">
+        <form name="myform">
+            Email:
+            <input type="email" name="myaddress" id="inpu" ng-model="text" required>
+            <!-- 验证用户输入  提示信息会在 ng-show 属性返回 true 的情况下显示。 -->
+            <span ng-show="myform.myaddress.$error.email">不是一个合法的邮箱！</span>
+        </form>
+        <h1>状态：</h1>
+        <!-- 应用状态 ng-model 指令可以为应用数据提供状态值(invalid, dirty, touched, error) -->
+        <p>表格地址验证是否通过： {{myform.myaddress.$valid}}</p>
+        <p>用户是否修改了表单： {{myform.myaddress.$dirty}}</p>
+        <p>用户是否和控件进行过交互： {{myform.myaddress.$touched}}</p>
+    </div>
+
+    <!-- 
+      CSS 类  ng-model 指令根据表单域的状态添加/移除以下类：
+      
+      ng-dirty:布尔值属性，表示用户是否修改过表单。如果为 ture，表示有修改过；false 表示修没有修改过
+      ng-touched:布尔值属性，表示用户是否和控件进行过交互
+      ng-pristine:布尔值属性，表示用户是否修改了表单。如果为ture，表示没有修改过；false表示修改过
+      ng-valid-[key]: 由$setValidity添加的所有验证通过的值
+      ng-invalid-[key]: 由$setValidity添加的所有验证失败的值
+   -->
+
+    <script>
+        // var app = angular.module('myapp', []);
+    </script>
+</body>
+
+</html>

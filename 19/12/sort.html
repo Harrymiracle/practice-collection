@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字母排序</title>
+</head>
+<body>
+    <script>
+        console.log([{firstZm: "r", pinpaiName: [4,5,6]},{firstZm: "d", pinpaiName:[1,2,3]},{firstZm: "x", pinpaiName: [7,8,9]}])
+        var JSON_data = [{firstZm: "r", pinpaiName: [4,5,6]},{firstZm: "d", pinpaiName:[1,2,3]},{firstZm: "x", pinpaiName: [7,8,9]}];
+
+        JSON_data = JSON_data.sort(function(a, b) {
+            return a.firstZm.charCodeAt(0) - b.firstZm.charCodeAt(0);
+        });
+        console.log(JSON_data)
+
+    </script>
+</body>
+</html>

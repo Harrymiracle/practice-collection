@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>显示产品</title>
+    <style>
+        html, body, div, ul, li{margin: 0; padding: 0;}
+        a:hover{ color: orange;}
+        .categoryBox {width: 600px;margin: 0 auto;}
+        ul {list-style: none;width: 100%; overflow: hidden;}
+        li {float: left; width: 33.33%; box-sizing: border-box; padding: 3px 0;}
+
+        .showmore {width: 100%; text-align: center; padding: 3px 0;}
+        .showmore a span{display: block; width: 130px; background: url("../../images/down.gif") 0 6px no-repeat; margin: 0 auto;}
+        .promoted a { color:#F50;}
+    </style>
+<!--    <script src="js/jquery-2.2.3.min.js"></script>      -->
+    <script src="../../js/jquery-2.2.3.min.js"></script>
+</head>
+
+<body>
+    <div class="categoryBox">
+        <ul>
+            <li ><a href="#">佳能</a><i>(30440) </i></li>
+            <li ><a href="#">索尼</a><i>(27220) </i></li>
+            <li ><a href="#">三星</a><i>(20808) </i></li>
+            <li ><a href="#">尼康</a><i>(17821) </i></li>
+            <li ><a href="#">松下</a><i>(12289) </i></li>
+            <li ><a href="#">卡西欧</a><i>(8242) </i></li>
+            <li ><a href="#">富士</a><i>(14894) </i></li>
+            <li ><a href="#">柯达</a><i>(9520) </i></li>
+            <li ><a href="#">宾得</a><i>(2195) </i></li>
+            <li ><a href="#">理光</a><i>(4114) </i></li>
+            <li ><a href="#">奥林巴斯</a><i>(12205) </i></li>
+            <li ><a href="#">明基</a><i>(1466) </i></li>
+            <li ><a href="#">爱国者</a><i>(3091) </i></li>
+            <li ><a href="#">其它品牌相机</a><i>(7275) </i></li>
+        </ul>
+        <div class="showmore">
+            <a href="more.html"><span>显示全部产品</span></a>
+        </div>
+    </div>
+
+    <script>
+    /*判断隐藏项是否为隐藏来切换显示*/
+    /*    $(function() {
+            var $changeItem = $("li:gt(5):not(:last)");
+            $changeItem.hide();
+            var $showbtn = $(".showmore > a");
+            $showbtn.click(function(){
+            if ($changeItem.is(":visible")){
+              $changeItem.hide();
+              $(".showmore span").css("background", "url(../../images/down.gif) 0 6px no-repeat").text("显示全部产品");
+              $("ul li").removeClass("promoted");
+            } else {
+              $changeItem.show();
+              $(".showmore span").css("background", "url(../../images/up.gif) 0 6px no-repeat").text("显示部分产品");
+              $("ul li").filter(":contains('佳能'),:contains('柯达'),:contains('爱国者'),:contains('明基'),:contains('松下')").addClass("promoted");
+            }
+            return false;
+          });
+        });
+*/
+
+    /*用一个开关值来切换显示*/    
+        $(function() {
+            var $changeItem = $("li:gt(5):not(:last)");
+            $changeItem.hide();
+            var $showbtn = $(".showmore > a"),
+                see = false;
+            $showbtn.click(function(){
+            if (see){
+              see = false;  
+              $changeItem.hide();
+              $(".showmore span").css("background", "url(../../images/down.gif) 0 6px no-repeat").text("显示全部产品");
+              $("ul li").removeClass("promoted");
+            } else {
+              see = true;
+              $changeItem.show();
+              $(".showmore span").css("background", "url(../../images/up.gif) 0 6px no-repeat").text("显示部分产品");
+              $("ul li").filter(":contains('佳能'),:contains('柯达'),:contains('爱国者'),:contains('明基'),:contains('松下')").addClass("promoted");
+            }
+            return false;
+          });
+        });
+
+/*
+//toggle()的此种用法在1.9的版本中已删除
+            $(function() {
+                var $changeItem = $("li:gt(5):not(:last)");
+                $changeItem.hide();
+                var $showbtn = $(".showmore > a");
+                $showbtn.toggle(function () {
+                    console.log("456");
+                    $changeItem.hide();
+                    $(".showmore span").css("background", "url(images/down.gif) 0 6px no-repeat").text("显示全部产品");
+                    $("ul li").removeClass("promoted");
+                    return false;
+                }, function () {
+                    console.log("123");
+                    $changeItem.show();
+                    $(".showmore span").css("background", "url(images/up.gif) 0 6px no-repeat").text("显示部分产品");
+                    $("ul li").filter(":contains('佳能'),:contains('柯达'),:contains('爱国者'),:contains('明基'),:contains('松下')").addClass("promoted");
+                    return false;
+                });
+                return false;
+            });
+*/
+    </script>
+</body>
+</html>

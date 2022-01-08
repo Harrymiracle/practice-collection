@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>百度前端技术学院任务十九（第二阶段）</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .control {
+            min-width: 800px;
+        }
+
+        .control input {
+            width: 160px;
+        }
+
+        .inNum,
+        .rightin,
+        .rightout,
+        .sort {
+            margin-right: 6px;
+        }
+
+        .resBox {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
+            min-width: 800px;
+            height: 500px;
+            margin-top: 10px;
+        }
+
+        .resBox div {
+            min-width: 10px;
+            width: 15px;
+            margin: 0 2px;
+            transition: height 500ms;
+        }
+
+        .red {
+            background-color: #ff0000;
+        }
+
+        .blue {
+            background-color: #0000ff;
+        }
+
+        .green {
+            background-color: #00ff00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="control">
+        <input type="text" class="inNum">
+        <button class="leftin">左侧入</button>
+        <button class="rightin">右侧入</button>
+        <button class="leftout">左侧出</button>
+        <button class="rightout">右侧出</button>
+        <button class="random">随机50</button>
+        <button class="unsort">打乱</button>
+        <button class="sort">排序</button>
+        <input type="text" class="delay" value="100">
+        delay time(ms)
+    </div>
+    <div class="resBox">
+        <!-- <div class="red" style="height:34px;"></div>
+        <div class="red" style="height:34px;"></div>
+        <div class="red" style="height:34px;"></div>
+        <div class="red" style="height:34px;"></div>
+        <div class="red" style="height:34px;"></div>
+        <div class="red" style="height:34px;"></div>
+        <div class="blue" style="height:60px;"></div>
+        <div class="green" style="height:80px;"></div>
+        <div class="green" style="height:80px;"></div>
+        <div class="green" style="height:80px;"></div> -->
+    </div>
+
+
+
+
+    <script src="../common/js/utils.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>

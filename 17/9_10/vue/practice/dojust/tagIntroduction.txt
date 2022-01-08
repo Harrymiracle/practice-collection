@@ -1,0 +1,10 @@
+小图标应用：在用的时候再更改a的position值
+<a class="lineThree"><span></span></a>	
+<a class="lineThree dotLineThree"><span></span><em></em></a>	
+<a class="boxFour"><span class="up"></span><span class="down"></span></a>		
+<a class="purple tags"><span class="rect"></span><span class="triangle"></span></a>		标签
+<a class="blanktag"><span class="rect"></span><span class="triangle1"></span><span class="triangle2"></span></a>	空标签
+<a class="rad"><span class="inner"></span></a>		单选选中
+<a class="cross"><span class="horizon"></span><span class="vertic"></span></a>		十字形
+<a class="arrow"><span class="left"></span><span class="right"></span></a>		箭头
+<a class="checkmark"><span></span></a>		 “ √ ” 号

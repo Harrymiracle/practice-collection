@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    *{margin:0;padding:0;}
+    #odiv{width: 100px;height: 100px;background: red;position: absolute;}
+  </style>
+</head>
+<body>
+  <div id="odiv"></div>
+  <input type="button" value="洗牌" id="btn" />
+  <div id="info"></div>  
+  <script>
+//1、定义的拖拽函数
+    function move(){
+      var div = document.querySelector("#odiv");
+      console.log(div);
+      div.onmousedown = function(evt){  //鼠标在div上点下
+        var e = evt || window.event;
+        var x = e.offsetX;  //鼠标点击点相对div的坐标值
+        var y = e.offsetY;
+        document.onmousemove = function(evt){ //鼠标在文档区移动
+          var e = evt || window.event;
+          var wx = e.clientX - x; //div最左边距文档最左边的距离=点击点距文档最左边的距离-x;
+          var hy = e.clientY - y;
+          if(wx < 0){
+            wx = 0; 
+      //document.documentElement.clientWidth,document.documentElement.clientHeight(HTML文档所在窗口的当前高度)所有浏览器都兼容;
+      //document.body.clientWidth,document.body.clientHeight所有浏览器都兼容,只是要注意document.body.clientHeight要在body有内容是才有值，否则是0;
+      //Document对象的body属性对应HTML文档的body标签 window.innerWidth,window.innerHeight有IE9+,Chrome,Firefox,Opera 以及 Safari支持.
+          }else if(wx > document.documentElement.clientWidth - div.offsetWidth){
+            wx = document.documentElement.clientWidth - div.offsetWidth;
+          }
+          if(hy < 0){
+            hy = 0;
+          }else if(hy > document.documentElement.clientHeight - div.offsetHeight){
+            hy = document.documentElement.clientHeight - div.offsetHeight;
+          }
+          div.style.left = wx + "px";
+          div.style.top = hy + "px";
+        }
+        document.onmouseup = function(){
+          document.onmousedown = document.onmousemove = null;
+        }
+      }  
+    }
+    
+
+
+//2、sort函数小测试（sort函数工作原理：当调用sort函数的数组项超过10项时，会比较第一项、最后一项、中间项[下标为数组长度/2后向下取整]的大小，然后再调换顺序; 内部运行机制可以在控制栏中看。）
+    function sortNum(){
+      //定义sort函数的参数函数compare
+      function compare(a,b){
+        //分别打印出当前的a,b参数的对应值
+        console.log("运行前数组为："+matchingGame.deck+" 参数a为:"+a+" 参数b为:"+b);
+        var key = (a>b)?1:-1;
+        console.log(key);
+        return key;
+      }
+
+      var matchingGame = {};   //声明一个空对象,不是必须的
+      matchingGame.deck = [-12,56,0,38,-99,43,66,77,-103,89,14,9];
+      //[9,2,3,4,5,6,7,8,9];
+      matchingGame.deck.sort(compare);  //调用sort函数
+      console.log("最终结果"+matchingGame.deck);    
+    }
+
+
+//3、生成扑克牌并打乱顺序
+    function sortCards(){
+      var card = [];  //声明一个空的数组来存储花色和点数。
+      //定义一个生产一副有顺序的扑克牌的函数
+      function init(){
+        var types = ["红桃","黑桃","梅花","方块"],  //花色
+            points = [2,3,4,5,6,7,8,9,10,"J","Q","K","A"],  //点数
+            i,j;
+        for(i = 0,len = types.length; i < len; i++){
+          for(j = 0,l = points.length; j < l; j++){
+            card.push(" "+types[i]+points[j]);  //用+连接字符串
+          }          
+        }
+        card.push(" 小王"," 大王");
+      }     
+      init();
+
+      var info = document.getElementById("info"),
+          btn = document.getElementById("btn");
+      info.innerHTML = card;
+      btn.onclick = function(){
+        //调用sort函数，参数为一个随机数，正负不确定，作为参数可以打乱顺序
+        card.sort(function(a,b){  
+          return Math.random()-0.5;
+        });
+        info.innerHTML = card;
+      }
+    }
+    
+
+    function addLoadEvent(func){
+      var oldOnLoad = window.onload;  //将旧的window.onload存储在变量oldOnLoad中
+      if(typeof(window.onload) != "function"){  //原来在window.onload中没有调用函数
+        window.onload = func;   //将新的函数赋值给window.onload
+      }else{
+        window.onload = function(){ //原来在window.onload中有调用函数，运行原来的函数和行函数
+          oldOnLoad();
+          func();
+        }
+      }
+    }
+
+    addLoadEvent(move);
+    addLoadEvent(sortNum);
+    addLoadEvent(sortCards);
+  </script>
+</body>
+</html>

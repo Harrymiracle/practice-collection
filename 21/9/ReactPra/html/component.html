@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <!-- 引入react -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <!-- 引入react-dom -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 引入Babel,使浏览器可以识别JSX语法，如果不使用JSX语法，可以不引入 -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- 本地的file协议的引入上面三个文件有跨域的问题 -->
+</head>
+
+<body>
+    <div id="root"></div>
+    <div id="WelCome"></div>
+    <div id="app"></div>
+
+    <script type="text/babel"> // 必须添加type="text/babel",否则不识别JSX语法
+        function Welcome(props) {
+            return <div>Hello {props.name} !</div>
+        }
+        const el = <Welcome name='Sara' />
+        ReactDOM.render(
+            el,
+            document.getElementById('root')
+        )
+
+        class WelCome extends React.Component {
+            render() {
+                return <div>Hello, {this.props.name} !</div>;
+            }
+        }
+        const ele = <WelCome name='Jack' />
+        ReactDOM.render(
+            ele,
+            document.getElementById('WelCome')
+        )
+
+
+        function App() {
+            return (
+                <div>
+                    <Welcome name='Tom' />
+                    <WelCome name='Blue' />
+                    <WelCome name='John' />
+                </div>
+            )
+        }
+        ReactDOM.render(
+            <App />,
+            document.querySelector('#app')
+        )
+    </script>
+</body>
+
+</html>

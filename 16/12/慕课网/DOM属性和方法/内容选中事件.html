@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title> 内容选中事件 </title>
+<script type="text/javascript">
+  // function message(){
+  //   alert("您触发了选中事件！");
+  // }
+
+/*execCommand()大法：
+  调用execCommand()可以实现浏览器菜单的很多功能。如：保存文件、打开新文件、撤消、重做操作等等。有了这个方法，就可以很容易的实现网页中的文本编辑器。
+  如果灵活运用，可以很好的辅助我们完成各种项目。
+  
+  其实只需要选中要复制的内容，执行document.execCommand('copy', false, null)就好了。execCommand里可以跑很多例如paste等方法，第一个参数是方法名，第二个是是否展示默认ui，第三个是可选参数列表，对copy来说后两个都用不到。*/
+   function message(){
+	 document.execCommand("Copy",false,null);
+	 alert("已成功复制到剪切板！");
+   }
+</script>    
+</head>
+<body>
+	<!-- onselect 事件会在文本框(input.text,textarea)中的文本被选中时发生 -->
+  <form>
+  个人简介：<br>
+   <textarea name="summary" cols="60" rows="5" onselect="message()">请写入个人简介，不少于200字！</textarea>
+  </form>
+</body>
+</html>

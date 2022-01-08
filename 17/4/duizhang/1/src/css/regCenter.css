@@ -1,0 +1,402 @@
+@charset "UTF-8";
+/**
+ * @desc 去掉单位
+ */
+/**
+ * @desc 将一个值转成rem
+ */
+/**
+ * @desc 将一个或者多个px值转成rem
+ */
+/**
+ * @desc 获取列表第一个
+ */
+/**
+ * @desc 获取列表最后一个
+ */
+/**
+ * @desc 向列表前面插入
+ */
+/**
+ * @desc 向列表指定位置插入
+ */
+/**
+ * @desc 替换列表的某个元素 $recursive 是否全部替换
+ */
+/**
+ * @desc 替换列表某个位置
+ */
+/**
+ * @desc 删除列表某个元素 $recursive 是否删除所有
+ */
+/**
+ * @desc 删除列表指定位置元素
+ */
+/**
+ * @desc 截取列表中的一部分
+ */
+/**
+ * @desc 列表变成字符串
+ */
+/**
+ * @desc 将列表部分元素前置
+ */
+/**
+ * @desc 列表是否存在
+ */
+/**
+ * @desc 字符串分隔
+ */
+/**
+ * @desc 字符串重复
+ */
+/**
+ * @desc 字符串替换
+ */
+/*!
+ *  Fonts.css -- Cross-platform Chinese fonts solution
+ *
+ *  Copyright (C) 2013-2015 Zeno Zeng
+ *  Released under the MIT license
+ *
+ *  Github: https://github.com/zenozeng/fonts.css
+ */
+/**
+ * @param $line       超出显示省略号的行数，默认：1
+ * @param $substract  为预留区域百分比%，默认：0
+ */
+/**
+ * @param $property       css属性
+ * @param $values         css属性值
+ * @param $support-ie     是否对不支持rem的浏览器使用px
+ * @param $base           基准字体大小，如果不传会搜索全局变量 $base-font，如果没有默认为 16px
+ */
+/**
+ * @desc  绘制箭头 http://lugolabs.com/caret
+ * @param $width
+ * @param $border-width
+ * @param $direction: top bottom left right
+ * @param $background-color
+ * @param $position 默认relative
+ */
+/**
+ * @desc  三角形
+ * @param $width
+ * @param $height
+ * @param $color
+ * @param $direction: top bottom left right
+ */
+/**
+ * @desc 通过背景图实现三角形
+ */
+/**
+ * @param $direction: horizontal vertical both
+ */
+/**
+ * @param $min   min-width
+ * @param $max   max-width
+ */
+/**
+ * @param $filename
+ * @param $retina-filename   多个或者一个
+ * @param $ratio             多个或者一个
+ * @param $background-size
+ */
+/**
+ * @param $color
+ * @param $direction: top bottom left right vertical all radius,  default: all
+ */
+/**
+ * @param $color
+ * @param $direction: top bottom left right vertical all,  default: all
+ * @param $pseudo: after before, default: after
+ */
+/**
+ * @param $color
+ * @param $direction: top bottom left right vertical all radius,  default: all
+ * @param $pseudo: after before, default: after
+ * @param $radius default: 1px
+ */
+/**
+ * @desc  气泡提示: http://kazzkiq.github.io/balloon.css/
+ * @param $direction:            top bottom left right
+ * @param $bg                    气泡提示背景颜色
+ * @param $trangle-width         气泡小三角形宽度
+ * @param $trangle-height        气泡小三角形高度
+ * @param $color                 气泡文字颜色
+ * @param $font                  气泡文字大小
+ */
+/**
+ * @param $height  线高  default: 1px
+ * @param $space   线距离文字两边的距离 default: 0.5em
+ * @param $color   线颜色 default: inherit
+ * @param $style   border-style default: solid
+ * @param $adjust  线距离底部的距离，默认垂直居中 default: false
+ * @param $double  是否需要两条线
+ */
+/**
+ * [flexbox description] css3伸缩盒
+ * @return {[type]} [description]
+ */
+/**
+ * [hc description] 水平居中
+ * @return {[type]} [description]
+ */
+/**
+ * [vc description] 垂直居中
+ * @return {[type]} [description]
+ */
+/**
+ * [between description] 两端对齐
+ * @return {[type]} [description]
+ */
+/**
+ * [between description] 两端对齐
+ * @return {[type]} [description]
+ */
+.mui-content {
+  background: #f0f0f0;
+  font-size: 0.8rem; }
+
+/*ע������*/
+.reg_banner {
+  margin-bottom: 0.5rem; }
+  .reg_banner img {
+    width: 100%;
+    height: 7.5rem;
+    display: block; }
+
+.reg_banner_ad {
+  margin-bottom: 1px; }
+
+.reg_info {
+  padding: 0 0.5rem;
+  background: #fff;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e1e1e1;
+  padding: 0 0.5rem; }
+  .reg_info input {
+    -webkit-appearance: none; }
+  .reg_info .reg_input, .reg_info .verify_code {
+    width: 100%;
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+    margin-top: 0.675rem;
+    padding: 0 0.425rem;
+    font-size: 0.8rem;
+    line-height: 0.8rem;
+    height: 2.25rem; }
+  .reg_info .reg_code {
+    position: relative;
+    padding-right: 5.65rem; }
+  .reg_info .verify_code {
+    width: 5.15rem;
+    color: #2882e0;
+    background: #fff;
+    border-color: #2882e0;
+    position: absolute;
+    right: 0;
+    bottom: 0; }
+  .reg_info .verify_active {
+    color: #999;
+    border-color: #999; }
+  .reg_info .agreement {
+    padding: 1.125rem 0 0.875rem 0;
+    font-size: 0.7rem; }
+    .reg_info .agreement .agree_check {
+      width: 0.75rem;
+      height: 0.75rem;
+      border: 1px solid #e1e1e1;
+      display: inline-block;
+      margin: 0 0.25rem 0.2rem 0;
+      vertical-align: middle; }
+    .reg_info .agreement .agree_check.active {
+      background: url("../images/regCenter/agree_checked.jpg");
+      background-size: cover;
+      border-color: #2882e0; }
+    .reg_info .agreement .agree_link {
+      color: #2882e0;
+      padding-left: 0.3rem; }
+  .reg_info .reg_btn {
+    padding: 0;
+    border: 0;
+    color: #fff;
+    background: #2882e0;
+    width: 100%;
+    border-radius: 3px;
+    height: 2.175rem;
+    line-height: 2.175rem;
+    margin-bottom: 0.75rem; }
+
+.swipe {
+  margin: 0 0 0.5rem; }
+  .swipe .swipe-item a, .swipe .swipe-items-wrap .swipe-item a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover; }
+
+.swipe, .swipe-items-wrap {
+  height: 7.5rem !important; }
+
+.reg_video {
+  background-color: #fff;
+  overflow: hidden; }
+  .reg_video .techn_video_content {
+    margin: 0.75rem auto;
+    width: 17.75rem;
+    height: 17.5rem;
+    border: 1px solid #000;
+    position: relative;
+    background: #f0f0f0; }
+    .reg_video .techn_video_content .video-player, .reg_video .techn_video_content .video-js.vjs-custom-skin {
+      height: 100%; }
+    .reg_video .techn_video_content .techn_video_temp {
+      width: 6.75rem;
+      height: 2.5rem;
+      background: url("../images/video_bg.png");
+      background-size: 100% 100%;
+      position: absolute;
+      top: 6.75rem;
+      left: 5.5rem; }
+
+.reg_box {
+  padding: 0 0.5rem;
+  border-bottom: 2px solid #e1e1e1;
+  background: #fff; }
+
+.list_box {
+  background-color: #f5f5f5;
+  padding: 0; }
+
+.box_tit {
+  line-height: 2.5rem;
+  font-size: 0.8rem;
+  border-bottom: 1px solid #e1e1e1;
+  background-color: #fff;
+  color: #222;
+  font-weight: normal;
+  padding: 0 0.5rem; }
+  .box_tit .box_tit_icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: 0 0.5rem 0.2rem 0.125rem;
+    display: inline-block;
+    background-size: cover;
+    vertical-align: middle; }
+  .box_tit .fun_tit_icon {
+    background-image: url("../images/regCenter/video_icon.png"); }
+  .box_tit .case_tit_icon {
+    background-image: url("../images/regCenter/case_icon.png"); }
+  .box_tit .summ_tit_icon {
+    width: 1.125rem;
+    height: 1.175rem;
+    background-image: url("../images/regCenter/summary_icon.png"); }
+
+.case_list {
+  margin-bottom: 2.8rem;
+  padding: 0 0.5rem;
+  background-color: #fff;
+  color: #222; }
+  .case_list .case_list_li {
+    height: 2.5rem;
+    line-height: 2.5rem;
+    border-bottom: 1px solid #ccc; }
+    .case_list .case_list_li:last-child {
+      border-bottom: none; }
+    .case_list .case_list_li span {
+      width: 35%;
+      display: inline-block;
+      text-align: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden; }
+      .case_list .case_list_li span:first-child {
+        text-align: left;
+        width: 26%; }
+      .case_list .case_list_li span:nth(2) {
+        text-align: right; }
+      .case_list .case_list_li span .case_list_plus {
+        font-style: normal; }
+
+.case_drop {
+  color: #249a1c; }
+
+.case_rise {
+  color: #f2493b; }
+
+/*��������ҳ*/
+.detail_tit {
+  height: 3rem;
+  position: relative;
+  margin-top: 0; }
+  .detail_tit .detail_tit_name {
+    line-height: 3rem; }
+  .detail_tit .detail_tit_num {
+    padding: 0.5rem 1rem;
+    margin-top: 0.45rem;
+    color: #000;
+    border-radius: 5px;
+    background: #ccc;
+    float: right;
+    position: relative; }
+    .detail_tit .detail_tit_num:after {
+      content: "";
+      width: 0.5rem;
+      height: 0.75rem;
+      background-size: 100%;
+      position: absolute;
+      top: 0.7rem;
+      right: 0.875rem; }
+  .detail_tit .detail_tit_num.detail_tit_num_rise {
+    padding: 0.5rem 1.5rem 0.5rem 0.75rem;
+    background: #ea4c4c;
+    color: #fff; }
+    .detail_tit .detail_tit_num.detail_tit_num_rise:after {
+      background: url("../images/regCenter/rise_icon.png");
+      background-size: 100%; }
+  .detail_tit .detail_tit_num.detail_tit_num_drop {
+    padding: 0.5rem 1.5rem 0.5rem 0.75rem;
+    background: #ea4c4c;
+    background: #249a1c;
+    color: #fff; }
+    .detail_tit .detail_tit_num.detail_tit_num_drop:after {
+      background: url("../images/regCenter/drop_icon.png");
+      background-size: 100%; }
+
+.tech_video .video-player {
+  height: 17.5rem; }
+  .tech_video .video-player .video-js {
+    height: 100%; }
+
+.summ_box {
+  padding: 0;
+  line-height: 1.125rem; }
+  .summ_box .box_tit {
+    padding: 0 0.5rem; }
+  .summ_box .summ_time {
+    color: #999;
+    font-size: 0.6rem;
+    float: right; }
+  .summ_box .summ_content {
+    padding: 1.25rem 0.5rem; }
+    .summ_box .summ_content img {
+      width: 100%; }
+
+.summ_tips {
+  padding: 0.7rem 0.5rem 2.5rem;
+  font-size: 0.7rem;
+  color: #666; }
+
+.wordContent {
+  height: 0.5rem;
+  text-indent: 0.5rem; }
+  .wordContent .colorBlack {
+    color: #000;
+    font-weight: bold; }
+  .wordContent .textIndent {
+    text-indent: 0.75rem; }
+
+/*# sourceMappingURL=maps/regCenter.css.map */

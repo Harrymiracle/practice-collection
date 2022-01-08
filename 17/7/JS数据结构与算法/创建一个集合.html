@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>创建一个集合</title>
+</head>
+<body>
+	
+	<script>
+		//创建一个集合	
+		function Set(){
+			var items = {};
+
+			this.has = function(value){
+				return items.hasOwnProperty(value);
+			};
+
+			this.add = function(value){
+				if(!this.has(value)){
+					items[value] = value;
+
+					return true;
+				}
+
+				return false;
+			};
+
+			this.remove = function(value){
+				if(this.has(value)){
+					delete items[value];
+
+					return true;
+				}
+
+				return false;
+			};
+
+			this.clear = function(){
+				items = {};
+			};
+
+			this.size = function(){
+			//方法一、
+				//JavaScript的Object类有一个keys方法，它返回一个包含给定对象所有属性的数组，在这种情况下可以使用数组的length属性来返回items对象的属性个数。但是这段代码只能在IE9以上版本、Firefox4以上版本、Chrome5以上版本
+			//	return Object.keys(items).length;
+
+			//方法二、
+				//手动提取items对象的每一个属性，记录属性的个数并返回这个数字，并且可以在任何浏览器运行。
+				var count = 0;
+				for(var prop in items){
+					if(items.hasOwnProperty(prop)){
+						++count;
+					}
+					return count;
+				}
+			};
+
+			this.values = function(){
+			//方法一、	
+				//必须在比较高级的浏览器中工作才能运行
+    		//	return Object.keys(items);
+
+    		//方法二、
+    			//在所有的浏览器中都能运行
+    			var keys = [];
+    			for(var key in items){
+    				if(items.hasOwnProperty(key)){
+    					keys.push(key);
+    				}
+    			}
+
+    			return keys;
+			};
+
+
+
+			//并集
+			this.union = function(otherSet){
+				var unionSet = new Set();
+				var values = this.values();
+
+				for(var i=0,len=values.length;i<len;i++){
+					unionSet.add(values[i]);
+				}
+
+				values = otherSet.values();
+				for(var i=0,len=values.length;i<len;i++){
+					unionSet.add(values[i]);
+				}
+
+				return unionSet;
+			};
+
+			//交集
+			this.intersection = function(otherSet){
+				var intersectionSet = new Set();
+				var values = this.values();
+
+				for(var i=0,len=values.length;i<len;i++){
+					if(otherSet.has(values[i])){
+						intersectionSet.add(values[i]);
+					}
+				}
+
+				return intersectionSet;				
+			};
+
+			//差集
+			this.difference = function(otherSet){
+				var differenceSet = new Set();
+				var values = this.values();
+
+				for(var i=0,len=values.length;i<len;i++){
+					if(!otherSet.has(values[i])){
+						differenceSet.add(values[i]);
+					}
+				}
+
+				return differenceSet;			
+			};
+
+			//子集
+			this.subSet = function(otherSet){	//当前集合是otherSet的子集
+				if(this.size > otherSet.size){
+					return false;
+				}else{
+					values = this.values();
+					for(var i=0,len=values.length;i<len;i++){
+						if(!otherSet.has(values[i])){
+							return false;
+						}
+					}
+					
+					return true;
+				}
+			};
+		}
+
+		
+		
+		//应用测试子集是否正确
+		var newSet = new Set();
+		newSet.add(1);
+		newSet.add(2);
+		newSet.add(3);
+
+		var newSet2 = new Set();
+		newSet2.add(1);
+		newSet2.add(2);
+		newSet2.add(3);
+		newSet2.add(4);
+		newSet2.add(5);
+
+
+		console.log(newSet.union(newSet2).values());
+		console.log(newSet.intersection(newSet2).values());
+		console.log(newSet2.difference(newSet).values());
+		console.log(newSet.subSet(newSet2));
+	</script>
+</body>
+</html>

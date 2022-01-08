@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JQ判断滚动</title>
+</head>
+
+<body>
+    <div style="width:500px;height:3000px;margin:0 auto;background:pink;"></div>
+
+    <script src="js/jquery-2.1.0.js"></script>
+
+    <script>
+        $(window).scroll(function() {
+            var before = $(window).scrollTop();
+            $(window).scroll(function() {
+                var after = $(window).scrollTop();
+                if (before < after) {
+                    console.log('上');
+                    before = after;
+                };
+                if (before > after) {
+                    console.log('下');
+                    before = after;
+                };
+            });
+        });
+    </script>
+</body>
+
+</html>

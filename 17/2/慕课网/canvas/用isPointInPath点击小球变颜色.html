@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>isPointInPath点击小球变颜色</title>
+</head>
+<body>
+  <canvas id="canvas" style="border:1px solid violet;margin:10px auto;">
+  	你的浏览器不支持canvas,请更换浏览器再试。
+  </canvas>
+
+  <script>
+    //三个全局变量
+    var balls = [];  //建一个装小球的空数组
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+
+    window.onload = function(){
+      canvas.width = 800;
+  	  canvas.height = 600;  
+
+      for(var i = 0; i < 30; i++){
+        var aball = {   //循环新建小球的圆心坐标和半径信息
+          x: Math.random()*canvas.width,
+          y: Math.random()*canvas.height,
+          r: Math.random()*10 + 20
+        };
+  //      balls[i] = aball; //将小球的信息对象添加到数组中(两种方法)
+          balls.push(aball);
+      } 
+
+      drawBall(); 
+      //false可以省略,事件可以用click,无法用mouseover,因为事件是添加到canvas元素上的，canvas上的图形不是具体的元素。
+      canvas.addEventListener("mouseup",detect,false);      
+    }
+
+
+    function drawBall(){
+      for(var i = 0; i < balls.length; i++){
+        context.beginPath();  //在每个循环的第一行重新开始一个路径
+        context.arc(balls[i].x, balls[i].y, balls[i].r, 0, 2*Math.PI);
+        context.fillStyle = "#058";
+        context.fill();
+        context.closePath();  //上面画的一个封闭的圆，可以省略。
+      }
+    }
+
+    function detect(e){
+      var x = e.clientX - canvas.getBoundingClientRect().left;  // o.getBoundingClientRect().left元素左边距离页面左边的距离
+      var y = e.clientY - canvas.getBoundingClientRect().top; // o.getBoundingClientRect().top元素上边距离页面上边的距离
+  //  context.clearRect(0,0,canvas.width,canvas.height);  //此行代码不能要,要了就只剩点击的圆了
+      for(var i = 0; i < balls.length; i++){  
+        context.beginPath(); //此时只是描绘一个路径，没有绘制，并且这两行代码不能放在下面的if语句中
+        context.arc(balls[i].x, balls[i].y, balls[i].r, 0, 2*Math.PI);
+//HTML5标准的canvas标签提供了在前台画图的能力，但是canvas画布中绘制的各个图形并不是以独立的DOM节点出现的。对于整个canvas画布才是一个DOM节点，这样：我们只能在整个canvas画布上添加事件监听和事件处理机制（即所有事件只能发生在canvas这个标签上），对于canvas画布中各个图形的访问性是个问题。
+//canvas针对路径绘图提供的一个方法：isPointInPath(x,y)，我们用这个方法来模拟canvas画布中图形上的事件机制。
+//isPointInPath方法定义与用法：isPointInPath()方法返回true，如果给定的点的坐标位于路径之内的话（包括路径的边）
+//首先强调isPointInPath(x,y)方法是针对路径的，比如canvas中的rect、arc方法都可以用，但是fillRect不可以用，因为它不是路径；而且仅对当前的路径有效，而且如果当前路径有多个子路径（currentPath可以有多个subPath：比如进行了rect()之后，再进行arc()，最后关闭路径，进行stroke，那么rect()和arc()所绘制的就是当前路径的两个子路径），只对第一个子路径有效。
+        if(context.isPointInPath(x,y)){  
+          context.fillStyle = "red";
+          context.fill();
+        }
+      }
+    }
+
+
+    
+
+
+
+  </script>
+</body>
+</html>

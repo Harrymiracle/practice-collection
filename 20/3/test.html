@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [1,2,[3,[4,5],6],7];
+        var res = [];
+
+        // var flat = function(arr){
+        //     var res = [];
+        //     arr.forEach((item) => {
+        //         if(Object.prototype.toString.call(item) === '[object Array]'){
+        //             flat(item);
+        //         }else if(Object.prototype.toString.call(item) === '[object Object]'){
+
+        //         }else{
+        //             res.push(item);
+        //         }
+        //     })
+        //     return res;
+        // }
+
+
+        // var flat = function(arr){
+        //     // var res = [];
+        //     for(var i=0,len=arr.length; i<len; i++){
+        //         if(Object.prototype.toString.call(arr[i]) === '[object Array]'){
+        //             flat(arr[i]);
+        //         }else if(Object.prototype.toString.call(arr[i]) === '[object Object]'){
+
+        //         }else{
+        //             res.push(arr[i]);
+        //         }
+        //     }
+        //     return res;
+        // }        
+
+        // console.log(flat(arr));
+
+
+
+        var simpleNormalizeChildren = function (children) {
+            for (let i = 0; i < children.length; i++) {
+                if (Array.isArray(children[i])) {
+                    return Array.prototype.concat.apply([], children)
+                }
+            }
+            return children
+        }
+
+        var res = simpleNormalizeChildren(arr);
+        console.log(res);
+        // var res = simpleNormalizeChildren(res);
+        // console.log(res);
+
+
+        var a = [[1, 2], [3, 4]];
+        var aRes = [].concat.apply([], a);
+        console.log(aRes);
+
+        [].concat === Array.prototype.concat;   // true
+
+        // 找出元素 item 在给定数组 arr 中的位置
+        var arr2 = [ 1, 2, 3, 4 ];
+        // function indexOf(arr, item) {
+        //     for(var i=0,len=arr.length;i<len;i++){
+        //         if(arr[i]===item){
+        //             return i;
+        //         }
+        //     }
+        //     return -1;
+        // }
+        // function indexOf(arr2, item) {
+        //     return arr2.indexOf(item);
+        // }
+
+        function indexOf(arr, item) {
+            if (Array.prototype.indexOf){   //判断当前浏览器是否支持
+                return arr.indexOf(item);
+            } else {
+                for (var i = 0; i < arr.length; i++){
+                    if (arr[i] === item){
+                        return i;
+                    }
+                }
+            }     
+            return -1;     //总是把return -1暴漏在最外层
+        }
+
+        console.log(indexOf(arr2,3));
+
+        // 计算给定数组 arr 中所有元素的总和
+        function sum(arr) {
+            var sum = arr.reduce(function(curSum,cur,index,arr){
+                return curSum+cur;
+            },0)
+            return sum;
+        }
+
+        console.log(sum(arr2));
+
+
+        //  移除数组 arr 中的所有值与 item 相等的元素。不要直接修改数组 arr，结果返回新的数组
+        var arr3 = [1, 2, 3, 4, 2];
+        // function remove(arr, item) {
+        //     var res = [];
+        //     for(var i = 0,len=arr.length;i<len;i++){
+        //         // if(res.indexOf(arr[i]) === -1 && arr[i] !== item){
+        //         if(arr[i] !== item){
+        //             res.push(arr[i]);
+        //         }
+        //     }
+        //     return res;
+        // }
+        function remove(arr, item) {
+            return arr.filter(function(cur){
+                return cur !== item;
+            })
+        }
+        console.log(remove(arr3,2));
+    </script>
+</body>
+</html>

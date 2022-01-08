@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ng-repeat-start 与 ng-repeat-end的用法</title>
+    <style>
+        .table {
+            padding: 10px;
+            border: 1px solid salmon;
+            border-collapse: collapse;
+        }
+        
+        td {
+            padding: 10px;
+            border: 1px solid seagreen;
+        }
+        
+        tr td:nth-child(1) {
+            padding-right: 200px;
+        }
+    </style>
+</head>
+<script src="../js/angular-1.5.0.js"></script>
+
+<body ng-app="app" ng-controller="productsController">
+    <h4>多行遍历的实现方式</h4>
+    <table class="table table-bordered">
+        <tr ng-repeat-start="p in products">
+            <td>{{p.name}}</td>
+            <td rowspan="2"><a href="#">Buy</a></td>
+        </tr>
+        <tr ng-repeat-end>
+            <td>{{p.description}}</td>
+        </tr>
+    </table>
+    <script>
+        angular.module('app', [])
+            .controller('productsController', ['$scope', function($s) {
+                $s.products = [{
+                    id: 1,
+                    name: 'Product 1',
+                    description: 'Product 1 description.'
+                }, {
+                    id: 2,
+                    name: 'Product 3',
+                    description: 'Product 2 description.'
+                }, {
+                    id: 3,
+                    name: 'Product 3',
+                    description: 'Product 3 description.'
+                }];
+            }])
+    </script>
+</body>
+
+</html>

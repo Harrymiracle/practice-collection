@@ -1,0 +1,548 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/** 清除内外边距 **/
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+/** 设置默认字体 **/
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "微软雅黑";
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+address,
+cite,
+dfn,
+em,
+var {
+  font-style: normal;
+}
+/* 将斜体扶正 */
+code,
+kbd,
+pre,
+samp {
+  font-family: courier new, courier, monospace;
+}
+/* 统一等宽字体 */
+small {
+  font-size: 1.2rem;
+}
+/* 小于 12px 的中文很难阅读，让 small 正常化 */
+/** 重置列表元素 **/
+ul,
+ol {
+  list-style: none;
+}
+/** 重置文本格式元素 **/
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+/** 重置表单元素 **/
+legend {
+  color: #000;
+}
+/* for ie6 */
+fieldset,
+img {
+  border: 0;
+}
+/* img 搭车：让链接里的 img 无边框 */
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+}
+/* 使得表单元素在 ie 下能继承字体大小 */
+/* 注：optgroup 无法扶正 */
+/** 重置表格元素 **/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+img {
+  vertical-align: middle;
+}
+.fl-cl > div {
+  float: left;
+}
+.fl-cl > li {
+  float: left;
+}
+.fl-cl:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.fl-cl > ul {
+  float: left;
+}
+.fr-cl > div {
+  float: right;
+}
+.fr-cl > li {
+  float: right;
+}
+.fr-cl > ul {
+  float: right;
+}
+.fr-cl:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.cl:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+html {
+  font-size: 62.5%;
+  font-family: "Microsoft Yahei ui", "微软雅黑";
+  position: relative;
+  background: #f0f0f0;
+}
+.banner {
+  width: 100%;
+}
+.banner img {
+  width: 100%;
+}
+/* 公共的头部样式和尾部样式开始*/
+footer {
+  width: 100%;
+  height: 4.5rem;
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  background: #008362;
+}
+footer div {
+  width: 33.3%;
+  height: 5rem;
+  display: inline;
+  float: left;
+  position: relative;
+}
+footer div a {
+  color: #fff;
+}
+footer div a .img {
+  width: 2rem;
+  height: 2rem;
+  -webkit-background-size: 100% auto;
+  -moz-background-size: 100% auto;
+  -o-background-size: 100% auto;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0.5rem;
+}
+footer div a .activeimg {
+  width: 2rem;
+  height: 2rem;
+  -webkit-background-size: 100% auto;
+  -moz-background-size: 100% auto;
+  -o-background-size: 100% auto;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0.5rem;
+}
+footer div a p {
+  font-size: 1.4rem;
+  width: 100%;
+  height: 100%;
+  display: inline;
+  float: left;
+  position: relative;
+  text-align: center;
+  color: #fff;
+  margin-top: 2.5rem;
+}
+footer div a .active {
+  color: #009f78;
+}
+footer div:nth-child(1) .img {
+  background-image: url("../images/index/home.png");
+}
+footer div:nth-child(1) .activeimg {
+  background-image: url("../images/index/homeActive.png");
+}
+footer div:nth-child(2) .img {
+  background-image: url("../images/index/myWayBill.png");
+}
+footer div:nth-child(2) .activeimg {
+  background-image: url("../images/index/myWayBillActive.png");
+}
+footer div:nth-child(3) .img {
+  background-image: url("../images/index/personCenter.png");
+}
+footer div:nth-child(3) .activeimg {
+  background-image: url("../images/index/personCenterActive.png");
+}
+header {
+  width: 100%;
+  height: 4rem;
+  line-height: 4rem;
+  background: #008363;
+  color: #fff;
+  font-size: 1.8rem;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+header p {
+  margin: 0;
+  padding: 0;
+}
+header p.order-num {
+  font-size: 1.6rem;
+}
+header a {
+  height: 4rem;
+  line-height: 4rem;
+  color: #fff;
+  font-size: 1.4rem;
+  position: absolute;
+}
+header a img {
+  height: 1.8rem;
+  margin: 1rem auto;
+  vertical-align: middle;
+}
+header a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+header a.manege {
+  width: 4rem;
+  font-size: 12px;
+  font-size: 1.2rem;
+  right: 0;
+  top: 0;
+}
+header a.goback {
+  min-width: 4rem;
+  left: 0;
+  top: 0;
+  padding-left: 2.1rem;
+  font-size: 1.6rem;
+  background: url("../images/person/icon-return.png") left 1rem center no-repeat;
+  background-size: 0.8rem 1.45rem;
+}
+.hide {
+  display: none;
+}
+/* 公共的头部样式和尾部样式结束*/
+html {
+  background: url("../images/index/background-index.png") no-repeat;
+  background-size: 100% 100%;
+}
+body {
+  background: none;
+  overflow: scroll;
+}
+body .main {
+  padding-bottom: 5rem;
+}
+body .margin-l {
+  margin-left: .5rem;
+}
+body .margin-r {
+  margin-right: 2%;
+}
+body .magin-t {
+  margin-top: .5rem;
+}
+body .margin-b {
+  margin-bottom: .5rem;
+}
+body .img-p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+body .img-p a {
+  width: 100%;
+  max-height: 68%;
+  display: block;
+  text-align: center;
+}
+body .img-p a img {
+  max-width: 76%;
+  max-height: 30%;
+}
+body .img-p a .img-s {
+  width: 28%;
+}
+body .img-p .max-3 {
+  max-width: 20%;
+}
+body .img-p .max-b {
+  max-width: 32%;
+}
+body .img-p .text-p {
+  font-size: 1.7rem;
+  line-height: 2.8rem;
+  color: #fff;
+  text-align: center;
+}
+body .home-page-title {
+  width: 100%;
+  height: 4rem;
+  line-height: 4rem;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #f6f6f6;
+}
+body .container {
+  width: 93.75%;
+  margin: 0 auto;
+}
+body .banner {
+  margin-bottom: 0.5rem;
+}
+body .banner li div {
+  float: left;
+  height: 100%;
+}
+body .banner li .banner01 {
+  width: 56.6%;
+  margin-right: 1.6%;
+}
+body .banner li .banner02 {
+  width: 20.6%;
+  margin-right: 1.6%;
+}
+body .banner li .banner03 {
+  width: 19.6%;
+}
+body .banner li img {
+  width: 100%;
+}
+body .function {
+  height: 16rem;
+  margin-bottom: .5rem;
+}
+body .function .message {
+  width: 26.66%;
+  height: 100%;
+  background-color: #44a189;
+}
+body .function .complaint-rest {
+  width: 55.41%;
+  height: 100%;
+}
+body .function .complaint-rest .complaint {
+  width: 100%;
+  height: 48.43%;
+  background-color: #eb4799;
+  position: relative;
+}
+body .function .complaint-rest .complaint .water {
+  position: absolute;
+}
+body .function .complaint-rest .complaint .drops1 {
+  width: 1.3rem;
+  top: 1.6rem;
+  left: 30%;
+}
+body .function .complaint-rest .complaint .drops2 {
+  width: 0.6rem;
+  top: 0.6rem;
+  left: 38%;
+}
+body .function .complaint-rest .complaint .drops3 {
+  width: 0.45rem;
+  top: 4rem;
+  left: 63%;
+}
+body .function .complaint-rest .complaint .drops4 {
+  width: 0.45rem;
+  top: 4rem;
+  left: 83%;
+}
+body .function .complaint-rest .rest {
+  width: 100%;
+  height: 48.43%;
+  background-color: #9651a1;
+}
+body .function .complaint-rest .rest .water {
+  width: 0.8rem;
+  position: absolute;
+  top: 3rem;
+  left: 87%;
+}
+body .function .satisfaction-freight {
+  width: 42.6%;
+  height: 100%;
+}
+body .function .satisfaction-freight .satisfaction {
+  width: 100%;
+  height: 100%;
+  background-color: #29c09a;
+  position: relative;
+}
+body .function .satisfaction-freight .satisfaction .water {
+  position: absolute;
+}
+body .function .satisfaction-freight .satisfaction .drops1 {
+  width: 0.6rem;
+  top: 7rem;
+  left: 48%;
+}
+body .function .satisfaction-freight .satisfaction .drops2 {
+  width: 1.6rem;
+  bottom: 1rem;
+  right: 8%;
+}
+body .function .satisfaction-freight .text-p {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 0rem;
+}
+body .activity-receiving-orders {
+  height: 16rem;
+}
+body .activity-receiving-orders .activity {
+  width: 49%;
+  height: 100%;
+  background-color: #ccc;
+  background-image: url("../images/index/activity-back.png");
+  position: relative;
+}
+body .activity-receiving-orders .activity .position-r-t {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+body .activity-receiving-orders .activity .position-r-b {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+body .activity-receiving-orders .activity a.width-2 {
+  width: 36%;
+  height: 34%;
+  background: #008363;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+body .activity-receiving-orders .activity a.width-2 img {
+  display: block;
+  width: 40%;
+  margin: 0 auto 1rem;
+}
+body .activity-receiving-orders .activity a.width-2 .text-p {
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+body .activity-receiving-orders .activity a.width-3 {
+  display: block;
+  width: 36%;
+  height: 34%;
+}
+body .activity-receiving-orders .activity a.width-3 img {
+  width: 100%;
+  height: 100%;
+}
+body .activity-receiving-orders .activity a.position-c-c {
+  display: block;
+  width: 36%;
+  position: absolute;
+  left: 34%;
+  top: 35%;
+}
+body .activity-receiving-orders .activity a.position-c-c img {
+  width: 100%;
+}
+body .activity-receiving-orders .receiving-orders {
+  width: 49%;
+  height: 100%;
+  background-color: #45a4a5;
+}
+body .activity-receiving-orders .receiving-orders .text-p {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 0rem;
+}
+body .activity-receiving-orders .receiving-orders .water {
+  position: absolute;
+}
+body .activity-receiving-orders .receiving-orders .drops1 {
+  width: 0.6rem;
+  top: 6.4rem;
+  left: 53%;
+}
+body .activity-receiving-orders .receiving-orders .drops2 {
+  width: 1.6rem;
+  bottom: 1rem;
+  right: 8%;
+}

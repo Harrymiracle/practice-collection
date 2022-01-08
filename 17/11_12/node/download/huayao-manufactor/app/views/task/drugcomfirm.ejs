@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../views/css/drugconfirm.css">
+</head>
+<body>
+<header>
+    <a href="/drug/drugsearchrender" class="goback">返回</a>
+    <p><%= title %></p>
+</header>
+
+<div class="drugconfirm">
+    <div class="title">
+        <div><img src="../views/images/task/icon-drugform.png" alt="">药品清单</div>
+    </div>
+    <div class="drug-list">
+        <div class="tab-title">
+            <div class="am-u-sm-2">序号</div>
+            <div class="am-u-sm-6">药品名称</div>
+            <div class="am-u-sm-4">数量</div>
+        </div>
+        <ul>
+            <% if(status && status == "SUCCEED"){ %>
+                <% if(product && product.length!=0){%>
+                    <% for(var i=0; i<product.length; i++){ %>
+                        <li>
+                            <div class="am-u-sm-2" data-state="false">
+                                <span class="img" onclick="checkDrugConfirm(this)"><img src="../views/images/task/icon-check01.png" alt=""></span>
+                                <input type="checkbox" name="product"  data-p="<%= product[i].sid %>" >
+                                <span><%= i+1 %></span>
+                            </div>
+                            <div class="am-u-sm-6" data-code="<%= product[i].pCode %>">
+                                <a href="/drug/drugdetails?product=<%= product[i].productId %>"><%= product[i].productName %></a>
+                            </div>
+                            <div class="num am-u-sm-4" date-cart="<%= product[i].sid %>">
+                                <div class="am-u-sm-4" onclick="delectOrAddDrugNum(this,'del')"><img src="../views/images/task/icon-delect.png" alt=""></div>
+                                <div class="am-u-sm-4 input"><input type="text" name="cartproduct" value="<%= product[i].quantity %>"></div>
+                                <div class="am-u-sm-4" onclick="delectOrAddDrugNum(this,'add')"><img src="../views/images/task/icon-add.png" alt=""></div>
+                            </div>
+                        </li>
+                    <% } %>
+                <% }else{ %>
+                    <p style="text-align: center;line-height: 5rem;color: #5b5b5b;">购物车里什么都没有哦！</p>
+                <% } %>
+            <% }else{ %>
+                <p style="text-align: center;line-height: 5rem;color: #5b5b5b;">请求超时，数据跑丢了！</p>
+            <% } %>
+        </ul>
+    </div>
+    <% if(product && product.length!=0){ %>
+        <div class="btn">
+            <div class="am-u-sm-6"><div class="delect" onclick="delectDrugList()">删除</div> </div>
+            <div class="am-u-sm-6"><div class="next-btn" onclick="next()">下一步</div></div>
+        </div>
+    <% } %>
+</div>
+<div class="hide" id="order-type--alert">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            请选择要添加的药品！
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" onclick="modalDisplay()">确定</span>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../commonjs/jquery-2.1.0.js"></script>
+<script src="../views/js/drugcomfirm.js"></script>
+</html>

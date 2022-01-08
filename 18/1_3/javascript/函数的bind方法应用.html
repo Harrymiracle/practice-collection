@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>函数的bind方法高级应用</title>
+</head>
+
+<body>
+    <button id="my-btn">点击</button>
+
+    <script>
+        /**
+         * 事件处理器封装
+         */
+        var EventUntil = {
+            addHandler: function(ele, type, handler) {
+                if (ele.addEventListener) {
+                    ele.addEventListener(type, handler, false);
+                } else if (ele.attachEvent) {
+                    ele.attachEvent('on' + type, handler);
+                } else {
+                    ele['on' + type] = handler;
+                }
+            },
+            removeHandler: function(ele, type, handler) {
+                if (ele.removeEventListener) {
+                    ele.removeEventListener(type, handler, false);
+                } else if (ele.detachEvent) {
+                    ele.detachEvent('on' + type, handler);
+                } else {
+                    ele['on' + type] = null;
+                }
+            }
+        };
+
+
+        /**
+         * 不好的例子：
+         */
+        var handler = {
+            message: 'Event handled!',
+            handleClick: function(e) {
+                alert(e.type + ' ' + this + ' ' + this.message);
+            }
+        };
+
+        var btn = document.querySelector('#my-btn');
+        EventUntil.addHandler(btn, 'click', handler.handleClick); //click [object HTMLButtonElement] undefined
+        /**
+         * 提问：为什么弹出是undefined?
+         * 原因分析：没有保存handler.handlerClick的运行环境， 因为此时的this是指向DOM按钮btn的。
+         * 代人EventUntil对象中，相当于在btn被点击时直接执行handler(即：handler.handleClick函数，此函数只是一个指针，
+         * 具体在执行时this指向什么还要看当时的执行环境，此时的e是由btn触发的，事件是绑定在btn上的，this指向btn)。
+         */
+
+        //改进方法一、  
+        //此方法是在onclick事件处理程序内使用了一个闭包直接调用handler.handleClick()。
+        EventUntil.addHandler(btn, 'click', function(e) {
+            handler.handleClick(e); //click [object Object] Event handled!
+        });
+        /**
+         * 提问：为什么闭包就保存了handler.handleClick()的执行环境?
+         * 原因分析：代入EventUntil对象中，在btn触发click事件时，得到的是function(e){handler.handleClick(e);},即为handler实际的值，
+         * 这样就把e传递了进来，即为在handle对象下的handleClick函数并传给它在handle对象下执行的e参数，此时执行环境得以保存，this指向的就是handle对象。
+         */
+
+
+        //Es5原生的bind()方法，即将前面的函数绑定在bind函数的参数对象的执行环境中。
+        EventUntil.addHandler(btn, 'click', handler.handleClick.bind(handler));
+    </script>
+</body>
+
+</html>

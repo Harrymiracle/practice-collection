@@ -1,0 +1,398 @@
+@charset "utf-8";
+@import "../../node_modules/mixins-sass/src/mixins";
+@import "../mui/mixins.scss";
+
+$color-blue: #2882e0;
+$color-font: #646464;
+$color-title:#323232;
+$color-border: #e5e5e5;
+$color-white:#ffffff;
+
+/**
+ * 产品列表页
+ */
+.productlist{
+	.banner{
+		width: 100%;
+		@include rem(height,300px);
+		img{
+			width: auto;
+			@include rem(height,300px);
+		}
+	}
+	.list_wrap{
+		@include rem(padding-bottom,30px);
+	}
+}
+
+/**
+ * 公用样式
+ */
+.list_item{
+	display: block;
+	@include rem(padding,30px 24px);
+	border-bottom: 1px solid $color-border;
+	background-color: $color-white;
+	img{
+		@include rem(width,117px);
+		@include rem(height,117px);
+		@include rem(margin-top,8px);
+	}
+	.info_box{
+		@include rem(width,554px);
+		@include rem(margin-left,28px);
+		.title{
+			.name{
+				display:inline-block;
+				@include rem(width,350px);
+				overflow: hidden;
+			    white-space: nowrap;
+			    text-overflow: ellipsis;
+			}
+			h2{
+				@include rem(font-size,32px);
+				color: $color-title;
+			}
+			.deadline{
+				@include rem(font-size,22px);
+				color:#ea4a4a;
+			}
+			.tag{
+				@include rem(padding,5px 7px);
+				text-align:center;
+				display: inline-block;
+				vertical-align: middle;
+				border-radius:3px;
+				@include rem(font-size,19px);
+				color:$color-white;
+				background-color:$color-blue;
+				@include rem(margin-left,28px);
+				@include rem(margin-top,-10px);
+				font-weight:normal;
+			}
+		}
+		.info_txt{
+			@include rem(margin-top,12px);
+			@include rem(font-size,28px);
+			color: $color-font;
+			@include rem(line-height,38px);
+			@include text-overflow(2);
+		}
+	}
+}
+
+/**
+ * 产品介绍
+ */
+.productIntro{
+	@include rem(padding-bottom,40px);
+	.content_wrap{
+		.content_title{
+			@include rem(line-height,60px);
+			@include rem(padding,0 24px);
+			@include rem(font-size,28px);
+		}
+		.content_txt{
+			@include rem(padding,30px 24px);
+			border-bottom: 1px solid $color-border;
+			background-color: $color-white;
+			.txt_title{
+				@include rem(font-size,32px);
+				color: #222222;
+				@include rem(margin-bottom,10px);
+			}
+			.service_title{
+				@include rem(font-size,32px);
+				color: #222222;
+				@include rem(line-height,42px);
+			}
+			.service_txt{
+				@include rem(font-size,28px);
+				color: #666666;
+				@include rem(line-height,48px);
+				@include rem(margin-top,12px);
+			}
+			.service_data{
+				@include rem(font-size,24px);
+				color: #666666;
+			}
+			.tech_txt{
+				@include rem(font-size,28px);
+				color: #222222;
+				@include rem(line-height,46px);
+			}
+			h2{
+				@include rem(font-size,32px);
+				color: #ff2e2e;
+				@include rem(margin-bottom,10px);
+			}
+			.color_blue{
+				color:#2882e0;
+			}
+			.txt_mt{
+				@include rem(margin-top,50px);
+			}
+			.txt_ident{
+				@include rem(text-indent,40px);
+			}
+			.content_text{
+				text-align:center;
+				.wzw_fuwu{
+					@include rem(width,319px);
+					@include rem(height,30px);
+					background:url('../images/wzw_fuwu.png') no-repeat;
+					display:inline-block;
+					background-size:100% 100%;
+					vertical-align: middle;
+				}
+			}
+			
+		}
+		.pay_btn{
+			display: block;
+			@include rem(width,702px);
+			@include rem(height,90px);
+			@include rem(margin,30px auto 0);
+			border: 0 none;
+			background:$color-blue url('../images/buy_btn.png') no-repeat center center;
+			@include rem(background-size,200px); 
+			color:#fff;
+			@include rem(font-size,32px);
+			text-align: center;
+			@include rem(line-height,90px); 
+		}
+	}
+}
+
+/**
+ * 详情列表
+ */
+.infoList{
+	.list_wrap{
+		@include rem(padding,0 24px);
+		.data_time{
+			@include rem(font-size,28px);
+			color: $color-font;
+			@include rem(line-height,70px);
+			@include rem(margin,30px 0);
+		}
+		.to_pay{
+			background-color: $color-blue;
+			@include rem(width,180px);
+			@include rem(height,70px);
+			color:#fff;
+			text-align: center;
+			@include rem(border-radius,6px);
+		}
+		.content_block{
+			background-color: #fff;
+			border: 1px solid $color-border;	
+			@include rem(margin-bottom,20px);
+			position: relative;
+			a{
+				display: block;
+			}
+			.block_title{
+				@include rem(padding,20px 24px);
+				border-bottom: 1px solid $color-border;
+				h2{
+					@include rem(font-size,32px);
+					color:#222222;
+					@include text-overflow(1);
+				}
+				.block_time{
+					@include rem(font-size,24px);
+					color: #999999;
+					@include rem(margin-top,5px);
+					@include rem(line-height,28px);
+				}
+			}
+			.block_txt{
+				@include rem(font-size,28px);
+				color:#666666;
+				@include rem(padding,20px 24px);
+				@include text-overflow(2);
+			}
+			.info_tips{
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				background-color: rgba(40,131,224,0.8);
+				color: #fff;
+				text-align: center;
+				@include rem(font-size,28px);
+				@include rem(line-height,60px);
+			}
+		}
+	}
+}
+
+/**
+ * 产品详情
+ */
+.productInfo{
+	.content_top{
+		background-color: #fff;
+		border-bottom: 1px solid $color-border;	
+		@include rem(padding,0 24px);
+		@include rem(margin-bottom,20px);
+		.block_title{
+			@include rem(padding,20px 0);
+			border-bottom: 1px solid $color-border;
+			h2{
+				@include rem(font-size,32px);
+				color:#222222;
+				@include rem(line-height,48px);
+			}
+			.block_time{
+				@include rem(font-size,24px);
+				color: #999999;
+				@include rem(margin-top,5px);
+				@include rem(line-height,28px);
+			}
+			.block_left{
+				@include rem(width,540px);
+				@include rem(height,120px);
+			}
+			.res_txt{
+				@include rem(font-size,24px);
+				color:#999999;
+				@include rem(margin-bottom,5px);
+			}
+		}
+		.block_txt{
+			@include rem(font-size,28px);
+			color:#666666;
+			@include rem(padding,20px 0);
+		}
+	}
+	.content_tab{
+		.nav_bar{
+			@include flexbox();
+			border-bottom: 1px solid $color-border; 
+			background-color: #fff;
+			@include flex-between();
+			.tab_item{
+				@include rem(padding,30px 0 20px);
+				-webkit-flex: 1;
+				text-align: center;
+    			flex: 1;
+				.stock_name{
+					@include rem(font-size,28px);
+					color: #666666;
+					@include rem(margin-bottom,10px);
+					span{
+						@include rem(padding-left,10px);
+					}
+				}
+				.title_tag{
+					@include rem(font-size,20px);
+					color:#fff;
+					background-color: #999999;
+					@include rem(padding,5px 15px);
+					@include rem(border-radius,18px);
+				}
+				&.is_select{
+					border-bottom: 2px solid $color-blue; 
+					.stock_name{
+						color:$color-blue;
+					}
+					.title_tag{
+						background-color: $color-blue;
+					}
+				}
+			}
+		}
+		.tab_container{
+			.block_data{
+				background-color: #fff;
+				@include flexbox();
+				@include flex-between();
+				@include rem(padding,24px 0);
+				border-bottom: 1px solid $color-border;
+				.data_item{
+					border-right: 1px solid $color-border;
+					-webkit-flex: 1;
+					text-align: center;
+	    			flex: 1;
+					&:last-child{
+						border-right: 0 none;
+					}
+					.data{
+						@include rem(font-size,36px);
+						color: #ea4a4a;
+					}
+					.green_txt{
+						color:#249a1c;
+					}
+					.black_txt{
+						color:#000;
+					}
+					.title{
+						@include rem(font-size,24px);
+						color: #969696;
+					}
+					.data_info{
+						@include rem(font-size,24px);
+						color:#323232;
+						span{
+							color:#ea4a4a;
+						}
+						.blue_txt{
+							color: $color-blue;
+						}
+					}
+				}
+			}
+			.block_list{
+				background-color: #fff;
+				@include rem(margin-top,20px);
+				border-top: 1px solid $color-border;
+				.block_title{
+					@include rem(line-height,90px);
+					@include rem(padding,0 24px);
+					@include rem(font-size,28px);
+					color: $color-blue;
+					border-bottom: 1px solid $color-border;
+				}
+				.block_content{
+					border-bottom: 1px solid $color-border;
+					@include rem(padding,24px);
+					.top{
+						.time{
+							@include rem(font-size,28px);
+							color:#999999;
+						}
+						.top_tag{
+							@include rem(font-size,24px);
+							color: #fff;
+							background-color: $color-blue;
+							@include rem(padding,6px 20px);
+							@include rem(border-radius,22px);
+						}
+					}
+					.info_txt{
+						@include rem(font-size,32px);
+						color: #222222;
+						@include rem(margin-top,20px);
+					}
+				}
+			}
+		}
+	}
+}
+.block_empty{
+	width:100%;
+	@include rem(height,400px);
+	position:relative;
+	.block_empty_bg{
+		@include rem(width,380px);
+		@include rem(height,245px);
+		background:url('../images/product_empty.png');
+		background-size:100% 100%;
+		position:absolute;
+		@include rem(left,180px);
+		@include rem(top,80px);
+	}
+}

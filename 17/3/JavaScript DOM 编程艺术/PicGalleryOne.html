@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>图片集1</title>
+    <style>
+        body{
+            background: #ccc;
+            color: #333;
+            font-size: "Helvetica", "Arial", serif;
+            margin: 20px 10%;
+        }
+        a{
+            color: #333;
+            text-decoration: none;
+            background: transparent;
+            font-weight: bold;
+        }
+        img{
+            display: block;
+        }
+        h1{
+            color: #333;
+            background: transparent;
+        }
+        ul{
+            list-style: none;
+            padding: 0;
+        }
+        li{
+            display: inline-block;
+            margin: 0 10px;
+        }
+        p{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Snapshots</h1>
+    <ul>
+        <!--return false阻止默认跳转行为-->
+        <li><a href="../images/11.jpg" title="A running boy" onclick="showPic(this); return false;">Running</a></li>
+        <li><a href="../images/12.jpg" title="Playing sand" onclick="showPic(this); return false;">Sand</a></li>
+        <li><a href="../images/13.jpg" title="A writting girl" onclick="showPic(this); return false;">Write</a></li>
+        <li><a href="../images/14.jpg" title="Blow the wind" onclick="showPic(this); return false;">Wind</a></li>
+    </ul>
+    <img id="placeholder" src="../images/15.jpg" alt="My picture gallery."/>
+    <p id="description">Choose a picture.</p>
+
+    <script>
+        function showPic(whichPic){
+            var resource = whichPic.getAttribute("href"),
+                placeholder = document.getElementById("placeholder"),
+                text = whichPic.getAttribute("title"),
+                description = document.getElementById("description");
+            placeholder.setAttribute("src", resource);
+            description.firstChild.nodeValue = text;
+        }
+    </script>
+</body>
+</html>

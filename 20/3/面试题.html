@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ## 请在下方描述你的面试题内容( 支持Markdown )
+
+        /*----随机生成100个(1-100)数字，然后实现冒泡排序，最后使用二分查找算法查找指定元素----*/
+        function generateNumber(){
+        const arr = [];
+        bubbleSort(arr);
+        }
+
+        function bubbleSort(arr){
+            // your code here
+            binarySearch(arr, 28);
+        }
+
+        function binarySearch(arr, num){
+            // your code here
+        }
+
+
+
+
+        /* 
+        * 用正则表达式判断某个文件目录地址中是否包含某个文件夹(注意是文件夹) 
+        * example: 
+        * const dir = '/usr/local/nginx.conf';
+        * const directory='nginx';
+        * existDir(dir, directory);
+        * 输出：false
+        */
+        function existDir(dir, directory){
+            // your code here
+        }
+
+
+
+
+        /*
+        * 请使用闭包的知识将c的x属性变为私有属性
+        * 要求：调用c.x，输出undefined;
+        */
+        var c = {
+            x: 1,
+            speak(){}
+        }
+        // your code here
+        
+        
+
+        /*
+        * 实现template函数，用于对指定格式的字符串进行格式化。
+        * example:
+        * const str = "my name is {name} and I am {age} years old";
+        * const data = {name: 'peter', age: '20'}
+        * format(str, data);
+        * 输出 my name is peter and I am 20 years old
+        */
+        const str = "my name is {name} and I am {age} years old";
+        const data = {name: 'peter', age: '20'}
+        // 输出 my name is peter and I am 20 years old
+
+        function format(str, data) {
+            // your code here
+            let reg = /{(\w+)}/g;
+            let res = str.match(reg);
+            let resCo = res.map((el)=>el.slice(1,el.length-1));
+            // console.log(res,str)
+            res.forEach(function(el,index){
+                str.replace(String(el),data[resCo[index]])
+            });
+            return str;
+            
+        }
+        format(str, data);
+
+
+        /**
+         * 重写console.log函数，实现在打印任何参数（重点）的时候，前面输出当前时间的时间戳，如：
+         * 运行 console.log(123)
+         * 输出：
+         * 1584417233054: 123
+         */
+        //your code here
+
+
+
+
+        // /*----------将下面的函数转化成为es5-----------*/
+        const func = (a, ...b) => ({a, b});
+        function func(a){
+            return a
+        }
+        /*---------打印箭头函数的所有参数-----------*/
+        const func1 = () => {
+        }
+
+
+
+        /**
+         * 实现一个Input组件， 要求能够一键清除所输入的内容，并且给清除前后预留api，并且支  持异步
+        例如：用户在点击清除按钮时，在清除内容前*可能*会需要做一些操作(例如：获得当前值做一些计算或是获得当前值发送给后端)，这些操作完成（若是异步操作，需要等异步操作完成之后）之后才能清除Input内容
+
+        请根据自己的技术栈选择作答
+        */
+        // <template>
+        //   <span>
+        //     <input />
+        //   </span>
+        // </template>
+        // <script>
+        // export default {
+        //   data(){
+        //     return {
+        //     }
+        //   }
+        // }
+        // <\/script>
+
+        // import React from 'react';
+        // export default class Input extends React.Component {
+        //     render(){
+        //         return (
+        //             <input />
+        //         );
+        //     }
+        // }
+        
+
+        const func1 = (...arg) => {
+            for(let i=0, len = arg.length; i<len; i++){
+                console.log(arg[i]);
+            }
+        }
+
+        func1('1','2','3');
+
+        const dir = '/usr/local/nginx.conf';
+        const directory='nginx';
+        function existDir(dir, directory){
+            // your code here
+            let reg = new RegExp(directory)
+            return dir.match(reg);
+        }
+
+        existDir(dir, directory);
+
+
+        var c = {
+            x: 1,
+            speak(){}
+        }
+       
+        // (function (arg){
+        //     if(arg.hasOwnProperty(x)){
+        //         console.log(123)
+        //     }
+            
+        // })({
+        //     x: 1,
+        //     speak(){}
+        // });
+        // console.log(c.x)
+
+
+    </script>
+</body>
+</html>

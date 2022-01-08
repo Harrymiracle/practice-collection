@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  //return 表达式
+    function sb(){
+      var a=1,
+          b=2,
+          c;
+      c=a*b;
+      console.log("123");
+      return  //return关键字和后面的表达式不应换行，换了行后后面的表达式就不起作用了，return值为undefined
+       c;    
+    }
+    var x = sb();
+    console.log(x);
+
+
+  //单一的循环中的break和continue
+    var num = 0;
+    for (var i = 1; i < 10; i++) {
+        if (i % 5 == 0) {
+            break;  //终止循环
+        }
+        num++;
+    }
+    alert(num);    //4
+
+    var num2 = 0;
+    for (var i = 1; i < 10; i++) {
+        if (i % 5 == 0) {
+            continue;  //跳出一次循环
+        }
+        num2++
+    }
+    alert(num2)    //8
+
+
+  //循环嵌套中的break和continue
+    var iNum = 0;
+    outermost:   //选定的标签
+    for (var i=0; i<10; i++) {
+      for (var j=0; j<10; j++) {
+          if (i == 5 && j == 5) {
+            break outermost;  //终止多层循环
+          }
+        iNum++;
+      }
+    }
+    alert(iNum);   //55，i,j都为0时,iNum的值是1,i==5,j==4时,iNum=5*10+4+1=55
+
+    var iNum2 = 0;
+    outermost:   //选定的标签
+    for (var i=0; i<10; i++) {
+      for (var j=0; j<10; j++) {
+        if (i == 5 && j == 5) {
+         continue outermost;  //终止一次循环
+        }
+        iNum2++;
+      }
+    }
+    alert(iNum2);   //99
+  </script>
+</body>
+</html>

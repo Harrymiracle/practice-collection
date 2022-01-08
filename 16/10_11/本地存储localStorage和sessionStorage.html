@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HTML5的本地存储</title>
+ <script src="js/jquery-2.2.3.min.js"></script>
+<style>
+</style>
+
+</head>
+<body>
+
+<script type="text/javascript">
+    //添加key-value 数据到 sessionStorage
+    sessionStorage.setItem("demokey", "http://blog.itjeek.com");
+    //通过key来获取value
+    var dt = sessionStorage.getItem("demokey");
+    alert(dt);
+    //清空所有的key-value数据。
+    //sessionStorage.clear();
+    alert(sessionStorage.length);
+
+
+    //添加key-value 数据到 sessionStorage
+    localStorage.setItem("demokey", "http://blog.itjeek.com");
+    //通过key来获取value
+    var dt = localStorage.getItem("demokey");
+    alert(dt);
+    //清空所有的key-value数据。
+    //localStorage.clear();
+    alert(localStorage.length);
+</script>
+
+</body>
+
+</html>

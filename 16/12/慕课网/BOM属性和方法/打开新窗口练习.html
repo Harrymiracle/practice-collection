@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>new document</title>
+</head>
+<body>
+  <script type="text/javascript">  
+    function openWindow(){
+    // 新窗口打开时弹出确认框，是否打开
+        var newSite = confirm("是否打开新网页");       
+    // 通过输入对话框，确定打开的网址，默认为 http：//www.imooc.com/
+        if(newSite){  //此处只能用newSite，不能用true,false,用了选择是或是否没区别
+            var site = prompt("请输入要打开的网站","http://www.imooc.com");
+            //打开的窗口要求，宽400像素，高500像素，无菜单栏、无工具栏。
+            window.open("site","_blank","height=500,width=400,top=100,toolbar=no,left=0,menubar=no,scrollbars=no,status=no");  
+        }
+    }
+  </script> 
+
+  <input type="button" value="新窗口打开网站" onclick="openWindow()" /> 
+ <!--  如果标记是不需要段落分隔的短引用，请使用 <q> 元素 -->
+  <q>你好hard working man.</q> 
+ <!-- <blockquote> 标签定义摘自另一个源的块引用。 -->
+
+<blockquote> 与 </blockquote> 之间的所有文本都会从常规文本中分离出来，经常会在左、右两边进行缩进，而且有时会使用斜体。也就是说，块引用拥有它们自己的空间。作用也是引用别人的文本。但它是对长文本的引用，如在文章中引入大段某知名作家的文字，这时需要这个标签。
+<blockquote>你好</blockquote><blockquote>你好</blockquote>
+
+<p>加入一行代码的标签为code标签，但是在大多数情况下是需要加入大段代码的，这时候就可以使用pre标签。pre标签的主要作用:预格式化的文本。被包围在 pre 元素中的文本通常会保留空格和换行符</p>
+</body>
+</html>

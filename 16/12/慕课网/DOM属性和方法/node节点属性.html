@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>node节点属性</title>
+</head>
+<body>
+<div>
+	javaScript
+	<p>javascript</p>
+	<div>jQuery</div>
+	<h5>PHP</h5>
+</div>
+<script type="text/javascript">
+//IE是四个，忽略了空白和换行，FF,chrome是七个(第一个文本节点包括前后的空白和换行)。
+  var odiv = document.getElementsByTagName('div')[0];
+  var ch = odiv.childNodes;
+  for(var i=0;i<ch.length;i++){
+    document.write(ch[i].nodeName+' '+ch[i].nodeValue+' '+ch[i].nodeType+'<br />');
+  }
+</script>
+</body>
+</html>

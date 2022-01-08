@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>块级作用域绑定</title>
+</head>
+<body>
+	<script>
+	//一、
+		function getVal(condit){
+			if(condit){
+				var value = 'red';
+				// return value;
+			}else{
+				console.log(value); //此处也可以访问到value,值为undefined
+				// return null;
+			}
+			console.log(value);  //此处可以访问到value,值为undefined
+		}
+
+		getVal(0);
+
+	//二、
+		function getVal2(condit){
+			if(condit){
+				let value = 'red';
+			}else{
+				// console.log(value); // Uncaught ReferenceError: value is not defined
+			}
+			// console.log(value);  //此处就不可以访问到value
+		}
+
+		getVal2(0);
+
+	//三、
+		console.log(typeof value3);   //在value3的块级作用域外typeof不会报错
+		if(1){
+			let value3 = true;
+		}
+
+	//四、
+		var funcs = [],
+			obj = {
+				a: true,
+				b: false,
+				c: true
+			};
+		// for(let key in obj){	//for…in 语句以原始插入顺序迭代对象的可枚举属性
+		// for(var key in obj){  //如果用var声明会输出3个c
+		for(const key in obj){
+			funcs.push(function(){
+				console.log(key);
+			})
+		}
+		funcs.forEach(func => func());
+
+	//五、
+		var arr = [2, 5, 8]
+			funcs_arr = [];
+		for(let key of arr){  //for…of 语句遍历可迭代对象定义要迭代的数据
+			funcs_arr.push(() => console.log(key));
+		}
+		funcs_arr.forEach(func_arr => func_arr());
+
+	</script>
+</body>
+</html>

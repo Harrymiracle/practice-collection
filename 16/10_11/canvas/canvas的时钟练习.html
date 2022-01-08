@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>时钟</title>
+</head>
+<body>
+    <canvas  id="clock" width="500" height="500"></canvas>
+    <script>
+        var clock=document.getElementById("clock");
+        var ctx=clock.getContext("2d");
+        function drawClock()
+        {
+            ctx.clearRect(0,0,500,500);
+            var now=new Date();
+            var hour=now.getHours();
+            var min=now.getMinutes();
+            var sec=now.getSeconds();
+            hour=hour+min/60;
+            hour?hour>12:hour-12;
+            //画最外面的大圆
+            ctx.beginPath();
+            ctx.strokeStyle="red";
+            ctx.lineWidth=15; 
+            ctx.arc(250,250,200,0,2*Math.PI);
+            ctx.stroke();
+            ctx.closePath();
+            //画时刻度
+            for(var i=0;i<12;i++)
+            {
+                ctx.save();//保存当前环境状态
+                ctx.translate(250,250);
+                ctx.strokeStyle="black";
+                ctx.lineWidth=12;
+                ctx.rotate(i*30*Math.PI/180);//旋转当前绘画
+                ctx.beginPath();
+                ctx.moveTo(0,-170);
+                ctx.lineTo(0,-190);
+                ctx.stroke();
+                ctx.closePath();
+                ctx.restore();//该方法将绘图状态设置为保存值
+            }
+            //画分针刻度
+            for(var j=0;j<60;j++)
+            {
+                ctx.save();//保存当前环境状态
+                ctx.translate(250,250);
+                ctx.strokeStyle="black";
+                ctx.lineWidth=6;
+                ctx.rotate(j*6*Math.PI/180);//旋转当前绘画
+                ctx.beginPath();
+                ctx.moveTo(0,-180);
+                ctx.lineTo(0,-190);
+                ctx.stroke();
+                ctx.closePath();
+                ctx.restore();//该方法将绘图状态设置为保存值
+            }
+            //画时针
+            ctx.save();
+            ctx.lineWidth=15;
+            ctx.strokeStyle="red";
+            ctx.translate(250,250);
+            ctx.rotate(hour*30*Math.PI/180);
+            ctx.beginPath();
+            ctx.moveTo(0,-130);
+            ctx.lineTo(0,5);
+            ctx.stroke();
+            ctx.closePath();
+            ctx.restore();//该方法将绘图状态设置为保存值
+            //画分针
+            ctx.save();
+            ctx.lineWidth=12;
+            ctx.strokeStyle="red";
+            ctx.translate(250,250);
+            ctx.rotate(min*6*Math.PI/180);
+            ctx.beginPath();
+            ctx.moveTo(0,-140);
+            ctx.lineTo(0,14);
+            ctx.stroke();
+            ctx.closePath();
+            ctx.restore();//该方法将绘图状态设置为保存值
+            //画秒针
+            ctx.save();
+            ctx.lineWidth=8;
+            ctx.strokeStyle="red";
+            ctx.translate(250,250);
+            ctx.rotate(sec*6*Math.PI/180);
+            ctx.beginPath();
+            ctx.moveTo(0,-160);
+            ctx.lineTo(0,18);
+            ctx.stroke();
+            ctx.closePath();
+            ctx.restore();//该方法将绘图状态设置为保存值
+            //画中心
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(250,250,16,0,360);
+            ctx.fillStyle="black";
+            ctx.fill();  
+            ctx.closePath();
+        }
+        drawClock();
+        setInterval(drawClock,1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用mod1</title>
+</head>
+<body>
+    <script type="module">
+        /* 
+            大括号表示导入非默认 
+            下面多处使用了 mod1.js 但只会执行一次mod1.js，
+            导入过的模块代码执行后，实例化的模块会被保存在内存中，以便重复使用。
+        */
+        // 导入单个绑定
+        import { sum as add } from './mod1.js'; // 导入时重命名
+        import { multiply } from './mod1.js';
+
+        // 导入多个绑定
+        import { color, limit } from './mod1.js';
+
+        // 导入整个模块（此处全部导入了，只是为做演示用，上面单个导入其实没必要）
+        import * as mod1 from './mod1.js';
+
+        let addRes = add(2, 3);
+        console.log(addRes);    // 5
+
+        let mulRes = multiply(3, 5);
+        console.log(mulRes);    // 15
+
+        /*
+            标识符只有在被导出的模块中才可以修改，即便是导入的模块中也没法修改导入的绑定的值。
+            在执行setColor时，会回到导出setColor的模块中去执行，同时更改color的值。
+            因此，在导入的模块中，color的本地名称的值也发生了变化。
+        */
+        console.log(mod1.sum(10, limit));    // 13
+        console.log(color);     // red
+        // color = 'blue';     // Uncaught TypeError: Assignment to constant variable.
+        mod1.setColor('green');
+        console.log(color);     // green
+
+        var jack = new mod1.Person('jack', mod1.baseAge+5, 'engineer');
+        console.log(jack);  // Person {name: "jack", age: 28, profession: "engineer"}
+        jack.setAge(30);
+        console.log(jack.age);  // 30
+
+    </script>
+</body>
+</html>

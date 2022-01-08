@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Duff's Device</title>
+</head>
+<body>
+	<script>
+	//功能待测
+		function double(n){
+			return n*2+37;
+		}
+//Duff' Device
+		var item = [];
+		for(var i=0; i<1001; i++){
+			item.push(i);
+		}
+
+		var startTime = new Date();
+
+		var len = item.length,
+			iteration = Math.floor(len/8),
+			startAt = len%8,
+			i = 0;
+		do{
+			switch(startAt){
+				case 0: double(item[i++]);
+				case 7: double(item[i++]);
+				case 6: double(item[i++]);
+				case 5: double(item[i++]);
+				case 4: double(item[i++]);
+				case 3: double(item[i++]);
+				case 2: double(item[i++]);
+				case 1: double(item[i++]);
+			}
+			startAt = 0;
+		}while(--iteration);
+		document.write(item+'<br/>');
+		var runningTime = new Date() - startTime;
+		alert(runningTime);
+
+
+
+//Normal Use
+		var item2 = [];
+		for(var i=0; i<1001; i++){
+			item2.push(i);
+		}
+
+		var startTime2 = new Date();
+
+		var len2 = item2.length;
+		for(var i2 = 0; i2<len2; i2++){
+			double(item2[i2]);
+		}	
+		document.write(item2+'<br/>');
+		var runningTime2 = new Date() - startTime2;
+		alert(runningTime2);
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../views/css/task.css">
+</head>
+<body>
+    <header>
+        <p><%= title %></p>
+    </header>
+    <div class="task">
+        <ul>
+            <% if(list.status && list.status == "SUCCEED"){ %>
+                <% if(list.data && list.data.length!=0 && list.data!=undefined){ %>
+                    <% var data = list.data.reverse() %>
+                    <% for(var i=0; i<data.length; i++){ %>
+                        <%
+                            formatTime = function(timeStamp) {
+                                var timeObj = new Date(parseInt(timeStamp));
+                                var year = timeObj.getFullYear();
+                                var month = timeObj.getMonth();
+                                var day = timeObj.getDate();
+                                var hour = timeObj.getHours();
+                                var min = timeObj.getMinutes();
+                                return year+"年"+(month+1)+"月"+day+"日\0\0  "+hour+":"+min;
+                        }%>
+                        <% if(data[i].status == 0){ %>
+                            <%  var localTimeStamp = new Date().getTime();
+                                var countDownNum = localTimeStamp - data[i].createdDt;
+                            %>
+                            <% if(countDownNum < 300000){ %>
+                                <li class="examine" id="order<%=data[i].sid %>">
+                                    <div class="order-title">
+                                        <div class="am-u-sm-4"><% if(data[i].itemList.length!=0 ){ %><%=data[i].itemList[0].productName%><% } %></div>
+                                        <div class="am-u-sm-5"><span><%= data[i].startAddr %></span><span class="bg"></span><span><%= data[i].endAddr %></span></div>
+                                        <div class="am-u-sm-3"><%= data[i].orderTypeStr %></div>
+                                    </div>
+                                    <div class="order-d-s">
+                                        <div class="am-u-sm-6"><%= formatTime(data[i].createdDt) %></div>
+                                        <!--<div class="am-u-sm-3">审核中...</div>-->
+                                        <!--<div class="am-u-sm-3">待派单</div>-->
+                                        <div class="am-u-sm-6 count-down count-down-wrap">待派单 倒计时：
+                                            <span class="count-down" data-countDown="true" data-date="<%= data[i].createdDt %>"></span>秒
+                                        </div>
+                                    </div>
+                                    <div class="order-address one">
+                                        <div class="order-start">
+                                            <div class="am-u-sm-10"><%= data[i].addressStart.address %></div>
+                                            <div class="am-u-sm-2"></div>
+                                        </div>
+                                        <div class="order-end">
+                                            <div class="am-u-sm-10"><%= data[i].addressEnd.address %></div>
+                                            <div class="am-u-sm-2" onclick="delectThisCountDownOrder('<%= data[i].sid %>')"></div>
+                                        </div>
+                                    </div>
+                                    <div class="order-address two hide">
+                                        <div class="order-start"><%= data[i].addressStart.address %></div>
+                                        <div class="order-end"><%= data[i].addressEnd.address %></div>
+                                    </div>
+                                </li>
+                            <% } else {%>
+                                <li class="transport" >
+                                    <a href="/task/taskdetail?orderId=<%= data[i].sid %>">
+                                        <div class="order-title">
+                                            <div class="am-u-sm-4"><% if(data[i].itemList.length!=0 ){ %><%= data[i].itemList[0].productName%><% } %></div>
+                                            <div class="am-u-sm-5"><span><%= data[i].startAddr %></span><span class="bg"></span><span><%= data[i].endAddr %></span></div>
+                                            <div class="am-u-sm-3"><%= data[i].orderTypeStr %></div>
+                                        </div>
+                                        <div class="order-d-s">
+                                            <div class="am-u-sm-6"><%= formatTime(data[i].createdDt) %></div>
+                                            <div class="am-u-sm-6">派单中</div>
+                                        </div>
+                                        <div class="order-address">
+                                            <div class="order-start"><%= data[i].addressStart.address %></div>
+                                            <div class="order-end"><%= data[i].addressEnd.address %></div>
+                                        </div>
+                                    </a>
+                                </li>
+                            <% } %>
+                        <% } else { %>
+                            <li class="transport" >
+                                <a href="/task/taskdetail?orderId=<%= data[i].sid %>">
+                                    <div class="order-title">
+                                        <div class="am-u-sm-4"><% if(data[i].itemList.length!=0 ){ %><%= data[i].itemList[0].productName%><% } %></div>
+                                        <div class="am-u-sm-5"><span><%= data[i].startAddr %></span><span class="bg"></span><span><%= data[i].endAddr %></span></div>
+                                        <div class="am-u-sm-3"><%= data[i].orderTypeStr %></div>
+                                    </div>
+                                    <div class="order-d-s">
+                                        <div class="am-u-sm-6"><%= formatTime(data[i].createdDt) %></div>
+                                        <% if(data[i].status == 1){ %><div class="am-u-sm-6">派单中</div><% } %>
+                                        <% if(data[i].status == 2){ %><div class="am-u-sm-6">进行中</div><% } %>
+                                        <% if(data[i].status == 9){ %><div class="am-u-sm-6">已完成</div><% } %>
+                                    </div>
+                                    <div class="order-address">
+                                        <div class="order-start"><%= data[i].addressStart.address %></div>
+                                        <div class="order-end"><%= data[i].addressEnd.address %></div>
+                                    </div>
+                                </a>
+                            </li>
+                        <% }%>
+                    <% } %>
+                <% }else { %>
+                    <p style="text-align: center;line-height: 5rem;color: #5b5b5b;">您还没有订单呢，<a href="/task/selectordertype">去发布一个</a>吧！</p>
+               <% }%>
+            <% }else {%>
+                <p style="text-align: center;line-height: 5rem;color: #5b5b5b;">请求超时，数据跑丢了！</p>
+            <% } %>
+        </ul>
+    </div>
+
+    <footer>
+        <div>
+            <a href="/">
+                <div class="img"></div>
+                <p class="">首页</p>
+            </a>
+        </div>
+        <div>
+            <a href="javascript:void(0)">
+                <div class="activeimg"></div>
+                <p class="">任务</p>
+            </a>
+        </div>
+        <div>
+            <a href="/person/person">
+                <div class="img"></div>
+                <p class="">我的</p>
+            </a>
+        </div>
+    </footer>
+<script src="../commonjs/jquery-2.1.0.js"></script>
+<script src="../views/js/task.js"></script>
+</body>
+</html>

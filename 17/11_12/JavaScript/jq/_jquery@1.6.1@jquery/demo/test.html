@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>测试</title>
+</head>
+<script type="text/javascript" src="../jquery.js"></script>
+
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+
+    <script>
+        var nu = $(null),
+            emp = $(''),
+            und = $(undefined);
+        console.log(nu);
+        console.log(emp);
+        console.log(und);
+
+        console.log($(document));
+        console.log($('body'));
+
+        console.log($('<span>')); //生成一个元素span
+        console.log($('<div><b>生成的元素</b></div>')); //生成一个元素div
+        console.log($('div')); //选择所有的div
+
+        console.log($('body', document));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+
+<body>
+    <script>
+        // 自定义一个构造函数PromiseSelf
+        function PromiseSelf(handle) {  // handle为处理器函数形参
+            this.status = 'pending';    // 设置状态
+            this.msg = '';              // 设置消息
+            var self = this;
+            handle(function (...arg) {   // 立即执行handle函数，并传入两个参数，分别为成功回调(resolve)和失败回调(reject)
+                if (self.status !== 'pending') return;
+                self.status = 'resolve';    // 更新状态为resolve
+                self.msg = arg[0];
+            }, function (...arg) {
+                if (self.status !== 'pending') return;
+                self.status = 'reject';    // 更新状态为reject
+                self.msg = arg[0];
+            });
+            return this;    // 返回PromiseSelf，以便链式调用
+        }
+        // 在构造函数PromiseSelf的原型上增加then方法并传入成功和失败的回调
+        PromiseSelf.prototype.then = function (rs, rj) {    // then的两个参数rs,rj
+            if (this.status == 'resolve' && rs && typeof rs === 'function') {
+                rs(this.msg);
+            } else if (this.status == 'reject' && rj && typeof rj === 'function') {
+                rj(this.msg);
+            }
+        }
+
+        // 调用PromiseSelf
+        var mm = new PromiseSelf(function (resolve, reject) {  // resolve, reject为形参
+            resolve('123');  // 触发成功（同时放开resolve和reject只会执行前面的一个）
+            // reject('haha~ 好嚣张！')    // 触发失败
+        });
+        mm.then(function (successData) {
+            console.log(successData);
+            console.log("ok!");
+        }, function (failData) {
+            console.log(failData);
+            console.log('fail!');
+        });
+
+    </script>
+</body>
+
+</html>

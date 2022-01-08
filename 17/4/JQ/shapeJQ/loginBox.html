@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>登陆框</title>
+    <style>
+        #loginBox{
+            width: 400px;
+            height: 160px;
+            margin: 0 auto;
+        }
+        label{
+            width: 60px;
+            display: inline-block;
+            text-align: right;
+        }
+    </style>
+    <script src="../js/jquery-2.2.3.min.js"></script>
+</head>
+<body>
+    <div id="loginBox">
+        <p>
+            <label for="email">邮箱:</label>
+            <input type="text" id="email" value="请输入邮箱地址"/>
+        </p>
+        <p>
+            <label for="passwd">密码:</label>
+            <input type="text" id="passwd" value="请输入邮箱密码"/>
+        </p>
+        <p>
+            <label></label>
+            <input type="submit" id="subbtn" value="登陆"/>
+            <input type="reset" value="重置"/>
+        </p>
+    </div>
+
+    <script>
+        $(function(){
+//           $("#email").focus(function(){
+//               var text_value = $(this).val();
+//               if(text_value = "请输入邮箱地址"){
+//                   $(this).val(" ");
+//               };
+//           });
+//           $("#email").blur(function(){
+//               var text_value = $(this).val();
+//               if(text_value = " "){
+//                   $(this).val("请输入邮箱地址");
+//               }
+//           });
+//
+//
+//            $("#passwd").focus(function(){
+//                var text_value = $(this).val();
+//                if(text_value = "请输入邮箱密码"){
+//                    $(this).val(" ");
+//                };
+//            });
+//            $("#passwd").blur(function(){
+//                var text_value = $(this).val();
+//                if(text_value = " "){
+//                    $(this).val("请输入邮箱密码");
+//                }
+//            });
+
+            $("#email").focus(function(){
+                //$(this)是将当前的对象转换为jq对象。$("this")是查找名为this的标签。this是javascript的当前对象
+                $(this).val(" ");
+            }).blur(function(){
+                //this.defaultValue 当前文本框的默认值
+                $(this).val(this.defaultValue);
+            });
+
+            $("#passwd").focus(function(){
+                $(this).val(" ");
+            }).blur(function(){
+                $(this).val(this.defaultValue);
+            });
+        });
+    </script>
+</body>
+</html>

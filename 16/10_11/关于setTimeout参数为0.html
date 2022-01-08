@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>setTimeout</title>
+	<style>
+	</style>
+</head>
+
+<body>
+	<p>
+		<input type="text" id="input" value=""/>
+		<span id="preview"></span>
+	</p>
+</body>
+<script>
+//这个keypress函数原意是监听到用户输入字符串就将其完整的显示出来，但是奇怪的是最后一个字符串总是没能显示出来。但是只要改下onkeypress函数就好。将onkeypress里面的事件延迟到浏览器更新相关DOM元素的状态之后执行，这是就能显示出所有字符串了。
+	(function(){
+	  function $(id){
+	    return document.getElementById(id);  //设定一个$函数来获取ID,再调用这个函数。
+	  }
+	  $('input').onkeypress = function(){
+	//    $('preview').innerHTML = this.value;
+	    setTimeout(function(){$('preview').innerHTML = $('input').value;},0);
+	  }
+	})();
+//setTimeout()是用来改变任务执行顺序的,将监听keypress事件改为监听keyup事件,一样能达到同样的效果。
+//这里跟key事件的执行顺序有关:
+	(function(){
+	  function $(id){
+	    return document.getElementById(id);
+	  }
+	  function log(a){
+	    console.log(a);
+	  }
+	  $('input').onkeypress = function(){
+	    log("keypress: "+this.value);
+	  }
+	  $('input').onkeyup = function(){
+	    log("keyup: "+this.value);
+	  }
+	  $('input').onkeydown=function(){
+	    log("keydown: "+this.value);
+	  }
+	})();
+	//也就是先执行keydown事件，再执行keypress事件，执行keypress事件之后改变dom元素的状态（这里是input的value改变了），再执行keyup。这也解释了为什么通过监听keyup事件就能正确且及时的打印出input的值。而keypress事件发生时，dom元素的状态还未改变，keypress事件之后dom元素的状态才发生改变，通过setTimeout延迟执行就能达到期望的结果了。
+</script>
+</html>

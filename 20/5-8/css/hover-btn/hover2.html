@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 奇特的 hover 效果2</title>
+    <style>
+        #neon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            height: 30vh;
+            background: #031628;
+        }
+
+        #neon-btn .btn {
+            border: 1px solid;
+            background-color: transparent;
+            text-transform: uppercase;
+            font-size: 14px;
+            padding: 10px 20px;
+            font-weight: 300;
+        }
+
+        #neon-btn .one {
+            color: #4cc9f0;
+        }
+
+        #neon-btn .two {
+            color: #f038ff;
+        }
+
+        #neon-btn .three {
+            color: #b9e769;
+        }
+
+        #neon-btn .btn:hover {
+            color: white;
+            border: 0;
+        }
+
+        #neon-btn .one:hover {
+            background-color: #4cc9f0;
+            -webkit-box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
+            -moz-box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
+            box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
+        }
+
+        #neon-btn .two:hover {
+            background-color: #f038ff;
+            -webkit-box-shadow: 10px 10px 99px 6px rgba(240, 56, 255, 1);
+            -moz-box-shadow: 10px 10px 99px 6px rgba(240, 56, 255, 1);
+            box-shadow: 10px 10px 99px 6px rgba(240, 56, 255, 1);
+        }
+
+        #neon-btn .three:hover {
+            background-color: #b9e769;
+            -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+            -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+            box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 二.霓虹效果 -->
+
+    <div id="neon-btn">
+        <button class="btn one">Hover me</button>
+        <button class="btn two">Hover me</button>
+        <button class="btn three">Hover me</button>
+    </div>
+
+</body>
+
+</html>

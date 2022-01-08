@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,KAAK;EACJ,KAAK,EAAE,KAAK;EACT,UAAU,EAAE,MAAM;EAClB,KAAK,EAAE,GAAG;EACV,SAAS,EAAE,IAAI;EACf,OAAO,EAAE,GAAG;EACZ,YAAY,EAAE,GAAG;EACjB,YAAY,EAAE,KAAK;EACnB,YAAY,EAAE,WAAW;EACzB,YAAY,EAAE,OAAO;EACrB,aAAa,EAAE,GAAG",
+"sources": ["../../../../../../../%E7%BB%83%E4%B9%A0%E6%94%B6%E8%97%8F/18/4%E6%9C%88/grunt/practice/anothertest/scss/style.scss"],
+"names": [],
+"file": "style.css"
+}

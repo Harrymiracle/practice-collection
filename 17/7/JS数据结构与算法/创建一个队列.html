@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>创建一个队列</title>
+</head>
+<body>
+	
+	<script>
+     	function Queue(){
+     		var items = [];
+
+     		this.enqueue = function(element){
+     			items.push(element);
+     		};
+
+     		this.dequeue = function(){
+     			return items.shift();		//先进先出
+     		};
+
+     		this.front = function(){
+     			return items[0];
+     		};
+
+     		this.isEmpty = function(){
+     			return items.length == 0;
+     		};
+
+     		this.size = function(){
+     			return items.length;
+     		};
+
+     		this.clear = function(){
+     			items = [];
+     		};
+
+     		this.print = function(){
+     			console.log(items.toString());
+     		};
+     	}
+
+     	var queue = new Queue();
+
+     	console.log(queue.isEmpty());	//true
+
+     	queue.enqueue("张国荣");		//["张国荣"]
+     	queue.enqueue("周星驰");		//["张国荣", "周星驰"]
+     	console.log(queue.front());		//"张国荣"
+
+     	queue.enqueue("周润发");		//["张国荣", "周星驰", "周润发"]
+     	console.log(queue.size());		//3
+
+     	queue.enqueue("刘德华");		//["张国荣", "周星驰", "周润发", "刘德华"]
+     	queue.dequeue();				//["周星驰", "周润发", "刘德华"]
+     	queue.dequeue();				//["周润发", "刘德华"]
+     	console.log(queue.size());		//2
+     	console.log(queue.front());		//"周润发"
+     	queue.print();					//"周润发", "刘德华"
+
+
+    //应用
+    	//优先队列
+    	function PriorityQueue(){
+    		var items = [];
+
+    		function QueueElement(element, priority){		//创建一个私有类QueueElement
+    			this.element = element;
+    			this.priority = priority;
+    		}
+
+    		this.enqueue = function(element, priority){		
+    			var queueElement = new QueueElement(element, priority);		//创建一个QueueElement()构造函数的实例
+    			if(this.isEmpty()){							//为空，直接追加新元素
+    				items.push(queueElement);
+    			}else{										//不为空
+    				var isAdded = false;					//定义一个开关值，默认为false
+    				for(var i=0, l=items.length; i<l; i++){	//迭代items,比较新元素的priority和items的priority
+    					if(queueElement.priority < items[i].priority){	//数字小，优先级更高
+    						items.splice(i,0,queueElement);			//插入新元素
+    						isAdded = true;
+    						break;									//结束循环
+    					}
+    				}
+    				if(!isAdded){							//迭代完后都没找到优先级更低的
+    					items.push(queueElement);			//在后面追加
+    				}
+    			}
+    		}
+
+    		this.dequeue = function(){
+     			return items.shift();		//先进先出
+     		};
+
+     		this.front = function(){
+     			return items[0];
+     		};
+
+     		this.isEmpty = function(){
+     			return items.length == 0;
+     		};
+
+     		this.size = function(){
+     			return items.length;
+     		};
+
+     		this.clear = function(){
+     			items = [];
+     		};
+
+     		this.print = function(){
+     			console.log(items);
+     		};
+    	} 	
+
+    	var list = new PriorityQueue();
+
+    	console.log(list.isEmpty());
+		
+    	list.enqueue("Jhon", 3);
+    	list.enqueue("Lisa", 1);
+    	console.log(list.front());	//"Lisa", 1
+
+    	list.enqueue("Mike", 2);
+    	list.print();
+    	console.log(list.size());	// 3
+
+
+    	//击鼓传花
+    	function hotPotato(array, num){
+            var queue = new Queue();
+            var eliminated = "";
+            for(var i=0,l=array.length; i<l; i++){
+                queue.enqueue(array[i]);
+            }
+            while(queue.size() > 1){
+                for(var j=0; j<num; j++){
+                    queue.enqueue(queue.dequeue());
+                }
+                eliminated = queue.dequeue();
+                console.log(eliminated + "被淘汰掉了。");
+            }
+            return queue.dequeue();
+            var winner = queue.dequeue();
+        }
+        var nameList = ['Jack', 'Lily', 'Harry', 'Tom', 'Bob', 'John', 'Camila', 'Ingrid', 'Carl'];
+        var winner = hotPotato(nameList, 7);
+        console.log('胜利者是：' + winner);
+
+
+	</script>
+</body>
+</html>

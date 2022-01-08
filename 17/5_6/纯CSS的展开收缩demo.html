@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>纯CSS的展开收缩demo</title>
+    <style>
+        .test_checkbox,
+        .test_more,
+        .test_hide,
+        /****在选中的情况下隐藏 '展开'所在的span****/
+        .test_checkbox:checked ~ .test_label .test_show {
+            position:absolute;
+            left: -999em;
+        }
+
+        /****
+        在选中的情况下显示 '收起'所在的span和那段文字[通过改变position属性的值为默认的没有定位，元素出现在正常的流中(忽略 top, bottom, left, right 或者 z-index 声明)]。
+        波浪弯弯（~）表示选取后面的兄弟节点。
+        ****/
+        .test_checkbox:checked ~ .test_more,
+        .test_checkbox:checked ~ .test_label .test_hide {
+            position: static;
+        }
+
+        img {width: 200px;}
+    </style>
+</head>
+<body>
+    【社交游戏的鲸鱼理论】...互动。
+    <input type="checkbox" id="testToggleCheckbox" class="test_checkbox" />
+    <span class="test_more">最后他们得出的结论...投资。</span>
+
+    <!--通过label的for属性值关联具有相应id的元素的选中和非选择状态-->
+    <label class="test_label" for="testToggleCheckbox">
+        <span class="test_hide">收起↑
+            <br/>
+            <img src="images/girl.jpg" alt="图片"/>
+        </span>
+        <span class="test_show">展开↓</span>
+    </label>
+</body>
+</html>

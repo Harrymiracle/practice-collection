@@ -1,0 +1,612 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/** 清除内外边距 **/
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+/** 设置默认字体 **/
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "微软雅黑";
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+address,
+cite,
+dfn,
+em,
+var {
+  font-style: normal;
+}
+/* 将斜体扶正 */
+code,
+kbd,
+pre,
+samp {
+  font-family: courier new, courier, monospace;
+}
+/* 统一等宽字体 */
+small {
+  font-size: 1.2rem;
+}
+/* 小于 12px 的中文很难阅读，让 small 正常化 */
+/** 重置列表元素 **/
+ul,
+ol {
+  list-style: none;
+}
+/** 重置文本格式元素 **/
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+/** 重置表单元素 **/
+legend {
+  color: #000;
+}
+/* for ie6 */
+fieldset,
+img {
+  border: 0;
+}
+/* img 搭车：让链接里的 img 无边框 */
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+}
+/* 使得表单元素在 ie 下能继承字体大小 */
+/* 注：optgroup 无法扶正 */
+/** 重置表格元素 **/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+img {
+  vertical-align: middle;
+}
+.fl-cl > div {
+  float: left;
+}
+.fl-cl > li {
+  float: left;
+}
+.fl-cl:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.fl-cl > ul {
+  float: left;
+}
+.fr-cl > div {
+  float: right;
+}
+.fr-cl > li {
+  float: right;
+}
+.fr-cl > ul {
+  float: right;
+}
+.fr-cl:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.cl:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+html {
+  font-size: 62.5%;
+  font-family: "Microsoft Yahei ui", "微软雅黑";
+  position: relative;
+  background: #f0f0f0;
+}
+.banner {
+  width: 100%;
+}
+.banner img {
+  width: 100%;
+}
+/* 公共的头部样式和尾部样式开始*/
+footer {
+  width: 100%;
+  height: 4.5rem;
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  background: #008362;
+}
+footer div {
+  width: 33.3%;
+  height: 5rem;
+  display: inline;
+  float: left;
+  position: relative;
+}
+footer div a {
+  color: #fff;
+}
+footer div a .img {
+  width: 2rem;
+  height: 2rem;
+  -webkit-background-size: 100% auto;
+  -moz-background-size: 100% auto;
+  -o-background-size: 100% auto;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0.5rem;
+}
+footer div a .activeimg {
+  width: 2rem;
+  height: 2rem;
+  -webkit-background-size: 100% auto;
+  -moz-background-size: 100% auto;
+  -o-background-size: 100% auto;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0.5rem;
+}
+footer div a p {
+  font-size: 1.4rem;
+  width: 100%;
+  height: 100%;
+  display: inline;
+  float: left;
+  position: relative;
+  text-align: center;
+  color: #fff;
+  margin-top: 2.5rem;
+}
+footer div a .active {
+  color: #009f78;
+}
+footer div:nth-child(1) .img {
+  background-image: url("../images/index/home.png");
+}
+footer div:nth-child(1) .activeimg {
+  background-image: url("../images/index/homeActive.png");
+}
+footer div:nth-child(2) .img {
+  background-image: url("../images/index/myWayBill.png");
+}
+footer div:nth-child(2) .activeimg {
+  background-image: url("../images/index/myWayBillActive.png");
+}
+footer div:nth-child(3) .img {
+  background-image: url("../images/index/personCenter.png");
+}
+footer div:nth-child(3) .activeimg {
+  background-image: url("../images/index/personCenterActive.png");
+}
+header {
+  width: 100%;
+  height: 4rem;
+  line-height: 4rem;
+  background: #008363;
+  color: #fff;
+  font-size: 1.8rem;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+header p {
+  margin: 0;
+  padding: 0;
+}
+header p.order-num {
+  font-size: 1.6rem;
+}
+header a {
+  height: 4rem;
+  line-height: 4rem;
+  color: #fff;
+  font-size: 1.4rem;
+  position: absolute;
+}
+header a img {
+  height: 1.8rem;
+  margin: 1rem auto;
+  vertical-align: middle;
+}
+header a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+header a.manege {
+  width: 4rem;
+  font-size: 12px;
+  font-size: 1.2rem;
+  right: 0;
+  top: 0;
+}
+header a.goback {
+  min-width: 4rem;
+  left: 0;
+  top: 0;
+  padding-left: 2.1rem;
+  font-size: 1.6rem;
+  background: url("../images/person/icon-return.png") left 1rem center no-repeat;
+  background-size: 0.8rem 1.45rem;
+}
+.hide {
+  display: none;
+}
+/* 公共的头部样式和尾部样式结束*/
+body {
+  background: #f0f0f0;
+  width: 100%;
+  height: 100%;
+}
+body .logo {
+  width: 100%;
+  height: 17rem;
+  display: block;
+  position: relative;
+}
+body .logo img {
+  width: 75%;
+  height: auto;
+  display: block;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+body .login form fieldset {
+  width: 100%;
+  height: auto;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+body .login form fieldset .am-form-group {
+  width: 100%;
+  height: 5rem;
+  position: relative;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  margin: 0;
+  padding: 0;
+}
+body .login form fieldset .am-form-group img {
+  width: 2rem;
+  height: auto;
+  display: inline;
+  float: left;
+  position: absolute;
+  z-index: 100;
+  left: 1rem;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+body .login form fieldset .am-form-group input {
+  width: 100%;
+  height: 5rem;
+  position: absolute;
+  outline: none;
+  padding-left: 4rem;
+  border: 0;
+}
+body .login form fieldset .am-form-group:nth-child(2) {
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+body .login form fieldset .submit a {
+  width: 90%;
+  height: 4rem;
+  display: block;
+  font-size: 1.6rem;
+  text-align: center;
+  background: #05B263;
+  margin: 2rem auto 1.7rem auto;
+  border-radius: 5px;
+  border: 0;
+  color: #fff;
+  line-height: 4.4rem;
+}
+body .login form fieldset .submit a:hover {
+  background: #05B263;
+  border: 0;
+  text-decoration: none;
+}
+body .login form fieldset .login_radio {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+body .login form fieldset .login_radio input {
+  display: none;
+}
+body .login form fieldset .login_radio label {
+  font-size: 12px;
+  font-size: 1.2rem;
+  padding-left: 20px;
+  cursor: pointer;
+  background: url(../images/login/radio_checked.png) no-repeat left top;
+  background-size: auto 100%;
+  padding-left: 28px;
+  font-weight: normal;
+  color: #BBBBBB;
+}
+body .login form fieldset .login_radio label.checked {
+  background: url(../images/login/radio.png) no-repeat left top;
+  background-size: auto 100%;
+  padding-left: 28px;
+}
+body .login form fieldset .login_radio a {
+  display: inline;
+  float: right;
+  font-size: 12px;
+  font-size: 1.2rem;
+  width: 40%;
+  height: auto;
+  color: #BBBBBB;
+  text-decoration: underline;
+  line-height: 2.2rem;
+  text-align: right;
+}
+body .login form fieldset .login_radio a:hover {
+  color: #009f78;
+  text-decoration: underline;
+}
+body .footer-login {
+  width: 100%;
+  height: 9rem;
+  position: fixed;
+  bottom: 0;
+  background: #D0D0D2;
+}
+body .footer-login a {
+  text-decoration: none;
+  width: 60%;
+  height: 3.5rem;
+  position: relative;
+  display: block;
+  text-align: center;
+  background: #DBDCDE;
+  border: 1px solid #EAEAEA;
+  color: #89898B;
+  margin: 2rem auto auto auto;
+  outline: none;
+  line-height: 3.5rem;
+}
+body .footer-login a:onclick {
+  text-decoration: none;
+}
+body .footer-login p {
+  text-align: center;
+  font-size: 12px;
+  font-size: 1.2rem;
+  color: #89898B;
+  margin-top: 1rem;
+}
+body .regis {
+  width: 100%;
+  height: auto;
+  margin-top: 5rem;
+}
+body .regis .box {
+  width: 95%;
+  height: auto;
+  margin: auto;
+}
+body .regis .box form fieldset {
+  width: 100%;
+  height: auto;
+  border: none;
+  padding: 0;
+  margin: 0;
+  padding-bottom: 20px;
+  background: #fff;
+}
+body .regis .box form fieldset .am-form-group {
+  width: 100%;
+  height: 5rem;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+body .regis .box form fieldset .am-form-group:nth-child(1) {
+  overflow: hidden;
+  border-radius: 5px 5px 0 0;
+}
+body .regis .box form fieldset .am-form-group:nth-child(2) {
+  overflow: hidden;
+  border-radius: 0 0 5px 5px;
+}
+body .regis .box form fieldset .am-form-group label {
+  width: 33%;
+  height: auto;
+  color: #646464;
+  font-size: 1.4rem;
+  line-height: 5rem;
+  float: left;
+  position: absolute;
+  padding-left: 3rem;
+  z-index: 10;
+}
+body .regis .box form fieldset .am-form-group img {
+  width: auto;
+  height: 2rem;
+  display: inline;
+  float: left;
+  position: absolute;
+  z-index: 100;
+  left: 1rem;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+body .regis .box form fieldset .am-form-group input {
+  width: 95%;
+  height: 5rem;
+  position: absolute;
+  outline: none;
+  padding-left: 8rem;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+  margin-left: 1rem;
+}
+body .regis .box form fieldset .am-form-group button {
+  font-size: 1.4rem;
+  display: block;
+  width: 27%;
+  height: 3rem;
+  position: absolute;
+  background: #37B698;
+  color: #fff;
+  right: 1rem;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 0;
+  border-radius: 4px;
+}
+body .regis .box form .submit a {
+  width: 90%;
+  height: 3rem;
+  display: block;
+  font-size: 1.6rem;
+  text-align: center;
+  line-height: 3rem;
+  color: #fff;
+  background: #37B698;
+  margin: 2rem auto 1.7rem auto;
+  border-radius: 5px;
+  border: 0;
+}
+body .regis .box form .submit a:hover,
+body .regis .box form .submit a:visited {
+  background: #37B698;
+  border: 0;
+  text-decoration: none;
+}
+body .regis .box form .login_radio {
+  width: 90%;
+  height: auto;
+  margin: 1rem auto;
+  display: block;
+}
+body .regis .box form .login_radio input {
+  display: none;
+}
+body .regis .box form .login_radio label {
+  font-size: 12px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background: url(../images/login/radio_checked2.png) no-repeat left top;
+  background-size: auto 100%;
+  padding-left: 28px;
+  font-weight: normal;
+  color: #646464;
+}
+body .regis .box form .login_radio label span {
+  color: #37B698;
+}
+body .regis .box form .login_radio label.checked {
+  background: url(../images/login/radio2.png) no-repeat left top;
+  background-size: auto 100%;
+  padding-left: 28px;
+}
+.registerpassword {
+  width: 100%;
+  margin-top: 5rem;
+}
+.registerpassword ul {
+  width: 95%;
+  margin: 0 auto;
+  background: #fff;
+  padding: 0 1rem 2rem;
+}
+.registerpassword ul [class*=am-u-] {
+  padding: 0;
+}
+.registerpassword ul li {
+  width: 100%;
+  height: 4rem;
+  line-height: 4rem;
+  font-size: 1.5rem;
+  border-bottom: solid #ddd 1px;
+  color: #333;
+}
+.registerpassword ul li input {
+  height: 3rem;
+  width: 100%;
+  border: none;
+  color: #646464;
+  font-size: 1.4rem;
+}
+.register-submit {
+  width: 90%;
+  height: 3.5rem;
+  line-height: 3.5rem;
+  font-size: 1.6rem;
+  color: #fff;
+  background: #37B698;
+  margin: 6rem auto 0;
+  border-radius: 0.5rem;
+  text-align: center;
+}

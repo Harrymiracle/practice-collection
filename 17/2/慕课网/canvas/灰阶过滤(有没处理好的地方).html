@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>灰阶过滤器</title>
+</head>
+<body>
+  
+  <canvas id="canvas" style="border:1px solid violet;margin:10px auto;">
+  	你的浏览器不支持canvas,请更换浏览器再试。
+  </canvas>
+
+  <script>
+//没有弄起，下面可能存在问题的地方又注释
+    window.onload = function(){
+      var canvas = document.getElementById("canvas");
+      canvas.width = 650;
+      canvas.height = 600;
+
+  	  var context = canvas.getContext("2d"),
+  		url = "images/girl.jpg",
+  		imageData, data, i, len, average, red, green, blue,alpha,
+  		image = new Image();
+
+  	  image.src = url;
+  	  image.onload = function (){ //动态生成的Image()需要使用左侧的匿名函数绘制图像，否则绘制不出来
+  	  	context.drawImage(image,0,0);
+    //测试代码image.width，image.height存在，但匿名函数执行后即销毁了，在外部根本获取不到这两值，因此下面在调用image.width，image.height时就报错了
+  	  	console.log(image.width + "," + image.height); 
+  	  }
+  
+
+    //getImageData方法取得图像数据(4个参数:开始点位置,获取的长宽)
+  	//  imageData = context.getImageData(0,0,image.width,image.height);	//获取不到数据，此处报错
+  	//  imageData = context.getImageData(0,0,canvas.width,canvas.height);	//还是显示不出来
+  	  imageData = context.getImageData(0,0,300,557);
+  	  data = imageData.data;
+  	  console.log(data.length);
+  	  console.log(data);  //全是 0，有问题,外部没有获取到上面匿名函数绘制的图形的信息
+  	    
+
+//getImageData方法返回的对象是ImageData的实例,每个实例有三个属性:width,height,data，其中data是一个数组，保存有图像中每一个像素的数据，分别是红绿蓝和透明度
+  	  for(i = 0, len = data.length; i < len; i++){
+  	  	red = data[i];
+  	  	green = data[i+1];
+  	  	blue = data[i+2];
+  	  	alpha = data[i+3];
+
+  	  	average = Math.floor((red + green + blue) / 3);
+
+  	  	data[i] = average;
+  	  	data[i+1] = average;
+  	  	data[i+2] = average;
+  	  }
+
+  	  //回写图像数据并显示结果
+  	  imageData.data = data;
+  	  context.putImageData(imageData,0,0);
+
+
+    }
+  </script>	
+</body>
+</html>

@@ -1,0 +1,13 @@
+# MAC
+**/.DS_Store
+
+# Idea
+**/.idea/
+
+# SASS
+**/.sass-cache/
+
+# PSD
+**/*.psd
+
+important_point/

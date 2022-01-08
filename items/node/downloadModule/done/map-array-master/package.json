@@ -1,0 +1,41 @@
+{
+  "name": "map-array",
+  "version": "1.2.1",
+  "description": "Map object keys and values into an array",
+  "repository": "parro-it/map-array",
+  "license": "MIT",
+  "author": "Andrea Parodi <andrea@parro.it>",
+  "scripts": {
+    "build": "rollup -c",
+    "test": "rollup -c && ava && xo --ignore index.js"
+  },
+  "keywords": [
+    "iterate",
+    "iterator",
+    "key",
+    "keys",
+    "map",
+    "arr",
+    "array",
+    "val",
+    "value",
+    "values"
+  ],
+  "engines": {
+    "node": ">=4"
+  },
+  "devDependencies": {
+    "ava": "^0.24.0",
+    "map-obj": "^2.0.0",
+    "rollup": "^0.52.0",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "xo": "^0.18.1"
+  },
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "rollup-plugin-buble": "^0.18.0"
+  }
+}

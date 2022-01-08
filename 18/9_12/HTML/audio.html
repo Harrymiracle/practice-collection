@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>音频</title>
+</head>
+
+<body>
+	<h2>音频测试</h2>
+	<!-- muted 属性表示是否有静音 -->
+    <audio controls="controls" autoplay muted loop id="myAud">  
+    	<source src="../Resource/Dangerous.mp3">
+    </audio>
+
+    <script>
+    	window.onload = function(){
+    		var myAud = document.querySelector('#myAud');
+    		console.log(myAud);
+    		myAud.volume = 0.2;
+    		myAud.currentTime = 70;
+    		myAud.autoplay = false;
+    		myAud.muted = false;
+    	}
+    </script>
+</body>
+
+</html>

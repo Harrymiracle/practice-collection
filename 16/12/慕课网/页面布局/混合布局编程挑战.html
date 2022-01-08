@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+<title>混合布局编程挑战</title>
+<style type="text/css">
+	body{ margin:0; padding:0; font-size:30px; color:#fff}
+	.top{height:100px;background:#f83;}
+	.main{height:600px;background:red;position: relative;padding-left:210px;}
+	.left{height:600px;width:200px;background:blue;position: absolute;left: 0;top:0;}
+	.right{height:600px;background:#38f;width: 100%;}
+	.foot{height:100px;background:#f60;}
+</style>
+
+</head>
+
+<body>
+	<div class="top">top</div>
+	<div class="main">
+	    <div class="right">right</div>
+	    <div class="left">left</div>
+	</div>
+	<div class="foot">foot</div>
+</body>
+</html>

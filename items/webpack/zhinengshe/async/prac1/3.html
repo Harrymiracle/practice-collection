@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./js/jquery.js"></script>
+<body>
+    <script>
+        async function sum(){
+            let a=2,b=3;
+            try{
+                let data = await $.ajax({url:'./data/1.txt',dataType:'json'});
+                let res = data.reduce(function(pre,cur){
+                    return pre+cur;
+                },a+b);
+                console.log(res);
+            }catch(e){
+                alert('出错了')
+            }
+        }
+        sum();
+    </script>
+
+</body>
+</html>

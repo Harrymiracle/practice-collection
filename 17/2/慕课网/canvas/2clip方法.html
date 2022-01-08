@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>clip方法</title>
+</head>
+
+<body>
+    <canvas id="canvas" style="border:1px solid violet;margin:10px auto;">
+  	你的浏览器不支持canvas,请更换浏览器再试。
+  </canvas>
+
+    <script>
+        window.onload = function() {
+            var canvas = document.getElementById("canvas");
+            canvas.width = 800; //此方法不可取 ，应该使用属性方法
+            canvas.height = 600;
+            var context = canvas.getContext("2d");
+
+            context.beginPath();
+            context.fillStyle = "violet";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            context.beginPath();
+            context.arc(400, 300, 200, 0, 2 * Math.PI, true);
+            context.fillStyle = "white";
+            context.fill();
+            context.clip(); //使用clip将剪切上面arc()绘制的区域作为下面文字绘制的环境
+
+            context.font = "bold 130px Arial";
+            context.textAlign = "center";
+            context.textBaseline = "middle";
+            context.fillStyle = "#058";
+            context.fillText("我是测试", canvas.width / 2, canvas.height / 2 - 130);
+            context.fillText("canvas的", canvas.width / 2, canvas.height / 2);
+            context.fillText("clip的内容", canvas.width / 2, canvas.height / 2 + 130);
+
+
+        }
+    </script>
+</body>
+
+</html>

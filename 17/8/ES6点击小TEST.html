@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ES6点击小TEST</title>
+</head>
+<body>
+	<span>ni</span>
+	<span>mei</span>
+	<span>de</span>
+	<span>!</span>
+
+	<script>
+		const sp = document.querySelectorAll('span');
+		let	spText,
+			arr = [];
+		for(let i=0;i<sp.length;i++){
+			sp[i].onclick = function(){
+				spText = this.innerHTML;
+				console.log(typeof spText);
+				arr.push(spText);
+				console.log(arr);
+			}
+		}
+		
+	</script>
+</body>
+</html>

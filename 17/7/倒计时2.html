@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时2</title>
+	<style>
+		.btg_rem_line{height:88px;line-height:88px;font-size:36px;font-weight:bold;border-bottom:1px solid #e3e3e3;text-align:center;}
+		.btg_rem_line span{display:inline-block;padding-left:48px;position:relative;}
+		.btg_rem_line span i{color:#444;}
+		.btg_rem_line span:before{content:'';display:inline-block;width:36px;height:34px;position:absolute;top:50%;left:0;margin-top:-17px;background:url(images/icon.png?v=1) 0 -150px no-repeat;}
+	</style>
+</head>
+<body>
+	<div class="fix-bottom-buy" id="fbb">
+	    <div class="btg_rem_line" id="hasNotStart">
+	            <span>
+	                <i>离开场仅剩</i> <em class="btg_rem_time c-00b4ff">12天 18：44：37</em>
+	            </span>
+	    </div>
+	</div>
+
+	<script src="js/jquery-2.1.0.js"></script>
+
+	<script>
+		var interval = null;
+	    function countDown(time,id){
+
+	        down(time,id);
+	        interval = setInterval(function(){
+	            down(--time,id);
+	        },1000);
+	    }
+	    function down(num,ele){
+	        var day = Math.floor(num/(60*60*24)) , hour = Math.floor(num/(60*60)-day*24) , rewriteH = hour < 10 ? ('0' + hour) : hour ,
+	                minute = Math.floor((num%3600)/60) , rewriteM = minute < 10 ? ('0' + minute) : minute ,
+	                second = Math.floor(num-(day*24*3600 +hour*60*60 + minute*60)) , rewriteS = second < 10 ? ('0' + second) : second;
+	        ele.find('.btg_rem_time').text(day + '天 ' + rewriteH + '：' + rewriteM + '：' + rewriteS);
+	        if(num == 0){
+	            clearInterval(interval);
+	            ele.find('.btg_rem_line').empty().remove();
+
+	        }
+	    }
+	    if('1'=="1"){
+	        countDown('2017714',$("#fbb"));
+	    }
+	</script>
+	
+</body>
+</html>

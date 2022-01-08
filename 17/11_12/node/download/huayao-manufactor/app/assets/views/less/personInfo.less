@@ -1,0 +1,127 @@
+@import "../../commoncss/common";
+body {
+    background: transparent;
+    .wrapper {
+        position: fixed;
+        top: 4rem;
+        overflow-y: scroll;
+        width: 100%;
+        height: 82%;
+        .wrapper-item {
+            width: 96%;
+            margin: 0 0.5rem;
+            background-color: #fff;
+            margin-top: 0.6rem;
+            padding-top: 0.3rem;
+            .item {
+                overflow: hidden;
+                position: relative;
+                margin-left: 1rem;
+                margin-right: 1rem;
+                border-top: 1px solid #c9c9c9;
+                padding-top: 0.3rem;
+                height: 3.6rem;
+                .item-link {
+                    display: block;
+                    overflow: hidden;
+                    padding-right: 1rem;
+                    background: url("../images/person/right-arrow.png") no-repeat;
+                    background-position: right center;
+                    background-size: 0.5rem 1rem;
+                }
+                .item-left {
+                    float: left;
+                    padding-top: 0.3rem;
+                }
+                .item-right {
+                    float: right;
+                    font-size: 1rem;
+                    color: #797979;
+                    padding-top: 0.5rem;
+                }
+                a:link {
+                    color: #222222;
+                }
+                a:visited {
+                    color: #222222;
+                }
+                a:hover {
+                    color: #222222;
+                }
+                a:active {
+                    color: #222222;
+                }
+            }
+            .item.avatar {
+                height: 4.5rem;
+                .item-left {
+                    padding-top: 0.8rem;
+                }
+                .item-right {
+                    width: 4rem;
+                    border-radius: 4rem;
+                    overflow: hidden;
+                    padding-top: 0;
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+            .item:first-child {
+                border-top: 0;
+            }
+        }
+    }
+    #modal {
+        .am-modal-dialog {
+            background-color: #eeeeee;
+            .modal-name {
+                border-bottom: 1px solid #dcdcdc;
+                padding: 0.3rem 0;
+                color: #353535;
+            }
+            .modal-content-wrapper {
+                .modal-input {
+                    padding-top: 1.5rem;
+                    width: 96%;
+                    text-indent: 1rem;
+                    border: 0;
+                    outline: 0;
+                    border-bottom: 1px solid #53a893;
+                    background: transparent;
+                }
+                .modal-tips {
+                    padding-top: 1rem;
+                    color: #797979;
+                    font-size: 1rem;
+                    text-align: left;
+                    padding-left: 2rem;
+                }
+                .am-radio {
+                    width: 17%;
+                    margin: 0 auto;
+                    padding: 0.8rem 3rem;
+                    border-top: 1px solid #aeaeae;
+                }
+                .am-radio:first-child {
+                    border-top: 0;
+                }
+                .date-wrapper {
+                    padding-top: 2rem;
+                    .ymd {
+                        width: 4rem;
+                    }
+                }
+            }
+            .save-btn {
+                padding: 0.2rem 2rem;
+                border: 0;
+                border-radius: 0.3rem;
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+                background-color: #37b698;
+                color: #ffffff;
+            }
+        }
+    }
+}

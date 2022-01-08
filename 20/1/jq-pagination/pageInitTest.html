@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基于jQuery封装的分页组件</title>
+    <link rel="stylesheet" href="./css/pageInit.css">
+</head>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/pageInit.js"></script>
+
+<body>
+    <script>
+        $.pageInit({
+            container: '.page', //容器：默认page
+            //setPos: 'body', //放置位置：默认body
+            totalPages: 10, //总页数：必填
+            totalLists: 100, //数据总数：必填
+            initPage: 1, //初始页码：默认1
+            inputVal: 1, //设置跳转的input值：默认1
+            //要执行的函数：默认null，必须为fn且返回true则可执行更新分页，false则不执行
+            callBack: function(n){
+                var flag = true;
+                console.log(n);
+                return flag;
+            }
+        });
+    </script>
+
+</body>
+</html>

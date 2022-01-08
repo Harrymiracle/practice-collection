@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript findIndex() 方法</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+
+    <script>
+        var ages = [3, 10, 18, 20];
+
+        // function checkAdult(age) {
+        //     return age >= 18;
+        // }
+
+        // function myFunction() {
+        //     document.getElementById("demo").innerHTML = ages.findIndex(checkAdult);
+        // }
+
+        /**
+        * findIndex的參數不用箭头函数的话需要手动写return
+        */
+
+        function myFunction() {
+            document.getElementById("demo").innerHTML = ages.findIndex(function (age) {
+                return age >= 18;
+            });
+        }
+
+        myFunction();
+
+
+        // replace
+        var str = "Visit Microsoft!"
+        document.write(str.replace(/Microsoft/, "W3School"))
+        document.write(str.replace('Microsoft', "W3School"))
+    </script>
+</body>
+
+</html>

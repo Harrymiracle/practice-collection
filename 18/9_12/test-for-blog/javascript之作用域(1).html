@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>javascript之作用域(1)</title>
+</head>
+
+<body>
+    <h2>作用域是什么？</h2>
+    <p> 作用域是根据名称查找变量的一套规则，用于确定何处以及如何查找变量。 在实际项目中，作用域经常是嵌套的，当一个块或是函数嵌套在另一个块或函数中时，就发生了作用域嵌套。 在当前作用域中无法找到的某个变量时，引擎就会向外层嵌套作用域查找，直到找到该变量，或者是抵达最外层作用域（全局作用域）为止。
+    </p>
+    <p>如果查找的目的是对变量进行赋值，那么会使用LHS查询。如果查找的目的是获取变量的值，那么就会使用RHS查询。赋值操作符会导致LHS查询, =操作符或是调用函数是传入的参数操作都会导致关联作用域的赋值操作。</p>
+    <!-- <p>查询规则可以简单分为LHS查询和RHS查询。</p> -->
+    <script>
+        var a = 2;
+        (function() {
+            var a = 1;
+            console.log(a); //1
+        })();
+        console.log(a); //2
+
+        var a = 1;
+        (function(g) {
+            var a = 2;
+            console.log(a);
+            console.log(g.a);
+        })(window);
+
+        var a = 11;
+        (function(f) {
+            f(window);
+        })(function(g) {
+            var a = 22;
+            console.log(a);
+            console.log(g.a);
+        });
+
+        function foo() {
+            var msg = 'inner';
+
+            function printer() {
+                console.log(msg);
+            }
+            return printer;
+        }
+        var bar = foo();
+        bar();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>分页封装测试</title>
+
+    <style>
+        /* 分页 */
+        .pagination {
+            /* display: -webkit-flex;
+            display: flex; */
+            display: none;
+            justify-content: flex-end;
+            list-style: none;
+            overflow: hidden;
+            font-size: 14px;
+            /* margin-top: 10px; */
+        }
+        .pagination li {
+            padding: 6px 10px;
+            line-height: 1.5;
+            border: 1px solid #e0e0e0;
+            border-right: none;
+            cursor: pointer;
+        }
+        .pagination li:last-of-type {
+            border-right: 1px solid #e0e0e0;
+        }
+        .pagination li a {
+            text-decoration: none;
+        }
+        .pagination li a:link,
+        .pagination li a:hover,
+        .pagination li a:visited,
+        .pagination li a:active   {
+            color: #666666;
+        }
+        .pagination li.active a {
+            color: #c2e2f1;
+        }
+        .pagination li.disable {
+            pointer-events: none;
+            cursor: default;
+        }
+    </style>
+</head>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/jquery.new.pagination.js"></script>
+    <!-- <script src="./js/jquery.static.pagination.js"></script> -->
+
+<body>
+    <ul class="pagination"></ul>
+    
+    
+    <script>
+
+        $('.pagination').paginationInit({
+            // setPostion: 'body',
+            totalLists: 100,      //总条数
+            totalPage: 10,
+            pageSize: 10,
+            currentPage: 1,
+            // inputVal: 1,     //设置跳转input框的默认跳转页数
+            // disabledColor: '#666',   //这两个颜色属性可以不设置
+            // normalColor: '#000',
+            callBack: function(cur){
+                var flag = true;    //实际操作中可以在查询函数fn成功或是失败时返回一个布尔值，用于清空分页中之前存在的内容
+                console.log('currentPage',cur);
+                // fn();   //要执行的函数(可以为查询列表函数，查询成功后调用分页组件)：默认null，必须为fn且返回true则可执行更新分页，false则不执行
+                return flag;
+            }
+        });
+
+/*
+        $.paginationInit({
+            container: '.pagination',
+            // setPostion: 'body',
+            totalLists: 100,      //总条数
+            totalPage: 10,
+            pageSize: 10,
+            currentPage: 1,
+            // inputVal: 1,     //设置跳转input框的默认跳转页数
+            // disabledColor: '#666',   //这两个颜色属性可以不设置
+            // normalColor: '#000',
+            callBack: function(cur){
+                var flag = true;    //实际操作中可以在查询函数fn成功或是失败时返回一个布尔值，用于清空分页中之前存在的内容
+                console.log('currentPage',cur);
+                // fn();   //要执行的函数(可以为查询列表函数，查询成功后调用分页组件)：默认null，必须为fn且返回true则可执行更新分页，false则不执行
+                return flag;
+            }
+        });
+*/
+    </script>
+</body>
+</html>

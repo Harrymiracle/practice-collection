@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <style>
+    .left div,.right div {
+        width: 350px;
+        height: 150px;
+        padding: 5px;
+        margin: 5px;
+        border: 1px solid #ccc;
+    }
+    p{
+        height: 50px;
+        border: 1px solid red;
+        margin: 30px;
+    }
+    .left div {
+        background: #bbffaa;
+    }
+    .right div {
+        background: yellow;
+    }
+    </style>
+</head>
+
+<body>
+    <h2>.mouseover()方法</h2>
+    <div class="left">
+        <div class="aaron1">
+            <p>鼠标离开此区域触发mouseover事件</p>
+            <a>mouseover事件触发次数：</a><br/>
+            <a>mouseover冒泡事件触发次数：</a>
+        </div>
+    </div>
+
+    <h2>.mouseenter()方法</h2>
+    <div class="right">
+        <div class="aaron2">
+            <p>鼠标进入此区域触发mouseenter事件</p>
+            <a>mouseenter事件触发次数：</a><br/>
+            <a>mouseenter冒泡事件触发次数：</a>
+        </div>
+    </div>
+    <br/>
+   
+<!--mouseover,mouseout事件不论鼠标指针穿过被选元素或其子元素，都会触发，
+    mouseenter,mouseleave事件只会在绑定它的元素上被调用，而不会触发冒泡事件.     -->
+    <script type="text/javascript">
+        var i = 0;
+        $(".aaron1 p").mouseover(function(e) {
+            $(".aaron1 a:first").html('mouseover事件触发次数：' + (++i))
+        })
+        var m = 0;
+        $(".aaron1").mouseover(function() {
+            $(".aaron1 a:last").html('mouseover冒泡事件触发次数：' + (++m))
+        })
+    </script>
+
+
+    <script type="text/javascript">
+        var j = 0;
+        $(".aaron2 p").mouseenter(function(e) {
+            $(".aaron2 a:first").html('mouseenter事件触发次数：' + (++j))
+        })
+        var n = 0;
+        $(".aaron2").mouseenter(function() {
+            $(".aaron2 a:last").html('mouseenter冒泡事件触发次数：' + (++n))
+        })
+    </script>
+
+
+</body>
+
+</html>

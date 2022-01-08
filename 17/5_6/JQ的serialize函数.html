@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JQ的serialize函数</title>
+
+	<script src="js/jquery-2.2.3.min.js"></script>
+</head>
+<body>
+	<form>
+	  <div><input type="text" name="a" value="1" id="a" /></div>
+	  <div><input type="text" name="b" value="2" id="b" /></div>
+	  <div><input type="hidden" name="c" value="3" id="c" /></div>
+	  <div>
+	    <textarea name="d" rows="8" cols="40">4</textarea>
+	  </div>
+	  <div>
+	  	<select name="e">
+		    <option value="5" selected="selected">5</option>
+		    <option value="6">6</option>
+		    <option value="7">7</option>
+		</select>
+	  </div>
+	  <div>
+	    <input type="checkbox" name="f" value="8" id="f" />
+	  </div>
+	  <div>
+	    <input type="submit" name="g" value="Submit" id="g" />
+	  </div>
+	</form>
+
+	<script>
+		$('form').submit(function() {
+		  alert($(this).serialize());
+		  return false;
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>动态作用域</title>
+</head>
+
+<body>
+    <script>
+        var aa = 2;
+
+        function foo2() {
+            var aa = 3; //局部变量 aa 
+            console.log(aa) //3
+        }
+        foo2();
+        console.log(aa); //2
+
+
+
+        function foo() {
+            console.log(this);
+            console.log(a); //2  此处查询a，只能查询到全局的 a
+        }
+
+        function bar() {
+            var a = 3; //在 bar 内声明 局部变量 a,赋值为 3
+            console.log(a); //3  根据词法作用域，此处打印出局部变量为 3
+            console.log(this) //在全局环境下调用，this 指向全局对象 window
+            foo(); //调用 foo 函数，然后进入 foo函数，bar函数内存空间被回收
+        }
+
+        var a = 2; //声明全局变量 a,并赋值为 2
+        bar(); //调用 bar 函数
+    </script>
+</body>
+
+</html>

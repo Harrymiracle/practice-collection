@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vue简介</title>
+  <script src="../js/vue.min.js"></script>
+</head>
+<!-- http://www.cnblogs.com/keepfool/p/5619070.html -->
+<body>
+ <!--  这是我们的视图(view),DOM元素上 -->
+  <div id="app">
+  	<p>{{message}}</p> <!--  双向绑定 -->
+    <input type="text" v-model="message">	<!--  双向绑定 -->
+  </div>
+
+  <div id="app2">
+    <span v-bind:title="msg">
+      Hover your mouse over me for a few seconds to see my dynamically bound title!
+    </span>
+  </div>
+
+  <script>
+  	var testMsg = {  //这是我们的model
+  	  message:"hello world!"
+  	}
+    // 创建一个 Vue 实例或 "ViewModel"
+    // 它连接 View 与 Model
+  	var demo = new Vue({ 
+  	  el:"#app",
+  	  data:testMsg
+  	});
+
+    var msgs = {
+      msg:'You loaded this page on ' + new Date()
+    }
+    var demo2 = new Vue({
+      el:"#app2",
+      data:msgs
+    });
+  </script>
+</body>
+</html>

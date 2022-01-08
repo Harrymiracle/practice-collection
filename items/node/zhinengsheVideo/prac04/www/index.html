@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      background: violet;
+    }
+  </style>
+</head>
+<body>
+  <!-- <div onclick="alert(123)"></div> -->
+  <div></div>
+
+  <script>
+    document.querySelector('div').onclick = function(){
+      alert('123');
+    }
+  </script>
+</body>
+</html>

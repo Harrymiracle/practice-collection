@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>appy和call方法</title>
+</head>
+<body>
+	<script>
+	//建立一个构造函数
+		function Person1(name,sex,age,weight){  
+			this.name = name;
+			this.sex = sex;
+			this.age = age;
+			this.weight = weight;
+			this.showAttr =  function(){
+				console.log("姓名：" + this.name + "; 性别：" + this.sex + "; 年龄：" + this.age + "; 体重：" + this.weight + ";");
+			}
+		}
+		var o = new Object();
+	//在另一个对象 o 的作用域范围内调用Person1函数。将此行的o改成this,将是在全局中调用,var一个o就没必要.
+		Person1.call(o,"张三","男",20,"60kg");  
+		o.showAttr();
+
+
+		//先定义一个带参数的Person函数(构造函数法)
+		function Person(name,age){
+			this.name = name;
+			this.age = age;
+		}
+		//定义一个学生函数
+		function Student(name,age,number){
+			//用this去调用Person,同时传递name,age参数,apply方法中arguments代表的是类数组的对象,使用时它的参数顺序要同Person中参数顺序一致，this指代的是Student
+			Person.apply(this,arguments); 
+			this.number = number;
+		}
+		var student1 = new Student('Jack','26','No.2');
+		console.log(student1);
+		console.log('学生姓名:' + student1.name + ';学生年龄:' + student1.age + ';学生学号:' + student1.number);
+
+		function People(name,age,provience,weight){
+			//call方法中this指代的是People，用this去调用Person,同时传递name,age参数,其中的name,age的顺序要和Person中的参数的顺序要对应
+			Person.call(this,name,age); 
+			this.provience = provience;
+			this.weight = weight;
+		}
+		var people1 = new People('Jhon','18','siChuan','54');
+		console.log(people1);
+		console.log('姓名:' + people1.name + ';年龄:' + people1.age + ';省份:' + people1.provience + ';体重:' + people1.weight);
+	</script>
+</body>
+</html>

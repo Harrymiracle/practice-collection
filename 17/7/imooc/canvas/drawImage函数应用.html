@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>drawImage函数应用</title>
+</head>
+<body>
+	<div></div>
+	<canvas id="canvas" style="display:block;border:1px solid gray;margin:20px auto;">你的浏览器不支持canvas，请升级浏览器。</canvas>
+
+	<script>
+		var canvas = document.getElementById("canvas");
+		var context = canvas.getContext("2d");
+		var ig = new Image();
+
+		window.onload = function(){
+			canvas.width = 450;
+			canvas.height = 600;
+
+			ig.src = "images/12.jpg";
+			ig.onload = function(){
+			//	context.drawImage(ig,10,10);
+			//	context.drawImage(ig,10,10,300,400);
+				context.drawImage(ig,10,10,590,790,0,0,canvas.width,canvas.height);
+			}
+		}
+		//drawImage函数有三种用法，可以带--三个参数，分别是(原图像,在canvas上绘制起点横坐标,在canvas上绘制起点纵坐标); 五个参数，分别是(原图像,在canvas上绘制起点横坐标,在canvas上绘制起点纵坐标,绘制的宽度,绘制的高度); 九个参数, 分别是(原图像,原图像起点横坐标,原图像起点纵坐标,选取的原图像的宽度,选取原图像的高度，在canvas上绘制起点横坐标,在canvas上绘制起点纵坐标,绘制的宽度,绘制的高度)。
+	</script>
+</body>
+</html>

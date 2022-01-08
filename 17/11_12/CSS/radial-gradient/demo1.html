@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>径向渐变</title>
+    <style>
+        /***
+        *
+         所有的浏览器兼容要把带前缀的—（-webket,-moz,-o）写在前面，无前缀的写后面。
+        *
+        ***/
+        
+        div {
+            margin: 10px;
+        }
+        
+        .radient-gradient {
+            width: 400px;
+            height: 200px;
+            /* 默认是椭圆形渐变 */
+            background: -webkit-radial-gradient(yellow, red);
+            background: radial-gradient(yellow red);
+        }
+        
+        .radient-gradient2 {
+            width: 400px;
+            height: 200px;
+            /* 设置为圆形渐变 */
+            background: -webkit-radial-gradient(circle, yellow, red);
+            background: radial-gradient(circle, yellow, red);
+        }
+        
+        .radient-gradient3 {
+            width: 400px;
+            height: 200px;
+            /* 设置渐变的起点：可以用px，百分比等 */
+            /* background: radial-gradient(circle at 50px 50px, yellow, red);
+            background: -webkit-radial-gradient(circle at 50px 50px, yellow, red); */
+            background: -webkit-radial-gradient(circle at 12.5% 25%, yellow, red);
+            background: radial-gradient(circle at 12.5% 25%, yellow, red);
+        }
+        
+        .radient-gradient4 {
+            width: 400px;
+            height: 200px;
+            /* 设置渐变终点位置：farthest-corner(默认)，farthest-side,closest-corner,closest-side */
+            background: -webkit-radial-gradient(closest-side circle at 50px 50px, yellow, red);
+            background: radial-gradient(closest-side circle at 50px 50px, yellow, red);
+        }
+        
+        .radient-gradient5 {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            border: 5px solid silver;
+            /* 指定渐变颜色断点 */
+            background: -webkit-radial-gradient(closest-side circle, yellow, red, white);
+            background: radial-gradient(closest-side circle, yellow, red, white);
+        }
+        
+        .radient-gradient5-5 {
+            width: 400px;
+            height: 200px;
+            /* 默认是ellipse, 30px指椭圆横纵半径都为30px,此时效果同设置了circle一样，此例加了前缀会同预想的不一样 */
+            /* background: -webkit-radial-gradient(30px, yellow, green, #333);
+            background: -moz-radial-gradient(30px, yellow, green, #333);
+            background: radial-gradient(30px, yellow, green, #333); */
+            /* 椭圆横纵半径不一样 */
+            background: -webkit-radial-gradient(50px 100px, yellow, green, #333);
+            background: radial-gradient(50px 100px, yellow, green, #333);
+        }
+        
+        .radient-gradient6 {
+            width: 400px;
+            height: 200px;
+            /*椭圆类型的径向渐变， 指定椭圆半径时，ellipse可以省。 */
+            /* 需要注意的是，在上面示意CSS代码中，透明到黄色分界那里有一个1px的偏差过渡，也就是transparent 40px, yellow 41px中yellow是41px，而不是设置的40px，原因在于在Chrome下，如果颜色直接0偏差过渡，会有比较严重的锯齿， */
+            background: -webkit-radial-gradient(50px 100px ellipse, transparent 40px, yellow 41px, red);
+            background: radial-gradient(50px 100px ellipse, transparent 40px, yellow 41px, red);
+        }
+        
+        .radient-gradient7 {
+            width: 400px;
+            height: 200px;
+            /* 可累加的径向渐变背景图 */
+            background: -webkit-radial-gradient(50px 100px, transparent 40px, yellow 41px, red 49px, transparent 50px), -webkit-radial-gradient(30px circle, red, red 29px, transparent 30px);
+            background: radial-gradient(50px 100px, transparent 40px, yellow 41px, red 49px, transparent 50px), radial-gradient(30px circle, red, red 29px, transparent 30px);
+        }
+        
+        .radient-gradient8 {
+            width: 200px;
+            height: 200px;
+            background: -webkit-radial-gradient(5px 10px, transparent 4px, yellow 5px, red 6px, transparent 7px), -webkit-radial-gradient(3px circle, red, red 3px, transparent 4px);
+            background: radial-gradient(5px 10px, transparent 4px, yellow 5px, red 6px, transparent 7px), radial-gradient(3px circle, red, red 3px, transparent 4px);
+            /* 渐变背景的尺寸控制用background-size */
+            background-size: 25px;
+            /* background-repeat默认是repeat,可以设置repeat-x,repeat-y */
+            background-repeat: repeat;
+        }
+        /* 作为border-image的径向渐变 */
+        
+        .radient-gradient9 {
+            width: 100px;
+            height: 100px;
+            border: 50px solid;
+            border-image: radial-gradient( circle, transparent 50px, yellow 51px, red) 50 stretch;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="radient-gradient"></div>
+    <div class="radient-gradient2"></div>
+    <div class="radient-gradient3"></div>
+    <div class="radient-gradient4"></div>
+    <div class="radient-gradient5"></div>
+    <div class="radient-gradient5-5"></div>
+    <div class="radient-gradient6"></div>
+    <div class="radient-gradient7"></div>
+    <div class="radient-gradient8"></div>
+    <div class="radient-gradient9"></div>
+</body>
+
+</html>

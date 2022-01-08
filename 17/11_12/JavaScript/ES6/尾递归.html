@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>尾递归</title>
+</head>
+
+<body>
+    <script>
+        //*******阶乘    
+        //1、ES5的阶乘
+        function factorial(n) {
+            if (n === 1) return 1;
+            return n * factorial(n - 1);
+        }
+        let t1 = new Date();
+        let result = factorial(20);
+        console.log(result);
+        console.log(new Date() - t1);
+
+        //2、ES6尾递归优化版
+        function fact(n, total) {
+            if (n === 1) return total;
+            return fact(n - 1, n * total);
+        }
+        let t2 = new Date();
+        let cons = fact(20, 1);
+        console.log(cons);
+        console.log(new Date() - t2);
+
+        //3、ES6直观版
+        function fact2(n, total) {
+            if (n === 1) return total;
+            return fact2(n - 1, n * total);
+        }
+
+        function factorial2(n) {
+            return fact2(n, 1);
+        }
+        let tt = +new Date();
+        let result2 = factorial2(20);
+        console.log(result2);
+        console.log(new Date() - tt);
+
+        //4、柯里化
+        function curry(fn, n) {
+            return function(m) {
+                return fn.call(this, m, n);
+            }
+        }
+        let cons3 = curry(fact2, 1);
+        console.log(cons3(20));
+
+        //5、ES6的默认值方法
+        function factorial3(n, total = 1) {
+            if (n === 1) return total;
+            return factorial3(n - 1, n * total);
+        }
+        let conss4 = factorial3(20);
+        console.log(conss4);
+
+
+
+        //*********斐波拉数列
+        //1、非尾递归的 Fibonacci 数列实现
+        function fibonacci(n) {
+            if (typeof n !== 'number') throw new Error('n should be a Number');
+            if (n < 0) throw new Error('n should >= 0');
+            if (n == 1 || n == 2) return 1;
+            if (n == 0) return 0;
+            return fibonacci(n - 1) + fibonacci(n - 2);
+        }
+        let t3 = +new Date();
+        let result3 = fibonacci(10);
+        console.log(result3);
+        console.log(new Date() - t3);
+
+        //2、尾递归的 Fibonacci 数列实现
+        function fib(n, ac1 = 1, ac2 = 1) {
+            if (typeof n !== 'number') throw new Error('n should be a Number');
+            if (n < 0) throw new Error('n should >= 0');
+            if (n == 1 || n == 2) return ac2;
+            if (n == 0) return 0;
+            return fib(n - 1, ac2, ac1 + ac2);
+        }
+        let t4 = +new Date();
+        let cons4 = fib(10);
+        console.log(cons4);
+        console.log(new Date() - t4);
+    </script>
+</body>
+
+</html>

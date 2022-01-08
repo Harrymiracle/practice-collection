@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta chareset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>按指定长度分隔字符串为数组</title>
+</head>
+
+<body>
+    <script>
+        function splitFn(str) {
+            let res;
+            if (str && str.length > 60) {
+                let reg = /.{60}/g;  // 按60个字符切割
+                let tempArr = str.match(reg);
+                if (str.length % 60 !== 0) { // str长度为60的倍数时会有一个空字符串项处理
+                    tempArr.push(str.substring(tempArr.join('').length))
+                }
+                res = tempArr;
+            } else if (str && str.length > 0 && str.length <= 60) {
+                res = [str];
+            } else {
+                res = [''];
+            }
+            return res;
+        }
+
+        let splitFun = (str) => {
+            if (str === undefined) {
+                let res = [];
+                res[0] = '';
+                return res;
+            } else if (str.length < 60) {
+                let res = [];
+                res[0] = str;
+                return res;
+            } else {
+                let strLen = 60;
+                let num = Math.ceil(str.length / strLen);
+                let res = [];
+                for (let i = 0; i < num; i++) {
+                    if (i === 0) {
+                        res.push(str.substring(i, strLen));
+                    } else if (i > 0 && i < num - 1) {
+                        res.push(str.substring((i * strLen), (i + 1) * strLen)); // i等于1，i * strLen等于60，即第61个字符的位置(下标是从0开始的)。
+                    } else {
+                        res.push(str.substring((i * strLen)));
+                    }
+                }
+                return res;
+            }
+        }
+
+        let s0 = '';
+        let s = '用于替换掉第一个参数在原字符串中的匹配部分的字符串。该字符串中可以内插一些特殊的变量名。参考下面的使用字符串作为参数。'
+        let ss = '创作背景上班无聊ing,突发奇想到split方法如果把空字符串(’’)传进去就会得到被操作的字符串的每个字符都会分割,并且分割之后的每个子串长度都相等(为1)。创作背景上班无聊ing,突发奇想到split方法如果把空字符串(’’)传进去就会得到被操作的字符串的每个字符都会分割,并且分割之后的每个子串长度都相等(为1)。创作背景上班无聊ing,突发奇想到split方法如果把空字符串(’’)传进去就会得到被操作的字符串的每个字符都会分割,并且分割之后的每个子串长度都相等(为1)。';
+        let sss = '创作背景上班无聊ing,突发奇想到split方法如果把空字符串(’’)传进去就会得到被操作的字符串的每个字符都会分割,并且分割之后的每个子串长度都相等(为1)。创作背景上班无聊ing,突发奇想到split方法如果把空字符串(’’)传进去就会得到被操作的字符串的每个字符都会分割,并且分割之后的每个子串长度都相等(为1)。创作背景上班无聊ing,突发奇想到split方法如果把空字符串(’’)传进去就会得到被操作的字符串的每个字符都会分割,并且分割之后的每个子串长度都相等(为1)。哈';
+
+        console.log(splitFn(s0));
+        console.log(splitFn(s));
+        console.log(splitFn(ss));
+        console.log(splitFn(sss));
+        console.log(splitFn());
+
+        console.log(splitFun(s0));
+        console.log(splitFun(s));
+        console.log(splitFun(ss));
+        console.log(splitFun(sss));
+        console.log(splitFun());
+
+    </script>
+</body>
+
+</html>

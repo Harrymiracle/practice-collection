@@ -1,0 +1,329 @@
+/**
+ * 支付页样式
+ */
+@charset "utf-8";
+
+@import "../../node_modules/mixins-sass/src/mixins";
+@import "../mui/mixins.scss";
+
+$color-blue: #2882e0;
+$color-font: #666666;
+$color-border: #e0e0e0;
+$color-white:#ffffff;
+
+/**
+ * 在线支付
+ */
+.pay{
+	.pay_wrap{
+		.info_item{
+			background-color: $color-white;
+			border-bottom: 1px solid #f0f0f0;
+			@include rem(padding,20px 24px);
+			img{
+				@include rem(width,80px);
+				@include rem(height,80px);
+				display: inline-block;
+				vertical-align: middle;
+			}
+			.info_name{
+				@include rem(font-size,32px);
+				@include rem(width,560px);
+				overflow: hidden;
+			    white-space: nowrap;
+			    text-overflow: ellipsis;
+				color:#323232;
+				display: inline-block;
+				vertical-align: middle;
+				@include rem(margin-left,30px);
+			}
+			.time_item{
+				@include rem(font-size,28px);
+				color: #03a9f5;
+				border: 1px solid #03a9f5;
+				@include rem(padding,16px 26px);
+				@include rem(border-radius,6px);
+				display: inline-block;
+				@include rem(margin-right,40px);
+				@include rem(margin-bottom,20px);
+				&:nth-child(3n+3){
+					margin-right: 0;
+				}
+				&.selected{
+					background-color: #03a9f5;
+					color: $color-white;
+					border: 1px solid #03a9f5;
+				}
+			}
+		}
+		.tab_date{
+			@include rem(padding,20px 24px 0);
+		}
+		.data_item{
+			background-color: $color-white;
+			@include rem(padding,30px 24px);
+			@include rem(font-size,28px);
+			@include rem(margin-bottom,20px);
+			color: #323232;
+			.product_time{
+				color:#969696;
+			}
+			.price{
+				@include rem(font-size,42px);
+				color: #ea4a4a;
+				font-weight: bold;
+			}
+		}
+		.agreement{
+			@include rem(margin-top,30px);
+			@include rem(margin-left,24px);
+			@include rem(font-size,26px);
+			color: #646464;
+			a{
+				color: #ea4a4a;
+				text-decoration: underline;
+				@include rem(padding-left,10px);
+			}
+		}
+		.pay_btn{
+			position: fixed;
+			@include rem(left,24px);
+			@include rem(bottom,40px);
+			display: block;
+			@include rem(width,702px);
+			@include rem(height,90px);
+			border: 0 none;
+			background-color:$color-blue;
+			color:#fff;
+			@include rem(font-size,32px);
+			text-align: center;
+			@include rem(line-height,90px); 
+		}
+	}
+}
+
+/**
+ * 线下购买
+ */
+.purchase{
+	.pay_info{
+		background-color: $color-white;
+		.pay_title{
+			@include rem(padding,20px 24px);
+			border-bottom: 1px solid $color-border;
+			img{
+				@include rem(width,80px);
+				@include rem(height,80px);
+				display: inline-block;
+				vertical-align: middle;
+			}
+			.info_name{
+				@include rem(font-size,32px);
+				color:#323232;
+				display: inline-block;
+				vertical-align: middle;
+				@include rem(margin-left,30px);
+			}
+		}
+		.block_item{
+			@include rem(line-height,90px);
+			@include rem(font-size,28px);
+			@include rem(padding,0 24px);
+			color: #323232;
+			border-bottom: 1px solid $color-border;
+			.product_data{
+				@include rem(font-size,32px);
+				color: $color-blue;
+			}
+			.product_price{
+				@include rem(font-size,42px);
+				color: #ea4a4a;
+			}
+		}
+	}
+	.pay_wrap{
+		@include rem(margin-top,20px);
+		border-top: 1px solid $color-border;
+		border-bottom: 1px solid $color-border;
+		background-color: $color-white;
+		@include rem(margin-bottom,40px);
+		.title{
+			@include rem(font-size,28px);
+			@include rem(line-height,90px);
+			@include rem(padding,0 24px);
+			color:#323232;
+			border-bottom: 1px solid $color-border;
+		}
+		.pay_content{
+			@include rem(padding,0 24px);
+			.content_block{
+				@include rem(font-size,24px);
+				@include rem(padding,20px 0);
+				color:#323232;
+				border-bottom: 1px solid $color-border;
+				&:last-child{
+					border-bottom: 0 none;
+				}
+				.block_title{
+					@include rem(line-height,90px);
+					@include rem(font-size,32px);
+				}
+				.block_txt{
+					@include rem(font-size,28px);
+				}
+			}
+			.content_item{
+				@include rem(font-size,32px);
+				border-bottom: 1px solid $color-border;
+				@include rem(line-height,90px);
+				.tel{
+					@include rem(font-size,38px);
+					color: #ea4a4a;
+					background:url(../images/tel_arrow.png) no-repeat right center;
+					@include rem(background-size,36px auto);
+					@include rem(padding-right,60px);
+				}
+				img{
+					@include rem(width,702px);
+					@include rem(height,683px);
+					@include rem(margin,0 auto 38px);
+				}
+				.item_title{
+					@include rem(line-height,100px);
+				}
+			}
+		}
+	}
+}
+
+/**
+ * 购买协议
+ */
+.userAgreement-content{
+	background: #fff;
+	.userAgreement{
+		@include rem(padding,10px 30px 30px 30px);
+		h2{
+			text-align: center;
+			color: #222;
+			@include rem(font-size,30px);
+			@include rem(padding,20px 0);
+		}
+		section{
+			color: #666;
+			@include rem(font-size,26px);
+		}
+	}
+}
+
+//问卷调查
+.snaq-wrap{
+	.top{
+		width:100%;
+		@include rem(height,586px);
+		background: url(../images/fq_banner.jpg) no-repeat center;
+		background-size: 100%;
+	}
+	.content{
+		@include rem(padding,50px 50px 75px);
+		.item{
+			@include rem(margin-bottom,50px);
+			h3{
+				@include rem(font-size,32px);
+				color:#323232;
+				@include rem(margin,0 0 30px);
+				@include rem(line-height,42px);
+			}
+			label{
+				display: block;
+				@include rem(margin-bottom,30px);
+				input{
+					@include rem(width,28px);
+					@include rem(height,28px);
+					vertical-align: top;
+					@include rem(margin-top,8px);
+					@include rem(margin-right,20px);
+					border-radius: 100%;
+					-webkit-appearance: none;
+					border: 1px solid #e3e3e3;
+					display: inline-block;
+					&:checked{
+						background: url(../images/point2.png) no-repeat center;
+						background-size: 100%;
+						//@include rem(background-size,28px);
+						border: 0 none;
+						&~span{
+							color:#2882e0;
+						}
+					}	
+				}
+				span{
+					display: inline-block;
+					@include rem(width,585px);
+				}
+			}
+		}
+		.submit{
+			background-color: #ee3d2d;
+			display: block;
+			@include rem(padding,20px 0);
+			@include rem(border-radius,12px);
+			color: #fff;
+			@include rem(width,486px);
+			text-align: center;
+			margin: 0 auto;
+		}
+	}
+}
+//弹出确认框
+.promptLayer{
+	.content{
+		@include rem(font-size,28px);
+		@include rem(padding,60px 30px);
+		p{
+			text-align: left;
+			color:#222;
+			margin-bottom: 0;
+			@include rem(font-size,28px);
+			@include rem(margin-top,15px);
+			@include rem(line-height,48px);
+		}
+	}
+	button{
+		border-radius: 0;
+	}
+	.submit{
+		border: none;
+		width: 100%;
+		@include rem(height,88px);
+		background-color: #fff;
+		border-top: 1px solid #e2e2e2;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		@include rem(font-size,36px);
+		color: #2883e0;
+		&:active{
+			background-color:#2883e0;
+		}
+	}
+}
+//弹出层盒子
+.contentBox{
+	z-index: 3;
+	position: fixed;
+	top: 20%;
+	left: 10%;
+	@include rem(width,600px);
+	background: #ffffff;
+	border-radius: 10px;
+	text-align: center;
+	color: #323232;
+	.title{
+		@include rem(padding,25px 0);
+		font-weight: normal;
+		margin: 0;
+		color:#333;
+		border-bottom: 1px solid #e2e2e2;
+		@include rem(font-size,32px);
+	}
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>企业通讯录</title>
+    <link rel="stylesheet" href="../../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../css/mailList.css">
+</head>
+<body>
+<header>
+    <a href="#" class="goback" onclick="javascript:history.go(-1)"></a>
+    <p>企业通讯录</p>
+</header>
+<div class="content">
+    <div class="search">
+        <div>
+            <input type="text" placeholder="输入姓名">
+            <span></span>
+        </div>
+    </div>
+    <ul>
+        <li>
+            <div>联&nbsp; 系&nbsp;人：<span>张三</span>
+                <div class="check" data-state="false">
+                    <input type="radio" name="check">
+                    <span class=""></span>
+                </div>
+            </div>
+            <div>电&emsp;&emsp;话：<span>15822036659</span></div>
+            <div>公司名称：<span>华药物流</span></div>
+            <div>地&emsp;&emsp;址：<span>四川省成都市武侯区</span></div>
+            <div class="last">详细地址：<span>天府三街</span></div>
+        </li>
+        <li>
+            <div>联&nbsp; 系&nbsp;人：<span>张三</span>
+                <div class="check" data-state="false">
+                    <input type="radio" name="check">
+                    <span></span>
+                </div>
+            </div>
+            <div>电&emsp;&emsp;话：<span>15822036659</span></div>
+            <div>公司名称：<span>华药物流</span></div>
+            <div>地&emsp;&emsp;址：<span>四川省成都市武侯区</span></div>
+            <div class="last">详细地址：<span>天府三街</span></div>
+        </li>
+        <li>
+            <div>联&nbsp; 系&nbsp;人：<span>张三</span>
+                <div class="check" data-state="false">
+                    <input type="radio" name="check">
+                    <span></span>
+                </div>
+            </div>
+            <div>电&emsp;&emsp;话：<span>15822036659</span></div>
+            <div>公司名称：<span>华药物流</span></div>
+            <div>地&emsp;&emsp;址：<span>四川省成都市武侯区</span></div>
+            <div class="last">详细地址：<span>天府三街</span></div>
+        </li>
+    </ul>
+    <div class="fixed-btn">
+        <div class="am-u-sm-5">下一步</div>
+        <div class="am-u-sm-2"></div>
+        <div class="am-u-sm-5">返回</div>
+    </div>
+</div>
+
+</body>
+<script src="../../commonjs/jquery-2.1.0.js"></script>
+<script type="text/javascript">
+ $(".content .check").click(function(){
+     var all = $(".content .check");
+     $(all).children("span").removeClass("active");
+     $(all).children("input").attr("checked",false);
+     $(this).children("span").addClass("active");
+     $(this).children("input").attr("checked",true);
+ });
+
+
+</script>
+</html>

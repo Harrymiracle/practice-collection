@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片集</title>
+	<style>
+/*为了优化性能，CSS,JS都应该分离*/
+		body{
+			font-family: "Hevtica","Arial",serif;
+			color:#333;
+			background: #ccc;
+			margin:1em 10%;
+		}
+		h1{
+			color:#333;
+			background: transparent;
+		}
+		a{
+			color: #c60;
+			background: transparent;
+			font-weight: bold;
+			text-decoration: none;
+		}
+		ul{
+			padding:0;
+		}
+		li{
+			list-style: none;
+			float: left;
+			padding: 1em;
+		}
+		#imageGallery{
+			list-style: none;
+		}
+		
+		img{
+			width: 600px;
+			height: 400px;
+			text-align: center;
+			line-height: 400px;
+			font-size: 40px;
+			font-weight: bold;
+			display: block;
+			clear: both;
+		}
+
+		#box{
+			width: 90px;height: 90px;
+			background: green;
+			text-align: center;
+			line-height: 90px;
+		}
+		#description{
+			font-weight: bolder;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>pictures</h1>
+	<ul id="imageGallery">
+		<li>
+			<a href="../images/1.jpg" title="running boy">running boy</a>
+		</li>
+		<li>
+			<a href="../images/2.jpg" title="sanding playing">sanding playing</a>
+		</li>
+		<li>
+			<a href="../images/3.jpg" title="writing girl">writing girl</a>
+		</li>
+		<li>
+			<a href="../images/4.jpg" title="standing kid">standing kid</a>
+		</li>	
+	</ul>
+	<img id="placeholder" src="" alt="my image gallery">
+	<p id="description">choose a picture.</p>
+
+
+<script src="picCollection.js"></script>
+</body>
+
+</html>

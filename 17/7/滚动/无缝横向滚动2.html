@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>无缝滚动</title>
+	<style>
+		*{margin:0;padding:0;}   
+		.item{width:300px;height:60px;border:1px solid;margin:100px;position:absolute;overflow: hidden;}
+		.item p{width:1200px;height:30px;position:absolute;top:0;left:0;}
+		.item p span{display: inline-block;height: 30px; line-height: 30px;padding-left: 5px;}
+	</style>                     
+	<script src="../js/jquery-2.1.0.js"></script>
+	<script>
+		function startMove(){
+			var containerWidth = $('.item').width(),
+				spanWidth=$(".item p span")[0].offsetWidth,//li的高度
+				len=$(".item p span").length;
+
+			if(spanWidth <= containerWidth){
+				return false;
+			}else{
+				//将box的所有内容复制一份追加到box中
+				var cont = $(".item p").html();			
+				$(".item p").html(cont + cont);
+
+				setInterval(function(){
+					//计算运动过程中的Top值
+					var _left= -1*spanWidth;
+					//运动
+					$(".item p").animate({"left":_left},5000,'linear',function(){
+						if(_left=== -len*spanWidth){	//当原有所有公告信息滚动完毕，还原为初始状态
+							$(".item p").css({left:0});
+						}
+					});
+				},5000);
+			}
+		}
+
+		$(function(){
+			startMove();
+		});
+	</script>
+</head>
+<body>
+	<div class="item">
+		<p><span>您中了大奖了，快快报上你的电话号码.345678</span></p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>边框颜色</title>
+	<style>
+		.testBox {
+			width: 200px;
+			height: 200px;
+			margin: 100px auto 0;
+			border: 30px solid pink;
+		}
+		.testInp {
+			border: 1px solid #c0ccda;
+		}
+		.testBox:hover, .testInp:focus {
+			transition: border-color 2s cubic-bezier(.645,.045,.355,1);
+		}
+
+	</style>
+</head>
+<body>
+	<div class="testBox"></div>
+	<input type="text" class="testInp">
+
+	
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8">
+<title>帧动画animation</title>
+<style>
+  @keyframes move {
+    0%{
+      transform: translateY(90px);
+    }
+    15%{
+      transform: translate(90px,90px);
+    }
+    30%{
+      transform: translate(180px,90px);
+    }
+    45%{
+      transform: translate(90px,90px);
+    }
+    60%{
+      transform: translate(90px,0);
+    }
+    75%{
+      transform: translate(90px,90px);
+    }
+    90%{
+      transform: translate(90px,180px);
+    }
+    100%{
+      transform: translate(90px,90px);
+    }
+  }
+
+  div {
+    width: 200px;
+    height: 200px;
+    border: 1px solid red;
+    margin: 20px auto;
+  }
+  span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: orange;
+    transform: translateY(90px);
+    animation-name: move;   /*动画名称*/
+    animation-duration: 5s;    /*动画播放时间*/
+    animation-timing-function: ease-in;   /*动画播放方式*/
+    animation-delay: .2s;     /*动画延迟*/
+    animation-iteration-count:infinite;     /*动画播放次数*/
+    animation-direction:alternate;    /*动画播放方向*/
+    animation-play-state:paused;    /*动画播放状态*/
+  }
+  div:hover span {
+    animation-play-state:running;
+  }
+</style>
+</head> 
+<body>
+  <div><span></span></div>
+</body>
+</html>

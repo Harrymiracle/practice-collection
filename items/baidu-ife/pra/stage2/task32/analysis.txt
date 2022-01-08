@@ -1,0 +1,24 @@
+最终实现功能：
+    1、点击表单可能包含的可选元素（
+        input:checkbox, input:radio, input:reset, 
+        input:text, input:email, input:telephone, input:password, input:date, input:number,  （input为输入框时的可选配置）
+        select>option, textarea, button(提交按钮必选), 
+    ）就像购物列表一样可以选择表单的构成元素；
+    2、针对每一种可以选择的元素可以设置提示文字，是否必填，可选长度，生成的数量（关联信息）；
+    3、验证规则和验证提示文字在统一的地方设置并关联上；
+    4、点击增加就在展示区增加一个由上面已选条件组合而成的一个表单字段；
+    5、下面有个样式可选下拉列表；
+    6、点击展示区的提交按钮及验证；
+
+
+HTML布局：
+    左边：
+    右边：
+
+
+编码逻辑：
+    复用工厂（类）
+    
+
+
+        

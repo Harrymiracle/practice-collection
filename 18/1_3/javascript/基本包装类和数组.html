@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>基本包装类和数组</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * A、基本包装类
+         */
+        //一、基础示例 
+        var s1 = 'some text!';
+        var part = s1.slice(1, 3);
+        console.log(part); //om
+        /**  提出问题，自我解答： 
+         * s1是一个基础类型的String值，不是对象，从理论上讲基本类型的数据本来是没有方法的。此处为什么可以调用slice方法？ 
+         * 我们在调用此基本方法时，后台其实已经做了很多处理：
+         * 1、创建一个String类型的实例； 
+         * 2、在实例上调用指定的方法； 
+         * 3、销毁这个实例。
+         * 这三步同样适用于Boolean和Number类的值。
+         */
+        // 模拟后台的处理：
+        var s2 = new String(s1); //第一步 
+        var part2 = s2.slice(1, 3); //第二步 
+        s2 = null; //第三步
+        console.log(part2); //om
+        s1.color = 'red';
+        console.log(s1.color); //undefined 
+        /** 
+         *  说明： 
+         * 引用类型与基本包装类型的主要区别就是对象的生存期。适用new操作符创建的引用类型的实例，在执行流离开当前作用域之前都一直保存在内存中。
+         * 而自动创建的基本包装类型的对象， 只存在一行代码执行的一瞬间， 然后立即被销毁。 这意味着我们不能在执行是为基本类型的值添加属性和方法。
+         */
+
+
+
+        // 二、 Boolean类型 
+        //在实际的应用中应尽量避免显示的使用基本包装类型 
+        var falseValue = false;
+        var result = falseValue && true;
+        console.log(result); //false 
+        var F = new Boolean(false);
+        var resultF = F && true;
+        console.log(resultF); //true
+        /** 
+         * 原因： new Boolean()，new String()和new Number()创建的是一个实例，为一个对象，所有的对象会被转化为true。
+         */
+
+
+
+        //三、Number类型
+        var num = 10.005;
+        console.log(num.toFixed(2)); //10.01 
+        console.log(num.toExponential(1)); //1.0e+1 该方法返回以指数表示的数字的字符串形式 
+        //如果想得到某个数最合适的的格式可以使用toPrecision()方法，它会自动调用toFixe()或是toPrecision()方法
+        var num2 = 99;
+        console.log(num2.toPrecision(1)); //1e+2 
+        console.log(num2.toPrecision(2)); //99 
+        console.log(num2.toPrecision(3)); //99.0 
+        var numberObj = new Number(10);
+        var numberValue = 10;
+        console.log(typeof numberObj); //object
+        console.log(typeof numberValue); //number 
+        console.log(numberObj instanceof Number); //true 
+        console.log(numberValue instanceof Number); //false 
+
+
+
+        //四、String类型 
+
+        // 1、操作方法 
+        var stringValue = 'Hello World!';
+        console.log(stringValue.length); //12 
+        console.log(stringValue.slice(3)); //lo World! 截取字符串，从3开始
+        console.log(stringValue.substring(3)); //lo World! 截取字符串，从3开始 
+        console.log(stringValue.substr(3)); //lo World! 截取字符串，从3开始 
+        console.log(stringValue.slice(3, 7)); //lo W 截取字符串，从3开始，到7结束 
+        console.log(stringValue.substring(3, 7)); //lo W 截取字符串，从3开始，到7结束 
+        console.log(stringValue.substr(3, 7)); //lo Worl 截取字符串，从3开始，截取7个字符串长度 
+        console.log(stringValue); //Hello World! 
+        //以上3个方法都是返回被操作字符串的一个子字符串。 
+
+        console.log(stringValue.slice(-3)); //ld! 将传入的负值同字符串的length相加 
+        console.log(stringValue.substring(-3)); //Hello World! 将传入的负值全部转换为0，并且自动把小的值放前面 
+        console.log(stringValue.substr(-3)); //ld! 把传入的第一个负值加上字符串的length,将传入的第二个负值转换为0 
+        console.log(stringValue.slice(3, -4)); //lo Wo 
+        console.log(stringValue.substring(3, -4)); //Hel 
+        console.log(stringValue.substr(3, -4)); //'' 
+        console.log(stringValue); //Hello World! 
+
+        //2、位置方法 
+        //找到所有匹配字符串的位置
+        var sentence = 'This is a long sentence and we will find out all the word "e" used in this sentence.',
+            pos = sentence.indexOf('e'),
+            tempArray = [];
+        // console.log(pos); 
+        while (pos > -1) { //判断条件是pos>-1，不是pos,因为数字-1（条件语句中，非0，非NaN都被转换为true） 被转换为true,会没有结束条件。
+            tempArray.push(pos);
+            pos = sentence.indexOf('e', pos + 1); //第一个参数是要查找的字符串，第二个参数是开始位置
+        }
+        console.log(tempArray); //[ 16, 19, 22, 29, 51, 59, 64, 76, 79, 82 ]
+
+        //3、字符串模式匹配方法
+        var text = 'bat, fat, cat, sat';
+        var pattern = /.at/;
+
+        //字符串的match()方法返回的结果同正则的exec()方法。
+        var matches = text.match(pattern);
+        console.log(matches); //[bat]
+        console.log(matches.index); //0
+        console.log(matches[0]); //bat
+        console.log(pattern.lastIndex); //0
+
+        //字符串的search()方法，返回第一个匹配到的位置，否则返回-1
+        var pos2 = text.search(pattern);
+        console.log(pos2); //0
+
+        /**
+         * 字符串的replace()方法，这个方法接受两个参数，第一个可以是一个字符串，也可以是一个正则表达式，是字符串时，只能替换掉第一个匹配到的字符串，
+         * 如果要替换掉所有的匹配字符串，只能用正则，并且要加上全局（g）标志；第二个参数可以是字符串，也可以是一个函数。
+         */
+        var resultRep = text.replace('at', 'ond');
+        console.log(resultRep) //bond, fat, cat, sat
+        console.log(text); //bat, fat, cat, sat     不会改变原字符串
+        var resultG = text.replace(/at/g, 'ond');
+        console.log(resultG); //bond, fond, cond, sond
+        var resultWord = text.replace(/(.at)/g, 'word ($1)');
+        console.log(resultWord); //word (bat), word (fat), word (cat), word (sat)  每个以at结尾的字符串都被替换成 word ($1),圆括号中即模式匹配到的字符串。
+
+        //replace的第二个参数是函数时，参数依次是，模式的匹配项，[第一个捕获组的匹配项，第二个捕获组的匹配项……] 模式的匹配项在字符串中的位置，原始字符串。
+        function repalceHtml(text) {
+            return text.replace(/[<>"&]/g, function(match, pos, originText) {
+                switch (match) {
+                    case "<":
+                        return "&lt;";
+                    case ">":
+                        return "&gt;";
+                    case "&":
+                        return "&amp;";
+                    case "\"":
+                        return "&quot";
+                }
+
+            });
+        }
+        console.log(repalceHtml('<p class="greeting">Hello World!</p>')); //&lt;p class=&quotgreeting&quot&gt;Hello World!&lt;/p&gt;
+
+
+        //split方法
+        var colors = 'red,blue,green,cyan,yellow,pink,brown,orange,purple,violet,black,white';
+        var colorArray = colors.split(',');
+        console.log(colorArray); //(12) ["red", "blue", "green", "cyan", "yellow", "pink", "brown", "orange", "purple", "violet", "black", "white"]
+        var colorArray2 = colors.split(',', 2);
+        console.log(colorArray2); //["red", "blue"]
+        var colorArray3 = colors.split(/[^\,]+/); //一到多个非 ， 做分割
+        console.log(colorArray3); //(13) ["", ",", ",", ",", ",", ",", ",", ",", ",", ",", ",", ",", ""]
+
+
+
+
+
+        /**
+         * B、数组
+         */
+
+        //1、栈方法  （在末尾添加、删除，后进先出）
+        var array = new Array();
+        var resultPush = array.push('red', 'green');
+        console.log(resultPush); //2   返回值是改变后的数组的长度
+        var resultPop = array.pop();
+        console.log(resultPop); //green  返回值是删除的数组项
+
+        //2、队列方法   （在顶部添加、删除，先进先出）
+        console.log(array); //['red]
+        var resultUnshift = array.unshift('black');
+        console.log(resultUnshift); //2  返回值是改变后的数组的长度
+        var resultShift = array.shift();
+        console.log(resultShift); //black  返回值是删除的数组项
+
+        //3、重排序方法   reverse()方法就不多做解释，主要是sort()方法
+        var numArray = [1, -8, 98, 28, 11, -41, 4, 2, 6, ];
+        var numArraySorted = numArray.sort();
+        console.log(numArraySorted); //(9) [-41, -8, 1, 11, 2, 28, 4, 6, 98]   显然不对
+        /**
+         * //升序
+         * 前一个数(a)比后一个数(b)大，返回1，就交换两个数的位置,
+         * 前一个数(a)比后一个数(b)小，返回-1，两个数的位置不变,
+         * 前一个数(a)和后一个数(b)相等，返回0，两个数的位置不变。
+         * 降序同理。
+         */
+        function sortFun2(a, b) {
+            if (a > b) {
+                return 1;
+            } else if (a < b) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+        var numArraySorted2 = numArray.sort(sortFun2);
+        console.log(numArraySorted2); //(9) [-41, -8, 1, 2, 4, 6, 11, 28, 98]
+
+        function sortFun3(a, b) { //降序
+            if (a > b) {
+                return -1;
+            } else if (a < b) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+        var numArraySorted3 = numArray.sort(sortFun3);
+        console.log(numArraySorted3); //(9) [98, 28, 11, 6, 4, 2, 1, -8, -41]
+
+        //另外如果数组项都是数字可以用下面的方法
+        function sortFun4(a, b) { //升序
+            return a - b;
+        }
+        var numArraySorted4 = numArray.sort(sortFun4);
+        console.log(numArraySorted4); //(9) [-41, -8, 1, 2, 4, 6, 11, 28, 98]
+
+        function sortFun5(a, b) { //降序
+            return b - a;
+        }
+        var numArraySorted5 = numArray.sort(sortFun5);
+        console.log(numArraySorted5); //(9) [98, 28, 11, 6, 4, 2, 1, -8, -41]
+
+
+
+        /**
+         * 4、
+         * 数组的操作方法另外有：concat（同字符串的concat方法）， slice(startPos,endPos),这两种是非破坏性的。
+         *      splice(startPos,lengthOfReplace,replacementItem)   返回被移除的项
+         */
+        var color = ['red', 'blue', 'green', 'cyan', 'yellow', 'pink', 'brown', 'orange', 'purple', 'violet', 'black', 'white'];
+        var sliceColor = color.slice(1);
+        var sliceColor2 = color.slice(1, 6);
+        console.log(sliceColor); //(11) ["blue", "green", "cyan", "yellow", "pink", "brown", "orange", "purple", "violet", "black", "white"]
+        console.log(sliceColor2); //(5) ["blue", "green", "cyan", "yellow", "pink"]
+        console.log(color); //(12) ["red", "blue", "green", "cyan", "yellow", "pink", "brown", "orange", "purple", "violet", "black", "white"]
+
+        var color2 = ['red', 'blue', 'green', 'cyan', 'yellow', 'pink'];
+        var remove2 = color2.splice(0, 2);
+        console.log(remove2); //(2) ["red", "blue"]  //返回被删除的数组项
+        console.log(color2); //(4) ["green", "cyan", "yellow", "pink"]   原数组已被破坏
+
+        var remove3 = color2.splice(1, 0, 'orange', 'purple', 'violet');
+        console.log(remove3); //[]
+        console.log(color2); //(7) ["green", "orange", "purple", "violet", "cyan", "yellow", "pink"]
+    </script>
+</body>
+
+</html>

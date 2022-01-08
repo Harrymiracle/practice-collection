@@ -1,0 +1,24 @@
+{
+  "name": "tttwebsdkdemo",
+  "version": "1.1.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "webpack-dev-server --open",
+    "host": "webpack-dev-server --https --host=0.0.0.0 --open --watch --inline --mode=development",
+    "build:test": "webpack --config webpack.config.js",
+    "build:wrap": "webpack --config webpack.wrap.config.js",
+    "build:test:av_screen_cdn": "webpack --config webpack.test.av_screen_cdn.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tttwebsdk": "^3.4.7"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.1.14",
+    "webpack-jquery-ui": "^2.0.1"
+  }
+}

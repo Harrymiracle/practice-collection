@@ -1,0 +1,33 @@
+@charset "utf-8";
+@import "../../node_modules/mixins-sass/src/mixins";
+@import "../mui/mixins.scss";
+
+
+
+.main{
+	@include rem(font-size,30px);
+	width:100%;
+	@include rem(height,80px);
+	@include rem(line-height,80px);
+	background-color:#000;
+	color:#fff;
+	text-align:center;
+}
+.main-title{
+	background-color:#ccc;
+}
+
+.footer{
+	@extend .main;
+}
+.btn{
+	@include rem(width,100px);
+	@include rem(height,50px);
+}
+p{
+	width:50%;
+	@include rem(height,50px);
+	background-color:#ccc;
+	@include box-shadow(0 0 5px #ff0000);
+	@include rem(margin,50px);
+}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>表单应用</title>
+<style>
+	fieldset{
+		width: 400px;
+		border-radius: 10px;
+		box-shadow:2px 2px 3px #808080 ;
+	}
+	.tit{
+		width: 100px;padding: 10px 0;
+		text-align: left;
+		display: inline-block;
+	}
+
+</style>
+
+</head>
+<body>
+	<form action="#" name="test" method="psot">
+		<fieldset>
+			<legend>我是标题</legend>
+			<span class="tit">用户名</span><input type="text" name="username"><br />
+			<span class="tit">密码</span><input type="password" name="password">
+			<input type="reset" name="reset" value="清空">
+			<input type="submit" name="submit" value="登录"><br />
+			<span class="tit">性别</span><label for="male">男</label>
+			<input type="radio" name="sex" id="male">
+			<label for="female">女</label>
+			<input type="radio" name="sex" id="female"><br />
+			<span class="tit">兴趣爱好</span>
+			<input type="checkbox" name="hobby"> 上网
+			<input type="checkbox" name="hobby"> 看书
+			<input type="checkbox" name="hobby"> 运动
+			<br />
+			<span class="tit">想去的城市</span>
+			<select name="" id="">
+				<optgroup label="西南地区">
+					<option value="">成都</option>
+					<option value="">成都</option>
+					<option value="">成都</option>
+				</optgroup>
+				<optgroup label="华东地区">
+					<option value="">成都</option>
+					<option value="">成都</option>
+					<option value="">成都</option>
+				</optgroup>
+				<optgroup label="华南地区">
+					<option value="">成都</option>
+					<option value="">成都</option>
+					<option value="">成都</option>
+				</optgroup>
+			</select>
+			<p>自我评价</p>
+			<textarea name="self_comment" id="" cols="30" rows="10"></textarea>
+		</fieldset>
+	</form>
+	
+	
+
+</body>
+
+<script>
+</script>
+</html>

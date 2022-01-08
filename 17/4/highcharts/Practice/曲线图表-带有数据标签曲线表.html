@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>highcharts带有数据标签曲线图表</title>
+    <script src="../js/jquery-2.2.3.min.js"></script>
+    <script src="../js/highcharts.js"></script>
+</head>
+<body>
+    <div id="container" style="width: 600px; height: 400px; margin: 0 auto;"></div>
+
+    <script language="JavaScript">
+        $(function(){
+           var title = {
+               text: "每月平均气温"
+           };
+           var  subtitle = {
+               text: "Source: runoob.com"
+           };
+           var xAxis = {
+               categories: [
+                   "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+               ]
+           };
+           var yAxis = {
+               title: {
+                   text: "temperature(\xB0C)"
+               },
+               plotLines: [{
+                   value: 3.9,
+                   width: 1,
+                   color: "red"
+               }]
+           };
+//           var tooltip = {        //tooltip和plotOptions会冲突，后者的权限更高。
+//               valueSuffix: "\xB0c"
+//           };
+           var plotOptions =  {     //带有数据标签曲线图表
+               line: {
+                   dataLabels: {
+                       enabled: true
+                   },
+                   enableMouseTracking: false
+               }
+           };
+           var legend = {
+               layout: "vertical",
+               align: "right",
+               verticalAlign: "middle",
+               borderWidth: "0"
+           };
+           var series = [
+               {
+                   name: "ShangHai",
+                   data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+               },{
+                   name: "ChengDu",
+                   data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+               }
+           ];
+
+
+           var json = {};
+
+           json.title =  title;
+           json.subtitle = subtitle;
+           json.xAxis = xAxis;
+           json.yAxis = yAxis;
+        //   json.tooltip = tooltip;
+           json.plotOptions = plotOptions;
+           json.legend = legend;
+           json.series = series;
+
+           $("#container").highcharts(json);
+        });
+    </script>
+</body>
+</html>

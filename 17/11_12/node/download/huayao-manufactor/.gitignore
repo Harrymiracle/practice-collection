@@ -1,0 +1,12 @@
+*.iml
+.metadata
+target
+.project
+.classpath
+.settings
+bin
+.idea
+test-output
+bower_components
+node_modules
+app/assets/css/style.css

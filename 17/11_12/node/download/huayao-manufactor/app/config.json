@@ -1,0 +1,185 @@
+{
+  "production": {
+    "ip": "127.0.0.1",
+    "port": "5000",
+    "usergroup": "hywlpc",
+    "appname": "华药物流",
+    "appinfo": {
+      "appkey": "6256274187",
+      "secretkey": "a613e39dc2749b1f77fb8cac18f8e170"
+    },
+    "userService": {
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "user/",
+      "clientType": "BROWSER"
+    },
+    "taskService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "order/",
+      "clientType": "BROWSER"
+    },
+    "productService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "product/",
+      "clientType": "BROWSER"
+    },
+    "cartService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "cart/",
+      "clientType": "BROWSER"
+    },
+    "addressService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "address/",
+      "clientType": "BROWSER"
+    },
+    "orderdetailService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "sign/",
+      "clientType": "BROWSER"
+    },
+    "travalService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "traval/",
+      "clientType": "BROWSER"
+    },
+    "driveService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "car/",
+      "clientType": "BROWSER"
+    },"commonService": {
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "common/",
+      "clientType": "BROWSER"
+    },
+    "log": {
+      "path": "",
+      "name": ""
+    },
+    "sessionTime" : 7200000,
+    "pageSize":10
+  },
+  "uat": {
+    "ip": "127.0.0.1",
+    "port": "5000",
+    "usergroup": "hywlpc",
+    "appname": "华药物流",
+    "appinfo": {
+      "appkey": "6256274187",
+      "secretkey": "a613e39dc2749b1f77fb8cac18f8e170"
+    },
+    "userService": {
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "user/",
+      "clientType": "BROWSER"
+    },
+    "taskService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "order/",
+      "clientType": "BROWSER"
+    },
+    "productService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "product/",
+      "clientType": "BROWSER"
+    },
+    "cartService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "cart/",
+      "clientType": "BROWSER"
+    },
+    "addressService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "address/",
+      "clientType": "BROWSER"
+    },
+    "orderdetailService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "sign/",
+      "clientType": "BROWSER"
+    },
+    "travalService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "traval/",
+      "clientType": "BROWSER"
+    },
+    "driveService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "car/",
+      "clientType": "BROWSER"
+    },
+    "commonService": {
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "common/",
+      "clientType": "BROWSER"
+    },
+    "log": {
+      "path": "",
+      "name": ""
+    },
+    "sessionTime" : 7200000,
+    "pageSize":10
+  },
+  "development": {
+    "ip": "127.0.0.1",
+    "port": "5000",
+    "usergroup": "hywlpc",
+    "appname": "华药物流",
+    "appinfo": {
+      "appkey": "6256274187",
+      "secretkey": "a613e39dc2749b1f77fb8cac18f8e170"
+    },
+    "userService": {
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "user/",
+      "clientType": "BROWSER"
+    },
+    "taskService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "order/",
+      "clientType": "BROWSER"
+    },
+    "productService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "product/",
+      "clientType": "BROWSER"
+    },
+    "cartService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "cart/",
+      "clientType": "BROWSER"
+    },
+    "addressService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "address/",
+      "clientType": "BROWSER"
+    },
+    "orderdetailService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "sign/",
+      "clientType": "BROWSER"
+    },
+    "travalService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "traval/",
+      "clientType": "BROWSER"
+    },
+    "driveService":{
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "car/",
+      "clientType": "BROWSER"
+    },
+    "commonService": {
+     "host": "http://192.168.0.13/hywl-rest/service/",
+      "uri": "common/",
+      "clientType": "BROWSER"
+    },
+    "log": {
+      "path": "",
+      "name": ""
+    },
+    "sessionTime" : 7200000,
+    "pageSize":10
+  }
+}
+

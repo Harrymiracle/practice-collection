@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>百度前端技术学院任务二十（第二阶段）</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .resBox div {
+            margin: 10px;
+            padding: 5px;
+            background-color: #ff0000;
+            text-align: center;
+            float: left;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .select {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="control">
+        <textarea type="text" class="inNum"></textarea>
+        <button class="leftin">左侧入</button>
+        <button class="rightin">右侧入</button>
+        <button class="leftout">左侧出</button>
+        <button class="rightout">右侧出</button>
+        <input type="text" class="searchText">
+        <button class="searchBtn">查询</button>
+    </div>
+    <div class="resBox"></div>
+
+    <script>
+        let $ = function (el) { return document.querySelector(el); };
+        let $$ = function (el) { return document.querySelectorAll(el); };
+
+        let queue = []; // 队列存储文字数据
+
+        let inNum = $('.inNum'),
+            leftin = $('.leftin'),
+            rightin = $('.rightin'),
+            leftout = $('.leftout'),
+            rightout = $('.rightout'),
+            searchText = $('.searchText'),
+            searchBtn = $('.searchBtn'),
+            resBox = $('.resBox');
+
+        function render(content) {
+            resBox.innerHTML = queue.map((item) => {
+                let copy = item;
+                if (content != null && content.length > 0) {
+                    /***
+                     * 关键一步 在搜索input有值的时候，遍历每一个队列元素，将含有要搜索内容的地方替换
+                    */
+                    copy = copy.replace(new RegExp(content, 'g'), '<span class="select">' + content + '</span>');
+                }
+                return '<div>' + copy + '</div>';
+            }).join('');
+        }
+
+        function actions(fn, callback) {
+            let args = [].slice.call(arguments, 2);
+            return function (e) {
+                try {
+                    let arg = args.map((item) => {
+                        return Object.prototype.toString.call(item) === '[object Function]' ? item(e) : item;
+                    })
+                    let res;
+                    /***
+                     * getInputText的返回值 可能是一个数组
+                    */
+                    if (Object.prototype.toString.call(arg[0]) === '[object Array]') {
+                        arg[0].forEach(el => {
+                            res = fn.apply(queue, [el]); // 将元素用[]包裹成一个数组
+                        })
+                    } else {
+                        res = fn.apply(queue, arg);
+
+                    }
+                    if (callback) { callback(res); }
+                }
+                catch (err) {
+                    if (err.message != '') { alert(err); }
+                }
+                render();
+            }
+        }
+
+        function getInputText() {
+            /***
+             * 用非数字字母中文作为分隔并过滤掉空字符串
+            */
+            return inNum.value.split(/[^0-9a-zA-Z\u4e00-\u9fa5]+/).filter(item => item !== '');
+        }
+
+        function getClickIndex(e) {
+            let target = e.target;
+            return [].indexOf.call(target.parentNode.children, target);
+        }
+
+        leftin.onclick = actions([].unshift, null, getInputText);
+        rightin.onclick = actions([].push, null, getInputText);
+        leftout.onclick = actions([].shift, window.alert);
+        rightout.onclick = actions([].pop, window.alert);
+        resBox.onclick = actions([].splice, window.alert, getClickIndex, 1);
+        searchBtn.onclick = function () {
+            render(searchText.value.trim());
+        }
+    </script>
+</body>
+
+</html>

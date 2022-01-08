@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="css/demo1.css"/>
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<div id="searchBr">
+				Search <input type="text" v-model="searchQuery"/>
+			</div>
+			<simple-grid :data='gridData' :columns='gridColumns' :filter-key='searchQuery'></simple-grid>
+		</div>
+		
+		<template id="grid-template">
+			<table>
+				<thead>
+					<tr>
+						<th v-for="col in columns">
+							{{col | capitalize}}
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="entry in data | filterBy filterKey">
+						<td v-for="col in columns">
+							{{entry[col]}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</template>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		Vue.component('simple-grid',{
+			template:'#grid-template',
+			props:{
+				data:Array,
+				columns:Array,
+				filterKey:String
+			}
+		})
+		
+		var demo = new Vue({
+			el:'#app',
+			data:{
+				searchQuery:'',
+				gridColumns:['name','age','sex'],
+				gridData:[
+				{
+					name:'Jace',
+					age:26,
+					sex:'Male'
+				},
+				{
+					name:'Jace2',
+					age:262,
+					sex:'Male2'
+				},
+				{
+					name:'Jace3',
+					age:263,
+					sex:'Male3'
+				},
+				{
+					name:'Jace4',
+					age:264,
+					sex:'Male4'
+				},
+				{
+					name:'Jace5',
+					age:265,
+					sex:'Male5'
+				},
+				{
+					name:'Jace6',
+					age:266,
+					sex:'Male6'
+				},
+				{
+					name:'Jace7',
+					age:267,
+					sex:'Male7'
+				},
+				]
+			}
+		})
+	</script>
+</html>

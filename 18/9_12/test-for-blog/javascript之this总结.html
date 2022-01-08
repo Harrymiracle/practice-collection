@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>JavaScript之this总结</title>
+</head>
+
+<body>
+    <p>JavaScript中的this实在是个刺头，看了又忘，忘了又看，反反复复。这次索性搞篇东西出来，以备下次查看。</p>
+    <p>平时不用this的例子：</p>
+    <script>
+        var student_a = {
+            name: 'Harry',
+            age: 18
+        }
+
+        function sayName_a(context) {
+            return context.name + ' ' + context.age;
+        }
+        var st = sayName(student);
+        console.log(st); //Harry 18
+    </script>
+    <p>使用this的例子：</p>
+    <script>
+        function sayName() {
+            return this.name + ' ' + this.age;
+        }
+        var st = sayName.call(student);
+        console.log(st);
+    </script>
+</body>
+
+</html>

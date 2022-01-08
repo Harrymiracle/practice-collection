@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <style></style>
+
+    <!-- 引入react -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <!-- 引入react-dom -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 引入Babel,使浏览器可以识别JSX语法，如果不使用JSX语法，可以不引入 -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- 本地的file协议的引入上面三个文件有跨域的问题 -->
+</head>
+
+<body>
+    <div id="boiling-verdict"></div>
+    <!-- <div id="article_textarea"></div>
+    <div id="favorite_food"></div>
+    <div id="favorite_food_m"></div>
+    <div id="many_inputs"></div> -->
+
+    <script type="text/babel"> // 必须添加type="text/babel",否则不识别JSX语法
+        function BoilingVerdict(props) {
+            if (props.celsius >= 100) {
+                return <p>The water would boil！</p>
+            }
+            return <p>The water would not boil！</p>
+        }
+        ReactDOM.render(
+            <BoilingVerdict celsius={99.6} />,
+            // <BoilingVerdict celsius={108} />,
+            document.getElementById('boiling-verdict')
+        )
+
+        class Calculator extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { temperature: '' };
+                this.handleChange = this.handleChange.bind(this);
+            }
+            handleChange(e) {
+
+            }
+        }
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浏览器窗口可视区大小的兼容</title>
+</head>
+<body>
+    <p>
+       document.documentElement.clientWidth,document.documentElement.clientHeight(HTML文档所在窗口的当前高度)所有浏览器都兼容;
+	</p>
+	<p>
+       document.body.clientWidth,document.body.clientHeight所有浏览器都兼容,只是要注意document.body.clientHeight要在body有内容是才有值，否则是0;
+ 	</p>
+ 	<p>       
+       Document对象的body属性对应HTML文档的body标签
+       window.innerWidth,window.innerHeight有IE9+,Chrome,Firefox,Opera 以及 Safari支持.
+    </p>
+<script type="text/javascript">
+// 在不同浏览器都实用的 JavaScript 方案：
+ var w = document.documentElement.clientWidth || document.body.clientWidth,
+     h = document.documentElement.clientHeight || document.body.clientHeight;
+ var w2 = window.innerWidth, //浏览器窗口的内部高度
+     h2 = window.innerHeight; 
+ document.write(w + '<br />'　+ h + '<br />');
+ document.write(w2 + '<br />'　+ h2);
+
+/*//自我解释，有待验证
+  document.write(document.body.offsetHeight+"<br />");
+  document.write(document.body.clientHeight+"<br />");
+
+  //document.body.offsetHeight是指body自身的高度，没有内容时是0.
+  //document.body.clientHeight是指body在可视区的高度，有块级元素的padding,margin,所以要大点。
+*/
+</script>
+ 
+ 
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>pattern的用法</title>
+</head>
+<body>
+  <canvas id="canvas" style="border:1px solid pink;">
+  	你的浏览器不支持canvas,请更换后再试。
+  </canvas>
+  <script>
+  	window.onload = function(){
+  	  var canvas = document.getElementById("canvas");
+  	  canvas.width = 340;
+  	  canvas.height = 340;
+
+  	  var context = canvas.getContext("2d");
+
+      var backImg = new Image();  //新建一个图片并设置图片路径
+      backImg.src = "images/as.jpg";
+      
+      backImg.onload = function(){
+        var pattern = context.createPattern(backImg,"repeat-x"); //第二个参数可以是no-repeat,repeat-x,repeat-y,repeat。
+        context.fillStyle = pattern;
+        context.fillRect(0,0,canvas.width,canvas.height);
+      }  	  
+  	}
+
+  </script>
+</body>
+</html>

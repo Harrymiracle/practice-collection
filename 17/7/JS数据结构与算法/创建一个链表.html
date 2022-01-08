@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>创建一个链表</title>
+</head>
+<body>
+	
+	<script>
+	//单向链表
+		function LinkedList(){
+			var Node = function(element){	//定义一个私有节点构造函数，拥有element和next两个属性
+				this.element = element;		//接收传进来的element参数
+				this.next = null;			//初始化next属性为null
+			};
+
+			var length = 0;					//开始链表为空，长度为例0，head也为空
+			var head = null;
+
+			this.append = function(element){
+				var node = new Node(element),	//创建一个节点实例，声明一个当前项的变量
+					current;
+				if(head === null){				//为空，新节点就为第一项
+					head = node;				
+				}else{				//从头遍历，当前项为第一项
+					current = head;
+					while(current.next){		//当当前项的下一项存在，即没到最后一项
+						current = current.next;		//当前项的下一项为当前项，焦点向下移一项
+					}			//循环结束，当前项为最后一项，当前项的next属性指向node，建立lianj
+					current.next = node;
+				}
+				length++;		//长度加 1
+			};
+
+			this.removeAt = function(position){		//验证是否在正确的长度范围内
+				if(position>-1 && position<length){
+					var current = head,				//初始化头项，声明前一项的储存变量和索引值变量
+						previous,
+						index = 0;
+
+					if(position === 0){			//移除项为第一项
+						head = current.next;
+					}else{						//非第一项
+						while(index++ < position){
+							previous = current;			//当前项成为上一项
+							current = current.next;		//当前项的下一项成为当前项
+						}
+
+					//上一个循环结束，current就是对最后一项的引用，将最后一项指向null的指针指向前一项的next属性，函数中就没有对当前项的引用，等待被垃圾机制收回。
+						previous.next = current.next;	
+					}	
+
+					length--;
+					return current.element;				//返回被移除项的element属性
+				}else{
+					return null;						//位置不在正确范围内，返回空
+				}
+			};
+
+			this.insert = function(position, element){	
+				if(position>=0 && position<=length){	//验证是否在正确的长度范围内
+					var node = new Node(element),		//创建一个实例并初始化
+						current = head,
+						previous,
+						index = 0;
+
+					if(position === 0){					//在第一项的位置插入，当前项成为新项的下一项，新项成为第一项
+						node.next = current;
+						head = node;
+					}else{								//非第一项
+						while(index++ < position){	//循环结束，循环迭代到目标位置，当前项为插入的位置
+							previous = current;
+							current = current.next;
+						}
+
+						node.next = current;	
+						previous.next = node;
+					}
+
+					length++;
+
+					return true;
+
+				}else{
+					return false;
+				}
+			};
+
+			this.toString = function(){
+				var current = head,
+					string = '';
+
+				while(current){		//循环访问列表
+					string += ',' + current.element;
+					current = current.next;
+				}	
+
+				return string.slice(1);		//返回字符串
+			};
+
+			this.indexOf = function(element){
+				var current = head,
+					index = 0;
+
+				while(current){
+					if(current.element === element){
+						return index;	 //找到返回当前位置
+					};
+					index++;
+					current = current.next;
+				}
+
+				return -1;	    //找不到返回-1
+			};
+
+			this.remove = function(element){
+				var index = this.indexOf(element);		 //得到元素的位置
+				return this.removeAt(index);				 //移除该元素
+			};
+
+			this.isEmpty = function(){
+				return this.length === 0;
+			};
+
+			this.size = function(){
+				return length;
+			};
+
+			this.getHead = function(){
+				return head;
+			}
+		}
+
+	//双向链表
+		function DoublyLinkedList(){
+			var Node = function(element){
+				this.element = element;
+				this.next = null;
+				this.prev = null;
+			}
+
+			var head = null,
+				tail = null,		 //对列表最后一项的引用
+				length = 0;
+
+			//在任意位置插入元素	
+			this.insert = function(position, element){
+				if(position>=0 && position<=length){	 //检查越界值
+					var node = new Node(element),
+						current = head,
+						previous,
+						index = 0;
+
+					if(position === 0){		//在第一个位置添加
+						if(!head){		//如果链表为空
+							head = node;
+							tail = node;
+						}else{			//链表不为空
+							node.next = current;
+							current.prev = node;
+							head = node;
+						}
+					}else if(position === length){ //在最后一个位置添加
+						current = tail;
+						current.next = node;
+						node.prev = current;
+						tail = node;
+					}else{					 //在列表中间添加
+						if(index++ < position){		//循环迭代
+							previous = current;
+							current.next = current;
+						}
+						node.next = current;
+						previous.next = node;
+
+						current.prev = node;
+						node.prev = previous;
+					}	
+
+					length++;
+
+					return true;
+				}else{
+					return false;
+				}
+			}
+
+			//在任意位置删除元素
+			this.removeAt = function(position){
+				if(position>=0 && position<=length){		 //检查越界值
+					var current = head,
+						index = 0,
+						previous;
+
+					if(position === 0){		 //第一个位置
+						head = current.next;
+						if(length === 1){		//如果链表只有一项
+							tail = null;
+						}else{
+							head.prev = null; //也就相当于把current.next.prev = null
+						}
+					}else if(position === length-1){		//在最后一个位置添加
+						current = tail;					//tail的引用赋给current变量
+						tail = current.prev; 	//上一项指向tail
+            			tail.next = null;		 //最后一项的next都是指向null的
+					}else{		//从中间位置移除
+						if(index++ < position){
+							previous = current; 
+							current.next = current;
+						}
+						previous.next = current.next; //直接跳过current连接上一项和下一项
+            			current.next.prev = previous;
+					}						
+
+					length--;
+
+					return current.element;
+				}else{
+					return null;
+				}
+			}
+
+		}
+	</script>
+</body>
+</html>

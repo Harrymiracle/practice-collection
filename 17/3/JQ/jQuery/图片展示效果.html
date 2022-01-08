@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片展示效果</title>
+	<style>
+/*css和js	有问题*/
+		div, h2, ul, li, h4 {margin: 0;padding: 0;}
+		img {width: 180px;}
+		.v_show {width: 800px; margin: 20px auto; border: 1px solid #666; border-radius: 5px; overflow: hidden;}
+		ul {list-style: none;}
+		a {color: blue;}
+		a:hover{color: red;}
+
+		.v_caption {width: 100%; height: 50px; line-height: 50px; background: #e0e0e0;}
+		.v_caption h2, .highlight_tip, .change_btn{display: inline-block;}
+		.v_caption h2 {margin: 0 20px;}
+		.highlight_tip {height: 50px; line-height: 50px;}
+		.highlight_tip span {padding: 0 5px; font-size: 12px; border-radius: 50%; border: 1px solid black; text-align: center; cursor: pointer;}
+		.v_caption em {display: inline-block; float: right; margin-right: 20px;}
+
+		.change_btn {padding: 3px 10px; margin-left: 15px; display: inline;}
+		.change_btn span {padding: 0 10px; height: 30px; border: 1px solid #333; background: #666; cursor: pointer; border-radius: 6px;}
+		.prev {border-right: 1px solid black;}
+
+		.v_content {height: 230px;  width: 800px; padding: 15px 0; position: relative; overflow: hidden;}
+		.v_content_list {height: 100%; width: 2400px; position: absolute;}
+		.v_content_list li {float: left; margin: 0 10px;}
+
+		.current {background: blue;}
+	</style>
+	<script src="../../js/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+	<div class="v_show">
+		<div class="v_caption">
+			<h2 class="cartoon" title="卡通动画">卡通动画</h2>
+			<div class="highlight_tip">
+				<span class="current">1</span>
+				<span>2</span>
+				<span>3</span>
+				<span>4</span>
+			</div>
+			<div class="change_btn">
+				<span class="prev">上一页</span><span class="next">下一页</span>
+			</div>
+			<em><a href="#">更多>></a></em>
+		</div>
+
+		<div class="v_content">
+			<div class="v_content_list">
+				<ul>
+					<li>
+						<a href="#"><img src="../../images/1.jpg" alt="绅士"></a>
+						<h4><a href="#">绅士</a></h4>
+						<span>播放<em>2344</em></span>
+					</li>
+					<li>
+						<a href="#"><img src="../../images/2.jpg" alt="官爷"></a>
+						<h4><a href="#">官爷</a></h4>
+						<span>播放<em>5635</em></span>
+					</li>
+					<li>
+						<a href="#"><img src="../../images/3.jpg" alt="小新"></a>
+						<h4><a href="#">小新</a></h4>
+						<span>播放<em>867</em></span>
+					</li>
+					<li>
+						<a href="#"><img src="../../images/4.jpg" alt="帅帅哥"></a>
+						<h4><a href="#">帅帅哥</a></h4>
+						<span>播放<em>54767</em></span>
+					</li>
+					<li>
+						<a href="#"><img src="../../images/5.jpg" alt="暖男"></a>
+						<h4><a href="#">暖男</a></h4>
+						<span>播放<em>2432</em></span>
+					</li>
+					<li>
+						<a href="#"><img src="../../images/6.jpg" alt="王爷"></a>
+						<h4><a href="#">王爷</a></h4>
+						<span>播放<em>546</em></span>
+					</li>
+					<li>
+						<a href="#"><img src="../../images/1.jpg" alt="绅士"></a>
+						<h4><a href="#">绅士</a></h4>
+						<span>播放<em>2344</em></span>
+					</li>
+					<li>
+						<a href="#"><img src="../../images/2.jpg" alt="官爷"></a>
+						<h4><a href="#">官爷</a></h4>
+						<span>播放<em>5635</em></span>
+					</li>
+					<li>
+						<a href="#"><img src="../../images/3.jpg" alt="小新"></a>
+						<h4><a href="#">小新</a></h4>
+						<span>播放<em>867</em></span>
+					</li>
+					<li>
+						<a href="#"><img src="../../images/4.jpg" alt="帅帅哥"></a>
+						<h4><a href="#">帅帅哥</a></h4>
+						<span>播放<em>54767</em></span>
+					</li>
+					<li>
+						<a href="#"><img src="../../images/5.jpg" alt="暖男"></a>
+						<h4><a href="#">暖男</a></h4>
+						<span>播放<em>2432</em></span>
+					</li>
+					<li>
+						<a href="#"><img src="../../images/6.jpg" alt="王爷"></a>
+						<h4><a href="#">王爷</a></h4>
+						<span>播放<em>546</em></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		$(function(){
+			$("span.next").click(function(){
+				console.log("123");
+				var page = 1, i = 4;
+				var $parent = $(this).parents("div.v_show");
+				var $v_show = $parent.find("div.v_content_list");
+				var $v_content = $parent.find("div.v_content");
+
+				var v_width = $v_content.width();
+				var len = $v_show.find("li").length;
+				var page_count = Math.ceil(len/i);
+
+				if(!$v_show.is(":animated")){
+					if(page == page_count){
+						$v_show.animate({"left": "0px"}, "normal");
+						page = 1;
+					}else{
+						$v_show.animate({"left": "-=" + v_width}, "normal");
+						page++;
+					}
+				}
+
+				if(!$v_show.is(":animated")){
+					if(page == 1){
+						$v_show.animate({"left": "-=" + v_width*(page_count-1)}, "slow");
+						page = page_count;
+					}else{
+						$v_show.animate({"left": "+=" + v_width}, "slow");
+						page--;
+					}
+				}
+				
+				$parent.find("span").eq((page-1)).addClass("current").siblings().removeClass("current");
+			});
+
+		});
+	</script>
+</body>
+</html>

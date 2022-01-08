@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>globalAlpha</title>
+</head>
+<body>
+  <canvas id="canvas" style="border:1px solid gray;">
+  	你的浏览器不支持canvas,请更换后再试。
+  </canvas>
+
+  <script>
+    window.onload = function(){
+  	  var canvas = document.getElementById("canvas");
+  	  canvas.width = 800;
+  	  canvas.height = 600;
+
+      var context = canvas.getContext("2d");
+
+      context.globalAlpha = 0.7;//globalAlpha的值位于0-1之间，用于指定所有绘制的透明度
+      for(var i = 0; i < 100; i++){
+      	var R = Math.floor(Math.random()*255), 
+      		G = Math.floor(Math.random()*255), 
+      		B = Math.floor(Math.random()*255), 
+      		x = Math.floor(Math.random()*canvas.width),
+      	    y = Math.floor(Math.random()*canvas.height),
+      		r = Math.random()*30;
+
+      	context.fillStyle = 'rgb(' + R + ',' + G + ',' + B + ')';
+
+      	context.beginPath();
+      	context.arc(x,y,r,0,2*Math.PI);
+
+      	context.closePath();
+      	context.fill();
+
+      }
+
+
+    }
+  </script>
+</body>
+</html>

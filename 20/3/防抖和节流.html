@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 防抖
+        function fun(){
+            console.log('onresize')
+        }
+        function debounce(method,context){
+            clearTimeout(method.timer);
+            method.timer=setTimeout(function(){
+                method.call(context);
+            },500);
+        }
+        window.onresize = ()=>debounce(fun,window)
+
+
+
+        // 函数节流
+        var canRun = true;
+        document.getElementById("throttle").onscroll = function(){
+            if(!canRun){
+                return
+            }
+            canRun = false
+            setTimeout( function () {
+                console.log("函数节流")
+                canRun = true
+            }, 500)
+        }
+
+        let throttle =  function(func, wait, immediate) {   // lodash中的
+            var timeout;
+            return function() {
+                var context = this,
+                    args = arguments;
+                var later = function() {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            }
+        };
+
+
+
+
+    </script>
+</body>
+</html>

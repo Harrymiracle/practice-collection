@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>百度前端技术学院任务三十一（第二阶段）</title>
+    <style>
+        .container {
+            width: 600px;
+            margin: 20px auto 0;
+        }
+
+        .tab {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        .view {
+            padding: 20px 10px;
+        }
+
+        .insch {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lab {
+            display: inline-block;
+            width: 90px;
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        select {
+            width: 160px;
+            padding: 6px 10px;
+            border-radius: 2px;
+        }
+
+        .outsch input {
+            width: 200px;
+            padding: 6px 10px;
+            border-radius: 2px;
+            border: 1px solid #999999;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="tab">
+            <div class="tab-item">
+                <input type="radio" name="std" id="inschool" checked>
+                <label for="inschool">在校生</label>
+            </div>
+            <div class="tab-item">
+                <input type="radio" name="std" id="outschool">
+                <label for="outschool">非在校生</label>
+            </div>
+        </div>
+        <div class="view">
+            <div class="insch">
+                <div class="view-item">
+                    <span class="lab">城市</span>
+                    <select class="city"></select>
+                </div>
+                <div class="view-item">
+                    <span class="lab">学校</span>
+                    <select class="school"></select>
+                </div>
+            </div>
+            <div class="outsch hidden">
+                <span class="lab">就业单位</span>
+                <input type="text" placeholder="请输入就业单位">
+            </div>
+        </div>
+    </div>
+
+    <script src="../common/js/utils.js"></script>
+    <script src="./task.js"></script>
+</body>
+
+</html>

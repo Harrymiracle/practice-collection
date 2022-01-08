@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ng-repeat-start 与 ng-repeat-end的用法</title>
+</head>
+<script src="../js/angular-1.5.0.js"></script>
+
+<body ng-app="app">
+    <h4>多行遍历的实现方式</h4>
+    <ul ng-controller="PeopleController">
+        <li ng-repeat-start="person in people">
+            {{ person.name }}
+        </li>
+        <li>住在</li>
+        <li>
+            {{ person.city }}
+        </li>
+        <span ng-repeat-end>ng-repeat-end一项渲染结束</span>
+    </ul>
+    <script>
+        angular.module('app', [])
+            .controller('PeopleController', ['$scope', function($s) {
+                $s.people = [{
+                    name: '张三',
+                    city: '广东'
+                }, {
+                    name: '李四',
+                    city: '江西'
+                }, {
+                    name: '王五',
+                    city: '东北'
+                }, {
+                    name: '唐六',
+                    city: '四川'
+                }]
+            }])
+    </script>
+</body>
+
+</html>

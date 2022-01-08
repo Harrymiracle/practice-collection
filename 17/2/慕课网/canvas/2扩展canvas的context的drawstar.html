@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>扩展canvas的context绘制五角星</title>
+</head>
+<body>
+  <canvas id="canvas" style="border:1px solid violet;margin:10px auto;">
+  	你的浏览器不支持canvas,请更换浏览器再试。
+  </canvas>
+
+  <script>
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+
+// CanvasRenderingContext2D为context的原型对象，此处是将fillStar方法加入到context的原型对象中
+    CanvasRenderingContext2D.prototype.fillStar = function(r, R, x, y, rot) { //注意第一个 C 为大写的
+      this.beginPath();
+      for(var i = 0; i < 5; i++){
+        this.lineTo( Math.cos( (18+i*72 - rot) * Math.PI/180) * R + x, -Math.sin( (18+i*72 - rot) * Math.PI/180) * R+ y ),
+        this.lineTo( Math.cos( (54+i*72 - rot) * Math.PI/180) * r + x, -Math.sin( (54+i*72 - rot) * Math.PI/180) * r+ y )
+      }
+      this.closePath();
+      this.fill();
+    };
+
+    window.onload = function(){
+      canvas.width = 800;
+      canvas.height = 600;
+
+      context.fillStyle = "red";
+      context.strokeStyle = "pink";
+      context.lineWidth = 3;
+      context.fillStar(160,280,400,300,3);
+      context.stroke();
+    }
+     
+     
+  </script>
+</body>
+</html>

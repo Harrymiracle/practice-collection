@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vue的v-for指令</title>
+  <style>
+  	table{border-collapse: collapse;}
+	th,td{
+	  width: 150px;
+	  padding: 8px 0 8px 20px;
+	  border: 1px solid #808080;
+	  border-radius: 2px;
+	}
+	th{background: lightgreen;}
+	tr:nth-of-type(2n){background: #e0e0e0;}
+  </style>
+  <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<!-- v-for指令基于一个数组渲染一个列表，它和JavaScript的遍历语法相似：
+	 v-for="item in items",items是一个数组，item是当前被遍历的数组元素。 -->
+  <div id="app">
+  	<table>
+  	  <thead>
+  	  	<tr>
+  	  	  <th>Name</th>
+	  	  <th>Sex</th>
+	  	  <th>Age</th>
+  	  	</tr>
+  	  </thead>
+  	  <tbody>
+  	  	<tr v-for="person in people">
+  	  	  <td>{{person.name}}</td>
+  	  	  <td>{{person.sex}}</td>
+  	  	  <td>{{person.age}}</td>
+  	  	</tr>
+  	  </tbody>
+  	</table>
+  </div>
+
+  <script>
+  	var app = new Vue({
+  	  el:"#app",
+  	  data:{
+  	  	people:[
+  	  	  {name: 'Jack', sex: 'male', age: 28},
+  	  	  {name: 'Lucy', sex: 'female', age: 18},
+  	  	  {name: 'Lisa', sex: 'female', age: 27},
+  	  	  {name: 'Tom', sex: 'male', age: 20},
+  	  	  {name: 'Bill', sex: 'male', age: 30}
+  	  	]
+  	  }
+  	});
+  	//我们在选项对象的data属性中定义了一个people数组，然后在#app元素内使用v-for遍历people数组，输出每个person对象的姓名、年龄和性别。
+  </script>
+</body>
+</html>

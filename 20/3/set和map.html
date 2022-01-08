@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set和Map</title>
+</head>
+<body>
+    <script>
+        // Set
+        console.log(-0 === +0);   //true
+        
+        console.log(Object.is(-0,+0));    //false
+        
+        console.log(Object.is(NaN,NaN));  //true
+        
+        console.log(NaN === NaN);     //false
+        
+        var abd = new Set([1,2,3]);
+        
+        console.log(typeof abd);      //"object"
+        
+        console.log(Object.prototype.toString.call(abd));     //"[object Set]"
+        
+        let set = new WeakSet();
+        let key = {};
+        set.add(key);
+        console.log(set.has(key));        //true
+        
+        key = null;
+        console.log(set.has(key));        //false
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>顶部导航</title>
+	<script>
+		var deviceWidth = document.documentElement.clientWidth;
+		if(deviceWidth > 640) deviceWidth = 640;
+		document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+	</script>
+	<style>
+		.bar_wrap{position:relative;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);z-index:9980}
+		.main_nav{position:relative;width:100%;top:0}
+		.main_nav *,.main_nav *::before,.main_nav *::after{box-sizing:border-box}
+		.main_nav_wrap{padding:0 .3rem}
+		.main_nav_topnav_wrap{position:relative;z-index:128;background-color:#f33}
+		.main_nav_bar{background-color:#f33;border-width:1px 0 0 0;border-style:solid;border-color:#d51c1c;-webkit-transition:border-color .5s;transition:border-color .5s}
+		.main_nav_bar.has_subnav{border-bottom-color:transparent}
+		.main_nav_bar:not(.has_subnav) .subnav_wrap{z-index:1;opacity:0;-webkit-transform:translateY(-100%);-ms-transform:translateY(-100%);transform:translateY(-100%);pointer-events:none;-webkit-transition:opacity .5s,-webkit-transform .5s,z-index 0s;transition:opacity .5s,transform .5s,z-index 0s}
+		.topnav_list_contain{position:relative;z-index:100}
+		.topnav_list_contain::before,.topnav_list_contain::after{content:" ";display:block;position:absolute;top:0;height:.8rem;width:.4rem;z-index:100;border-left:.08rem solid #f33;background:-webkit-linear-gradient(left,#f33 0,rgba(255,51,51,0) 100%);background:linear-gradient(to right,#f33 0,rgba(255,51,51,0) 100%);pointer-events:none;-webkit-transition:.25s;transition:.25s}
+		.topnav_list_contain::before{left:-0.05rem;opacity:0}
+		.topnav_list_contain::after{right:.42rem;-webkit-transform:rotate(180deg);-ms-transform:rotate(180deg);transform:rotate(180deg)}
+		.topnav_list_contain.onscroll::before{opacity:1}
+		.topnav_list_scroll_wrap{height:.8rem;overflow:hidden}
+		.topnav_list_scroll_wrap::before{content:" ";position:absolute;bottom:0;height:1px;background:#d51c1c;width:100%;z-index:111}
+		.topnav_list{position:relative;margin-right:.5rem;padding-right:.16rem;overflow-x:scroll;overflow-y:hidden;color:#fff;font-size:0;line-height:.8rem;white-space:nowrap;-webkit-overflow-scrolling:touch}
+		.topnav_list::-webkit-scrollbar{display:none}
+		.topnav_item{position:relative;display:inline-block;padding:0 .5em;font-size:.32rem;text-align:center;opacity:.75}
+		.topnav_item.first_char,.topnav_item.last_char{padding:0 .3em}
+		.topnav_item.first_char .topnav_item_box,.topnav_item.last_char .topnav_item_box{width:2em}
+		.topnav_item.first_char .topnav_item_box{left:-0.5em}
+		.topnav_item.first_char .topnav_item_box .topnav_item_text{-webkit-transform:translate3d(1em,0,0);transform:translate3d(1em,0,0)}
+		.topnav_item.last_char .topnav_item_box{left:.5em}
+		.topnav_item.last_char .topnav_item_box .topnav_item_text{-webkit-transform:translate3d(-1em,0,0);transform:translate3d(-1em,0,0)}
+		.topnav_item.current{opacity:1}
+	</style>
+</head>
+<body>
+	<div class="bar_wrap">
+		<nav class="main_nav">
+			<div class="main_nav_bar">
+				<div class="main_nav_wrap main_nav_topnav_wrap">
+					<div class="topnav_list_contain onscroll">
+						<div class="topnav_list_scroll_wrap">
+							<div class="topnav_list">
+							
+								<div class="topnav_item current" id="topchild_all" data-tcn="all" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">推荐</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_news" data-tcn="news" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">新闻</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_ent" data-tcn="ent" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">娱乐</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_sports" data-tcn="sports" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">体育</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_photo" data-tcn="photo" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">图片</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_caipiao" data-tcn="caipiao" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">彩票</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_link_idol" data-tcn="link_idol" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">星闻</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_link_house" data-tcn="link_house" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">房产</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_link_home" data-tcn="link_home" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">家居</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_link_yuedu" data-tcn="link_yuedu" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">小说</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_link_comic" data-tcn="link_comic" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">漫画</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_link_bohe" data-tcn="link_bohe" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">薄荷</span>
+									</div>
+								</div>
+								   
+								<div class="topnav_item" id="topchild_news" data-tcn="news" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">新闻</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_ent" data-tcn="ent" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">娱乐</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_sports" data-tcn="sports" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">体育</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_photo" data-tcn="photo" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">图片</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_caipiao" data-tcn="caipiao" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">彩票</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_link_idol" data-tcn="link_idol" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">星闻</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_link_house" data-tcn="link_house" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">房产</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_link_home" data-tcn="link_home" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">家居</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_link_yuedu" data-tcn="link_yuedu" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">小说</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_link_comic" data-tcn="link_comic" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">漫画</span>
+									</div>
+								</div>
+								  
+								<div class="topnav_item" id="topchild_link_bohe" data-tcn="link_bohe" data-scn="all">
+									<div class="topnav_item_box">
+										<span class="topnav_item_text">薄荷</span>
+									</div>
+								</div>   
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+</body>
+</html>

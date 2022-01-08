@@ -1,0 +1,14 @@
+{
+  "name": "01",
+  "version": "1.0.0",
+  "description": "一个简单的express应用",
+  "main": "expressBasic.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Harry",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}

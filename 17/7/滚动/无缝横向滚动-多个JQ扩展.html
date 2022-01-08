@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>无缝滚动-多个JQ扩展</title>
+	<style>
+		*{margin:0;padding:0;}   
+		.item{width:300px;height:60px;border:1px solid;margin:10px;position:relative;overflow: hidden;}
+		.item p{width:2000px;height:30px;position:absolute;top:0;left:0; overflow: hidden;}
+		.item p span{display: inline-block;height: 30px; line-height: 30px;padding-left: 15px;}
+
+	</style>                     
+	<script src="../js/jquery-2.1.0.js"></script>
+	<script>
+		//滚动函数扩展
+		$.fn.scroll = function(){
+			//定时器
+			function animation(ele,tt,spanWidth,containerInd){
+		    	ele.timer = setInterval(function(){
+	                //计算运动过程中的Top值
+	                var _left= -1*spanWidth;
+	                //运动
+	                $(containerInd).find("p").animate({"left":_left},tt,'linear',function(){
+	                    if(_left=== -1*spanWidth){	//当原有所有公告信息滚动完毕，还原为初始状态
+	                        $(containerInd).find("p").css({left:0});
+	                    }
+	                });
+	            },50);
+		    }
+		    //运动函数
+			function startMove(){
+		        var container = $('.item');
+
+		        for(var i= 0,len=container.length;i<len;i++){
+		            console.log(i);
+		            var containerInd = $(container[i]);
+		            var containerWidth = containerInd.width(),
+		                boringP = containerInd.find("p span")[0];
+		            if(boringP == null || boringP == undefined  ){
+		                continue;
+		            }
+		            var spanWidth=boringP.offsetWidth;
+		            if(spanWidth <= containerWidth){
+		                containerInd.find('p').css({width:'100%'});
+		                continue;
+		            }else{
+		                containerInd.find('p').css({textAlign:'left'})
+		                //将box的所有内容复制一份追加到box中
+		                var cont = containerInd.find("p").html();
+		                var curP = containerInd.find("p").html(cont + cont);
+		                var Time = spanWidth/60*1800;
+
+						animation(boringP,Time,spanWidth,containerInd);	                
+		            }
+		        }
+		    }
+
+		    startMove();	//初始化运动
+		}
+	    
+
+	    $(function(){
+	        $('.item').scroll();
+	    });
+	</script>
+</head>
+<body>
+	<div class="item">
+		<p><span>您中了大奖了，快快报上你的电话号码.0123快快报上你的电话号码.0123</span></p>
+	</div>
+	<div class="item">
+		<p><span>您中了大奖了.345678您中了大奖了.345678您中了大奖了.345678您中了大奖了.345678您中了大奖了.345678您中了大奖了.345678</span></p>
+	</div>
+	<div class="item">
+		<!-- <p><span>您中了大奖了，快快报上你的电话号码.0123456快快报上你的电话号码.0123</span></p> -->
+	</div>
+	<div class="item">
+		<p><span>快快报上你的电话号码.</span></p>
+	</div>
+	<div class="item">
+		<p><span>您中了大奖了，快快报上你的电话号码.01234567890您中了大奖了，快快报上你的电话号码.01234567890</span></p>
+	</div>
+	<div class="item">
+		<p><span>您中了大奖了，快快报上你的电话号码.0123快快报上你的电话号码.0123</span></p>
+	</div>
+	<div class="item">
+		<p><span>您中了大奖了.345678快快报上你的电话号码.0123快快报上你的电话号码.0123</span></p>
+	</div>
+	<div class="item">
+		<p><span>您中了大奖了码.0123456快快报上你的电话号码.0123快快报上你的电话号码.0123</span></p>
+	</div>
+	<div class="item">
+		<p><span>快快报上你的电话号码快快报上你的电话号码.0123</span></p>
+	</div>
+	<div class="item">
+		<p><span>您中了大奖了，快快报上你的电话号码.012345678电话号码.01234567890</span></p>
+	</div>
+</body>
+</html>

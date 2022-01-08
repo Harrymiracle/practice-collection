@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数继承</title>
+	<style>
+		
+	</style>
+</head>
+
+<body>
+	<script>
+	//只是一点例子，更多见高程6.3
+	//借用构造函数继承
+		function supper(){
+			this.colors = ["red","blue","green","purple"];
+		};
+		function sub(){
+			supper.call(this);
+		}
+
+		var instance = new sub();
+		instance.colors.push("black");
+		console.log(instance.colors);
+
+		var instance2 = new sub();
+		console.log(instance2.colors);
+
+		supper.colors = null;
+		console.log(instance.colors);
+
+
+	//原型式继承
+		var Person = {
+			name:"Jack",
+			friends:['Nicholas','Tidy','Tom']
+		};
+
+		var anotherPerson = Object.create(Person);
+		anotherPerson.name = "Greg";
+		anotherPerson.friends.push('Bob');
+		console.log(anotherPerson.friends);
+		console.log(Person.friends);
+
+		var thirdPerson = Object.create(Person);
+		thirdPerson.name = 'Jane';
+		thirdPerson.friends.push('Lisa');
+	//	Person.friends = null;
+		console.log(Person.friends);
+		console.log(anotherPerson.friends);
+		console.log(thirdPerson.friends);
+
+
+
+
+
+
+	</script>
+	
+</body>
+
+</html>

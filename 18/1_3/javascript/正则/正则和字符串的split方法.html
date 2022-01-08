@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>正则和字符串的split方法</title>
+    <style>
+        input[type="text"] {
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" placeholder="输入用空格或是逗号隔开的字符">
+    <input type="button" value="转换">
+    <input type="text" placeholder="转换后的字符">
+
+    <script>
+        /**
+         * 原始字符串如：我以  我是  ，  中国人 ,  而  , 感到  骄傲 ！     注：我是后面的是中文状态的逗号，其他的是英文状态的。
+         * 转换后的字符串：我以,我是,中国人,而,感到,骄傲,！
+         * 
+         * 最近在项目中有一个需求是：
+         *     在输入框中输入以空格或是逗号（中英文两种）分隔的产品编码来查询产品，
+         *     并传给后台以英文状态分割的对应产品编码。
+         */
+        window.onload = function() {
+            var inputs = document.getElementsByTagName('input'),
+                btn = inputs[1],
+                resultInput = inputs[2];
+
+            btn.onclick = function() {
+                var initString = inputs[0].value,
+                    // dealString = initString.split(/[, ，]/);    //dealStirng的length为19
+                    // dealString = initString.split(/[\s+,，]/); //优化一下用正则做的分割点，dealStirng的length为19
+                    // dealString = initString.split(/[\(\s+,\s+\)\(\s+，\s+\)\s+]/); //进一步优化一下用正则做的分割点,dealStirng的length为19
+                    // dealString = initString.split(/,|，|\s+/); //优化一下用正则做的分割点，dealStirng的length为13
+                    dealString = initString.split(/\s+,\s+|\s+，\s+|\s+/); //优化一下用正则做的分割点，dealStirng的length为7
+                var dealedString = dealString.filter(function(item) {
+                    if (item) {
+                        return item;
+                    }
+                });
+                resultInput.value = dealedString.join(',');
+            }
+
+            var pattern = /[\(\s*,\s*\)\(\s*，\s*\)]/;
+            var string = '  , ';
+            console.log(pattern.test(string)); //true
+            console.log(pattern.exec(string)); //0:" " index:0 input:"  , " length:1
+        }
+    </script>
+</body>
+
+</html>

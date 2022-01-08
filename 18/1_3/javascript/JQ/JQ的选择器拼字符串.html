@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+    <style>
+        .A0 {
+            display: none;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<script src="../js/jquery-2.2.3.min.js"></script>
+
+<body>
+    <div class="A0"></div>
+    <script>
+        var dataGroup = function() {
+            for (var i = 0; i < 10; i++) {
+                return "A" + i;
+            }
+        }();
+        $("." + dataGroup).show(); //$('".'+dataGroup+'"').show()会报错
+    </script>
+</body>
+
+</html>

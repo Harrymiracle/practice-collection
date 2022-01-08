@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+  <title>数组倒数元素</title>
+</head>
+<body>
+  <script>
+    function isNumber(num) {
+      //此判断排除了NaN和infinite，这两种返回false
+      if (typeof num === 'number') {
+        return num - num === 0;
+      }
+
+      //有Number.isFinite（检测传入的参数是否是一个有穷数）就使用该方法。
+      if (typeof num === 'string' && num.trim() !== '') { //排除空字符串
+        return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);
+      }
+
+      return false;
+    };
+
+    function last(arr, n) {
+      if (!Array.isArray(arr)) {    //第一个参数不是数组抛出错误
+        throw new Error('expected the first argument to be an array');
+      }
+
+      var len = arr.length;
+      if (len === 0) {  //数组长度为 0 返回空
+        return null;
+      }
+
+      // n = isNumber(n) ? +n : 1;
+      n = isNumber(n) ? Math.abs(+n) : 1;   //解决第二个参数为负时会抛出错误的问题
+      if (n === 1) {
+        return [arr[len - 1]];
+      }
+
+      if (n >= len){   //如果第二个参数比数组长度长，就返回数组
+        return arr;
+      }
+
+      var res = new Array(n);
+      while (n--) {
+        res[n] = arr[--len];
+      }
+      return res;                  
+    };  
+
+
+    var arr = [84, 541, 56];
+
+    // var res1 = last(arr, 4);
+    // console.log(res1);      //[undefined, 84, 541, 56]
+
+    var res2 = last(arr, 0);
+    console.log(res2);  //[]
+
+    // var res3 = last(arr, 3);
+    // console.log(res3);  //[84, 541, 56]
+
+    // var res4 = last();
+    // console(res4);    //test.html:26 Uncaught Error: expected the first argument to be an array
+
+    // var res5 = last(arr, -1); //解决第二个参数为负时会抛出错误的问题
+    // console.log(res5);  // 56
+
+    // var res6 = last(arr, -2); 
+    // console.log(res6);  // [541, 56]
+
+    // var res7 = last(arr, -3); 
+    // console.log(res7);  // 56
+
+    
+
+  </script>
+</body>
+</html>

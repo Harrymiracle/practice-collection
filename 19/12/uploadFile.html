@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>上传文件</title>
+</head>
+<body>
+    <label for="file">
+        <img src="sc.jpg" alt="">
+    </label>
+    <input type="file" name="" id="file" style="">
+    <!-- 渲染图片img -->
+    <label for="file">
+        <img src="2.jpg" id="img" alt="">
+    </label>
+
+
+     <!-- 图片为base64编码格式 -->
+     <script>
+        let file = document.querySelector("input[type=file]");
+        file.onchange = () => {
+            //获取input file的files文件数组;
+            var fileData = file.files[0];
+            console.log(fileData)
+            //创建用来读取此文件的对象
+            var reader = new FileReader();
+            //使用该对象读取file文件
+            reader.readAsDataURL(fileData);
+            //读取文件成功后执行的方法函数
+            reader.onload = function(e) {
+                //读取成功后返回的一个参数e，整个的一个进度事件
+                console.log(e);
+                //选择所要显示图片的img，要赋值给img的src就是e中target下result里面
+                //的base64编码格式的地址
+                document.querySelector("#img").setAttribute("src", e.target.result)
+            }
+        }
+    </script>
+
+
+
+</body>
+</html>

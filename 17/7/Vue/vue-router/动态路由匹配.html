@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动态路由匹配</title>
+	<style>
+		.router-link-active{color:blue;}
+	</style>
+	<script src="../../js/vue.js"></script>
+	<script src="../../js/vue-router.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1>Hello vue-router!</h1>
+		<p>
+			<router-link to="/user/foo1">/user/foo1</router-link>
+			<router-link to="/user/bar2">/user/bar2</router-link>
+		</p>
+		<router-view></router-view>
+	</div>
+
+	<script>
+		//$route.params.id
+		var User = {template:'<div>User {{$route.params.id}}</div>'};
+
+		var router = new VueRouter({
+			routes: [		//routes,不是routers
+				// 动态路径参数 以冒号开头
+				{path: '/user/:id',
+				component: User}
+			]
+		});
+
+		var vm = new Vue({
+			router
+		}).$mount('#app');	//$mount不是$amount
+	</script>
+
+</body>
+</html>

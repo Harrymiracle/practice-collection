@@ -1,0 +1,40 @@
+<!DOCTYPE html>  
+<html>  
+    <head>  
+        <meta charset="UTF-8">  
+        <title></title>  
+    </head>  
+    <body>  
+        <input type="text" onkeyup="NumCheck2(this)" />  
+        <br />
+        <input type="text" onkeyup="NumCheck(this)" />
+        <script>  
+            function NumCheck(t){         
+                var num = t.value;  
+            //    console.log(num); 
+                var re = /^[.0-9]+$/; 
+            //    var re = /^\d*$/;   //^匹配字符串开始位置   \d 匹配任意一个十进制数字，等价于[0-9]  * 匹配0次 1次或者多次前面的字符  $匹配字符串的结束位置  
+                if(!re.test(num)){  
+                    t.value = 0;  
+                }  
+            }  
+
+            function NumCheck2(obj){
+            	var num = obj.value;
+            	var num2 = parseInt(num);
+                console.log(num + " " + num2);
+            	var re = /^[.0-9]+$/;
+            	if(re.test(num) && num2 >=0 && num2 <= 100){
+            		return true;
+            	}else{
+            		obj.value = num.substring(num.length);
+            	}
+
+            }
+
+            var str = "gejfjwo";
+            var count = str.substring(str.length);  //返回一个空的字符串
+            console.log(count);
+        </script>  
+    </body>  
+</html>  

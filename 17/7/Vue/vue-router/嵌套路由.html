@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>嵌套路由</title>
+	<script src="../../js/vue.js"></script>
+	<script src="../../js/vue-router.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p>
+			<!-- 使用 router-link 组件来导航. -->
+			<router-link to="/user/foo">/user/foo</router-link>
+			<router-link to="/user/foo/profiles">/user/foo/profiles</router-link>
+			<router-link to="/user/foo/posts">/user/foo/posts</router-link>
+		</p>
+		<!-- 最顶层的路由渲染出口 -->
+		<router-view></router-view>
+	</div>
+
+
+	<script>
+		// 两种方法都可以，其中被渲染的组件包含自己的嵌套<router-view></router-view>
+		const User = {template:'<div class="user"><h2>User {{$route.params.id}}</h2><router-view></router-view></div>'};
+		
+		// const User = {
+		//   template: `		//英文状态下的波浪号
+		//     <div class="user">
+		//       <h2>User {{ $route.params.id }}</h2>
+		//       <router-view></router-view>
+		//     </div>
+		//   `
+		// }
+
+		//定义组件
+		const UserHome = {template:'<div>Home.</div>'};
+		const UserProfiles = {template:'<div>Profiles.</div>'};
+		const UserPosts = {template:'<div>Posts.</div>'};
+
+		//创建router实例，并在其中定义路由
+		const router = new VueRouter({
+			routes: [{
+				path: '/user/:id',
+				component: User,
+				children: [		//嵌套的子路由
+					{path:'',component:UserHome},
+					{path:'/user/foo/profiles',component:UserProfiles},
+					{path:'/user/foo/posts',component:UserPosts}
+				]
+			}]
+		});
+
+		const vm = new Vue({
+			router
+		}).$mount('#app');
+	</script>
+</body>
+</html>

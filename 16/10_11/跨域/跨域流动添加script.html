@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JSONP跨域1</title>
+    <script src="../js/jquery-2.2.3.min.js"></script>
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <input type="text" id="info" name="搜索框">
+    <input type="button" id="song_search" value="歌曲搜索" name="搜索按钮">
+    <div style="width:200px;height:200px;background:violet" id="song_list"></div>
+
+    <script type="text/javascript">
+        var searchJsonCallback = function(data) { //定义约定函数需执行的操作，url请求完成是拿到javascript形式的函数调用，数据作为函数的参数
+                debugger
+                //遍历查询结果
+                console.log(data);
+                console.log(data.list);
+                var alb_html = '';
+                for (var i in data.list) {
+                    alb_html += '<span>专辑：</span><div style="color:black">' + data.list[0].singername + ' ' + data.list[0].albumname + '</div>';
+                }
+                $("#song_list").html(alb_html);
+            }
+            //    console.log(typeof searchJsonCallback);   //function
+
+        //根据input框中输入的关键字，动态临时添加一个script标签
+        $("#song_search").on("click", function() {
+            var keyword = $("#info").val();
+            if (keyword == undefined || keyword == "") {
+                alert("歌曲搜索不能为空");
+                return false;
+            } else {
+                var url = "http://cgi.music.soso.com/fcgi-bin/fcg_search_xmldata.q?source=10&w=" + keyword + "&perpage=1&ie=utf-8";
+                // 创建script标签，设置其属性
+                var script = document.createElement('script');
+                script.setAttribute('src', url);
+                // 把script标签加入head，此时调用开始,将外部的数据加载进来，然后用上面的数据处理函数处理加载进来的数据
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+        });
+    </script>
+    <!--    这个相信大多数人都是见过的，可能你会说这个不就是简单的script脚本的引入吗？对的，就是因为script支持跨域，这个也就是我们常见的CDN。下面的例子是一个简单的JSONP跨域的应用，跨域的目的是要实现数据的传输。我们可以按照这个思路这样去写：首先我们可以在一个域名下面书写一个方法，然后通过在外部加载一个脚本来调用这个方法，向这个方法中去传值，这样就可以实现把外部的数据传到当前的域名的下面，从而实现了跨域。 -->
+
+</body>
+<script>
+</script>
+
+</html>

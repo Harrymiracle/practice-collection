@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重新导出一个绑定</title>
+</head>
+<body>
+    <script type="module">
+        // 从另一个模块中重新导出一个绑定
+        export { mult } from './mod2.js';
+
+        // 重新导出并重命名
+        export { mult as multiply } from './mod2.js';
+
+        // 重新导出另一个模块的全部值
+        export * from './mod2.js';
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无缝横向滚动</title>
+	<script src="../js/jquery-2.1.0.js"></script>
+</head>
+<body>
+	<div id="s" style="width:100px; position:relative; white-space:nowrap; overflow:hidden; height:20px;"> 
+		<div id="noticeList" style="position:absolute; top:0; height:20px;">
+			<span>jQuery文字横向滚动</span>
+			<span>jQuery制作文字横向滚动</span>
+			<span>www.jb51.net</span>
+		</div> 
+	</div>
+
+	<script>
+		$.fn.textScroll=function(){ 
+			var speed=60,flag=null,tt,that=$(this),child=that.children(); 
+			var p_w=that.width(), w=child.width(); 
+			child.css({left:p_w}); 
+			var t=(w+p_w)/speed * 1000; 
+
+			function play(m){ 
+				var tm= m==undefined ? t : m; 
+				child.animate({left:-w},tm,"linear",function(){ 
+					$(this).css("left",p_w); 
+					play(); 
+				}); 
+			} 
+		 
+			child.on({mouseenter:function(){ 
+				var l=$(this).position().left; 
+				$(this).stop(); 
+				tt=(-(-w-l)/speed)*1000; 
+				},mouseleave:function(){ 
+					play(tt); 
+					tt=undefined; 
+				} 
+			}); 
+			 
+			play(); 
+		}
+
+
+
+
+		// $.fn.textScroll=function(){ 
+		// 	var p = $(this), 
+		// 	c = p.children(), 
+		// 	speed=3000;// 值越大，速度越小 
+		// 	var cw = c.width(),pw=p.width(); 
+		// 	var t = (cw / 100) * speed; 
+		// 	var f = null, t1 = 0; 
+
+		// 	function ani(tm) { 
+		// 		counttime(); 
+		// 		c.animate({ left: -cw }, tm, "linear", function () {  
+		// 			c.css({ left: pw });  
+		// 			clearInterval(f);  
+		// 			t1 = 0;  
+		// 			t=((cw+pw)/100)*speed;  
+		// 			ani(t);  
+		// 		});  
+		// 	} 
+		 
+		// 	function counttime() {  
+		// 		f = setInterval(function () {  
+		// 			t1 += 10;  
+		// 		}, 10); 
+		// 	} 
+			 
+		// 	p.on({mouseenter: function () { 
+		// 		c.stop(false, false); 
+		// 		clearInterval(f); 
+		// 		console.log(t1); 
+		// 	},mouseleave: function () { 
+		// 			ani(t - t1); 
+		// 			console.log(t1); 
+		// 		} 
+		// 	}); 
+			 
+		// 	ani(t); 
+		// }
+
+		$("#s").textScroll();
+	</script>
+</body>
+</html>

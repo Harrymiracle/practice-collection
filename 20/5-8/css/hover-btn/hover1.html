@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 奇特的 hover 效果1</title>
+    <style>
+        #send-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30vh;
+        }
+
+        #send-btn button {
+            background: #5f55af;
+            border: 0;
+            border-radius: 5px;
+            padding: 10px 30px 10px 20px;
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        #send-btn button svg {
+            display: inline-block;
+            vertical-align: middle;
+            padding-right: 5px;
+        }
+
+        #send-btn button :hover svg {
+            animation: fly 2s ease 1;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateX(0%);
+            }
+
+            50% {
+                transform: translateX(300%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 一.发送效果 -->
+
+    <div id="send-btn">
+        <button>
+            <!-- 这里是一个svg的占位 -->
+            Send
+        </button>
+    </div>
+
+</body>
+
+</html>

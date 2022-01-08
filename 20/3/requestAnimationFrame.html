@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #SomeElementYouWantToAnimate {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        line-height: 100px;
+        font-weight: bolder;
+        background: #ff0000;
+        color: #ffffff;
+        border-radius: 50%;
+    }
+
+</style>
+<body>
+    <!-- https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame -->
+    
+    <div id="SomeElementYouWantToAnimate">123</div>
+    <script>
+        var start = null;
+        var element = document.getElementById('SomeElementYouWantToAnimate');
+        element.style.position = 'absolute';
+
+        function step(timestamp) {
+            if (!start) start = timestamp;
+                var progress = timestamp - start;
+                element.style.left = Math.min(progress / 10, 200) + 'px';
+            if (progress < 2000) {
+                window.requestAnimationFrame(step);
+            }
+        }
+
+        window.requestAnimationFrame(step);
+
+    </script>
+</body>
+</html>

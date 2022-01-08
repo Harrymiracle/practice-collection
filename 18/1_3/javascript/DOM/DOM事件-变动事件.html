@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DOM事件-变动事件</title>
+</head>
+<script src="../js/EventUtil.js"></script>
+
+<body>
+    <!-- 删除节点 -->
+    <ul id="myList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <!-- 插入节点 -->
+    <ul id="myList_2">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <script>
+        //删除节点
+        EventUtil.addHandler(window, 'load', function(event) { //DOM结构加载完成之后,等同于 window.onload = function() {}
+            var list = document.getElementById('myList');
+            EventUtil.addHandler(document, 'DOMSubtreeModified', function(event) { //第四个在body上触发DOMSubtreeModified事件，冒泡到 document 上处理
+                alert(event.type + ' ' + event.target); //第 4 个触发 DOMSubtreeModified [object HTMLBodyElement]
+            });
+            EventUtil.addHandler(document, 'DOMNodeRemoved', function(event) { //第一个在ul元素上触发 DOMNodeRemoved 事件，冒泡到 document 上处理
+                alert(event.type + ' ' + event.target + ' ' + event.relatedNode); //第 1 个触发 DOMNodeRemoved [object HTMLUListElement] [object HTMLBodyElement]
+            });
+            EventUtil.addHandler(list, 'DOMNodeRemovedFromDocument', function(event) { //第二个在ul元素上触发 DOMNodeRemovedFromDocument 事件
+                alert(event.type + ' ' + event.target); //第 2 个触发 DOMNodeRemovedFromDocument [object HTMLUListElement]
+            });
+            //第三个在ul的每一个子节点和li的文本节点上触发DOMNodeRemovedFromDocument事件，该事件不会冒泡。   第一个节点为换行符
+            EventUtil.addHandler(list.firstChild, 'DOMNodeRemovedFromDocument', function(event) {
+                alert(event.type + ' ' + event.target); //第 3 个触发 DOMNodeRemovedFromDocument [object Text]
+            });
+            list.parentNode.removeChild(list);
+        });
+
+
+        //插入节点
+        EventUtil.addHandler(window, 'load', function(event) {
+            var list = document.getElementById('myList_2'),
+                item = document.createElement('li');
+            item.appendChild(document.createTextNode('Item 4'));
+            EventUtil.addHandler(document, 'DOMNodeInserted', function(event) { //会冒泡
+                alert('2 ' + event.type + ' ' + event.target + ' ' + event.relatedNode); //第 1 个触发 DOMNodeInserted [object HTMLLIElement] [object HTMLBodyElement]
+            });
+            EventUtil.addHandler(document, 'DOMSubtreeModified', function(event) { //会冒泡
+                alert('2 ' + event.type + ' ' + event.target); //第 3 个触发 DOMSubtreeModified [object HTMLBodyElement]
+            });
+            EventUtil.addHandler(item, 'DOMNodeInsertedIntoDocument', function(event) {
+                alert('2 ' + event.type + ' ' + event.target); //第 2 个触发 DOMNodeInsertedIntoDocument [object HTMLLIElement]
+            });
+            list.parentNode.appendChild(item);
+        });
+    </script>
+
+</body>
+
+</html>

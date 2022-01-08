@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>文字渲染基础</title>
+</head>
+<body>
+  <canvas id="canvas" style="border:1px solid black;margin:10px auto;">
+  	你的浏览器不支持canvas,请更换浏览器再试。
+  </canvas>
+
+  <script>
+  	window.onload = function(){
+  	  var canvas = document.getElementById("canvas");
+      canvas.width = 800;
+      canvas.height = 600;
+
+      var context = canvas.getContext("2d");
+    
+      context.save();
+      context.translate(20,20); //把后面相应的值调大可以不要这行和save,restore
+
+      context.font = "bold 40px Arail";
+      context.fillStyle = "#058";
+      context.fillText("欢迎学习canvas的《文字渲染课程》",20,30);
+      context.lineWidth = 0.8;
+      context.strokeStyle = "#058";
+      context.strokeText("欢迎学习canvas的《文字渲染课程》",20,90);
+
+      context.fillText("欢迎学习canvas的《文字渲染课程》",20,160,300);
+      context.strokeText("欢迎学习canvas的《文字渲染课程》",20,210,300);
+
+      var linearGrad = context.createLinearGradient(0,0,800,0);
+      linearGrad.addColorStop(0.0,"red");
+      linearGrad.addColorStop(0.25,"yellow");
+      linearGrad.addColorStop(0.5,"blue");
+      linearGrad.addColorStop(0.75,"green");
+      linearGrad.addColorStop(1.0,"purple");
+      context.fillStyle = linearGrad;
+      context.fillText("欢迎学习canvas的《文字渲染课程》",20,270);
+
+      var backgroundImg = new Image();
+      backgroundImg.src = "images/brick.jpg";
+      backgroundImg.onload = function(){
+      	var pattern = context.createPattern(backgroundImg,"repeat");
+      	context.fillStyle = pattern;
+      	context.font = "bolder 80px Arail";
+      	context.fillText("canvas, come on.",20,430);
+      	context.strokeStyle = "gray";
+      	context.strokeText("canvas, come on.",20,430);
+      	console.log(context.strokeStyle);	//#808080
+      }
+	  console.log(context.strokeStyle);	//#005588
+      context.restore();
+  	}
+    
+  </script>
+</body>
+</html>

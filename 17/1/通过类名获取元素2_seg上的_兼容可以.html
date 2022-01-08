@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <div class="haha">
+    hhhhhhhhhhhhh
+    <div class="wawa">
+      wwwwwwwwwwwww
+    </div>
+  </div>
+  <script>
+    var getElementsByClassName = function(names, element) {        
+      var result = [];
+      //传入的参数(names, element)的element 不要传数组，传一个父对象或者document就好使了。
+      // var element = element != undefined ? element : document;   
+      element = element || document;      //比上面一行的兼容性更好，更简洁。         
+      var all = element.getElementsByTagName('*');
+      for(var i = 0;i < all.length; i++){
+        if ((new RegExp('(\\s|^)' + names + '(\\s|$)')).test(all[i].className)) {
+          result.push(all[i]);
+        }
+      }
+      return result;  
+    }
+
+    var t = getElementsByClassName('haha', document); //此时的t是一个只有一个元素的数组。
+    //不能传数组，因为单单一个数组不能调用getElementsByTagName，一定要的话要判断是document还是数组,再去遍历.t[0]即为节点对象，它可以调用方法。
+    var b = getElementsByClassName('wawa', t[0]);  
+    console.log(t);
+    console.log(b[0].innerHTML);
+
+  </script>
+</body>
+</html>
+

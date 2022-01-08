@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>globalCompositeOperation</title>
+  <style>
+    #btns{
+      width: 1200px;
+      margin:20px auto;
+      clear: both;
+    }
+    #btns a{
+      font-size: 18px;
+      color: tomato;
+      display: block;
+      float: left;
+      margin-right: 14px; 
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" style="border:1px solid gray;">
+  	你的浏览器不支持canvas,请更换后再试。
+  </canvas>
+  <div id="btns">
+    <a href="#">source-over</a>
+    <a href="#">source-in</a>
+    <a href="#">source-out</a>
+    <a href="#">source-atop</a>
+    <a href="#">destination-over</a>
+    <a href="#">destination-in</a>
+    <a href="#">destination-out</a>
+    <a href="#">destination-atop</a>
+    <a href="#">lighter</a>
+    <a href="#">copy</a>
+    <a href="#">xor</a>
+  </div>
+
+  <script>
+    window.onload = function(){
+      draw("source-over"); //先绘制一个默认的样式
+      var btns = document.getElementById("btns").getElementsByTagName("a");
+      for(var i = 0, len = btns.length; i < len; i++){
+        btns[i].onclick = function(){
+          draw(this.text);
+          return false;
+        }
+      }
+    }
+
+    function draw(compositeStyle){
+      var canvas = document.getElementById("canvas");
+      canvas.width = 800;
+      canvas.height = 600;
+
+      var context = canvas.getContext("2d");
+
+    //绘制标题
+      context.clearRect(0,0,canvas.width,canvas.height); //先清空画布
+      //设置文本
+      context.font = "bold 30px Arial";
+      context.textAlign = "center";
+      context.textBaseline = "middle";
+      context.fillStyle = "#058";
+      context.fillText("globalCompositeOperation = " +compositeStyle,canvas.width/2,25);
+
+    //绘制矩形
+      context.fillStyle = "#0000ff";
+      context.fillRect(100,50,300,300);
+
+    //绘制三角形
+      context.globalCompositeOperation = compositeStyle;
+      context.fillStyle = "#ff0000";
+
+      context.beginPath();
+      context.moveTo(410,160);
+      context.lineTo(650,530);
+      context.lineTo(200,530);
+      context.closePath();
+
+      context.fill();
+    }
+  </script>
+</body>
+</html>

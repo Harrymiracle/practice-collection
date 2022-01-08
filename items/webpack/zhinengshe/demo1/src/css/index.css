@@ -1,0 +1,10 @@
+.box {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    color: white;
+    font-weight: bolder;
+    background: red;
+    border-radius: 50%;
+}

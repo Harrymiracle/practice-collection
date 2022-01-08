@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>创建一个栈</title>
+</head>
+<body>
+	
+	<script>
+		function Stack(){
+			var items = [];
+
+			this.push = function(element){
+				items.push(element);
+			};
+
+			this.pop = function(){
+				return items.pop();
+			};
+
+			this.peek = function(){
+				return items[items.length - 1];
+			};
+
+			this.isEmpty = function(){
+				return items.length == 0;
+			};
+
+			this.size = function(){
+				return items.length;
+			};
+
+			this.clear = function(){
+				items = [];
+			};
+			
+			this.print = function(){
+				console.log(items.toString());
+			};
+		};
+
+		var stack = new Stack();
+		console.log(stack.isEmpty());	//true
+
+		stack.push(6);		//[6]
+		stack.push(8);	//后添加的先出	[6,8]
+		console.log(stack.peek());		//8
+
+		stack.push(11);		//[6,8,11]
+		console.log(stack.size());		//3
+		console.log(stack.isEmpty());	//false
+
+		stack.push(16);		//[6,8,11,16]
+		stack.pop();		//[6,8,11]
+		stack.pop();		//[6,8]
+		console.log(stack.size());		//2
+		stack.print();		//'6','8'
+
+
+	//应用
+		//二进制转换
+		function divideBy2(decNumber){
+			var remStack = new Stack(),
+				rem,
+				binaryString = '';
+
+			while(decNumber > 0){
+				rem = Math.floor(decNumber%2);
+				remStack.push(rem);
+				decNumber = Math.floor(decNumber/2);
+			}	
+
+			while(!remStack.isEmpty()){
+				binaryString += remStack.pop().toString();
+			}
+
+			return binaryString;
+		}
+
+		console.log(divideBy2(10)); 	//1010
+		console.log(divideBy2(25));		//11001
+		console.log(divideBy2(50));		//110010
+		console.log(divideBy2(100));	//1100100
+
+		//抽象化，适合各个进制转换
+		function baseConverter(decNumber, base){
+			var remStack = new Stack(),
+				rem,
+				binaryString = '',
+				digits = '0123456789ABCDEF';		//只能是字符串，不能是数组
+
+			while(decNumber > 0){
+				rem = Math.floor(decNumber%base);
+				remStack.push(rem);
+				decNumber = Math.floor(decNumber/base);
+			}
+
+			while(!remStack.isEmpty()){
+				binaryString += digits[remStack.pop()];
+			}
+
+			return binaryString;
+		}
+
+		console.log(baseConverter(100345, 2));		//11000011111111001
+		console.log(baseConverter(100345, 8));		//303771
+		console.log(baseConverter(100345, 16));		//187F9
+
+	</script>
+</body>
+</html>

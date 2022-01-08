@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>toggle</title>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <style>
+    div {
+        width: 500px;
+        height: 50px;
+        padding: 5px;
+        margin: 5px;
+        border: 1px solid #ccc;
+    }  
+    .left {
+        background: #bbffaa;
+    }  
+    .right {
+        background: yellow;
+        display: none;
+    }
+    </style>
+</head>
+
+<body>
+    <h2>通过toggle切换显示与隐藏</h2>
+    <div class="left">显示到隐藏</div>
+    <div class="right">隐藏到显示</div>
+    <button>直接show-hide动画</button>
+    <button>直接hide-show动画</button>
+    
+    <script type="text/javascript">
+        $("button:first").click(function() {
+            $(".left").toggle({
+                duration:3000,
+                complete:function(){
+                    alert('动画执行完毕');
+                }
+            })
+        });
+        
+        $("button:last").click(function() {
+            $(".right").toggle({
+                duration:3000,
+                complete:function(){
+                    alert('动画执行完毕');
+                }
+            })
+        });
+    </script>
+
+</body>
+
+</html>

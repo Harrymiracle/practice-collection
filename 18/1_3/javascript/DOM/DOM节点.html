@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DOM节点</title>
+</head>
+
+<body>
+    <ul></ul>
+    <div id="testOne" class="bd user disabled">测试 classList</div>
+    <button>焦点管理</button>
+    <div id="divTwo" data-myname="Harry" data-viewid="123">测试 自定义数据属性</div>
+
+    <script>
+        /**
+         * Text类型  （文本节点）
+         */
+        var divElement = document.createElement('div'),
+            textNode = document.createTextNode('Hello world!');
+
+        divElement.className = 'message';
+        divElement.appendChild(textNode);
+
+        var anotherTextNode = document.createTextNode(' Yeye!');
+        divElement.appendChild(anotherTextNode);
+
+        var count = divElement.childNodes.length;
+        console.log(count); //2
+        console.log(divElement.childNodes); //(2) [text, text]
+
+        //规范化文本节点
+        divElement.normalize(); //注意是在元素节点上调用此方法
+        var count2 = divElement.childNodes.length;
+        console.log(count2); //1
+        console.log(divElement.childNodes); //(1) [text]
+
+        //分隔文本节点
+        divElement.firstChild.splitText(12); //注意是在文本节点上调用此方法
+        var count3 = divElement.childNodes.length;
+        console.log(count3); //2
+        console.log(divElement.childNodes); //(2) [text, text]
+
+
+
+        /**
+         * DocumentFragment类型  （文档片段）
+         */
+        var ul = document.getElementsByTagName('ul')[0],
+            fragment = document.createDocumentFragment(), //创建一个文档片段
+            li = null;
+        for (var i = 0; i < 3; i++) {
+            li = document.createElement('li');
+            li.appendChild(document.createTextNode('Item ' + (i + 1)));
+            fragment.appendChild(li);
+        }
+        li = null;
+        ul.appendChild(fragment);
+
+
+
+        /**
+         * Dom新增的操作表格的方法
+         */
+        var table = document.createElement('table'); //创建table
+        table.border = '1';
+        table.width = '90%';
+
+        var tbody = document.createElement('tbody'); //创建tbody
+        table.appendChild(tbody);
+
+        tbody.insertRow(0); //创建第一行
+        tbody.rows[0].insertCell(0);
+        table.rows[0].cells[0].appendChild(document.createTextNode('row 1-1'));
+        table.rows[0].insertCell(1);
+        table.rows[0].cells[1].appendChild(document.createTextNode('row 1-2'));
+
+        tbody.insertRow(1); //创建第二行
+        tbody.rows[1].insertCell(0);
+        table.rows[1].cells[0].appendChild(document.createTextNode('row 2-1'));
+        table.rows[1].insertCell(1);
+        table.rows[1].cells[1].appendChild(document.createTextNode('row 2-2'));
+
+        document.body.appendChild(table);
+
+
+
+        /**
+         * DOM扩展 之 HTML5与类相关的扩展
+         */
+        //classList属性
+        //在操作类名时，需要通过className属性添加、删除和替换，className属性是一个字符串，即使只是修改其中的一小部分，也要整个重新设置整个字符串的值。
+        //下面的例子中要删除id为testOne的div元素的user类名
+        var divOne = document.querySelector('#testOne'),
+            divClassNames = divOne.className.split(/\s+/),
+            pos = -1,
+            i, len;
+        for (i = 0, len = divClassNames.length; i < len; i++) {
+            if (divClassNames[i] === 'user') {
+                break;
+            }
+        }
+        divClassNames.splice(i, 1);
+        divOne.className = divClassNames.join(' ');
+        //使用新增的classList方法只需要一行代码   （比如：删除掉bd类名）
+        var classList = divOne.classList; //(3) ["disabled", "user", "bd", value: "disabled user bd"]
+        classList.remove('bd');
+        //同时还有add(className)将给定的字符串的值加到列表中，如果已存在就不添加了,contains(className)是否包含给定的字符串值，是true,否false,toggle(className)有就删除给定值，没有就添加给定值。
+        console.log(classList.contains('bd')); //false
+        classList.toggle('user');
+        classList.add('bd');
+
+        //焦点管理
+        console.log(document.activeElement); //<body>…</body>  默认情况下页面加载后是body元素获得焦点
+        var btnOne = document.querySelector('button');
+        btnOne.focus();
+        console.log(document.activeElement == btnOne); //true
+        console.log(document.hasFocus()); //false 判断一个元素是否获取了焦点
+
+        //自定义数据属性（为元素添加非标准的属性，但需要添加data-前缀，目的提供与渲染无关的信息或是语义信息。）
+        var divTwo = document.querySelector('#divTwo');
+        console.log(divTwo.dataset); //DOMStringMap {myname: "Harry", viewid: "123"}  所有自定义属性的字段集
+
+        //插入标记之 insertAdjacentHTML(插入位置，要插入的文本)方法
+        //插入位置必须是下列值之一：beforebegin(在当前元素前插入一个紧邻的同辈元素),afterbegin(在当前元素下插入一个新的子元素或是在第一子元素前插入一个子元素),
+        //beforeend(在当前元素下插入一个新的子元素或是在最后一个子元素后插入一个子元素),afterend(在当前元素后插入一个紧邻的同辈元素)。
+        divTwo.insertAdjacentHTML('afterend', '<span>测试insertAdjacentHTML属性。<span>');
+    </script>
+
+</body>
+
+</html>

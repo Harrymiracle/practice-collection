@@ -1,0 +1,467 @@
+/*some public css*/
+.fr{
+	float: right;
+	/* vertical-align: baseline; */	
+	/* line-height: 100%; */
+}
+
+.fixSearchBox{
+	position: fixed;
+	top: -55px;
+	width: 100%;
+	height: 55px;
+	background: rgba(255, 255, 255, 0.9);
+	border-bottom: 1px solid red;
+	transition: top 0.25s ease-in-out;
+	z-index: 20;
+}
+.fixSearchBoxShow{
+	top: 0px;
+}
+	.fixSearchBox form{
+		width: 550px;
+		height: 20px;
+		margin: 10px auto 0px;
+	}
+.fixSidebar{
+	position: fixed;
+	right: -17.2%;
+	/* right: 0; */
+	width: 17.5%;
+	height: 100%;
+	background: #fff;
+	border-left: 5px solid #7A6E6E;
+	z-index: 100;
+	transition: right 0.4s ease-in-out ;
+}
+.fixSidebarShow{
+	right: 0;
+}
+	.removeIcon{
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		transition: transform  0.4s ease-in-out,color 0.2s ;
+		color: gray;
+		font-weight:900;
+		font-size: 16px;
+		cursor: pointer;
+	}
+	.removeIcon:hover{
+		transform: rotate(180deg);
+		color: #C81623;
+	}
+	.backDiv{
+		position: absolute;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		background: white;
+	}
+	.detailDiv{
+		position: absolute;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		background: skyblue;
+		right: -272px;
+		transform: scale(0.5);
+		transition: right 0.5s ease-in-out,transform 0.5s ease-in-out;
+	}
+	/* #userDiv#shoppingCart#hear#bell#edit */
+	#edit{
+		background: pink;
+		
+	}
+	.detailDivShow{
+		right: 0;
+		transform: scale(1);
+	}
+		.menubar{
+			position: absolute;			
+			left: -35px;
+			width: 35px;
+			height: 100%;
+			font-size: 20px;
+		}
+
+			.menubarUp{
+				position: absolute;
+				top: 26%;
+			}
+			.menubarDown{
+				position: absolute;
+				bottom: 0;
+			}
+			.menubar i{
+				background: #7A6E6E;
+				display: inline-block;
+				padding: 8px;
+				color: white;
+				cursor: pointer;
+				border-radius: 7px 0px 0px 7px;
+				margin-bottom: 2px;
+				/* overflow: hidden; */
+			}
+			.menubar i:hover{
+				background: #C81623;
+			}
+			.menubar i:hover li{
+				left: -90px;
+				/* display: block; */
+			}
+			#toUpButton{
+				display: none;
+			}
+			
+				.menubar i li{
+					list-style-type: none;
+					background:#C81623;
+					position: absolute;
+					top: 0;
+					left: 2px;
+					height: 36px;
+					width: 95px;
+					font-size: 16px;
+					padding-left: 20px;
+					padding-top: 8px;
+					border-radius: 7px 0px 0px 7px;
+					transition: left  0.2s ease-in-out;
+					transition-delay: 0.1s;
+					z-index: -1;
+					/* display: none; */
+				}
+				.menuLiShow{
+					left: 2px;
+				}
+
+.header{
+	border-bottom:1px solid #ddd ;
+	width: 100%;
+	/* float: left; */
+	height: 32px;
+}
+	.headerWrapDiv{
+		width: 1190px;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+		.header ul{
+			list-style-type: none;
+			font-size: 13px;
+			color: gray;
+		}
+		.header ul:first-child{
+			float: left;
+			
+		}
+		.header ul:nth-child(2){
+			float: right;
+			
+		}
+		.notice{
+			color: #c40000;
+			margin: 0px 5px;
+			font-size: 12px;
+		}
+			.header ul li {
+				float: left;
+				padding: 8px 10px;
+				position: relative;
+			}
+				.header ul li a{
+					color: gray;
+					text-decoration: none;
+				}
+				.header ul li a:hover{
+					color: red;
+					text-decoration: none;
+				}
+				.triangle{
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-color: gray  transparent yellow transparent;
+				border-width: 3px 3px 0px 3px;
+				/* float: right; */
+				position: absolute;
+				right: 0;
+				top: 40%;
+				transition: transform 0.2s ease-in-out ;
+				}
+			.header ul li:hover .triangle{
+				transform: rotate(180deg);
+			}
+			.header ul li:hover .exchange{
+				display: block;
+				z-index: 1000;
+				width: 100px;
+				height: 100px;
+			}
+			.exchange{
+				background: white;
+				position: absolute;
+				bottom: -50px;
+				display: none;	
+
+			}
+			.ws{
+				width: 86px;
+			}
+			.wss{
+				width: 73px;
+			}
+
+				.exchange li{
+					padding: 5px 2px !important;
+					display: inline-block;
+				}
+/*search div style*/
+.searchWrap{
+	width: 1190px;
+	margin: 0 auto;
+
+}
+	.search{
+
+		width: 623px;
+		margin: 0 auto;
+		margin-top: 60px;
+		font-size: 14px;
+		margin-bottom: 20px;
+	}
+	.search input[type='text']{
+		
+	}
+	.inputText{
+		font-size: 18px;
+		color: gray;
+		width: 82%;
+		height: 36px;
+		border:2px solid #c40000;
+		float: left;
+		outline: none;
+		text-indent: 10px;
+		font-size: 14px;
+	}
+	.search input[type='submit']{
+		
+	}
+	.inputSummit{
+		height: 36px;
+		width: 18%;
+		background: #c40000;
+		color: white;
+		border: none;
+		font-weight: bold;
+		font-size: 18px;
+		float: left;
+		letter-spacing: 5px;
+	}
+	.search  a{
+		display: inline-block;
+		color: gray;
+		margin: 6px 6px;
+		display: inline-block;
+		text-decoration: none;
+	}
+	.search  span:nth-child(3) a
+	{
+		color: #c40000;
+	}
+	.search  span:nth-child(7) a
+	{
+		color: #c40000;
+	}
+	.search  span:nth-child(13) a
+	{
+		color: #c40000;
+	}
+
+
+/* footer section	 */
+.footer{
+	border-top: 1px solid #777;
+	width: 100%;
+}
+.footerWrap{
+	width: 1230px;
+	border-top: 1px solid #777;
+	margin: 0 auto;
+	/* background: blue; */
+	height: 175px;
+	/* float: left; */
+}	
+	.footer ul{
+		float: left;
+		width: 20%;
+		/* transform: translateX(50%); */
+
+	}
+
+		.footer  h3{
+			font-size: 18px;
+		}
+		.footer ul li a{
+			color: gray;
+		}
+		.footer ul li a:hover{
+			color: #c40000;
+		}
+.footerCR{
+	/* background: blue; */
+	width: 60%;
+	margin: 10px 20%;
+}
+.footerCR span{
+	margin: 30px auto;
+	display: inline-block;
+	transform: translateX(100%);//shit code here
+}
+
+
+/* nav section */
+.navWrap{
+	width: 100%;
+	height: 36px;
+	background: #DD2727;
+	position: relative;
+}
+	.navMain{
+		width: 1260px;
+		margin: 0 auto;
+		background: #DD2727;
+		height: 36px;
+	}
+		.navSubLeft  li{
+			/* width: 45%; */
+			/* background: blue; */
+			float: left;
+			font-size: 16px;
+			font-weight: bolder;	
+		}
+			#commodityClassTitle{
+				background: #C60A0A;
+				/* padding: 0px 0px; */
+				cursor: pointer;
+				width: 160px;
+				position: relative;
+			}
+			.navSubLeft i{
+				float: left;
+				display: inline-block;
+				padding: 8px 8px 0px 8px;
+				color: white;
+			}
+		.navSubRight{
+			width: 55%;
+			/* background: skyblue; */
+			float: left;
+						
+		}	
+			.navMain li{
+				float: left;
+				font-size: 16px;
+				font-family: "Microsoft YaHei", "SimSun", "宋体", sans-serif;
+				line-height: 36px;
+				margin: 0 17px 0 0;
+			}
+			.navMain a{
+				color: white;
+			}
+			.navMain a:hover{
+				color: white;
+				text-decoration: none;
+			}
+	#navDetails{
+		position: absolute;
+		top: 36px;
+		left: 0px;
+		/* width:10px; */
+		height: 500px;
+		background: lightskyblue;
+		font-weight: normal;
+		/* font-size: 14px; */
+		display: none;
+		z-index: 10;
+	}
+	#commodityClassTitle:hover #navDetails{
+		display: block;
+	}
+		#navDetails .commodityClassfication{
+			width: 160px;
+			height: 502px;
+			background: #ddd;
+		}
+			#navDetails .commodityClassfication li{
+				font-weight: normal;
+				width: 100%;
+				line-height: 31px;
+				margin: 0;
+				font-size: 14px;
+				padding-left: 10px;
+			}
+			.commodityClassfication li a{
+				color: black;
+				/* margin-left: 30px; */
+			}
+			.commodityClassfication li:hover{
+				background:#fff;
+				/* color: black; */
+			}
+			.commodityClassfication li a:hover{
+				text-decoration: none;
+				color: #b22222;
+				font-weight: bold;
+			}
+		    
+		#navDetails .commodityDetail{
+			width: 1000px;
+			height: 500px;
+			/* background: green; */
+			position: absolute;
+			top: 0;
+			left: 160px;
+			background: white;	
+			display: none;
+		}
+		#firstFloor:hover .commodityDetail{
+			display: block;
+		}
+		#secondFloor:hover .commodityDetail{
+			display: block;
+		}
+			.comDetailLinks{
+				width: 80%;
+			}
+				.comDetailLinkGroup{
+					margin: 10px 5px;
+					
+				}
+					.comDetailLinksTitle{
+						height: 100%;
+						/* background: yellow; */
+						float: left;
+						width: 80px;
+						height: 50px;
+						font-weight: bold;
+						font-size: 14px;
+					}
+					.comDetailLinksTitle span:nth-child(2){
+						margin-left: 5px; 
+					}
+					.comDetailLinksContent{
+						height: 50px;
+						font-size: 14px;
+						color: gray;
+						/* float: left; */
+						/* background: red; */
+					}
+						#navDetails .comDetailLinksContent a{
+							color: gray;
+							margin: 3px;
+						}
+						#navDetails .comDetailLinksContent a:hover{
+							color: orange;
+							font-weight: normal;
+						}

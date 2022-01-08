@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #outer {
+            width: 110px;
+            height: 110px;
+            padding:  0 20px 20px;
+            background: #616161;
+        }
+        #inner {
+            width: 100px;
+            height: 100px;
+            background: #f70404;
+        }
+    </style>
+</head>
+<body>
+    <!-- https://zhuanlan.zhihu.com/p/42117531 -->
+    
+    <div id="outer">outer
+        <div id="inner">inner</div>
+    </div>
+
+    <script>
+        const $inner = document.querySelector('#inner')
+        const $outer = document.querySelector('#outer')
+
+        function handler () {
+            console.log('click') // 直接输出
+            Promise.resolve().then(_ => console.log('promise')) // 注册微任务
+            setTimeout(_ => console.log('timeout')) // 注册宏任务
+            requestAnimationFrame(_ => console.log('animationFrame')) // 注册宏任务
+            $outer.setAttribute('data-random', Math.random()) // DOM属性修改，触发微任务
+        }
+
+        new MutationObserver(_ => {
+            console.log('observer')
+        }).observe($outer, {
+            attributes: true
+        })
+
+        $inner.addEventListener('click', handler)
+        $outer.addEventListener('click', handler)
+        // 手动触发的顺序
+        // click promise observer click promise observer animationFrame animationFrame timeout timeout
+
+        $inner.click(); //自动触发的顺序
+        // click click promise observer promise  timeout timeout animationFrame animationFrame
+
+    </script>
+</body>
+</html>

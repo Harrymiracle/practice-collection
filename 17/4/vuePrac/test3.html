@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>组件</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app1">
+        <!--在挂载元素中使用模板
+            由此可见display的值来源于父组件，父组件模板的内容在父组件作用域内编译；子组件模板的内容在子组件作用域内编译。
+            通俗地讲子组件中定义的数据只能用在子组件的模板，父组件中定义的数据只能用在父组件的模板，
+            如果父组件的数据要在子组件中使用，必需定义props属性。
+        -->
+        <my-component v-show="display"></my-component>
+    </div>
+
+    <!--使用template将定义在javascript中的HTML模板分离出来-->
+    <template id="myComponent">
+        <div>
+            <h2>{{msg}}</h2>
+            <button @click="showMsg">Show Message!</button>
+        </div>
+    </template>
+
+    <script>
+        var vm1 = new Vue({
+            el: "#app1",
+            data: {
+                display: true
+            },
+
+            //在实例内部注册的局部组件
+            components: {
+                "my-component": {   //组件标签名
+                    template: "#myComponent",  //模板ID
+                    data: function(){
+                        return {
+                            msg: "This a component！",
+                            diaplay: false
+                        }
+                    },
+                    methods: {
+                        showMsg: function(){
+                            alert(this.msg);
+                        }
+                    }
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

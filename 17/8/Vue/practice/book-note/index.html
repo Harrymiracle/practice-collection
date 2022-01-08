@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>basicpra</title>
+    <style>
+        /*仅对彩屏有效----此处可以加，下面的min-width范围 需要更改*/
+        /* @media only screen and (min-width: 400px) {
+            html {
+                font-size: 21.33333333px !important;
+            }
+        }
+        
+        @media only screen and (min-width: 414px) {
+            html {
+                font-size: 21px !important;
+            }
+        }
+        
+        @media only screen and (min-width: 480px) {
+            html {
+                font-size: 25.6px !important;
+            }
+        } */
+    </style>
+
+    <script>
+        //设置 html根节点的字体大小
+        //此种方法在ipad下有问题
+        ;
+        (function(doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function() {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    if (clientWidth >= 750) {
+                        docEl.style.fontSize = '100px';
+                    } else {
+                        docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                    }
+                };
+
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+
+        //下面两种在大多数情况下都有问题
+        // ;(function(){
+        //     var W=750,w=parseInt(window.screen.width),
+        //             s=w/W,u=navigator.userAgent.toLowerCase(),
+        //             m='<meta name="viewport" content="width='+W+',';
+        //     if(/android (\d+\.\d+)/.test(u)){
+        //         if(parseFloat(RegExp.$1)>2.3)m+='minimum-scale='+s+',maximum-scale='+s+',';
+        //     }
+        //     else{
+        //         m+='user-scalable=no,';
+        //     }
+        //     m+='target-densitydpi=device-dpi">';document.write(m);
+        // }());
+
+        // var deviceWidth = document.documentElement.clientWidth;
+        // if(deviceWidth > 750) deviceWidth = 750;
+        // document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+    <!-- built files will be auto injected -->
+</body>
+
+</html>

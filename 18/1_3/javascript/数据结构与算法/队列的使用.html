@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>封装的队列对象的使用</title>
+</head>
+<script src="./js/queue.js"></script>
+<script src="./js/priorityQueue.js"></script>
+
+<body>
+    <script>
+        var queue = new Queue();
+
+        console.log(queue);
+
+        queue.enqueue('张三');
+        queue.enqueue('李四');
+
+        console.log(queue.size()); //2
+        console.log(queue.front()); //张三
+        console.log(queue.isEmpty()); //false
+        queue.dequeue();
+        queue.print(); //李四
+        queue.clear();
+        console.log(queue.size()); //0
+
+
+        /**
+         * 击鼓传花游戏
+         */
+        function hotPotato(nameList, num) {
+            var queue = new Queue(),
+                eliminated = '';
+
+            nameList.forEach(function(n) {
+                queue.enqueue(n);
+            });
+
+            while (queue.size() > 1) {
+                for (var i = 0; i < num; i++) {
+                    queue.enqueue(queue.dequeue());
+                }
+                eliminated = queue.dequeue();
+                console.log(eliminated + '在游戏中被淘汰。');
+            }
+            return queue.dequeue();
+        }
+
+        list = ['Jack', 'Lucy', 'Lisa', 'Bob', 'Nicholas'];
+        console.log(hotPotato(list, 7));
+
+
+        var priorityQ = new PriorityQueue();
+
+        priorityQ.enqueue('赵六', 6);
+        priorityQ.enqueue('张三', 3);
+        priorityQ.enqueue('王五', 5);
+        priorityQ.enqueue('吴三', 3);
+        priorityQ.enqueue('唐二', 2);
+        priorityQ.enqueue('李四', 4);
+
+        priorityQ.print();
+        //  姓名：唐二---优先级：2
+        //  姓名：吴三---优先级：3
+        //  姓名：张三---优先级：3
+        //  姓名：李四---优先级：4
+        //  姓名：王五---优先级：5
+        //  姓名：赵六---优先级：6
+
+        priorityQ.dequeue();
+
+        priorityQ.print();
+        //  姓名：吴三---优先级：3
+        //  姓名：张三---优先级：3
+        //  姓名：李四---优先级：4
+        //  姓名：王五---优先级：5
+        //  姓名：赵六---优先级：6
+
+        console.log(priorityQ.size()); //5
+        console.log(priorityQ.front()); //QueueElement {element: "吴三", priority: 3}
+        console.log(priorityQ.isEmpty()); //false
+    </script>
+</body>
+
+</html>

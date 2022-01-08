@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>登录</title>
+</head>
+<body>
+	<% include header.html %>
+	    <div class="container-fluid">
+	        <div class="row-fluid">
+	        <form class="span12" action="home" method="post">
+	            <fieldset>
+	                <legend>请输入</legend>
+	            <p>
+	                <span>用户名:</span>
+	                <br>
+	                <input id="user" name="user" type="text">
+	            </p>
+	            <p>
+	                <span>密码:</span>
+	                <br>
+	                <input id="password" name="password" type="password">
+	            </p>
+	            <p><input type="submit" value="登陆" class="btn btn-danger"></p>
+	            </fieldset>
+	        </form>
+	        </div>
+	    </div>
+	<% include footer.html %>
+</body>
+</html>

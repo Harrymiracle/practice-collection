@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>列表渲染</title>
+	<script src="../../js/vue.js"></script>
+</head>
+<body>
+	<!-- 基本用法 -->
+	<div id="example-1">
+		<li v-for="(item, index) in items">
+			{{parentMessage}} - {{index}} - {{item.message}}
+		</li>
+	</div>
+
+	<!-- 对象迭代 -->
+	<ul id="example-2">
+		<li v-for="(value,key,index) in object">
+			{{index}} - {{key}}: {{value}}
+		</li>
+	</ul>
+
+	<!-- 整数迭代 -->
+	<div id="example-3">
+		<span style="padding:0 1px;" v-for="n in count">{{n}}</span>
+	</div>
+
+	<!-- 显示过滤/排序结果 -->
+	<div id="example-4">			<!-- 计算属性得到的是一个静态结果，可以直接迭代 -->
+		<span style="padding:0 1px;" v-for="n in evennumber">{{n}}</span>	
+	</div>
+	<div id="example-5">			<!-- 方法得到的是一个行为过程，需要执行方能得到结果，因此需调用 -->
+		<span style="padding:0 1px;" v-for="n in even(numbers)">{{n}}</span>
+	</div>
+
+
+
+	<script>
+		var example1 = new Vue({
+			el: '#example-1',
+			data: {
+				parentMessage: 'parent',
+				items: [
+					{message: 'Foo' },
+      				{message: 'Bar' }
+				]
+			}
+		});
+
+		var example2 = new Vue({
+			el: '#example-2',
+			data: {
+				object: {
+					firstName: 'Jhon',
+					lastName: 'Done',
+					age: '28',
+					sex: 'male' 
+				}
+			}
+		});
+
+		var example3 = new Vue({
+			el: '#example-3',
+			data: {
+				count: 34
+			}
+		});
+
+		var example4 = new Vue({
+			el: '#example-4',
+			data: {
+				numbers: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+			},
+			computed: {
+				evennumber: function(){
+					return this.numbers.filter(function(number){		//数组的filter方法
+						return number%2 === 0;
+					});
+				}
+			} 
+		});
+
+		var example5 = new Vue({
+			el: '#example-5',
+			data: {
+				numbers: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+			},
+			methods: {
+				even: function(numbers){
+					return numbers.filter(function(number){		//可以用this.numbers，上面一行的function(numbers)就不用传递参数
+						return number%2 === 0;
+					})
+				}
+			}
+		});
+	</script>
+</body>
+</html>

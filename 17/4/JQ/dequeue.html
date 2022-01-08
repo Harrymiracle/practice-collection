@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dequeue</title>
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<style>
+	  div { 
+	  	width:50px; height:50px; 
+	  	margin:3px; 
+	  	position:absolute;
+        left:10px; top:30px; 
+        background-color:yellow;
+      }
+	  div.red { background-color:red; }
+	</style>
+</head>
+<body>
+	<button>Start</button>
+  	<div></div>
+
+  	<script>
+  	// dequeue()从队列最前端移除一个队列函数，并执行他。
+  	  $("button").click(function () {
+	      $("div").animate({left:'+=200px'}, 2000);
+	      $("div").animate({top:'0px'}, 600);
+	      $("div").queue(function () {
+	        $(this).toggleClass("red");
+	        $(this).dequeue();
+          });
+        $("div").animate({left:'10px', top:'30px'}, 700);
+  	  });
+  	</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue</title>
+	<style>
+		.active{
+			width: 200px;
+			height: 100px;
+			background: green;
+		}
+		.error{border: 5px solid red;}
+
+		.active2{
+			width: 200px;
+			height: 100px;
+			background: blue;
+			margin-top: 10px;
+		}
+		.hasError2{border: 5px solid violet;}
+	</style>
+	<script src="js/vue.min.js"></script>
+</head>
+<body>
+	<!-- 这里是我们的view部分 -->
+	<div id="app1" v-bind:class="{active:isActive, error:hasError}"></div>
+
+	<div id="app2" v-bind:class="hasStyle"></div>
+
+	<div id="app3">
+		<input type="checkbox" id="A" v-model="checked">
+		<label for="A">{{checked}}</label>
+	</div>
+	<br />
+
+	<div id="app4">
+		<input type="checkbox" id="A4" value="Jack" v-model="checkname">
+		<label for="A4">Jack</label>
+		<input type="checkbox" id="B4" value="Jhon" v-model="checkname">
+		<label for="B4">Jhon</label>
+		<input type="checkbox" id="C4" value="Mike" v-model="checkname">
+		<label for="C4">Mike</label>
+		<!-- 有value值时，checkname是关联到value值的 -->
+		<p>checked names: {{ checkname }}</p>
+	</div>
+
+	<div id="app5">
+		<input type="radio" id="A5" value="One" v-model="picked">
+		<label for="A5">Jack</label>
+		<input type="radio" id="B5" value="Two" v-model="picked">
+		<label for="B5">Jhon</label>
+		<input type="radio" id="C5" value="Three" v-model="picked">
+		<label for="C5">Mike</label>
+		<!-- 有value值时，checkname是关联到value值的 -->
+		<p>Picked value: {{ picked }}</p>
+	</div>
+
+	<div id="app6">
+		<!-- 可以在控制台中查看v-show为false值的也被渲染了，只是他的值被设置为display:none -->
+        <h1>Hello, Vue.js!</h1>
+        <h1 v-show="yes">Yes!</h1>
+        <h1 v-show="no">No!</h1>
+        <h1 v-show="age >= 25">Age: {{ age }}</h1>
+        <h1 v-show="name.indexOf('jack') >= 0">Name: {{ name }}</h1>
+    </div>
+
+
+	<script>
+	//1、
+		var vm1 = new Vue({   //创建的一个vue的实例，它连view和model部分
+			el: "#app1",
+			data: {   	//这里是我们的Model部分
+				isActive: true,
+				hasError: false
+			}
+		})
+
+	//2、
+		var vm2 = new Vue({
+			el: "#app2",
+			data: {
+				hasStyle: {
+					active2: true,
+					hasError2: true
+				}
+			}
+		})
+
+	//3、
+		var vm3 = new Vue({
+			el: "#app3",
+			data: {
+				checked: false
+			}
+		})
+
+	//4、
+		var vm4 = new Vue({
+			el: "#app4",
+			data: {
+				checkname: []
+			}
+		})
+
+	//5、
+		var vm5 = new Vue({
+			el: "#app5",
+			data: {
+				picked: " "
+			}
+		})
+
+	//6、
+		var vm6 = new Vue({
+			el: "#app6",
+			data: {
+				"yes": true,
+				"no": false,
+				"age": 28,
+				"name": "keepfool"
+			}
+		})
+	</script>
+</body>
+</html>

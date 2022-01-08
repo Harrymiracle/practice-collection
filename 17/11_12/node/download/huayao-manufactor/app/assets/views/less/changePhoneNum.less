@@ -1,0 +1,136 @@
+@import "../../commoncss/z.less";
+@import "../../commoncss/common.less";
+@color-y: #009f78; //绿色字体
+@color-b: #4586f7; //蓝色字体
+@background: #f0f0f0; //整体灰色背景
+@bgwhite: #fff; //白色背景
+@bggreen: #37B698; //绿色背景
+@border-color: #d6d6d6;
+@font-color-title: #656565; //标题字体颜色
+@font-color-1: #646464; //内容第二明显字体颜色
+@font-color-2: #a6a6a6; //内容最淡字体颜色
+.regis {
+    .maxBody(100%, auto);
+    margin-top: 5rem;
+    .box {
+        .maxBody(95%, auto);
+        margin: auto;
+        form {
+            fieldset {
+                .maxBody(100%, auto);
+                border: none;
+                padding: 0;
+                margin: 0;
+                .am-form-group {
+                    .maxBody(100%, 5rem);
+                    .pos(r);
+                    margin: 0;
+                    padding: 0;
+                    &:nth-child(1) {
+                        overflow: hidden;
+                        border-radius: 5px 5px 0 0;
+                    }
+                    &:nth-child(2) {
+                        overflow: hidden;
+                        border-radius: 0 0 5px 5px;
+                    }
+                    label {
+                        .font-m();
+                        .maxBody(33%, auto);
+                        color: @font-color-1;
+                        font-size: 1.4rem;
+                        line-height: 5rem;
+                        float: left;
+                        position: absolute;
+                        padding-left: 3rem;
+                        z-index: 10;
+                    }
+                    img {
+                        .maxBody(auto, 2rem);
+                        .fl();
+                        .abs();
+                        z-index: 100;
+                        left: 1rem;
+                        top: 0;
+                        bottom: 0;
+                        margin: auto;
+                    }
+                    input {
+                        .maxBody(95%, 5rem);
+                        .abs();
+                        outline: none;
+                        padding-left: 8rem;
+                        border: 0;
+                        border-bottom: 1px solid #ddd;
+                        margin-left: 1rem;
+                    }
+                    button {
+                        .font-m();
+                        .d-b();
+                        .maxBody(27%, 3rem);
+                        .pos(a);
+                        background: @bggreen;
+                        color: #fff;
+                        right: 1rem;
+                        top: 0;
+                        bottom: 0;
+                        margin: auto;
+                        border: 0;
+                        border-radius: 4px;
+                    }
+                }
+                padding-bottom:20px;
+                background:#fff;
+            }
+            .submit {
+                position: absolute;
+                bottom: -8rem;
+                width: 100%;
+                left: 0;
+                a {
+                    .maxBody(90%, 3rem);
+                    .d-b();
+                    .font-l();
+                    .text-c();
+                    line-height: 3rem;
+                    color: #fff;
+                    background: @bggreen;
+                    margin: 2rem auto 1.7rem auto;
+                    border-radius: 5px;
+                    border: 0;
+                }
+                a:hover,
+                a:visited {
+                    background: @bggreen;
+                    border: 0;
+                    text-decoration: none;
+                }
+            }
+            .login_radio {
+                .maxBody(90%, auto);
+                margin: 1rem auto;
+                .d-b();
+                input {
+                    display: none;
+                }
+                label {
+                    .font-s();
+                    cursor: pointer;
+                    background: url(../images/login/radio_checked2.png) no-repeat left top;
+                    background-size: auto 100%;
+                    padding-left: 28px;
+                    font-weight: normal;
+                    color: @font-color-1;
+                    span {
+                        color: @bggreen;
+                    }
+                }
+                label.checked {
+                    background: url(../images/login/radio2.png) no-repeat left top;
+                    background-size: auto 100%;
+                    padding-left: 28px;
+                }
+            }
+        }
+    }
+}

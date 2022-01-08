@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>scrollTest</title>
+	<style>
+		html, body{margin: 0;padding: 0;}
+		ul{list-style: none;}
+		#container{width: 100%; height: 100%;position: relative;}
+		header{width: 100%; height: 160px; background: #333; opacity: 0.9; color: white; font-size: 40px; text-align: center; line-height: 160px;margin-bottom: 100px;}
+		#btn{width: 170px;height: 50px;font-size: 30px;color: white;background: #888;border:none;border-radius: 10px;}
+		article{width: 100%;height: 100%;background:rgba(0,0,0,0.3);position: fixed;top: 160px;left: 0; z-index: 100;}
+		article ul li{height:80px;font-size: 60px;font-weight: bold;}
+		.hide{display: none;}
+
+	</style>
+	<script src="../../js/jquery-2.2.3.min.js"></script>
+</head>
+<body>
+	<div id="container">
+		<header>我是header的内容
+			<button id="btn">筛选</button>
+		</header>
+		<section>
+			<ul>
+				<li><img src="../../images/11.jpg" alt="图片"></li><li><img src="../../images/11.jpg" alt="图片"></li><li><img src="../../images/11.jpg" alt="图片"></li><li><img src="../../images/11.jpg" alt="图片"></li>
+				<li><img src="../../images/11.jpg" alt="图片"></li><li><img src="../../images/11.jpg" alt="图片"></li><li><img src="../../images/11.jpg" alt="图片"></li><li><img src="../../images/11.jpg" alt="图片"></li><li><img src="../../images/11.jpg" alt="图片"></li><li><img src="../../images/11.jpg" alt="图片"></li><li><img src="../../images/11.jpg" alt="图片"></li><li><img src="../../images/11.jpg" alt="图片"></li><li><img src="../../images/11.jpg" alt="图片"></li><li><img src="../../images/11.jpg" alt="图片"></li><li><img src="../../images/11.jpg" alt="图片"></li><li><img src="../../images/11.jpg" alt="图片"></li>
+			</ul>
+		</section>
+		<article class="hide">
+			<ul>
+				<li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li>
+			</ul>
+		</article>
+	</div>
+
+	<script>
+
+		$(function(){
+			$("#btn").click(function(e){	
+				var headerHeight = $("header").height();
+				console.log(headerHeight);
+				var scrolled = $(document).scrollTop();	
+				console.log(scrolled);
+				$("article").show(30).css({"top": headerHeight - scrolled});
+				console.log($("article").css("top"));	
+				//return false;
+				e.stopPropagation();
+			});
+
+			$("header").click(function(){
+				$("article").hide(10);
+			});
+			
+			// var isBotton;
+			$(window).scroll(function () {
+		        //加1,为了解决IOS超过一屏出现的少1像素的BUG
+		        if (($(window).scrollTop() + $(window).height() + 1) >= $(document).height()) {
+		            isBotton = true;
+		        }
+		        if($("article").css("display") == "none"){ return false;};
+		        $("article").animate({"top":0});
+	    	});
+		});
+		
+	</script>
+</body>
+</html>

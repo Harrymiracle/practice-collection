@@ -1,0 +1,477 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <link rel='shortcut icon' href='https://www.3ttech.cn/res/tpl/default/img/logo-white.png' />
+
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto;
+            grid-gap: 5px;
+            background-color: #ffffff;
+            padding: 5px;
+        }
+
+        .grid-container>div {
+            background-color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 5px 0;
+            font-size: 10px;
+        }
+
+        .grid-container-video {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            grid-gap: 5px;
+            background-color: #ffffff;
+            padding: 5px;
+        }
+
+        .grid-container-video>video {
+            background-color: #000000;
+            text-align: center;
+            padding: 5px 0;
+        }
+
+        .grid-container-video>div {
+            background-color: #ffffff;
+            text-align: left;
+            padding: 5px 0;
+            font-size: 10px;
+        }
+
+		video {
+			background-image: url(https://www.3ttech.cn/res/tpl/default/img/logo-white.png);
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+    </style>
+</head>
+
+<body>
+	<div id='tip'>
+		<table>
+			<tr>
+				<td>
+					<p id = "sysVersion"></p>
+				</td>
+			</tr>
+			<tr></tr>
+		</table>
+	</div>
+    <div id='userInfo'>
+		<table>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td>AppID : </td>
+							<td>
+								<select id="appID">
+									<option value="test900572e02867fab8131651339518">test900572e02867fab8131651339518</option>
+									<option value="a967ac491e3acf92eed5e1b5ba641ab7" selected>a967ac491e3acf92eed5e1b5ba641ab7</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>房间ID : </td>
+							<td><input type="text" value="666777000" id="chanid" /></td>
+						</tr>
+						<tr>
+							<td>用户ID : </td>
+							<td><input type="text" value="555888" id="userid" /></td>
+						</tr>
+						<tr>
+							<td>用户角色 : </td>
+							<td>
+								<select id="userRole">
+									<option value=1>主播</option>
+									<option value=2 selected>副播</option>
+									<option value=3>观众</option>
+								</select>
+							</td>
+						</tr>
+						<!--
+						<tr>
+							<td>
+								<label for="audioCodec">audioCodec : </label>
+							</td>
+							<td>
+								<select id="audioCodec">
+									<option value="isac" selected>isac</option>
+									<option value="opus">opus</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label for="audioProfile">AudioProfile : </label>
+							</td>
+							<td>
+								<select id="audioProfile">
+									<option value="default" selected>default</option>
+									<option value="isac32">isac32</option>
+									<option value="speech_low_quality">speech_low_quality(24kbps)</option>
+									<option value="speech_standard">speech_standard(24kbps)</option>
+									<option value="music_standard">music_standard(40kbps)</option>
+									<option value="standard_stereo">standard_stereo(64kbps)</option>
+									<option value="high_quality">high_quality(128kbps)</option>
+									<option value="high_quality_stereo">high_quality_stereo(192kbps)</option>
+								</select>
+							</td>
+						</tr>
+						-->
+						<tr>
+							<td></td>
+						</tr>
+						<tr>
+							<td>CDN推流 : </td>
+							<td>
+								<input type="text" value="" id="rtmpUrl" />
+							</td>
+						</tr>
+						<!--
+						<tr>
+							<td> - </td>
+							<td>
+								<input type="checkbox" id="pureAudio">只推音频</input>
+								<button id="setRtmpUrl">切换CDN</button>
+								<button id="setLiveMixerLayout">推流视频合屏</button>
+							</td>
+							<td>
+								注 -- 如果要设置推流地址，要确保 [用户角色] 为 [主播]
+							</td>
+						</tr>
+						-->
+						<tr>
+							<td></td>
+						</tr>
+						<tr><td></td></tr>
+						<tr><td></td></tr>
+						<tr>
+							
+						</tr>
+					</table>
+				</td>
+				<td>
+					<font color="green" style="font-size:12px">
+						<i>
+							&nbsp;&nbsp;正确修改参数<br/>
+							&nbsp;&nbsp;-- 防止与其他体验者冲突，请 [房间ID]、[用户ID]，均为数字型<br/>
+							&nbsp;&nbsp;如下注意事项：<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注 -- 同一个房间内只允许有一个[主播]；多个[副播]、[观众]<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注 -- [主播]、[副播] 可以推流/拉流；[观众] 只能拉流；<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注 -- CDN推流地址 仅 主播 时有效
+						</i>
+					</font>
+				</td>
+			</tr>
+			<tr>
+				<td><font color="green"><b>首先请登录 : </b></font></td>
+				<td>
+					<table>
+						<!--
+						<tr>
+							<input type="checkbox" id="submitLog" checked >提交日志</input>
+						</tr>
+						-->
+						<tr>
+							<td></td>
+							<td>
+								<button id="joinChan"><font color="red">加入房间</font></button>
+							</td>
+							<td>
+								<button id="leaveChan">离开房间</button>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td> - </td>
+				<td>
+					<table>
+						<tr>
+							<td></td>
+							<td>登录状态 : </td>
+							<td><p id = "loginStatus">未登录</p></td>
+							<td><p id = "loginInfo"> - </p></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="info" style="display: block; margin: 10px;">
+		<table>
+			<td>
+				<textarea id="text_info" type="text" rows="4" cols="90" readonly="readonly"></textarea>
+			</td>
+			<!--
+			<td>
+				<video id="mediaSource" playsinline controls muted style="height: 300px; width: 300px; background: black; position: relative; display: inline-block;">
+					<source src="./res/chrome.webm" type="video/webm"/>
+					<source src="./res/video/chrome.mp4" type="video/mp4"/>
+					<p>This browser does not support the video element.</p>
+				</video>	
+			</td>
+			-->
+			<!--
+			<td>
+				<textarea id="stream_net_info" type="text" rows="12" cols="50" readonly="readonly"></textarea>
+			</td>
+			-->
+		</table>
+    </div>
+	<HR style="FILTER:alpha(opacity=0,finishopacity=100,style=1)" width="90%"color=#987cb9 SIZE=3>
+	<div>
+		<table>
+			<tr>
+				<table>
+					<!--
+					<tr>
+						<td> - </td>
+						<td>
+							<label for="cameraDev">摄像头 : </label>
+							<select id="cameraDev"></select>
+						</td>
+						<td> - </td>
+						<td>
+							<label for="micDev">MIC : </label>
+							<select id="micDev"></select>
+						</td>
+						<td> - </td>
+						<td>
+							<label for="speakerDev">Speaker : </label>
+							<select id="speakerDev"></select>
+						</td>
+					</tr>
+					-->
+					<!--
+					<tr>
+						<td> - </td>
+						<td>
+							<label for="audioProfile">AudioProfile : </label>
+							<select id="audioProfile">
+								<option value="default" selected>default</option>
+								<option value="isac32">isac32</option>
+								<option value="speech_low_quality">speech_low_quality(24kbps)</option>
+								<option value="speech_standard">speech_standard(24kbps)</option>
+								<option value="music_standard">music_standard(40kbps)</option>
+								<option value="standard_stereo">standard_stereo(64kbps)</option>
+								<option value="high_quality">high_quality(128kbps)</option>
+								<option value="high_quality_stereo">high_quality_stereo(192kbps)</option>
+							</select>
+						</td>
+					</tr>
+					-->
+				</table>
+			</tr>
+		</table>
+	</div>
+	<!--
+	<HR style="FILTER:alpha(opacity=0,finishopacity=100,style=1)" width="90%"color=#987cb9 SIZE=3>
+		-->
+	<div>
+		<table>
+			<!--
+			<tr>
+				<td> - </td>
+				<td>
+					<table>
+						<td>
+							<div>
+								<span>视频分辨率：</span>
+								<select id="resolution">
+									<option value="240p">240p</option>
+									<option value="360p">360p</option>
+									<option value="480p">480p</option>
+									<option value="720p">720p</option>
+									<option value="1080p">1080p</option>
+								</select>
+							</div>
+						</td>
+						<td>
+							<div>
+								<span>视频码率：</span>
+								<td><input type="text" value="400" id="videoBitrate" /> kbps</td>
+							</div>
+						</td>
+					</table>
+				</td>
+			</tr>
+			-->
+			<tr>
+				<td>
+					场景1 : <br/>摄像头流 -- 
+				</td>
+				<td>
+					<table>
+						<tr>
+							<!--
+							<td>
+								<button id="previewLocal">本地视频预览</button>
+							</td>
+							-->
+							<td>
+								<button id="publishStream">发布 音视频流</button>
+							</td>
+							<td>
+								<button id="unpublishStream">取消</button>
+							</td>
+							<td> - </td>
+							<td>状态 : </td>
+							<td><p id = "publishStreamStatus">未推流</p></td>
+						</tr>
+						<!--
+						<tr>
+							<td>
+								<button id="ctrlCamera">stopCamera</button>
+							</td>
+							<td> - </td>
+							<td>
+								<button id="pauseVideo">pauseVideo</button>
+							</td>
+							<td>
+								<button id="disableVideo">disableVideo</button>
+							</td>
+							<td>
+								<button id="pauseAudio">pauseAudio</button>
+							</td>
+							<td>
+								<button id="disableAudio">disableAudio</button>
+							</td>
+							<td>
+								<input id="setInputVolume" type="range" min="0" max="1.5" step="0.01" value="1"/>
+							</td>
+						</tr>
+						-->
+					</table>
+					<!--
+					<table>
+						<tr>
+							<td>
+								<button id="refreshDevices">获取设备</button>
+							</td>
+							<td>
+								<label for="switchCamera">切换摄像头 : </label>
+							</td>
+							<td>
+								<select id="cameraDev"></select>
+							</td>
+						</tr>
+						<tr>
+							<td> - </td>
+							<td>
+								<label for="switchMic">切换Mic : </label>
+							</td>
+							<td>
+								<select id="micDev"></select>
+							</td>
+							<td>
+								<input type="checkbox" id="micPlayback">micPlayback</input>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								-
+							</td>
+							<td>
+								<label for="switchSpeaker">切换Speaker : </label>
+							</td>
+							<td>
+								<select id="speakerDev"></select>
+							</td>
+							<td>MIC音量调节 : </td>
+							<td>
+								<input id="micVolumeSlider" type="range" min="0" max="15" value="10"/>
+							</td>
+							<td>
+								<span id="micVolumeSliderValue">1</span>
+							</td>
+						</tr>
+					</table>
+					-->
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="video" class="grid-container-video"></div>
+
+	<HR style="FILTER:alpha(opacity=0,finishopacity=100,style=1)" width="90%"color=#000000 SIZE=1>
+	<div>
+		<table>
+			<tr>
+				<td>
+					场景2 : <br/>屏幕流 -- 
+				</td>
+				<td></td>
+				<td>
+					<table>
+						<tr>
+							<td> - </td>
+							<td>
+								<button id="publishScreen">发布屏幕流</button>
+							</td>
+							<td>
+								<button id="unpublishScreen">取消发布屏幕流</button>
+							</td>
+							<td> - </td>
+							<td>状态 : </td>
+							<td><p id = "publishScreenStatus">未推流</p></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+        </table>
+	</div>
+	<div id="screen" class="grid-container-video"></div>
+	<HR style="FILTER:alpha(opacity=0,finishopacity=100,style=1)" width="90%"color=#000000 SIZE=1>
+
+	<!--
+	<div>
+		<table>
+			<tr>
+				<td>
+					场景3 : 媒体文件流 -- 
+				</td>
+				<td></td>
+				<td>
+					<table>
+						<tr>
+							<td> - </td>
+							<td>
+								<button id="publishMediaSource">发布媒体流</button>
+							</td>
+							<td>
+								<button id="unpublishMediaSource">取消发布媒体流</button>
+							</td>
+							<td> - </td>
+							<td>状态 : </td>
+							<td><p id = "publishMediaSourceStatus">未推流</p></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<video id="mediaSource" playsinline controls muted style="height: 300px; width: 300px; background: black; position: relative; display: inline-block;">
+		<source src="./res/chrome.webm" type="video/webm"/>
+		<source src="./res/video/chrome.mp4" type="video/mp4"/>
+		<p>This browser does not support the video element.</p>
+	</video>
+	<HR style="FILTER:alpha(opacity=0,finishopacity=100,style=1)" width="95%"color=#987cb9 SIZE=3>
+	-->
+
+    <!-- <script src='https://stech.3ttech.cn/websdk/prod/tttwebsdk.js'></script> -->
+	<!-- <script type='text/javascript' src='./lib/tttwebsdk.js' charset="utf-8"></script> -->
+	<!-- <script src='./screen/getScreenId.js'></script> -->
+    <script type='text/javascript' src='./dist/websdkdemo-bundle.js' charset="utf-8"></script>
+</body>
+
+</html>

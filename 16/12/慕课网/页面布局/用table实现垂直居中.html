@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.wrap{
+			height: 300px;
+			background: pink;
+		}
+		div{
+			border:1px solid;
+		}
+
+		.test1{
+			border: 1px solid green;
+			height: 300px;
+			display: table-cell;	/*IE8以上及Chrome、Firefox*/
+			vertical-align: middle;	/*IE8以上及Chrome、Firefox*/
+		}
+		
+		.test2{
+			border: 1px solid blue;
+			height: 100px;
+		}
+		.test2 td{
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+<!-- 方法一比较累赘 -->
+	<table>
+		<tr>
+			<td class="wrap">
+				<div>
+					<p>看我是否可以居中。</p>
+				    <p>看我是否可以居中。</p>
+				    <p>看我是否可以居中。</p>
+				    <p>看我是否可以居中。</p>
+				    <p>看我是否可以居中。</p>
+				</div>
+			</td>
+		</tr>
+	</table>
+<!-- 方法二直接改包裹元素的属性为display:table-cell -->
+	<div class="test1">
+		<p>看我是否可以居中。</p>
+	    <p>看我是否可以居中。</p>
+	    <p>看我是否可以居中。</p>
+	    <p>看我是否可以居中。</p>
+	    <p>看我是否可以居中。</p>
+	</div>
+<!-- 测试table的居中属性 -->
+	<table class="test2">
+		<tr>
+			<td>1</td>
+			<td>12</td>
+			<td>123</td>
+		</tr>
+	</table>
+	
+</body>
+</html>

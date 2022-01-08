@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>非零环绕</title>
+</head>
+<body>
+  <canvas id="canvas" style="border:1px solid violet;margin:10px auto;">
+  	你的浏览器不支持canvas,请更换浏览器再试。
+  </canvas>
+
+  <script>
+    window.onload = function(){
+      var canvas = document.getElementById("canvas");
+      canvas.width = 800;
+  	  canvas.height = 600;
+      var context = canvas.getContext("2d");
+
+//非零环绕即从一个区域内取一个点，从这个点开始引一条射线，这条射线会和多边形的边有交点，多边形的边有不同的绘制方向，我们指定一种绘制方向的边和射线的交点为一，另一种的为负一，把所有的交点的正负一的值相加，若为零，则此点在的区域就在多边形的外面，否则 ，若不为零则在多边形的里面。
+      context.beginPath(); //设置绘制路径
+      context.arc(400,300,280,0,2*Math.PI); //默认是false,顺时针
+      context.arc(400,300,240,0,2*Math.PI,true); //true,逆时针
+      context.closePath();
+
+      context.fillStyle = "lightblue";//设置绘制状态
+      context.shadowColor = "gray";
+      context.shadowOffsetX = 10;
+      context.shadowOffsetY =10;
+      context.shadowBlur = 8;
+
+      context.fill();//绘制
+
+    }
+  </script>
+</body>
+</html>

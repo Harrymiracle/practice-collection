@@ -1,0 +1,117 @@
+@import "../../commoncss/common";
+
+body{
+  background: none;
+}
+.head{
+  background-color: #66cdb4;
+  .bgi("../images/person/head-background.png");
+  background-size: 100% 100%;
+  header{
+    background: none;
+    position: static;
+  }
+  .detail{
+    height: 13rem;
+    padding: 0 1rem;
+    color: #fff;
+    .am-u-sm-4{
+      height: 7.8rem;
+      margin-top: 1rem;
+      .img{
+        width: 7.8rem;
+        height: 7.8rem;
+        border: solid #fff 0.35rem;
+        .back-f();
+        border-radius: 100%;
+        overflow: hidden;
+        img{
+          width: 100%;
+        }
+      }
+    }
+    .am-u-sm-8{
+      margin-top: 1.2rem;
+      height: 7.8rem;
+      .bg-m("../images/person/icon-goto02.png",@x:right,@y:center,@repeat:no-repeat);
+      background-size: 1rem;
+      .username{
+        margin-top: 1rem;
+        height: 2.8rem;
+        font-size: 1.7rem;
+        .txt-overflowed();
+        .position{
+          font-size: 1.2rem;
+        }
+      }
+      .company{
+        .brand{
+          margin-right: 0.5rem;
+          img{
+            width: 1.6rem;
+          }
+        }
+        .start{
+          img{
+            width: 1.4rem;
+          }
+        }
+      }
+    }
+  }
+}
+.person-info{
+  padding-top: 0.8rem;
+  .tab{
+    height: 6.5rem;
+    .back-f();
+    .left{
+      border-right: solid #b5b5b5 1px;
+    }
+    .am-u-sm-6{
+      margin-top: 1.6rem;
+      .am-u-sm-4{
+        padding: 0 0.8rem;
+      }
+      .am-u-sm-8{
+        padding: 0;
+        p{
+          font-size: 1.5rem;
+          line-height: 1.7rem;
+          color: #484848;
+        }
+        .p2{
+          font-size: 1.2rem;
+        }
+      }
+      img{
+        height: 3rem;
+      }
+    }
+  }
+  .person-list{
+    margin-top: 0.8rem;
+    li{
+      .l-h(4rem);
+      color: #656565;
+      font-size: 1.6rem;
+      padding: 0 1rem 0 2rem;
+      border-bottom: solid #c9c9c9 1px;
+      .bg-m("../images/person/icon-goto03.png",@x:right 1rem,@y:center,@repeat:no-repeat);
+      background-size: 0.5rem;
+      background-color: #fff;
+      img{
+        width: 1.8rem;
+      }
+      span{
+        padding-left: 1.2rem;
+      }
+      .right{
+        float: right;
+        color: #797979;
+        font-size: 1.2rem;
+        padding-right: 1rem;
+      }
+    }
+  }
+}

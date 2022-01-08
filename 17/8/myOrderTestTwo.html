@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <title>我的订单</title>
+    <script>
+        var deviceWidth = document.documentElement.clientWidth;
+        if(deviceWidth > 750) deviceWidth = 750;
+        document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+    </script>
+    <style>
+        html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input, textarea, th, td, select {
+            margin: 0;
+            padding: 0;
+        }
+        a{color:#000;text-decoration: none;}
+        em{font-style: normal;}
+        .nav_wrap{position:relative;z-index:128;background-color:#fff;border-bottom: 1px solid #ccc;}
+        .topnav_list{position:relative;overflow-x:scroll;padding:0 .16rem;overflow-y:hidden;color: #606060;font-size:0;line-height:.8rem;white-space:nowrap;}
+        .topnav_list::-webkit-scrollbar{display:none}   /* 隐藏滑动条*/
+        .topnav_list::before{content:"";display:block;position:fixed;top:0;left:0;height:.8rem;width:.8rem;z-index:100;background:-webkit-linear-gradient(left,#f9f9f9 0,rgba(255,51,51,0) 100%);background:linear-gradient(to right,#f9f9f9 0,rgba(255,51,51,0) 100%);}
+        .topnav_list::after{content:"";display:block;position:fixed;top:0;right:0;height:.8rem;width:.8rem;z-index:100;background:-webkit-linear-gradient(right,#f9f9f9 0,rgba(255,51,51,0) 100%);background:linear-gradient(to left,#f9f9f9 0,rgba(255,51,51,0) 100%);}
+        
+        .topnav_item{position:relative;display:inline-block;padding:.1rem .27rem;font-size:.32rem;text-align:center;opacity:.75;}
+        .current{border-bottom: 2px solid #d80c18;color: #d80c18;}
+        .item-box{padding:0 0.17rem;font-size: 0.32rem;}
+        .item-box:after{content:""; clear:both; display:block; overflow:hidden; height:0; visibility:hidden;}
+        .list_head{padding: 0.22rem 0;border-bottom: 1px solid #ccc;}
+        .list_head span{color:#d80c18;}
+        .list_head a{display: inline-block;float: right;font-size: 0.22rem;}
+        .list_body{padding: 0.15rem;}
+        .list_detail{padding-left: 2.1rem;position: relative;}
+        .list_detail:after{content:""; clear:both; display:block; overflow:hidden; height:0; visibility:hidden;}
+        .list_detail img{width: 2rem;height: 2rem;position: absolute;left: 0;}
+    </style>
+
+</head>
+<body>
+<div id="wrap">
+    <div class="nav_wrap">
+        <div class="topnav_list">
+            <div class="topnav_item">
+                <span>全部</span>
+            </div>
+            <div class="topnav_item current">
+                <span>待付款</span>
+            </div>
+            <div class="topnav_item">
+                <span>待发货</span>
+            </div>
+            <div class="topnav_item">
+                <span>待收货</span>
+            </div>
+            <div class="topnav_item">
+                <span>待评价</span>
+            </div>
+            <div class="topnav_item">
+                <span>已评价</span>
+            </div>
+            <div class="topnav_item">
+                <span>已取消</span>
+            </div>
+        </div>
+    </div>
+    <div class="item-box">
+        <div class="item_list">
+            <div class="list_head">
+                <span>超时取消</span>
+                <a href="javascript:;">
+                    <em>下单时间:2017.07.26 17:00:00</em>
+                </a>
+            </div>
+            <div class="list_body">
+                <div class="list_detail">
+                    <img src="https://imagecs.quanyou.com.cn/group1/M00/00/14/rB4DMFkyWRyAewySAAw93rumu1s513.png.120x120.png" />
+                    <div>sddfghj</div>
+                </div>
+
+                <div class="totalPri">
+商品价格
+                </div>
+            </div>
+            <div class="list_bottom">
+底部按钮
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

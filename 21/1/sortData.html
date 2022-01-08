@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let listOne = [{ name: 'one' }, /*{ name: "two" }, */{ name: 'three' }, /*{ name: "four" },*/ { name: '1' }]
+        let listTwo = [{ name: 'three' }, { name: '1', }/*, { name: '2' }, { name: '3' }, { name: '4' }, { name: 'one' }, { name: 'two' }*/]
+
+        // 方法一
+        function RemoveSameItem(listOne, listTwo, key) {
+            let newList = []
+            loop: for (let itemOne of listOne) {
+                for (let itemTwo of listTwo) {
+                    if (itemOne[key] == itemTwo[key]) {
+                        continue loop
+                    }
+                }
+                newList.push(itemOne)
+            }
+            return newList.concat(listTwo)
+        }
+        let result = RemoveSameItem(listOne, listTwo, 'name')
+        console.log(result)
+
+        // 方法二
+        function RemoveSameItem2(listOne, listTwo, key) {
+            return [].concat(listOne, listTwo.filter(itemTwo => {
+                return !listOne.find(itemOne => itemOne[key] == itemTwo[key])
+            }))
+        }
+        let result2 = RemoveSameItem2(listOne, listTwo, 'name')
+        console.log(result2);
+
+        // 删除数组一在数组二中的值
+        // 方法一
+        function RemoveSameItem3(listOne, listTwo, key) {
+            return listOne.filter(n => {
+                return !listTwo.find(m => m[key] == n[key])
+            })
+        }
+        let result3 = RemoveSameItem3(listOne, listTwo, 'name')
+        console.log(result3)
+
+        // 方法二  (该方法有问题，暂时不看了)
+        function RemoveSameItem4(one, two, key) {
+            for (var i = 0, len = one.length-1; i < len; i++) {
+                for (var j = 0, l = two.length-1; j < l; j++) {
+                    console.log(i, j, one[i], two[j])
+                    if (one[i][key] == two[j][key]) {
+                        one.splice(i, 1);
+                        i--;
+                        break;
+                    }
+                }
+            }
+        }
+        RemoveSameItem4(listOne, listTwo, 'name')
+        console.log(listOne)
+
+
+    </script>
+</body>
+
+</html>

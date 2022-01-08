@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/demo5.css" />
+	</head>
+	<body>
+		<div id="app">
+			<div class="container">
+				<div class="form-group">
+					<label>Search</label>
+					<input type="text" v-model="searchQuery"/>
+				</div>
+			</div>
+			<div class="container">
+				<simple-grid :data-list="people" :columns="columns" :search-key="searchQuery"></simple-grid>
+			</div>
+		</div>
+		
+		<template id="simpleGrid">
+			<table>
+				<thead>
+					<tr>
+						<th v-for="col in columns">{{col.name | capitalize}}</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(index,entry) in dataList | filterBy searchKey">
+						<td v-for="col in columns">{{entry[col.name]}}</td>
+						<td class="text-center">
+							<button @click="deleteItem(index)">delete</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="container">
+				<button class="btn" @click="openNewItemDialog('Create new item')">Create</button>
+			</div>
+			<dialog-template :mode="mode" :fields='columns' :title="title" :item="item" @create-item="createItem"></dialog-template>
+		</template>
+		
+		<template id="dialogTemplate">
+			<di class="dialogs">
+				<div class="dialog" v-bind:class="{'dialog-active':show}">
+					<div class="dialog-content">
+						<header class="dialog-header">
+							<h1 class="dialog-title">{{title}}</h1>
+						</header>
+						<div class="form-group" v-for="field in fields">
+							<label>{{field.name}}</label>
+							<select v-if="field.dataSource" v-model="item[field.name]">
+								<option v-for="opt in field.dataSource" value="opt">{{opt}}</option>
+							</select>
+							<input type="text" v-else v-model="item[field.name]"/>
+						</div>
+						<footer class="dialog-footer">
+							<div class="form-group">
+								<label></label>
+								<button @click='save'>Save</button>
+								<button @click='close'>Close</button>
+							</div>
+						</footer>
+					</div>
+				</div>
+				<div class="dialog-overlay"></div>
+			</di>
+		</template>
+		
+		<script src="js/vue.js"></script>
+		<script>
+			Vue.component('simple-grid',{
+				template:'#simpleGrid',
+				data:function(){
+					return {
+						mode:0,
+						item:{},
+						title:''
+					}
+				},
+				props:['dataList','columns','searchKey'],
+				methods:{
+					deleteItem:function(index){
+						this.dataList.splice(index,1)
+					},
+					openNewItemDialog:function(title){
+						//对话框的标题
+						this.title = title
+						//mode=1表示新建模式
+						this.mode=1
+						//初始化this.item
+						this.item={}
+						//广播事件，showDialog是dialog-template组件的一个方法，传入参数true表示显示对话框
+						this.$broadcast('showDialog',true)
+					},
+					createItem:function(){
+						//将item追加到dataList中
+						this.dataList.push(this.item)
+						//广播事件，传入参数false表示隐藏对话框
+						this.$broadcast('showDialog',false)
+						//数据传输完后，重置item对象
+						this.item={}
+					},
+					deleteItem:function(index){
+						this.dataList.splice(index,1)
+					}
+				},
+				components:{
+					'dialog-template':{
+						template:'#dialogTemplate',
+						data:function(){
+							return {
+								//对话框默认是不显示的
+								show:false
+							}
+						},
+						/*
+			             * mode = 1是新增数据模式，mode = 2是修改数据模式
+			             * title表示对话框的标题内容
+			             * fields表示对话框要显示的数据字段数组
+			             * item是由simple-dialog传下来，用于绑定表单字段的
+			             */
+			            props:['mode','item','title','fields'],
+			            methods:{
+			            	close:function(){
+			            		this.show = false
+			            	},
+			            	save:function(){
+			            		//新建模式
+			            		if(this.mode === 1){
+			            			//使用$dispatch调用simple-grid的create-item方法
+			            			this.$dispatch('create-item')
+			            		}
+			            	}
+			            },
+			            events:{
+			            	//显示/隐藏对话框
+			            	'showDialog':function(show){
+			            		this.show = show
+			            	}
+			            }
+					}
+				}
+			})
+		
+			var demo5 = new Vue({
+				el:'#app',
+				data:{
+					searchQuery:'',
+					columns:[
+						{
+							name:'name',
+							isKey:true
+						},
+						{
+							name:'age'
+						},
+						{
+							name:'sex',
+							dataSource:['Male','Female']
+						}
+					],
+					people:[
+						{
+							name:'Jack',
+							age:30,
+							sex:'Male'
+						},
+						{
+							name:'Bill',
+							age:26,
+							sex:'Male'
+						},
+						{
+							name:'Tracy',
+							age:22,
+							sex:'Female'
+						},
+						{
+							name:'Chris',
+							age:36,
+							sex:'Male'
+						}
+					]
+				}	
+			})
+		</script>
+		
+	</body>
+</html>

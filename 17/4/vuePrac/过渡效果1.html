@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>过渡效果1</title>
+    <style></style>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id="demo1">
+        <button @click="show = !show">
+            Toggle
+        </button>
+        <transition name="fade">
+            <p v-if="show">Hello!</p>
+        </transition>
+    </div>
+
+
+    <script>
+        var demo1 = new Vue({
+            el: "#demo1",
+            data: {
+                show: true
+            }
+        })
+    </script>
+</body>
+</html>

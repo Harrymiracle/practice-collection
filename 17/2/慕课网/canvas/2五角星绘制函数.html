@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>五角星绘制</title>
+</head>
+<body>
+  <canvas id="canvas" style="border:1px solid black;margin:10px auto;">
+  	你的浏览器不支持canvas,请更换浏览器再试。
+  </canvas>
+
+  <script>
+  	window.onload = function(){
+  	  var canvas = document.getElementById("canvas");
+  	  canvas.width = 800;
+  	  canvas.height = 800;
+  	  var context = canvas.getContext("2d");
+
+  	  context.lineWidth = 10;
+  	  context.strokeStyle = "violet";
+  	  drawStar(context,117,300,400,400,5);
+  	}
+
+  //5个参数分别为上下文的绘图环境，大圆半径，小圆半径，x轴上的偏移，y轴上的偏移，旋转的角度
+  	function drawStar(cxt,r,R,x,y,rot){
+  	  rot = rot || 0; //旋转的角度参数
+  	  cxt.beginPath();	//开始一个绘图状态
+  	  for(var i = 0; i < 5; i++){	//循环分别画出大小圆的五个顶点
+    //Math.cos()的参数为用弧度表示的角度，具体角度可以画一个五角星，以中心为原点推理出各个顶点的角度
+  	  	cxt.lineTo(Math.cos((18 + i*72 - rot)*Math.PI/180)*R+x, -Math.sin((18 + i*72 - rot)*Math.PI/180)*R+y);	//绘图路径
+  	  	cxt.lineTo(Math.cos((54 + i*72 - rot)*Math.PI/180)*r+x, -Math.sin((54 + i*72 - rot)*Math.PI/180)*r+y);
+  	  }
+  	  cxt.closePath();	//结束一个绘图状态
+  	  cxt.stroke(); //绘制
+  	}
+  	
+
+  </script>
+</body>
+</html>

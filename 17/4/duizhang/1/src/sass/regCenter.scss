@@ -1,0 +1,299 @@
+@charset "utf-8";
+@import "../../node_modules/mixins-sass/src/mixins";
+@import "../mui/mixins.scss";
+
+$color-white:#fff;
+$color-blue:#2882e0;
+$color-gray:#e1e1e1;
+
+
+.mui-content{
+	background:#f0f0f0;
+	@include rem(font-size,32px);
+}
+/*注册中心*/
+    
+.reg_banner{
+	@include rem(margin-bottom,20px);
+	img{
+		width:100%;
+		@include rem(height,300px);
+		display:block;
+	}
+}
+.reg_banner_ad{
+	margin-bottom:1px;
+}
+.reg_info{
+@include rem(padding,0 20px);
+	background:$color-white;
+	border-top:1px solid #e0e0e0;
+	border-bottom:1px solid $color-gray;
+	@include rem(padding,0 20px);
+	input{
+		-webkit-appearance: none;
+	}
+	.reg_input{
+		width:100%;
+		border:1px solid $color-gray;
+		border-radius:3px;
+		@include rem(margin-top,27px);
+		@include rem(padding,0 17px);
+		@include rem(font-size,32px);
+		@include rem(line-height,32px);
+		@include rem(height,90px);
+	}
+	.reg_code{
+		position:relative;
+		@include rem(padding-right,226px);
+	}
+	.verify_code{
+		@extend .reg_input;
+		@include rem(width,206px);
+		color:$color-blue;
+		background:$color-white;
+		border-color:$color-blue;
+		position:absolute;
+		right:0;
+    	bottom:0; 
+	}
+	.verify_active{
+		color:#999;
+		border-color:#999;
+	}
+	.agreement{
+		@include rem(padding,45px 0 35px 0);
+		@include rem(font-size,28px);
+		.agree_check{
+			@include rem(width,30px);
+			@include rem(height,30px);
+			border:1px solid $color-gray;
+			display:inline-block;
+			@include rem(margin,0 10px 8px 0);
+			vertical-align: middle;
+		}
+		.agree_check.active{
+			background:url('../images/regCenter/agree_checked.jpg');
+			background-size:cover;
+			border-color:$color-blue;
+		}
+		.agree_link{
+			color:$color-blue;
+			@include rem(padding-left,12px);
+		}
+	}
+	.reg_btn{
+	    padding:0;	   
+	    border:0;
+	    color:$color-white;
+	    background:$color-blue;
+	    width:100%;
+		border-radius:3px;
+		@include rem(height,87px);
+		@include rem(line-height,87px);
+		@include rem(margin-bottom,30px);
+    }
+}
+.swipe{
+	@include rem(margin,0 0 20px);
+	.swipe-item a,.swipe-items-wrap .swipe-item a {
+		display:block;
+		width:100%;
+	    height:100%;
+	    background-position:center center;
+	    background-repeat:no-repeat;
+	    background-size:cover;
+	}
+}
+.swipe,.swipe-items-wrap {
+	height:7.5rem !important;
+}
+.reg_video{
+	background-color: #fff;
+	overflow: hidden;
+	.techn_video_content{
+		@include rem(margin,30px auto);
+		@include rem(width,710px);
+		@include rem(height,700px);
+		border:1px solid #000;
+		position:relative;
+		background:#f0f0f0;
+		.video-player,.video-js.vjs-custom-skin{
+			height: 100%;
+		}
+		.techn_video_temp{
+			@include rem(width,270px);
+			@include rem(height,100px);
+			background:url('../images/video_bg.png');
+			background-size:100% 100%;
+			position:absolute;
+			@include rem(top,270px);
+			@include rem(left,220px);
+		}
+	}
+}
+.reg_box{
+	@include rem(padding,0 20px);
+	border-bottom:2px solid #e1e1e1;
+	background:$color-white;
+}
+.list_box{
+	background-color: #f5f5f5;
+	padding: 0;
+}
+.box_tit{
+	@include rem(line-height,100px);
+	@include rem(font-size,32px);
+	border-bottom:1px solid #e1e1e1;
+	background-color: #fff;
+	color:#222;
+	font-weight:normal;
+	@include rem(padding,0 20px);
+	.box_tit_icon{
+		@include rem(width,44px);
+		@include rem(height,44px);
+		@include rem(margin,0 20px 8px 5px);
+		display:inline-block;
+		background-size:cover;
+		vertical-align: middle;
+	}
+	.fun_tit_icon{
+		background-image:url('../images/regCenter/video_icon.png');
+	}
+	.case_tit_icon{
+		background-image:url('../images/regCenter/case_icon.png');
+	}
+	.summ_tit_icon{
+		@include rem(width,45px);
+		@include rem(height,47px);
+		background-image:url('../images/regCenter/summary_icon.png');
+	}
+}
+.case_list{
+	@include rem(margin-bottom,112px);
+	@include rem(padding,0 20px);
+	background-color: #fff;
+	color:#222;
+	.case_list_li{
+		@include rem(height,100px);
+		@include rem(line-height,100px);
+		border-bottom:1px solid #ccc;
+		&:last-child{
+			border-bottom:none;
+		}
+		span{
+			width:35%;
+			display:inline-block;
+			text-align:center;
+			white-space:nowrap;
+		    text-overflow:ellipsis;
+		    overflow:hidden;
+			&:first-child{
+				text-align:left;
+				width:26%;
+			}
+			&:nth(2){
+				text-align:right;
+			}
+			.case_list_plus{
+				font-style:normal;
+			}
+		}
+	}
+}
+.case_drop{
+	color:#249a1c;
+}
+.case_rise{
+	color:#f2493b;
+}
+/*案例详情页*/
+.detail_tit{
+	@include rem(height,120px);
+	position:relative;
+	margin-top:0;
+	.detail_tit_name{
+		@include rem(line-height,120px);
+	}
+	.detail_tit_num{
+		@include rem(padding,20px 40px);
+		@include rem(margin-top,18px);
+		color:#000;
+		border-radius:5px;
+		background:#ccc;
+		float:right;
+		position:relative;
+		&:after{
+			content:"";
+			@include rem(width,20px);
+			@include rem(height,30px);
+		    background-size:100%;
+			position:absolute;
+		    @include rem(top,28px);
+		    @include rem(right,35px);
+		}
+	}
+	.detail_tit_num.detail_tit_num_rise{
+		@include rem(padding,20px 60px 20px 30px);
+		background:#ea4c4c;
+		color:#fff;
+		&:after{
+			background:url('../images/regCenter/rise_icon.png');
+		    background-size:100%;
+		}
+	}
+	.detail_tit_num.detail_tit_num_drop{ 
+		@include rem(padding,20px 60px 20px 30px);
+		background:#ea4c4c;
+		background:#249a1c;
+		color:#fff;
+		&:after{
+			background:url('../images/regCenter/drop_icon.png');
+		    background-size: 100%;
+		}
+	}
+
+}
+.tech_video .video-player{
+	@include rem(height,700px);
+	.video-js{
+		height:100%;
+	}
+}
+.summ_box{
+	@include rem(padding,0);
+	@include rem(line-height,45px);
+	.box_tit{
+		@include rem(padding,0 20px);
+	}
+	.summ_time{
+		color:#999;
+		@include rem(font-size,24px);
+		float:right;
+	}
+	.summ_content{
+		@include rem(padding,50px 20px);
+		img{
+			width:100%;
+		}
+	}
+}
+.summ_tips{
+	@include rem(padding,28px 20px 100px);
+	@include rem(font-size,28px);
+	color:#666;
+}
+.wordContent{
+	@include rem(height,20px);
+	@include rem(text-indent,20px);
+	.colorBlack{
+		color:#000;
+		font-weight:bold;
+	}
+	.textIndent{
+		@include rem(text-indent,30px);
+	}	
+}
+
+
+

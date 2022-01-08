@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var dateToStr = function(date, format_str){
+            if (typeof date != 'object') return '';
+
+            format_str = format_str || 'yyyy-MM-dd';
+            var z = {
+                M: date.getMonth() + 1, //月
+                d: date.getDate(),  //日
+                h: date.getHours(), //时
+                m: date.getMinutes(),   //分
+                s: date.getSeconds()    //秒
+            };
+            // 把传入的格式模板中的月、日、时、分、秒分别替换成传入的date中取出的月、日、时、分、秒，若是一位就在前面加上0
+            format_str = format_str.replace(/(M+|d+|h+|m+|s+)/g, function (v) { // v为format_str中匹配到的字符串
+                return ((v.length > 1 ? "0" : "") + z[v.slice(-1)]).slice(-2)   
+            });
+
+            return format_str.replace(/(y+)/g, function (v) {
+                return date.getFullYear().toString().slice(-v.length)
+            });
+        }
+
+        var dateStr = dateToStr(new Date(),'yyyy-MM-dd');
+        console.log(dateStr);
+    </script>
+</body>
+</html>

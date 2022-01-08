@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta charset="utf-8"> 
+ <title>菜鸟教程(runoob.com)</title> 
+<style>
+    .wrapper{overflow: auto;}
+    #menulist{margin:0;padding:0;}
+    .menuitem{
+        background: #cdf0f6;
+        border:1px solid #d4d4d4;
+        border-radius: 4px;
+        list-style: none;
+        margin: 4px;
+        padding: 2px;
+    }
+
+    #main{margin-left: 4px;}
+    @media screen and (min-width: 480px){
+        #nav{width: 200px;float: left;}
+        #main{margin-left: 215px;}
+    }
+</style>
+</head>
+<body>
+    <div class="wrapper">
+        <div id="nav">
+            <ul id="menulist">
+                <li class="menuitem">Menu-item 1</li>
+                <li class="menuitem">Menu-item 2</li>
+                <li class="menuitem">Menu-item 3</li>
+                <li class="menuitem">Menu-item 4</li>
+                <li class="menuitem">Menu-item 5</li>
+            </ul>
+        </div>
+        <div id="main">
+            <h2>重置窗口查看效果！</h2>
+            <p>在屏幕可视窗口尺寸小于480像素时将菜单浮动在页面左侧。</p>
+        </div>
+    </div>   
+</body>
+</html>

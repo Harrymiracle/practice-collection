@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用mod2</title>
+</head>
+<body>
+    <script type="module">
+        /* 
+            浏览器目前不支持ES6的语法，在使用时需加上 type="module"，
+            type="module"默认会使用严格模式，如果下面的变量未声明，会报错。
+        */
+
+        // 导入默认值时没有加 {}
+        // import mult from './mod2.js';
+        
+        // let multRes = mult(5,6);
+        // console.log(multRes);     // 30
+
+        /*
+            导入默认值和非默认值，默认值必须在前面，用逗号和后面的非默认值隔开。
+            或是放括号内非默认值前面，用 default as 的格式。
+        */
+        import mult, { constNum } from './mod2.js';
+        // import { default as mult, constNum } from './mod2.js';
+
+        let multRes = mult(constNum,constNum);
+        console.log(multRes);   // 64
+
+    </script>
+</body>
+</html>

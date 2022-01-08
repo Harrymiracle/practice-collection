@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>插入一个自定义函数</title>
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<style>
+	  div { margin:3px; width:40px; height:40px;
+        position:absolute; left:0px; top:30px; 
+        background:green; display:none; }
+  	  div.newcolor { background:blue; }
+	</style>
+</head>
+<body>
+	Click here...
+  	<div></div>
+
+  	<script>
+  	//显示或操作在匹配元素上执行的函数队列. queue(element,[queueName]); queueName:字符串值，包含序列的名称。默认是 fx, 标准的效果序列。callback():要添加进队列的函数.
+  	//插入一个自定义函数 如果函数执行后要继续队列，则执行 jQuery(this).dequeue();
+  	  $(document.body).click(function () {
+	      $("div").show("slow");
+	      $("div").animate({left:'+=200'},2000);
+	      $("div").queue(function () {
+	          $(this).addClass("newcolor");
+	          $(this).dequeue();
+	      });
+	      $("div").animate({left:'-=200'},500);
+	      $("div").queue(function () {
+	          $(this).removeClass("newcolor");
+	          $(this).dequeue();
+	      });
+	      $("div").slideUp();
+	  });
+  	</script>
+</body>
+</html>

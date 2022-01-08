@@ -1,0 +1,176 @@
+/*resect*/
+/*公共变量*/
+
+$fontLineHeight:32px;
+$colorPlaceholder:#ccc;
+$fontFamily:'Microsoft Yahei', Arial, Helvetica, sans-serif;
+$colorText:#000000;
+$colorBg:#f1f1f1;
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-size: $fontSize;
+  font-family: $fontFamily;
+  line-height: $fontLineHeight;
+  color: $colorText;
+  background-color: $colorBg;
+  min-height: 100%;
+}
+a {
+  background: transparent;
+  text-decoration: none;
+  color: nth($colorLink, 1);
+  &:active {
+    outline: 0;
+  }
+}
+img {
+  border: 0;
+  vertical-align: middle;
+  max-width: 100%;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  vertical-align: middle;
+}
+button,
+input,
+select {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+[disabled] {
+  cursor: default;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+input {
+  line-height: normal;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  box-sizing: border-box;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+input,
+select,
+textarea,
+button {
+  outline: 0;
+}
+// Android 下 input focus 消除高亮外框
+textarea,
+input {
+  -webkit-user-modify: read-write-plaintext-only;
+}
+// ie10 clear & password
+input::-ms-clear,
+input::-ms-reveal {
+  display: none;
+}
+// 表单placeholder样式
+// 注意不可联合申明，否则无效
+// Firefox 19+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: $colorPlaceholder;
+}
+
+// Internet Explorer 10+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: $colorPlaceholder;
+}
+
+// Safari and Chrome
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: $colorPlaceholder;
+}
+
+// 如不支持placeholder添加class 或者 设置提示的placeholder
+.placeholder{
+  color: $colorPlaceholder;
+}
+
+// 根据使用习惯，对normalize上进行补充
+//-----------------------------------------------------
+
+h1, h2, h3, h4, h5, h6, p, figure, form, blockquote {
+  margin: 0;
+}
+
+// ul ol dl
+ul, ol, li, dl, dd {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none outside none;
+}
+
+// hn
+h1, h2, h3 {
+  line-height: 2;
+  font-weight: normal;
+}
+
+// icon
+i {
+  font-style: normal;
+}
+
+// 所有元素为border-box
+@if $borderBoxSwitch {
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.clear:after{
+  clear: both;
+  content: '.';
+  display: block;
+  height: 0;
+  line-height: 0;
+  overflow: hidden;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>highcharts基本曲线图</title>
+    <script src="../js/jquery-2.2.3.min.js"></script>
+    <script src="../js/highcharts.js"></script>
+</head>
+<body>
+    <div id="container" style="width: 600px; height: 400px; margin: 0 auto;"></div>
+
+    <script language="JavaScript">
+        $(function(){
+
+            var title = {   //标题
+                text: "城市平均气温"
+            };
+            var subtitle = {    //副标题
+                text: "Source: runoob.com"
+            };
+            var xAxis = {   //X轴选项
+                categories: [   //设置X轴分类名称，数组
+                    "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+                ]
+            };
+            var yAxis = {   //Y轴选项
+                title: {    //Y轴名称
+                    text: "Temperature (\xB0C)"
+                },
+                plotLines: [{      //标示线
+                    value: 0,
+                    width: 1,
+                    color: "red"
+                }]
+            };
+            var tooltip = {     //数据点提示框
+                valueSuffix: "\xB0C"
+            };
+            var legend = {      //图例选项
+                layout: "vertical", //排列顺序,水平和垂直
+                align: "right",     //水平对齐方式，左中右
+                verticalAlign: "middle",    //垂直对齐方式，上中下
+                borderWidth: "0"    //边框宽度,默认是 0
+            };
+            var series = [  //数据列表选项
+                {
+                    name: "Peking",     //名称
+                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,   //显示在图表中的数据列
+                        26.5, 23.3, 18.3, 13.9, 9.6]
+                },
+                {
+                    name: "London",
+                    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8,
+                        24.1, 20.1, 14.1, 8.6, 2.5]
+                },
+                {
+                    name: "New York",
+                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0,
+                        16.6, 14.2, 10.3, 6.6, 4.8]
+                }
+            ];
+
+            var json = {};   //创建 JSON 数据
+
+            json.title = title;
+            json.subtitle = subtitle;
+            json.xAxis = xAxis;
+            json.yAxis = yAxis;
+            json.tooltip = tooltip;
+            json.legend = legend;
+            json.series = series;
+
+            $("#container").highcharts(json);
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <style>
+
+    </style>
+
+    <!-- 引入react -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <!-- 引入react-dom -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 引入Babel,使浏览器可以识别JSX语法，如果不使用JSX语法，可以不引入 -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- 本地的file协议的引入上面三个文件有跨域的问题 -->
+</head>
+
+<body>
+    <div id="link"></div>
+    <div id="toggle"></div>
+    <div id="btnOne"></div>
+    <div id="btnTwo"></div>
+
+    <script type="text/babel"> // 必须添加type="text/babel",否则不识别JSX语法
+        // function SimpleLinK() {
+        //     function handleLink(e) {
+        //         e.preventDefault();
+        //         console.log('You clicked simple link.');
+        //     }
+        //     return (
+        //         <a href="#" onClick={handleLink}>Click Me</a>
+        //     )
+        // }
+        class SimpleLinK extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { count: 0 }
+                this.handleLink = this.handleLink.bind(this);
+            }
+            handleLink(e) {
+                e.preventDefault();
+                this.setState(state => ({
+                    count: state.count + 1
+                }))
+            }
+            render() {
+                const hasClicked = this.state.count > 0 ? true : false
+                return (
+                    <div>
+                        <a href="#" onClick={this.handleLink}>Click Me</a>
+                        {!hasClicked ? <p>You don't clicked simple link.</p> : <p>You clicked simple link {this.state.count} time(s).</p>}
+                    </div>
+                )
+            }
+        }
+        const link = <SimpleLinK />
+        ReactDOM.render(
+            link,
+            document.getElementById('link')
+        )
+
+
+        class Toggle extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { isOn: false }
+                this.handleClick = this.handleClick.bind(this); //为了在回调中使用 `this`，这个绑定是必不可少的
+            }
+            handleClick() {
+                this.setState(state => ({
+                    isOn: !state.isOn
+                }))
+            }
+            render() {
+                return (
+                    <button onClick={this.handleClick}>{this.state.isOn ? 'ON' : 'OFF'}</button>
+                )
+            }
+        }
+        const tog = <Toggle />
+        ReactDOM.render(
+            tog,
+            document.getElementById('toggle')
+        )
+
+
+        // 向事件处理程序传递参数
+        class BtnOne extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { id: 111 }
+                // this.deleteRow = this.deleteRow.bind(this); //为了在回调中使用 `this`，这个绑定是必不可少的
+            }
+            deleteRow(id, e) {
+                console.log('id, e:::', id, e)
+            }
+            render() {
+                return (
+                    <button onClick={(e) => this.deleteRow(this.state.id, e)}>Delete Row One</button>
+                )
+            }
+        }
+        const btnOne = <BtnOne />;
+        ReactDOM.render(
+            btnOne,
+            document.getElementById('btnOne')
+        )
+
+
+        class BtnTwo extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { id: 222 }
+                // this.deleteRow = this.deleteRow.bind(this); //为了在回调中使用 `this`，这个绑定是必不可少的
+            }
+            deleteRow(id, e) {
+                console.log('id, e:::', id, e)
+            }
+            render() {
+                return (
+                    <button onClick={this.deleteRow.bind(this, this.state.id)}>Delete Row Two</button>
+                )
+            }
+        }
+        const btnTwo = <BtnTwo />;
+        ReactDOM.render(
+            btnTwo,
+            document.getElementById('btnTwo')
+        )
+
+
+    </script>
+
+
+</body>
+
+</html>

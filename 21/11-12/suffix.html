@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let imgType = 'image/gif'
+        let imgTypes = ['jpg', 'jpeg', 'png', 'gif']
+        // === ('jpg' || 'jpeg' || 'png' || 'gif')
+        // if (imgType && (imgType.substr((~-imgType.lastIndexOf("/") >>> 0) + 2).toLowerCase() === ('gif'))) { // true
+        // if (imgType && imgType.substr((~-imgType.lastIndexOf("/") >>> 0) + 2).toLowerCase() === ('jpg' || 'jpeg' || 'png' || 'gif')) { // false
+        if (imgType && imgTypes.indexOf(imgType.substr((~-imgType.lastIndexOf("/") >>> 0) + 2).toLowerCase()) > -1) { // true
+            console.log(imgType.substr((~-imgType.lastIndexOf("/") >>> 0) + 2).toLowerCase())
+            console.log(typeof imgType.substr((~-imgType.lastIndexOf("/") >>> 0) + 2).toLowerCase())
+            console.log(123);
+        }
+        console.log((~-imgType.lastIndexOf("/") >>> 0) + 2)
+
+        if (!imgType || imgTypes.indexOf(imgType.substr((~-imgType.lastIndexOf("/") >>> 0) + 2).toLowerCase()) < 0) { // true
+            console.log(imgType.substr((~-imgType.lastIndexOf("/") >>> 0) + 2).toLowerCase())
+            console.log(typeof imgType.substr((~-imgType.lastIndexOf("/") >>> 0) + 2).toLowerCase())
+            console.log(123);
+        }
+        console.log((~-imgType.lastIndexOf("/") >>> 0) + 2)
+
+
+        let temp = {
+            10001: [
+                {
+                    content: "aaa",
+                    csequence: 4731,
+                    event: "receiveMsg",
+                    from: 10001,
+                    isArrived: 8,
+                    isCopied: 0,
+                    isMuted: 0,
+                    isRemoved: 0,
+                    isRevoked: 0,
+                    isShowMsgTime: true,
+                    messageId: "38383435623332392D656130352D333566362D613433392D306638356231666663356530",
+                    method: "Message",
+                    msgSequence: 1636615875027,
+                    originalEvent: 1,
+                    sender: 10002,
+                    serverTime: 1636615875033,
+                    to: 300000018,
+                    type: 50
+                },
+                {
+                    content: "bbb",
+                    csequence: 4710,
+                    event: "receiveMsg",
+                    from: 10001,
+                    isArrived: 8,
+                    isCopied: 0,
+                    isMuted: 0,
+                    isRemoved: 0,
+                    isRevoked: 0,
+                    isShowMsgTime: false,
+                    messageId: "64663066396132652D643731652D333032622D383830662D303266663063386535373536",
+                    method: "Message",
+                    msgSequence: 1636615875430,
+                    originalEvent: 1,
+                    packetId: undefined,
+                    sender: 10002,
+                    serverTime: 1636615875438,
+                    to: 300000018,
+                    type: 50
+                },
+                {
+                    content: "ccc",
+                    csequence: 4710,
+                    event: "receiveMsg",
+                    from: 10001,
+                    isArrived: 8,
+                    isCopied: 0,
+                    isMuted: 0,
+                    isRemoved: 0,
+                    isRevoked: 0,
+                    isShowMsgTime: false,
+                    messageId: "64663066396132652D643731652D333032622D383830662D303266663063386535373536",
+                    method: "Message",
+                    msgSequence: 1636615875430,
+                    originalEvent: 1,
+                    packetId: undefined,
+                    sender: 10002,
+                    serverTime: 1636615875438,
+                    to: 300000018,
+                    type: 50
+                }
+            ],
+            10002: [
+                {
+                    content: "eee",
+                    csequence: 4731,
+                    event: "receiveMsg",
+                    from: 10002,
+                    isArrived: 8,
+                    isCopied: 0,
+                    isMuted: 0,
+                    isRemoved: 0,
+                    isRevoked: 0,
+                    isShowMsgTime: true,
+                    messageId: "38383435623332392D656130352D333566362D613433392D306638356231666663356530",
+                    method: "Message",
+                    msgSequence: 1636615875027,
+                    originalEvent: 1,
+                    sender: 10002,
+                    serverTime: 1636615875033,
+                    to: 300000018,
+                    type: 50
+                },
+                {
+                    content: "ddd",
+                    csequence: 4710,
+                    event: "receiveMsg",
+                    from: 10002,
+                    isArrived: 8,
+                    isCopied: 0,
+                    isMuted: 0,
+                    isRemoved: 0,
+                    isRevoked: 0,
+                    isShowMsgTime: false,
+                    messageId: "64663066396132652D643731652D333032622D383830662D303266663063386535373536",
+                    method: "Message",
+                    msgSequence: 1636615875430,
+                    originalEvent: 1,
+                    packetId: undefined,
+                    sender: 10002,
+                    serverTime: 1636615875438,
+                    to: 300000018,
+                    type: 50
+                }
+            ]
+        }
+
+        let { keys, values, entries } = Object;
+        for (let value of values(temp)) {
+            console.log(value); // 'a', 'b', 'c'
+        }
+
+    </script>
+</body>
+
+</html>

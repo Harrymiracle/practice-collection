@@ -1,0 +1,82 @@
+@charset "utf-8";
+@import "../../node_modules/mixins-sass/src/mixins";
+@import "../mui/mixins.scss";
+
+body{
+	background: #fff;
+}
+.techn_wrap{
+	background: #fff;
+	@include rem(font-size,32px);
+	@include rem(padding-bottom,112px);
+	.banner{
+		@include rem(height,300px);
+	 	img{
+			width:100%;
+			@include rem(height,300px);
+	    }
+	}
+	.techn_tab{
+		overflow:hidden;
+		border-top:1px solid #e0e0e0;
+		.techn_tab_a{
+			text-align:center;
+			display:block;
+			width:49%;
+			@include rem(line-height,100px);
+			border-bottom:1px solid #e0e0e0;
+			float:left;
+			color:#666;
+			&:first-child{
+				border-right:1px solid #e0e0e0;
+			}
+			&.active{
+				color:#2882e0;
+				border-bottom:2px solid #2882e0;
+			}
+		}
+	}
+	.techn_video_content{
+		@include rem(margin,15px auto);
+		@include rem(width,700px);
+		@include rem(height,701px);
+	    border:1px solid transparent;
+		background:#f0f0f0;
+		position:relative;
+		.techn_video_temp{
+			width:100%;
+    		height:100%;
+			position:relative;
+			text-align:center;
+			.techn_temp_span{
+				display:inline-block;
+				@include rem(width,270px);
+				@include rem(height,100px);
+				background:url('../images/video_bg.png');
+				background-size:100% 100%;
+				position:absolute;
+				@include rem(left,200px);
+				@include rem(top,230px);
+			}
+			.techn_temp_link{
+				position:absolute;
+				@include rem(top,190px);
+				color:#999;
+				.goreg_btn{
+					@include rem(width,190px);
+					@include rem(height,70px);
+					@include rem(line-height,70px);
+					@include rem(margin-top,85px);
+					@include rem(font-size,32px);
+					border-radius:3px;
+					display:inline-block;
+					background:#0676ff;
+					color:#fff;
+				}
+			}
+		}
+		.video-player,.video-js.vjs-custom-skin{
+			height: 100%;
+		}
+	}
+}

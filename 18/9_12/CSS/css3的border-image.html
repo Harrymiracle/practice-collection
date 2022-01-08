@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>css3的border-image</title>
+    <style>
+        .border-image {
+            width: 400px;
+            height: 100px;
+            margin-bottom: 20px;
+            border: 1em solid transparent;
+            -webkit-border-image: url(../imgs/border.png) 27;
+            border-image: url(../imgs/border.png) 27;
+        }
+        
+        .border-image2 {
+            width: 400px;
+            height: 100px;
+            margin-bottom: 20px;
+            border: 1em solid transparent;
+            -webkit-border-image: url(../imgs/border.png) 27 round;
+            border-image: url(../imgs/border.png) 27 round;
+        }
+        
+        .border-image3 {
+            width: 400px;
+            height: 100px;
+            margin-bottom: 20px;
+            border: 1em solid transparent;
+            -webkit-border-image: url(../imgs/border.png) 27 repeat;
+            border-image: url(../imgs/border.png) 27 repeat;
+        }
+        /* 第四种的效果同第三种 */
+        
+        .border-image4 {
+            width: 400px;
+            height: 100px;
+            margin-bottom: 20px;
+            border: solid transparent;
+            -webkit-border-image: url(../imgs/border.png) 27/1em repeat;
+            border-image: url(../imgs/border.png) 27/1em repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="border-image"></div>
+    <div class="border-image2"></div>
+    <div class="border-image3"></div>
+    <div class="border-image4"></div>
+</body>
+
+</html>

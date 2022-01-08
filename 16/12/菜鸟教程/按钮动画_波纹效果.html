@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8"> 
+ <title>菜鸟教程(runoob.com)</title> 
+<style>
+    .button {
+        position: relative;
+        background-color: #4CAF50;
+        border: none;
+        outline: none;
+        border-radius: 8px;
+        box-shadow: 0 5px 8px rgba(0,0,0,0.8);
+        font-size: 28px;
+        color: #FFFFFF;
+        width: 200px;
+        padding: 20px;        
+        text-align: center;
+        -webkit-transition: 0.4s; /* Safari */
+        transition: 0.4s;
+  /*      overflow: hidden;*/
+        cursor: pointer;
+    }
+    .button:after {
+        content: ''; /*定义一个空的遮罩层*/
+        display: block; /*遮罩层为块级属性*/
+        opacity: 0; /*遮罩层的透明度为全透明*/
+        background: #90ee90; /*遮罩层背景颜色*/
+        position: absolute;  
+        -webkit-transition:all 0.8s;  /*整个遮罩层运动的时间*/
+        transition:all 0.8s;
+        padding: 100%;  /*用padding值撑开遮罩层的宽高,本行是下面两行的简写*/
+        /*padding-top: 200%;
+        padding-left: 200%;*/
+        margin-top: -120%; /*移动遮罩层的位置来盖住按钮*/
+        /*!important必须用,在点击时才能把遮罩层x轴上的位置向左移动*/
+        margin-left: -20px !important;  
+    }
+    .button:active:after {
+        /*点的瞬间完全不透明,也没有撑开宽高，点击后的0.8s内透明度由1-0,撑开的宽高由0到padding:100%.因此就呈现出慢慢撑大变淡的波浪效果。*/
+        transition:0s;
+        opacity: 1;       
+        padding:0;margin:0;
+    }
+</style>
+</head>
+<body>
+    <h2>按钮动画 - 波纹效果</h2>
+    <button class="button">来点我啊</button>
+
+</body>
+</html>

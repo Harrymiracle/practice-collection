@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>拖拽</title>
+    <style>
+        *{padding: 0; margin: 0}
+        #page{
+            margin: 100px auto 10px auto;
+            width: 400px;
+            height: 230px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid red;
+        }
+        /*.left{float: left;}*/
+        .right{float: right;}
+        .show{
+            background:#7cd2f8;
+            width:100px;
+            height:50px;
+            line-height: 50px;
+            text-align:center;
+            margin-bottom: 10px;
+            position: absolute;
+        }
+        .location{
+            border: 1px dashed #eee;
+            width:100px;
+            height:50px;
+            margin-bottom: 10px;
+        }
+        input{position: absolute; bottom: 0;}
+    </style>
+
+    <script src="js/jquery-2.1.0.js"></script>
+
+</head>
+<body>
+    <div id="page">
+        <section class="left">
+            <div class="show box1" style="left:0px;top:0;">
+                拖动的div1
+            </div>
+            <div class="show box2" style="left:0px;top:60px;">
+                拖动的div2
+            </div>
+            <div class="show box3" style="left:0px;top:120px;">
+                拖动的div3
+            </div>
+        </section>
+        <section class="right">
+            <div class="location"></div>
+            <div class="location"></div>
+            <div class="location"></div>
+        </section>
+        <input type="button" value="确定" class="btn left">
+    </div>
+
+<script>
+    //注册一个Jquery的鼠标拖动函数,参数为要拖动的对象
+     $.fn.extend({ SliderObject: function (objMoved) {
+         var mouseDownPosiX;
+         var mouseDownPosiY;
+         var InitPositionX;
+         var InitPositionY;
+         var obj = $(objMoved) == undefined ? $(this) : $(objMoved);
+         $(this).mousedown(function (e) {
+             //当鼠标按下时捕获鼠标位置以及对象的当前位置
+             mouseDownPosiX = e.pageX;
+             mouseDownPosiY = e.pageY;
+
+             InitPositionX = obj.css("left").replace("px", "");
+             InitPositionY = obj.css("top").replace("px", "");
+             obj.mousemove(function (e) {//这个地方改成$(document).mousemove貌似可以避免因鼠标移动太快而失去焦点的问题
+                 //貌似只有IE支持这个判断，Chrome和Firefox还没想到好的办法
+                 //if ($(this).is(":focus")) {
+                     var tempX = parseInt(e.pageX) - parseInt(mouseDownPosiX) + parseInt(InitPositionX);
+                     var tempY = parseInt(e.pageY) - parseInt(mouseDownPosiY) + parseInt(InitPositionY);
+                     obj.css("left", tempX + "px").css("top", tempY + "px");
+                 //};
+                 //当鼠标弹起或者离开元素时，将鼠标弹起置为false，不移动对象
+             }).mouseup(function () {
+                 obj.unbind("mousemove");
+             }).mouseleave(function () {
+                 obj.unbind("mousemove");
+             });
+         })
+       }
+     });
+
+    $(function(){
+        $(".box1").SliderObject(".box1");
+        $(".box2").SliderObject(".box2");
+        $(".box3").SliderObject(".box3");
+    });
+</script>
+</body>
+</html>

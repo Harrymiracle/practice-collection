@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>时间格式化</title>
+  <style>
+	#clock{
+	  width: 300px;
+	  height: 60px;
+	  text-align: center;
+	  line-height: 60px;
+	  margin: 0 auto;
+	  background: pink;
+	  border-radius: 10px;
+	}
+  </style>
+</head>
+<body>
+  <div id="clock">123</div>
+  <input type="text" placeholder="123" value="456">
+    <!-- value会覆盖placeholder的值，两者是同时存在的，在页面中去掉value就看的见placeholder的值 -->
+  <script>
+  	var clock = document.getElementById("clock");
+  	clock.innerHTML = "<a>showTime()</a>";
+  	
+//时间格式化
+  	refreshTime = function (time){
+  	  if(typeof time !== "number"){  //检测参数的格式
+  	  	throw "时间格式不对";
+  	  }
+  	  var nowDate = new Date(),
+  	  	  nowSecond = nowDate.getTime() / 1000 | 0,  //小数没处理
+  	  	  passedSecond = nowSecond - time;
+  
+  	  switch(true){  //switch用的比较巧妙，参数为一个布尔值，case后面的表达式将返回一个true或是false
+  	    case passedSecond < 0: return "刚刚";
+  	    case passedSecond < 60: return passedSecond + "秒前";
+  	    case passedSecond < 3600: return (passedSecond / 60 | 0) + "分前";
+  	    case passedSecond < 86400: return (passedSecond / 3600 | 0) + "小时前";
+  	  }  //将数字存在数组中用join在最后转换，效率比一个个的拼字符串高，尤其是在数组项比较多的时候。replace的第一个参数是匹配一个数字，前后都是数字的边界，即一个一位数的正整数时，替换为0加数字本身。
+  	  return [nowDate.getFullYear(), nowDate.getMonth()+1, nowDate.getDate()].join("-").replace(/\b\d\b/g,"0$&");
+  	}
+
+  	var moment = (new Date()).getTime() / 1000 - 360;
+  	console.log(moment);
+  	var time = refreshTime(moment);
+  	console.log(time);
+  	var time2 = refreshTime(123456789);
+  	console.log(time2);
+  </script>
+</body>
+</html>

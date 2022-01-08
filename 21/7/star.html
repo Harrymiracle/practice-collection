@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star</title>
+    <style>
+        /* div {
+            position: relative;
+        }
+
+        div::after {
+            content: '★★★★★';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2.5em;
+            overflow: hidden;
+        } */
+
+        div {
+            position: relative;
+            color: #f5222d;
+        }
+
+        div:after {
+            content: '★★★★★';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            overflow: hidden;
+            transition: width 2s;
+            -moz-transition: width 2s;
+            -webkit-transition: width 2s;
+            -o-transition: width 2s;
+
+        }
+
+        div:hover:after {
+            width: 2.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div>☆☆☆☆☆</div>
+</body>
+
+</html>

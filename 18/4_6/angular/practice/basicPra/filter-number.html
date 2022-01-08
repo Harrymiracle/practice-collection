@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数字过滤器</title>
+</head>
+<script src="../js/angular-1.5.0.js"></script>
+<body>
+	<div ng-app="app" ng-controller="mycontrl">
+		单价：<input type="number" ng-model="price">
+		数量：<input type="number" ng-model="num">
+		总价：<input type="text" value="{{price*num | number:3}}">
+		<p>总价是：{{price*num | currency:"zh￥":1}}</p>
+	</div>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('mycontrl',function($scope){
+			$scope.num = 1.002;
+			$scope.price = 1.988;
+		});
+	</script>
+</body>
+</html>

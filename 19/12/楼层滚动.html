@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>楼层滚动</title>
+
+    <script src="../js/jquery.js"></script>
+    <!-- <script src="../js/jquery-ui.min.js"></script> -->
+
+    <style>
+        *{
+            padding:0px;
+            margin: 0px;
+        }
+        .body-color{
+            background-color: #F5F5F5;
+        }
+        .toubu{
+            background-color: white;
+            width: 100%;
+            height: 120px;
+            text-align: center;
+            color: #4b4b4b;
+            font-size: 64px;
+
+        }
+        .caidan{
+            background-color: darkred;
+            width: 100%;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+        }
+        .louceng-data{
+            width: 1200px;
+            height: 770px;
+            background-color: white;
+            padding:15px;
+            border:1px solid #ECECEC;
+            margin: 0 auto;
+        }
+        .title-data{
+            width: 100%;
+            height: 50px;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .title-data span{
+            margin-left: 5px;
+            font-weight: normal;
+        }
+
+        .center-title{
+            height: 720px;
+            background-color: #f1f1f1;
+            font-size: 64px;
+            color: #333333;
+            text-align: center;
+            line-height: 800px;
+        }
+        .list-div{
+            width: 32px;
+            height: 342px;
+            position: absolute;
+            top: 150px;
+            left: 50px;
+            background-color: white;
+            display: none;
+        }
+
+        .list-div li{
+            list-style: none;
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ececec;
+            text-align: center;
+            line-height: 30px;
+        }
+        .list-ul li:hover a{
+            cursor: pointer;
+            color: yellow;
+            font-size: 10px;
+        }
+        .list-ul li:hover{
+            cursor: pointer;
+            background: purple;
+        }
+        .Top{
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: red;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            position: fixed;
+            bottom: 30px;
+            right: 40px;
+        }
+        .Top:hover{
+            background-color: purple;
+            cursor: pointer;
+        }
+        .Top:active{
+            background-color: yellow;
+            border-radius: 100px;
+            cursor: pointer;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body class="body-color">
+    <div class="toubu">头部</div> 
+    <div class="caidan">菜单</div>
+    <div>
+        <div class="louceng-data" id="1">
+            <div class="title-data">
+                1.服饰
+                <span>FUSHI</span>
+            </div>
+            <div class="center-title">服饰</div>
+        </div>
+        <div class="louceng-data" id="2">
+            <div class="title-data">
+                2.美妆
+                <span>MEIZHUANG</span>
+            </div>
+            <div class="center-title">美妆</div>
+        </div>
+        <div class="louceng-data" id="3">
+            <div class="title-data">
+                3.男装
+                <span>NANZHUANG</span>
+            </div>
+            <div class="center-title">男装</div>
+        </div>
+        <div class="louceng-data" id="4">
+            <div class="title-data">
+                4.女装
+                <span>NVZHUANG</span>
+            </div>
+            <div class="center-title">女装</div>
+        </div>
+        <div class="louceng-data" id="5">
+            <div class="title-data">
+                5.童装
+                <span>TONGZHUANG</span>
+            </div>
+            <div class="center-title">童装</div>
+        </div>
+        <div class="louceng-data" id="6">
+            <div class="title-data">
+                6.玩具
+                <span>WANJU</span>
+            </div>
+            <div class="center-title">玩具</div>
+        </div>
+        <div class="louceng-data" id="7">
+            <div class="title-data">
+                7.珠宝
+                <span>ZHUBAO</span>
+            </div>
+            <div class="center-title">珠宝</div>
+        </div>
+        <div class="louceng-data" id="8">
+            <div class="title-data">
+                8.母婴
+                <span>MUYING</span>
+            </div>
+            <div class="center-title">母婴</div>
+        </div>
+        <div class="louceng-data" id="9">
+            <div class="title-data">
+                9.食品
+                <span>SHIPING</span>
+            </div>
+            <div class="center-title">食品</div>
+        </div>
+        <div class="louceng-data" id="10">
+            <div class="title-data">
+                10.图书
+                <span>TUDSHU</span>
+            </div>
+            <div class="center-title">图书</div>
+        </div>
+        <div class="louceng-data" id="11">
+            <div class="title-data">
+                11.服务
+                <span>FUWU</span>
+            </div>
+            <div class="center-title">服务</div>
+        </div>
+    </div>
+    <div class="list-div">
+        <ul class="list-ul" id="lou-li">
+            <li>
+                <a href="#1">1F</a></li>
+            <li>
+                <a href="#2">2F</a></li>
+            <li>
+                <a href="#3">3F</a></li>
+            <li>
+                <a href="#4">4F</a></li>
+            <li>
+                <a href="#5">5F</a></li>
+            <li>
+                <a href="#6">6F</a></li>
+            <li>
+                <a href="#7">7F</a></li>
+            <li>
+                <a href="#8">8F</a></li>
+            <li>
+                <a href="#9">9F</a></li>
+            <li>
+                <a href="#10">10F</a></li>
+            <li>
+                <a href="#11">11F</a></li>
+        </ul>
+    </div>
+    <!-- <div class="Top" id="Top">
+        Top
+    </div> -->
+
+
+
+        <script>
+            $(function(){
+                // $('#Top').draggable({
+                //     containment:'parent',
+                // });
+
+                $(window).scroll(function() {
+                    var nowTop = $(document).scrollTop();
+                    if(nowTop > 200){
+                        $('.list-div').css({
+                            display: 'block',
+                            position: 'fixed',
+                            left:50,
+                            top:150,                           
+                        });             
+                    }else{
+                     $('.list-div').css({
+                            position: 'static',
+                            marginLeft: 'auto'
+                        });
+                    }
+                });
+
+                // $('#Top').click(function() {
+                //     $('html,body').animate({scrollTop: 0});
+                // });
+
+                var yes_do_ok = ['服饰','美妆','男装','女装','童装','玩具','珠宝','母婴','食品','图书','服务']
+                var long_ceng = ['1F','2F','3F','4F','5F','6F','7F','8F','9F','10F','11F'];
+                
+                var Uarry=$("#lou-li li");//获取所有的li元素
+                $("#lou-li li").hover(function(){//点击事件
+                    //测试直接获取值 var v=$(this).text(); alert(v);      
+                    
+                    var count=$(this).index();//获取li的下标
+                    var Tresult=Uarry.eq(count).find("a").html(yes_do_ok[count]);
+                },function(){
+                    var count=$(this).index();
+                    var Tresult=Uarry.eq(count).find("a").html(long_ceng[count]);
+                });
+
+            });
+
+        </script>
+</body>
+</html>

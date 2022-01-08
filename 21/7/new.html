@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new 操作符具体干了什么</title>
+</head>
+
+<body>
+    <script>
+        // function Person(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.say = function () {
+        //         console.log(this.name + ' ' + this.age);
+        //     }
+        // }
+        // var person1 = new Person('Tom', 18);
+        // var person2 = new Person('Harry', 28);
+
+
+        /**
+         * 创建一个新对象
+         * 将构造函数的作用域赋给这个新对象，同时 this 指向这个新创建的对象
+         * 执行构造函数，为新对象添加属性
+         * 返回新对象
+         ***/
+
+        // 修改上面的构造函数分别返回undefined、NaN、一个字符串、null，
+        // 作为普通函数调用时，返回该函数的返回值(undefined/NaN/'string'/null…)，
+        // 作为构造函数调用时，此时的返回值为(undefined/NaN/'string'/null)时会被忽略了，返回了这个新创建的对象
+        // function Person(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.say = function () {
+        //         console.log(this.name + ' ' + this.age);
+        //     }
+        //     return;
+        // }
+        // console.log(Person('Tom', 18)); // undefined
+        // console.log(new Person('Harry', 28));   // Person {name: "Harry", age: 28, say: ƒ}
+
+
+        // function Person(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.say = function () {
+        //         console.log(this.name + ' ' + this.age);
+        //     }
+        //     return NaN;
+        // }
+        // console.log(Person('Tom', 18)); // NaN
+        // console.log(new Person('Harry', 28));   // Person {name: "Harry", age: 28, say: ƒ}
+
+
+        // function Person(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.say = function () {
+        //         console.log(this.name + ' ' + this.age);
+        //     }
+        //     return `My name is ${this.name}. I'm ${this.age} years old.`;
+        // }
+        // console.log(Person('Tom', 18)); // My name is Tom. I'm 18 years old.
+        // console.log(new Person('Harry', 28));   // Person {name: "Harry", age: 28, say: ƒ}
+
+        // function Person(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.say = function () {
+        //         console.log(this.name + ' ' + this.age);
+        //     }
+        //     return null;
+        // }
+        // console.log(Person('Tom', 18)); // null
+        // console.log(new Person('Harry', 28));   // Person {name: "Harry", age: 28, say: ƒ}
+
+
+        // 修改上面的构造函数为返回一个对象，
+        // 作为普通函数调用时，返回该函数的返回值，
+        // 作为构造函数调用时，也返回了该函数的返回值
+        // function Person(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.say = function () {
+        //         console.log(this.name + ' ' + this.age);
+        //     }
+        //     return { name, age };
+        // }
+        // console.log(Person('Tom', 18)); // {name: "Tom", age: 18}
+        // console.log(new Person('Harry', 28));   // {name: "Harry", age: 28}
+
+
+        /**
+         * 综上所述，加上查阅文档得到：
+         * 在使用new操作符的时候，会对构造函数的返回值做一些判断：
+         * 1、如果返回值是基础数据类型，则忽略返回值；
+         * 2、如果返回值是引用数据类型，则使用构造函数return 的返回值，也就是new操作符无效；
+         ***/
+
+        // 根据上述，模拟new的内部处理细节
+        /**
+         * NewFn函数要接受的参数个数不定，第一个参数是构造函数(既是new操作符的目标函数)，其余参数为构造函数的参数。
+         ***/
+        function NewFn(ConstructFn, ...args) {
+            // 创建一个新对象
+            let obj = Object.create({}); // let obj = {}
+            // 将空对象的原型prototype指向构造函数的原型(将构造函数的作用域赋给这个新对象)
+            Object.setPrototypeOf(obj, ConstructFn.prototype); // obj.__proto__ = ConstructFn.prototype
+            // 在obj的作用域内执行ConstructFn，并传入args参数，为新对象添加属性
+            let res = ConstructFn.apply(obj, args);
+            // 判断原构造函数的返回值，返回最终结果
+            return res instanceof Object ? res : obj;
+        }
+        console.log(NewFn(Person, 'Jack', 31));
+    </script>
+</body>
+
+</html>

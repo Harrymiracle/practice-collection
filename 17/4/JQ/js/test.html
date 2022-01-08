@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<script src="jquery-1.12.4.min.js"></script>
+</head>
+<body>
+	<p>我是段落</p>
+	<button>点击</button>
+	<input type="number" min="1" max="20" step="1">
+	<script>
+		
+		$(function(){
+			$("button").on("dlbclick",function(){
+				alert('123');
+			});
+
+			$('p').click(function(){
+				$("button").trigger("dlbclick");
+			})
+		})
+	</script>
+</body>
+</html>

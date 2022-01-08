@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tets</title>
+</head>
+<body>
+    <script>
+        // let startTime = +new Date()
+        // let halfHour = 1000*30*1
+
+        // run40()
+        // timer = setInterval(run40, 1000)
+
+        // while(+new Date()>startTime+halfHour){
+        //     clearInterval(timer)
+        // }
+
+        // function run40(){
+        //     console.log('123')
+        // }
+    </script>
+
+    <script>
+        var simpleFactory = (function(){
+            var standard = {
+                createXhrObject = function(){
+                    return new XMLHttpRequest();
+                }
+            };
+            var activeXNew ={
+                createXhrObject = function(){
+                    return new ActiveXObject('Msxml2.XMLHTTP');
+                }
+            };
+            var activeXOld = {
+                createXhrObject = function(){
+                    return new ActiveXObject('Microsoft.XMLHTTP');
+                }
+            };
+            var testObject;
+
+            try {
+                testObject = standard.createXhrObject();
+                return standard;
+            } catch (e) {
+                try {
+                    testObject = activeXNew.createXhrObject();
+                    return activeXNew;
+                } catch (e) {
+                    try {
+                        testObject = activeXOld.createXhrObject();
+                        return activeXOld;
+                    } catch (e) {
+                        throw new Error ('NO XHR Obj found!');
+                    }
+                }
+            }
+        })()
+
+        simpleFactory.createXhrObject();
+    </script>
+</body>
+</html>

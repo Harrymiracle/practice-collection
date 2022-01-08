@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+<title>jQuery制作鼠标悬停图片缩放显示EasyZoom插件</title>
+
+<!--可无视-->
+<link rel="stylesheet" href="css/example.css" />
+
+
+<!--必要样式-->
+<link rel="stylesheet" href="css/easyzoom.css" />
+
+</head>
+<body>
+<div class="container">
+
+	<h1> 演示 </h1>
+	<p>鼠标悬停到图片上查看效果</p>
+	
+	<h2> Overlay </h2>
+	<div class="easyzoom easyzoom--overlay"><a href="images/1_zoom.jpg"><img src="images/1_standard.jpg" alt="" width="640" height="360" /></a></div>
+	
+	<p></p>
+	
+	<h2> Adjacent </h2>
+	<!-- Placeholder for demo purposes only -->
+	<div style="float:right;width:310px;height:400px;background:#EEE;"></div>
+	<div class="easyzoom easyzoom--adjacent"><a href="images/2_zoom.jpg"> <img src="images/2_standard.jpg" alt="" width="310" height="400" /></a></div>
+
+</div>
+
+
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/easyzoom.js"></script>
+<script type="text/javascript">
+// 实例化EasyZoom插件
+var $easyzoom = $('.easyzoom').easyZoom();
+
+// API获得实例
+var api = $easyzoom.data('easyZoom');
+</script>
+
+
+</body>
+</html>

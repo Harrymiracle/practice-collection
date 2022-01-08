@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>继承1</title>
+</head>
+<body>
+    <script>
+        function SuperType(){
+            this.property = true;
+        }
+
+        SuperType.prototype.getSuperValue = function(){
+            return this.property;
+        };
+
+        var o = new SuperType();
+        var x = o.getSuperValue();
+        alert(x);
+
+        function SubType(){
+            this.subproperty = false;
+        }
+
+        //继承了SuperType
+        SubType.prototype = new SuperType();
+
+        //使用字面量添加新方法，会覆盖导致上一行代码无效
+        SubType.prototype = {
+            getSubValue: function(){
+                return this.subproperty;
+            },
+            someOtherMethod: function(){
+                return false;
+            }
+        };
+
+        var instance = new SubType();
+    //    alert(instance.getSuperValue());    //error!
+    /******
+      上面注释掉的 alert 代码,会报错，原因是：刚刚把 SuperType 的实例赋值给 SubType 的原型，后面又将一个对象字面量赋值给 SubType 的原型，后赋值的会覆盖上一行的赋值，由于字面量对象是 Object
+      构造函数的实例，而非 SuperType 的实例，因此我们预想的原型链就断了---SubType和 SuperType 之间已经没有关系了，找不到getSuperValue 方法，所以会报错。
+     ******/
+
+
+      /***
+       *
+       正确的方法  如下：
+       *
+       ***/
+        function SuperType2(){
+           this.property = true;
+        }
+
+        SuperType2.prototype.getSuperValue = function(){
+            return this.property;
+        };
+
+        var yy = new SuperType2();
+        alert(yy.getSuperValue());        //true
+
+        function SubType2(){
+            this.subproperty = false;
+        }
+
+        //继承了SuperType
+        SubType2.prototype = new SuperType2();
+
+        //添加新方法
+        SubType2.prototype.getSubValue = function(){
+            return this.subproperty;
+        };
+
+        //重写超类型中的方法
+        SubType2.prototype.getSuperValue = function(){
+            return false;
+        };
+
+        var instance = new SubType2();
+        alert(instance.getSuperValue());  //false;
+    </script>
+</body>
+</html>

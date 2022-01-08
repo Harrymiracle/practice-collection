@@ -1,0 +1,49 @@
+
+@font-face {
+  font-family: 'YDUI-ICONS';
+  src:  url('fonts/YDUI-ICONS.eot?qmco8s');
+  src:  url('fonts/YDUI-ICONS.eot?qmco8s#iefix') format('embedded-opentype'),
+  url('fonts/YDUI-ICONS.ttf?qmco8s') format('truetype'),
+  url('fonts/YDUI-ICONS.woff?qmco8s') format('woff'),
+  url('fonts/YDUI-ICONS.svg?qmco8s#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'YDUI-ICONS' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-home:before {
+  content: "\e900";
+}
+.icon-user:before {
+  content: "\e901";
+}
+.icon-cha:before {
+  content: "\e902";
+}
+.icon-order:before {
+  content: "\e903";
+}
+.icon-list:before {
+  content: "\e904";
+}
+.icon-shopCar:before {
+  content: "\e905";
+}
+.icon-activite:before {
+  content: "\e906";
+}
+

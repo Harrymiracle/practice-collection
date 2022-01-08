@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深拷贝</title>
+</head>
+<body>
+    <script>
+        //https://www.jianshu.com/p/f4329eb1bace
+        //https://juejin.im/post/5b20c9f65188257d7d719c1c
+        let person = {
+            name: 'Tom',
+            age: 18,
+            sex: 'male' 
+        };
+
+        // 方法一 JSON.stringify和JSON.parse
+        let strP = JSON.parse(JSON.stringify(person));
+        person.age = 20;
+        console.log('person:', person);    // {name: "Tom", age: 20, sex: "male"}
+        console.log('strP:', strP);      // {name: "Tom", age: 18, sex: "male"}
+
+
+        let obj = {         
+            reg : /^asd$/,
+            fun: function(){},
+            syb:Symbol('foo'),
+            asd:'asd'
+        }; 
+        let cp = JSON.parse(JSON.stringify(obj));
+        console.log(cp);
+
+
+        let obj2 = {asd:'asd' }; 
+        let obj3 = {name:'aaaaa'};
+        obj2.ttt1 = obj3;
+        obj2.ttt2 = obj3;
+        let cp2 = JSON.parse(JSON.stringify(obj2)); 
+        obj2.ttt1.name = 'change'; 
+        cp2.ttt1.name  = 'change';
+        console.log(obj2,cp2);
+
+
+
+
+
+        // 方法二 Object.assign
+        let object = {
+            a: 1,
+            b: 2,
+            c: ['a','b','c']
+        };
+        let obj1 = Object.assign({},object);
+        object.a = 'changed';
+        object.c[0] = 'd';
+        console.log('object:', object);
+        console.log('obj1:', obj1);
+
+        // 方法三 递归
+        // let deepClone = function(arr){
+
+        // }
+
+       
+
+
+       
+
+    </script>
+</body>
+</html>

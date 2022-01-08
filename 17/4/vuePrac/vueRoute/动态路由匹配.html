@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>动态路由匹配</title>
+    <style>
+        .router-link-active {
+            color: tomato;
+        }
+    </style>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>
+            <router-link to="/user/foo">User/Foo</router-link>
+            <router-link to="/user/bar">User/Bar</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const User = {
+            //一个『路径参数』使用冒号 : 标记。当匹配到一个路由时，参数值会被设置到 this.$route.params，可以在每个组件内使用。
+            template: "<div>User {{$route.params.id}}</div>"   //$route没有-s
+        };
+
+        const router = new VueRouter({
+            //动态路径参数以 ':'开头，像"/user/foo"和"/user/bar"都将映射到相同的路由
+            routes: [{path: "/user/:id", component: User}]
+        });
+
+        const app = new Vue({
+            router: router
+        }).$mount("#app");
+    </script>
+</body>
+</html>

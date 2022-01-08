@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<my-component :my-age='age'></my-component>
+		</div>
+		<template id="myComponent">
+			<table>
+				<thead>
+					<tr colspan="2">
+						<th>子组件数据</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!--<tr>
+						<td>my name</td>
+						<td>{{myName}}</td>
+					</tr>-->
+					<tr>
+						<td>my age</td>
+						<td>{{myAge}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</template>
+		<script src="js/vue.js"></script>
+		<script>
+			new Vue({
+				el:'#app',
+				data:{
+					name:'joyce',
+					age:23
+				},
+				components:{
+					'my-component':{
+						template:'#myComponent',
+						props:['myAge']
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

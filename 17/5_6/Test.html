@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <style>
+        div{
+            width: 600px;
+            height: 400px;
+            margin:20px auto 0 auto;
+            /*position: relative;*/
+        }
+        img{
+            /*position: absolute;*/
+            clip: rect(0px, 600px, 400px, 0px);
+        }
+
+        .clip_a{display:block; width:128px; height:128px;margin:20px auto 0 auto;}
+        .clip_a img{border:0; position:absolute; clip:rect(0 128px 128px 0);}
+        .clip_a:hover{border:0;}
+        .clip_a:hover img{margin-top:-128px; clip:rect(128px 128px 256px 0);}
+    </style>
+
+    <script src="js/jquery-2.2.3.min.js"></script>
+</head>
+<body>
+    <div>
+        <img src="images/11.jpg" alt="图片"/>
+    </div>
+
+    <a href="javascript:" class="clip_a">
+        <img src="http://image.zhangxinxu.com/image/blog/201104/sofa_sprite.png" />
+    </a>
+
+    <div id="cont">
+        <input type="text" value="3">
+        <input type="text" value="5">
+        <input type="text" value="">
+        <input type="text" value="7">
+    </div>
+
+    <div id="boxSp"></div>
+
+    <div id="cancel">
+        <a href="javascript:;" style="display:block;">取消</a>
+    </div>
+
+    <div id="inpTest">
+        <input type="hidden" value="400">
+        <input type="text" value="200">
+        <input type="hidden" value="800">
+    </div>
+
+    <p id="deletTest" style="width:230px;"> 
+        <input type="text">111 
+        <input type="text">222 
+        <input type="text">333 
+        <input type="text">444 
+        <input type="text">555
+        <input type="text">666  
+        <input type="text">777   
+    </p>
+
+    <em>2333</em>
+
+    <script>
+        var em = $("em");
+        em.html("1111111111");
+        var $deletTest = $("#deletTest");
+        var inps = $deletTest.find("input");
+        var inpusLen = inps.length;
+        var deletTest = $deletTest[0];
+
+        for(var k=inpusLen-1;k>=0;k--){
+            var lastTxt = deletTest.lastChild + '';
+            lastTxt.nodeValue = ' ';
+            $deletTest.find(inps[k]).remove();
+        }
+
+
+        var re = null, i;
+        for(i = 0; i < 10; i++){
+            re = /cat/g;
+            var result = re.test("catastrophe");
+            console.log(result);
+        }
+
+        for(i = 0; i < 10; i++){
+            re = new RegExp("cat", "g");
+            var result2 = re.test("catastrophe");
+            console.log(result2);
+        }
+
+        var cos1 = 57 & 86;
+        console.log(cos1);
+        var cos2 = 57 | 86;
+        console.log(cos2);
+        var res = 143;
+        console.log(res === cos1+cos2);
+
+        var cosns1 = 1.0-0.9;
+        console.log(cosns1);
+        var cosns2 = parseFloat(cosns1).toFixed(10);
+        console.log(cosns2);
+        var cosns3 = 1.0 - cosns2;
+        console.log(cosns2 == 0.1);     //全等的时候是false
+
+        var x1 = parseFloat(0.1);
+        var x2 = parseFloat(0.2);
+        var y = x1 + x2;
+        console.log(x1);
+        console.log(x2);
+        console.log(y);
+        console.log(1.0-0.8);
+
+
+
+        var containerB = $("#cont").find("input");
+        console.log(containerB);
+        
+        containerB.each(function(i){
+            var text = $(this).val();
+            if(text == ""){
+                console.log("值为空。");
+            }else{
+                console.log(text);
+            }
+        })
+
+        var arr = [1,2,3,4];
+        var flag = false;
+        for(var i=0;i<arr.length;i++){
+           if(arr[i]==7){
+                flag = true;
+                break;
+           }
+        }
+        if(flag){
+//            alert(123);
+        }else{
+//            alert(456);
+        }
+
+        var str = "fgrg\r\nfweo\r\nrehiuer\r\negrhrog";
+        var arrSp = str.split("\r\n");
+        console.log(arrSp);
+        var boxSp = $("#boxSp");
+        console.log(boxSp);
+        var stings = '';
+        var len = arrSp.length;
+        for(var i = 0; i<len; i++){
+            stings += arrSp[i]+"<br/>"
+        }
+        boxSp.html(stings);
+
+        var cancelA = $("#cancel a");
+        function Alert(){
+            alert(123);
+        }
+        console.log(cancelA);
+        console.log(123);
+        
+        cancelA.click=function(){
+            alert(123);
+        }
+
+        var inpTest = $("#inpTest").find("input");
+        $.each(inpTest,function(i,n){
+            console.log("值是"+$(n).val()+"。");
+        });
+        // for(var i = 0,len = inpTest.length; i<len;i++){
+        //     console.log(inpTest[i].val());
+        // }
+        
+
+
+    </script>
+
+    
+</body>
+</html>

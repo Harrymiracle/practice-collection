@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>$parent</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <!--挂载元素-->
+    <div id="app">
+        <!--使用父组件-->
+        <parent-component></parent-component>
+    </div>
+
+    <!--父组件模板，并在父组件模板中用子组件标签-->
+    <template id="parentComponent">
+        <child-component></child-component>
+    </template>
+
+    <!--子组件模板-->
+    <template id="childComponent">
+        <h2>This is child component.</h2>
+        <button @click="showParentComponentData">显示父组件的数据</button>
+    </template>
+
+    <script>
+        //注册父组件
+        Vue.component("parent-component", {
+            template: "#parentComponent",   //引用父组件模板
+            components: {               //在父组件内声明子组件
+                "child-component": {
+                    template: "#childComponent",
+                    methods: {        //子组件的方法
+                        showParentComponentData: function(){
+                            alert(this.$parent.msg);
+                        }
+                    }
+                }
+            },
+            data: function(){       //父组件的数据
+                return {
+                    msg: "parent component message."
+                }
+            }
+        });
+
+        var vm = new Vue({
+            el: "#app"
+        });
+
+    // 注意：尽管可以访问父链上任意的实例，不过子组件应当避免直接依赖父组件的数据，尽量显式地使用 props 传递数据。
+    //      另外，在子组件中修改父组件的状态是非常糟糕的做法，因为：
+    //      1.这让父组件与子组件紧密地耦合；
+    //      2. 只看父组件，很难理解父组件的状态。因为它可能被任意子组件修改！理想情况下，只有组件自己能修改它的状态。
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$each</title>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <style>
+    p {
+        color: red;
+    }
+    div{
+        width:200px; 
+        height: 100px; 
+        background-color: yellow;
+        color:red;
+    }
+    </style>
+</head>
+<body>
+    <h2>each方法</h2>
+    <p>慕课网,专注分享</p>
+    <div id="aaron"></div>
+    点击观察结果：
+    <select id="animation">
+        <option value="1">each数组</option>
+        <option value="2">each对象</option>
+    </select>
+    <input id="exec" type="button" value="执行动画">
+    <script type="text/javascript">
+    $("#exec").click(function() {
+        var v = $("#animation").val();
+        var $aaron = $("#aaron");
+        $aaron.empty();  //先清空div元素下的子元素
+        if (v == "1") {
+
+//$.each(obj, [callback]); obj为需要遍历的对象或是数组,后一个为回调函数。 此方法可用于例遍任何对象。回调函数拥有两个参数：第一个为对象的成员或数组的索引，第二个为对应变量或内容。如果需要退出 each 循环可使回调函数返回 false，其它返回值将被忽略。
+            // 遍历数组元素   
+            $.each(['Aaron', '慕课网'], function(i, item) {
+                $aaron.append("索引=" + i + ",元素=" + item + "; ");
+            });
+        } else if (v == "2") {
+            // 遍历对象属性
+            $.each({
+                name: "张三",
+                age: 18
+            }, function(property, value) {
+                $aaron.append("属性名=" + property + ",属性值=" + value + "; ");
+            });
+        } 
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="wap-font-scale" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title><%= title %></title>
+    <link rel="stylesheet" href="../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../views/css/login.css">
+</head>
+<body state="<%= state %>">
+    <header>
+        <a href="javascript:history.go(-1)" class="goback">返回</a>
+        <p><%= title %></p>
+    </header>
+    <div class="regis">
+        <div class="box">
+            <form action="" >
+                <fieldset>
+                    <div class="am-form-group">
+                        <img src="../views/images/login/Phone.png" alt="">
+                        <label for="photonum">手机号：</label>
+                        <input type="number" id="photonum" placeholder=""  pattern="/^1((3|5|8){1}\d{1}|70)\d{8}$/" />
+                        <button>获取验证码</button>
+                    </div>
+                    <div class="am-form-group">
+                        <img src="../views/images/login/code.png" alt="">
+                        <label for="codenum">验证码：</label>
+                        <input type="password" id="codenum" placeholder=""  minlength="4" />
+                    </div>
+                </fieldset>
+                <p class="login_radio">
+                    <input type="radio" id="sport" name="sport" value="nba">
+                    <label name="sport" class="" for="sport">我已经阅读并同意 <span>《会员注册协议》</span> </label>
+                </p>
+                <div class="submit">
+                    <a href="javascript:void(0)" onclick="registerPwdgoToNext()">下一步</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="../commonjs/jquery-2.1.0.js"></script>
+    <script src="../views/js/login.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

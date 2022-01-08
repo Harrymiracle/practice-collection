@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>异步操作</title>
+</head>
+<body>
+
+  <script>
+  //例子一、
+  //setTimeout是异步线程，需要等待js引擎处理完同步代码（for/while语句）之后才会执行，即使setTimeout为0，他也是等js引擎的代码执行完之后才会插入到js引擎线程的最后执行。
+
+    setTimeout(function(){
+      console.log(123);
+      var s = new Date();
+      var n = s.getTime();
+      console.log(n);
+    },0)
+    for (var i = 0; i < 50; i++) {
+      console.log(new Date().getTime());
+    };
+
+
+
+  //例子二、
+  //在for循环中执行了100次打印，时间到1387793158711，setTimeout时间为0的开始执行，过了498毫秒，setTimeout为500的开始执行，再过998毫秒，setTimeout为1000的开始执行。
+/*
+    setTimeout(function(){
+      console.log("1");
+      var s = new Date();
+      var n = s.getMilliseconds();
+      var t = s.getTime();
+      console.log(n);
+      console.log(t);
+      console.log("1");
+    },1000);
+
+    setTimeout(function(){
+      console.log("2");
+      var s = new Date();
+      var n = s.getMilliseconds();
+      var t = s.getTime();
+      console.log(n);
+      console.log(t);
+      console.log("2");
+    },500);
+
+    setTimeout(function(){
+      console.log("3");
+      var s = new Date();
+      var n = s.getMilliseconds();
+      var t = s.getTime();
+      console.log(n);
+      console.log(t);
+      console.log("3");
+    },0);
+
+    for (var i = 0; i < 100; i++) {
+      if(i == 0){
+        console.log(new Date().getTime());
+      }
+      console.log(new Date().getMilliseconds());
+      if(i == 99){
+        console.log(new Date().getTime());
+      }
+    };
+*/
+
+
+
+  //例子三、(可以同例子一一起运行)
+  //时间延迟不能被保证,就是说你这样写setTimeout(fn, 500)并不代表fn肯定在500毫秒之后马上就执行，延迟很可能会更长。因为 JavaScript 是单线程语言，所有的异步事件(包括计时器、鼠标事件或者一个 XMLHttpRequest 完成)仅仅当程序执行期间有缺口的时候才会执行,不是你规定了什么时候就什么时候执行。
+  //js是单线程的，而setTimeout是异步的，在浏览器中，异步操作都是被加入到一个称为“events loop”队列的地方，关键是要理解浏览器什么时候去运行这个队列里面的代码就能弄懂其中的奥妙了，浏览器只会在所有同步代码执行完成之后采取循环执行这里面的代码的。
+  //虽然setTimeout写在了很前面，而且早早的实现了打印a操作，但是实际情况是页面等待了10秒钟，然后打印出‘first’,最后才执行setTimeout里面的打印a操作，打印出‘second’。为什么，就是因为setTimeout是异步操作，它要等待同步代码执行完之后才执行，而while语句和console.log都是同步操作！
+
+    var a = "first";
+    setTimeout(function(){
+      console.log(a);
+    },0);
+    var date1 = new Date();
+    while((new Date().getTime() - date1.getTime()) <= 10000){};
+      console.log(a);
+    a = 'second';
+
+
+
+//异步编程之回调函数：
+  //这是异步编程最基本的方法。假定有两个函数f1和f2，后者等待前者的执行结果。采用这种方式，我们把同步操作变成了异步操作，f1不会堵塞程序运行，相当于先执行程序的主要逻辑，将耗时的操作推迟执行。回调函数的优点是简单、容易理解和部署，缺点是不利于代码的阅读和维护，各个部分之间高度耦合（Coupling），流程会很混乱，而且每个任务只能指定一个回调函数。
+
+  //"同步或异步"要从调用方来判断。
+  //同步函数返回表示工作已完成或发生异常，接下来依赖此结果的的代码被调用方继续执行。
+  //异步函数返回表示工作已发布出去，什么时候完成不知道，接下来的代码无法依赖一个未知的结果，所以要传入一个回调在完成后处理。
+  //阮老师的例子
+/*
+    function f1(callback){
+      //程序的主要逻辑
+  　　setTimeout(function () {
+  　　　　// f1的任务代码
+  　　　　callback();
+  　　}, 1000);
+    }
+    f1(f2);    
+*/
+
+
+
+  </script>
+</body>
+</html>

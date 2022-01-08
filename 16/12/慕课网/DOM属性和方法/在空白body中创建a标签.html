@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>创建a</title>
+</head>
+<body>
+<script type="text/javascript">
+	var main = document.body;
+	//创建链接
+	function createa(url,text){
+	  var oa = document.createElement("a");
+	  oa.href = url;
+	  oa.innerHTML = text;
+	  oa.style.color = "red";
+	  return oa;   //要有return才行
+	}
+	// 调用函数创建链接
+	var a = createa("http://www.imooc.com","慕课网");
+	console.log(a);
+	main.appendChild(a);
+
+
+	function createa2(url,text){
+	  var oa2 = document.createElement("a");
+	  oa2.setAttribute("href",url);
+	  oa2.innerHTML = text;
+	  oa2.setAttribute("style","color:purple");
+	  return oa2;   //要有return才行
+	}
+	// 调用函数创建链接
+	var a2 = createa2("http://www.imooc.com","慕课网2");
+	console.log(a2);
+	main.appendChild(a2);
+
+</script> 
+</body>
+</html>

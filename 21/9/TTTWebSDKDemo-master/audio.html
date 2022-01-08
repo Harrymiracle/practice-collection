@@ -1,0 +1,198 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+
+	<link rel="stylesheet" href="../../css/main.css"/>
+</head>
+
+<body>
+	<div id='tip'>
+		<table>
+			<tr>
+				<td>
+					<p id = "sysVersion"></p> 正确修改参数 -- 防止冲突，请修改 UserID(数值)、ChannelID(数值)
+				</td>
+			</tr>
+			<tr></tr>
+		</table>
+	</div>
+    <div id='userInfo'>
+        <table>
+			<tr>
+				<td>AppID : </td>
+				<td>
+					<select id="appID">
+						<option value="test900572e02867fab8131651339518">test900572e02867fab8131651339518</option>
+						<option value="a967ac491e3acf92eed5e1b5ba641ab7" selected>a967ac491e3acf92eed5e1b5ba641ab7</option>
+					</select>
+				</td>
+			</tr>
+            <tr>
+                <td>房间ID : </td>
+                <td><input type="text" value="666777000" id="chanid" /></td>
+                
+			</tr>
+			<tr>
+				<td>用户ID : </td>
+                <td><input type="text" value="555888" id="userid" /></td>
+			</tr>
+			<tr>
+				<td>用户角色 : </td>
+				<td>
+					<select id="userRole">
+						<option value=1>主播</option>
+						<option value=2 selected>副播</option>
+						<option value=3>观众</option>
+					</select>
+				</td>
+				<td>
+					注 -- 1 : 主播；2 : 副播；3 : 观众<br/>
+					注 -- 同一个房间内只允许有一个主播<br/>
+					注 -- [主播]、[副播] 可以推流/拉流；[观众] 只能拉流；
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="audioCodec">audioCodec : </label>
+				</td>
+				<td>
+					<select id="audioCodec">
+						<option value="isac" selected>isac</option>
+						<option value="opus">opus</option>
+					</select>
+				</td>
+			</tr>
+			<tr><td></td></tr>
+			<tr><td></td></tr>
+			<tr>
+				<td>首先请登录 : </td>
+				<td>
+					<table>
+						<tr>
+							<input type="checkbox" id="submitLog" checked >提交日志</input>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<button id="joinChan"><font color="red">加入房间</font></button>
+							</td>
+							<td>
+								<button id="leaveChan">离开房间</button>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table>
+						<tr>
+							<td></td>
+							<td>登录状态 : </td>
+							<td><p id = "loginStatus">未登录</p></td>
+							<td><p id = "loginInfo"> - </p></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="info" style="display: block; margin: 10px;">
+		<table>
+			<td>
+				<textarea id="text_info" type="text" rows="6" cols="90" readonly="readonly"></textarea>
+			</td>
+		</table>
+    </div>
+	<HR style="FILTER:alpha(opacity=0,finishopacity=100,style=1)" width="90%"color=#987cb9 SIZE=3>
+	<div>
+		<table>
+			<tr>
+				<td>
+					音频流 -- 
+				</td>
+				<td>
+					<table>
+						<tr>
+							<td>
+								<input type="checkbox" id="onlyAudio" checked disabled>纯音频</input>
+							</td>
+							<td>
+								<label for="audioProfile">AudioProfile : </label>
+							</td>
+							<td>
+								<select id="audioProfile">
+									<option value="default" selected>default</option>
+									<option value="isac32">isac32</option>
+									<option value="speech_low_quality">speech_low_quality(24kbps)</option>
+									<option value="speech_standard">speech_standard(24kbps)</option>
+									<option value="music_standard">music_standard(40kbps)</option>
+									<option value="standard_stereo">standard_stereo(64kbps)</option>
+									<option value="high_quality">high_quality(128kbps)</option>
+									<option value="high_quality_stereo">high_quality_stereo(192kbps)</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button id="publishAudioStream">发布音频流</button>
+							</td>
+							<td>
+								<button id="unpublishStream">取消发布流</button>
+							</td>
+							<td>当前推流状态 : </td>
+							<td><p id = "publishStreamStatus">未推流</p></td>
+							<td> - </td>
+							<td>MIC音量 : <span id="audioVolumeValue">0</span><progress id = "audioVolumeProgress" value="0" max="100"></progress></td>
+						</tr>
+						<tr>
+							<td> - </td>
+							<td>
+								<button id="pauseAudio">pauseAudio</button>
+							</td>
+							<td>
+								<button id="disableAudio">disableAudio</button>
+							</td>
+							<td> - </td>
+							<td> - </td>
+							<td>音量调节 : 
+								<input id="micVolumeSlider" type="range" min="0" max="15" value="10" size="5"/>
+							</td>
+							<td><span id="micVolumeSliderValue">1</span></td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" id="micPlayback">micPlayback</input>
+							</td>
+							<td>
+								<label for="switchSpeaker">切换Speaker : </label>
+							</td>
+							<td>
+								<select id="speakerDev"></select>
+							</td>
+						</tr>
+						<tr>
+							<td> - </td>
+							<td>
+								<label for="switchMic">切换Mic : </label>
+							</td>
+							<td>
+								<select id="micDev"></select>
+							</td>	
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="video" class="grid-container-video"></div>
+	<HR style="FILTER:alpha(opacity=0,finishopacity=100,style=1)" width="95%"color=#987cb9 SIZE=3>
+
+    <!-- <script src='https://stech.3ttech.cn/websdk/prod/tttwebsdk.js'></script> -->
+    <!-- <script type='text/javascript' src='./lib/tttwebsdk.js' charset="utf-8"></script> -->
+    <script type='text/javascript' src='./dist/websdkdemo-bundle.js' charset="utf-8"></script>
+</body>
+
+</html>

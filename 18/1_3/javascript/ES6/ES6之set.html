@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>ES6之set.html</title>
+</head>
+
+<body>
+    <script>
+        let set = new Set([1, 2, 3]);
+        set = Array.from(set, v => v * 2); //set只有一个参数v，没有i
+        console.log(set); //(3) [2, 4, 6]
+
+        let set2 = Array.from({
+            length: 5
+        }, (v, i) => i);
+        console.log(set2); //(5) [0, 1, 2, 3, 4]
+    </script>
+</body>
+
+</html>

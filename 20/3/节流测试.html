@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节流测试</title>
+</head>
+<style>
+    ul {
+        border: 1px solid red;
+    }
+    li {
+        padding: 10px;
+    }
+</style>
+<script src="./js/throttle.js"></script>
+<body>
+    <ul id="throttle">
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+        <li>测试数据123456789</li>
+    </ul>
+
+    <script>
+        window.onload = function(){
+            let i = 1, 
+                canRun = true;
+
+            window.addEventListener('scroll', function(){
+                if(!canRun){
+                    return;
+                }
+                canRun = false;
+                setTimeout( function () {
+                    console.log(`函数节流${i++}`);
+                    canRun = true;
+                }, 3000)
+            })
+        }
+
+    </script>
+</body>
+</html>

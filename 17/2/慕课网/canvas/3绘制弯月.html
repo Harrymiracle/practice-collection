@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>单独绘制的一轮弯月</title>
+</head>
+<body>
+  <canvas id="canvas" style="border:1px solid black;">
+  	你的浏览器不支持canvas,请更换后再试。
+  </canvas>
+
+  <script>
+  	window.onload = function(){
+  	  var canvas = document.getElementById("canvas");
+  	  canvas.width = 800;
+  	  canvas.height = 600;
+
+      var context = canvas.getContext("2d");
+      fillMoon(context,2,300,300,280,0);
+    }
+
+    function fillMoon(cxt,d,x,y,R,rot,fillColor){
+      cxt.save();	//保存当前图形状态
+      cxt.translate(x,y);
+      cxt.rotate(rot*Math.PI/180);
+      cxt.scale(R,R);
+
+      moonPath(cxt,d);
+
+	  cxt.fillStyle = fillColor || "#fb5";
+	  cxt.fill();
+      cxt.restore();	//返回在save()点时的状态
+    }
+
+    //此时绘制的一个以一个单位长度大小的弯月，圆心坐标为(0,0),正的东南西北四个方向上的坐标分别为(1,0),(0,1),(-1,0),(0,-1)
+    function moonPath(cxt,d){  //参数d为选定的控制点的横坐标
+  	  cxt.beginPath();//一般成对出现
+  	  cxt.arc(0,0,1,0.5*Math.PI,1.5*Math.PI,true); //true表示逆时针画
+  	  cxt.moveTo(0,-1);
+  	   //画一个以(0,-1)为起点，(d,0),(0,1)为控制点的圆弧。最后一个参数为求圆弧线的半径
+  	  cxt.arcTo(d,0,0,1,dis(0,-1,d,0) *1 / d);
+  	  cxt.closePath();//一般成对出现
+    }
+
+    function dis(x1,y1,x2,y2){
+  //表示对(x1-x2)的平方与(y1-y2)的平方的和进行开方，即为(x1,y1),(x2,y2)这两个点之间的直线距离	
+      return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+    }
+  </script>
+</body>
+</html>

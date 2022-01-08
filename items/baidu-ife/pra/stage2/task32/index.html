@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>百度前端技术学院任务三十二（第二阶段）</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <section class="left_configure">
+      <form class="main_form">
+        <fieldset class="optional_type">
+          <legend>类型</legend>
+          <input type="radio" name="opt_type" id="input" checked>
+          <label for="input">输入框</label>
+          <input type="radio" name="opt_type" id="radio">
+          <label for="radio">单选框</label>
+          <input type="radio" name="opt_type" id="checkbox">
+          <label for="checkbox">多选框</label>
+          <input type="radio" name="opt_type" id="textarea">
+          <label for="textarea">文本域</label>
+          <input type="radio" name="opt_type" id="select">
+          <label for="select">下拉框</label>
+        </fieldset>
+        <fieldset class="optional_config">
+          <legend>配置</legend>
+          <div class="item_name">
+            <span class="label">名称：</span>
+            <input type="text" id="itemName" placeholder="输入配置名称">
+          </div>
+          <input type="radio" name="opt_must" id="necessary" checked>
+          <label for="necessary">必填</label>
+          <input type="radio" name="opt_must" id="unnecessary">
+          <label for="unnecessary">必填</label>
+          <div class="item_style_type">
+            <span class="label">样式：</span>
+            <select name="style_type" id="style_type">
+              <option selected>样式一</option>
+              <option>样式二</option>
+            </select>
+          </div>
+        </fieldset>
+        <fieldset class="optional_rule">
+          <legend>规则</legend>
+          <input type="radio" name="opt_rule" id="word" checked>
+          <label for="word">文字</label>
+          <input type="radio" name="opt_rule" id="number">
+          <label for="number">数字</label>
+          <input type="radio" name="opt_rule" id="psd">
+          <label for="psd">密码</label>
+          <input type="radio" name="opt_rule" id="telphon">
+          <label for="telphon">电话</label>
+          <input type="radio" name="opt_rule" id="email">
+          <label for="email">邮箱</label>
+        </fieldset>
+        <fieldset class="optional_length">
+          <legend>长度</legend>
+          <div class="item_length">
+            <span class="label">字符长：</span>
+            <input type="text" class="len_input" id="minlength" placeholder="最小长度"> —
+            <input type="text" class="len_input" id="maxlength" placeholder="最大长度">
+          </div>
+        </fieldset>
+        <fieldset class="optional_item">
+          <legend>选项</legend>
+          <div class="item_list">
+            <input type="text" class="item_in" placeholder="输入选项，可用逗号、空格或回车分隔">
+          </div>
+        </fieldset>
+        <div class="item_add_btn">
+          <input type="button" value="增加" class="add_btn">
+        </div>
+      </form>
+    </section>
+    <div class="right_dispaly_area">
+      <h3>展示区</h3>
+      <form class="display_form">
+        <div class="form_item">
+          <span class="form_label"></span>
+          <button class="submit_btn">提交</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../common/js/utils.js"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>

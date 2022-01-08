@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>居中</title>
+<style>	
+/*知道宽高利用margin*/
+	.wrap{
+		width: 300px;
+		height: 300px;
+		border:1px solid gray;
+	}
+	.contained{
+		margin:100px auto 0; /*上、左右、下*/
+		width: 100px;height: 100px;
+		background: gold;
+	}
+
+/*知道宽高利用负边距*/
+	.container{
+		width: 300px;height: 300px;
+		border:1px solid red;
+		position: relative;
+	}
+	.box{
+		width: 100px;height: 100px;
+		background: gold;
+		border-radius: 30%;
+		position: absolute;
+		top:50%;left: 50%;
+		margin-left: -50px;
+		margin-top: -50px;
+	}
+
+/*知道宽高绝对定位，四个方向都设置为0*/
+	.big{
+		width: 200px;height: 200px;
+		position: relative;
+		background: yellowgreen;
+	}
+	.small{
+		background: greenyellow;
+		width: 100px;height: 100px;
+		position: absolute;
+		top:0;left: 0;right: 0;bottom: 0;
+		margin:auto;
+	}
+
+/*不知道元素的宽高,用css3的属性实现垂直水平居中*/
+	.wrapper {
+	    padding: 10px;
+	    background:orange;
+	    color:#fff;
+	    border-radius: 5px;
+	    position:absolute;
+	    top:50%;
+	    left:50%;
+	    -webkit-transform:translate(-50%,-50%);
+	    -moz-transform:translate(-50%,-50%);
+	    transform:translate(-50%,-50%);
+	  }
+
+/*用margin实现水平居中*/
+	.a{
+		text-align: center;
+		width: 200px;height: 200px;
+		background: green;
+	}
+	.b{
+		border:1px solid red;
+		width: 100px;height: 100px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+
+/*容器内只有单行文字的情况*/
+	div.fit{
+		width: 200px;height: 50px;
+		background:pink;
+		text-align: center;
+		line-height: 50px;
+		overflow: hidden;
+	}
+	
+/*行内元素水平居中*/
+	.container1,.container2{
+		text-align: center;
+	}
+
+/*确定宽度元素水平居中*/
+	.car{
+		width: 200px;height: 100px;
+		border:1px solid;
+		margin:0 auto; 
+	}
+</style>
+
+</head>
+<body>
+	<div class="wrap">
+		<div class="contained">水平垂直居中</div>
+	</div>
+
+	<div class="container">
+		<div class="box">水平垂直居中</div>
+	</div>
+
+	<div class="big">
+		<div class="small">水平垂直居中</div>
+	</div>
+
+	<div class="wrapper">
+		我不知道我的宽度和高是多少，我要实现水平垂直居中
+	</div>
+
+	<div class="a">
+		<div class="b">水平居中</div>
+	</div>
+
+	<div class="fit">要实现居中的文字.要实现居中的文字.</div>
+
+	<!-- 行内元素水平居中 -->
+	<div class="container1">
+		居中的内容————
+	</div>
+	<div class="container2">
+		<img src="1s.jpg" alt="内衣图片">
+	</div>
+
+<!-- 确定宽度元素水平居中 -->
+	<div class="car"></div>
+</body>
+
+<script>
+</script>
+</html>

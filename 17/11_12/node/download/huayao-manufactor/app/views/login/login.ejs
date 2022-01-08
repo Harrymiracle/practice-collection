@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="wap-font-scale" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>登录页</title>
+    <link rel="stylesheet" href="../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../views/css/login.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="logo">
+    <img src="../views/images/login/logo.png" alt="">
+</div>
+<div class="login">
+    <form action="" class="am-form" >
+        <fieldset>
+            <div class="am-form-group">
+                <img src="../views/images/login/user.png" alt="">
+                <input type="text"  placeholder="请输入账号" value="Candice" id="username"/>
+                <!--<input type="text"  placeholder="请输入账号" value="张鹏" id="username"/>-->
+            </div>
+
+            <div class="am-form-group">
+                <img src="../views/images/login/lock.png" alt="">
+                <input type="password"  placeholder="请输入密码" value="123456" id="password" />
+                <!--<input type="password"  placeholder="请输入密码" value="123456" id="password" />-->
+            </div>
+            <div class="submit">
+                <a href="javascript:void(0)" onclick="loginGetNext()">登录</a>
+            </div>
+            <p class="login_radio">
+                <input type="radio" id="sport" name="sport" value="nba">
+                <label name="sport" class="" for="sport">记住密码</label>
+                <a href="javascript:location.href = '/login/forgotpwd'">忘记密码</a>
+            </p>
+        </fieldset>
+    </form>
+</div>
+<footer class="footer-login">
+    <a href="javascript:location.href = '/login/register'">新用户注册</a>
+    <p>华药物流&nbsp;&nbsp;0&nbsp;蜀CP备05025554</p>
+</footer>
+<script src="../commonjs/jquery-2.1.0.js"></script>
+<script src="../views/js/login.js"></script>
+
+</body>
+</html>

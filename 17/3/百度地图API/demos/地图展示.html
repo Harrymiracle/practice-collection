@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<title>地图展示</title>	
+	<style type="text/css">
+	body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=XvM4ueScwPRBKCVFXZ4TGximHHdWpgGk"></script>
+</head>
+
+<body>
+	<div id="allmap"></div>
+</body>
+</html>
+<script type="text/javascript">
+
+  //******************  基本地图
+	var map = new BMap.Map("allmap",{minZoom:4, maxZoom:12});    // 创建Map实例,设置最大和最小的地图级别
+	var point = new BMap.Point(104.176, 30.703);	//设置中心点坐标
+	map.centerAndZoom(point, 12);  // 初始化地图,设置地图级别
+
+
+  //****************** 设置地图控件
+	//Control：控件的抽象基类，所有控件均继承此类的方法、属性。通过此类您可实现自定义控件。
+	//设置缩略图的偏移。 API默认会有版权信息，因此需要添加一些偏移值以防止控件重叠。
+	var posi = {offset: new BMap.Size(50, 50)}  //第一个参数是横坐标，第二个参数是纵坐标,此时是离设定的角的偏移
+	var posi2 = {offset: new BMap.Size(150, 50)}
+
+	//修改控件配置
+	//地图API的控件提供了丰富的配置参数，您可参考API文档来修改它们以便得到符合要求的控件外观	
+	//如NavigationControl控件
+	// var navgaContSize = {type: BMAP_NAVIGATION_CONTROL_LARGE};
+	// var navgaContSize = {type: BMAP_NAVIGATION_CONTROL_SMALL};
+	var navgaContSize = {type: BMAP_NAVIGATION_CONTROL_PAN};
+	//var navgaContSize = {type: BMAP_NAVIGATION_CONTROL_ZOOM};
+
+	map.addControl(new BMap.MapTypeControl(posi));	//添加地图类型控件，默认位于地图右上方
+
+	map.addControl(new BMap.ScaleControl(posi2));		//添加比例尺控件，默认位于地图的左下方
+	map.addControl(new BMap.OverviewMapControl(posi));//缩略地图控件，默认位于地图的右下方，为一个小箭头
+
+	//地图平移缩放控件，PC端默认位于地图左上方，它包含控制地图的平移和缩放的功能。移动端提供缩放控件，默认位于地图右下方。
+	map.addControl(new BMap.NavigationControl(navgaContSize));
+	map.setCurrentCity("成都");          // 设置地图显示的城市 此项是必须设置的
+
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+
+  //**************** **标注
+	var marker = new BMap.Marker(point);	//创建标注
+	map.addOverlay(marker);			//将标注添加到地图中
+	marker.enableDragging();	//允许拖动标注，默认是不允许的(disableDragging())
+	marker.addEventListener("dragend",function(e){   //给标注添加事件监听,e参数包含了点击事件的坐标
+	  	//Point(lng:number, lat:number);表示一个地理坐标点，以一个指定的经纬度创建一个地理坐标点
+	  alert("当前的位置是:" + e.point.lng + ", " + e.point.lat);	
+	  map.removeOverlay(marker);  //拖动后移除标注，释放内存
+	});
+
+
+  //************** **信息窗口
+	//使用InfoWindow来创建一个信息窗实例，注意同一时刻地图上只能有一个信息窗口处于打开状态。 
+	var info = {	//信息窗口的宽高、标题
+	  width: 200,		
+	  height: 100,
+	  title: "标题"
+	}
+	var infoWind = new BMap.InfoWindow("内容",info);	//创建信息窗口对象 
+	map.openInfoWindow(infoWind, map.getCenter());		//打开信息窗口    //getCenter()返回圆形的中心点坐标
+
+
+  //****************添加折线
+  //Polyline的绘制需要浏览器支持矢量绘制功能。在Internet Explorer中，地图使用VML绘制折线；在其他浏览器中使用SVG或者Canvas 
+  	var polyline = new BMap.Polyline([
+  	    new BMap.Point(104.176, 30.903),
+  	    new BMap.Point(103.976, 30.503)
+  	  ],
+  	  {strokeColor:"violet", strokeWeight:6, strokeOpacity:0.6}
+  	);
+  	map.addOverlay(polyline);
+
+
+</script>

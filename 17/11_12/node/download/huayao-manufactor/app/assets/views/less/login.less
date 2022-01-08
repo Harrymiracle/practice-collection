@@ -1,0 +1,357 @@
+@import "../../commoncss/z.less";
+@import "../../commoncss/common.less";
+@color-y: #009f78;//绿色字体
+@color-b: #4586f7;//蓝色字体
+@background: #f0f0f0;//整体灰色背景
+@bgwhite:#fff;//白色背景
+@bggreen:#37B698;//绿色背景
+@border-color: #d6d6d6;
+@font-color-title: #656565;//标题字体颜色
+@font-color-1:#646464;//内容第二明显字体颜色
+@font-color-2: #a6a6a6;//内容最淡字体颜色
+
+.font-s(){
+  font-size: 1.2rem;
+}
+.font-m(){
+  font-size: 1.4rem;
+}
+.font-l(){
+  font-size: 1.6rem;
+}
+.font-g(){
+  font-size: 1.8rem;
+}
+.box-shadow(){
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+body{
+  background:@background;
+  .maxBody();
+  .logo{
+    .maxBody(100%,17rem);
+    .d-b();
+    .pos(r);
+    img{
+      .maxBody(75%,auto);
+      .d-b();
+      .pos (a);
+      margin: auto;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+  .login{
+    form{
+      fieldset{
+        .maxBody(100%,auto);
+        border: none;
+        padding: 0;
+        margin: 0;
+        .am-form-group{
+          .maxBody(100%,5rem);
+          .pos(r);
+          background:#fff;
+          border-top: 1px solid #ddd;
+          margin: 0;
+          padding: 0;
+          img{
+            .maxBody(2rem,auto);
+            .fl();
+            .abs();
+            z-index: 100;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+          }
+          input{
+            .maxBody(100%,5rem);
+            .abs();
+            outline: none;
+            padding-left: 4rem;
+            border: 0;
+          }
+        }
+        .am-form-group:nth-child(2){
+          .box-shadow();
+        }
+        .submit{
+          a{
+            .maxBody(90%,4rem);
+            .d-b();
+            .font-l();
+            .text-c();
+            background: #05B263;
+            margin: 2rem auto 1.7rem auto;
+            border-radius: 5px;
+            border: 0;
+            color:#fff;
+            line-height: 4.4rem;
+          }
+          a:hover{
+            background:#05B263;
+            border: 0;
+            text-decoration: none;
+          }
+        }
+
+        .login_radio{
+          .maxBody(90%,auto);
+          margin:0 auto;
+          .d-b();
+          input{
+            display: none;
+          }
+          label {
+            .font-s();
+            padding-left: 20px;
+            cursor: pointer;
+            background: url(../images/login/radio_checked.png) no-repeat left top;
+            background-size: auto 100%;
+            padding-left: 28px;
+            font-weight: normal;
+            color:#BBBBBB;
+          }
+          label.checked {
+            background: url(../images/login/radio.png) no-repeat left top;
+            background-size: auto 100%;
+            padding-left: 28px;
+          }
+          a{
+            .fr();
+            .font-s();
+            .maxBody(40%,auto);
+            color:#BBBBBB;
+            text-decoration: underline;
+            line-height: 2.2rem;
+            .text-r();
+          }
+          a:hover{
+            color:@color-y;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  .footer-login{
+    .maxBody(100%,9rem);
+    .fix();
+    bottom:0;
+    background:#D0D0D2;
+    a{
+      .d-b();
+      .tn();
+      .maxBody(60%,3.5rem);
+      .rel();
+      .d-b();
+      .text-c();
+      background: #DBDCDE;
+      border: 1px solid #EAEAEA;
+      color: #89898B;
+      margin:2rem auto auto auto;
+      outline:none;
+      line-height: 3.5rem;
+    }
+    a:onclick{
+      text-decoration: none;
+    }
+    p{
+      .text-c();
+      .font-s();
+      color:#89898B;
+      margin-top: 1rem;
+    }
+  }
+  .regis{
+    .maxBody(100%,auto);
+    margin-top:5rem;
+    .box{
+      .maxBody(95%,auto);
+      margin:auto;
+      form{
+        fieldset{
+          .maxBody(100%,auto);
+          border: none;
+          padding: 0;
+          margin: 0;
+          .am-form-group{
+            .maxBody(100%,5rem);
+            .pos(r);
+            margin: 0;
+            padding: 0;
+            &:nth-child(1){
+              overflow: hidden;
+              border-radius:5px 5px 0 0;
+            }
+            &:nth-child(2){
+              overflow: hidden;
+              border-radius:0 0 5px 5px;
+            }
+            label{
+              .font-m();
+              .maxBody(33%,auto);
+              color:@font-color-1;
+              font-size: 1.4rem;
+              line-height: 5rem;
+              float: left;
+              position: absolute;
+              padding-left: 3rem;
+              z-index: 10;
+            }
+            img{
+              .maxBody(auto,2rem);
+              .fl();
+              .abs();
+              z-index: 100;
+              left: 1rem;
+              top: 0;
+              bottom: 0;
+              margin: auto;
+            }
+            input{
+              .maxBody(95%,5rem);
+              .abs();
+              outline: none;
+              padding-left: 8rem;
+              border: 0;
+              border-bottom: 1px solid #ddd;
+              margin-left: 1rem;
+            }
+            button{
+              .font-m();
+              .d-b();
+              .maxBody(27%,3rem);
+              .pos(a);
+              background:@bggreen;
+              color:#fff;
+              right: 1rem;
+              top: 0;
+              bottom: 0;
+              margin: auto;
+              border:0;
+              border-radius: 4px;
+            }
+          }
+          padding-bottom:20px;
+          background:#fff;
+        }
+        .submit{
+          a{
+            .maxBody(90%,3rem);
+            .d-b();
+            .font-l();
+            .text-c();
+            line-height: 3rem;
+            color:#fff;
+            background: @bggreen;
+            margin: 2rem auto 1.7rem auto;
+            border-radius: 5px;
+            border: 0;
+          }
+          a:hover,a:visited{
+            background:@bggreen;
+            border: 0;
+            text-decoration: none;
+          }
+        }
+        .login_radio{
+          .maxBody(90%,auto);
+          margin:1rem auto;
+          .d-b();
+          input{
+            display: none;
+          }
+          label {
+            .font-s();
+            cursor: pointer;
+            background: url(../images/login/radio_checked2.png) no-repeat left top;
+            background-size: auto 100%;
+            padding-left: 28px;
+            font-weight: normal;
+            color:@font-color-1;
+            span{
+              color:@bggreen;
+            }
+          }
+          label.checked {
+            background: url(../images/login/radio2.png) no-repeat left top;
+            background-size: auto 100%;
+            padding-left: 28px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.registerpassword{
+  width: 100%;
+  margin-top: 5rem;
+  ul {
+    width: 95%;
+    margin: 0 auto;
+    background: #fff;
+    padding: 0 1rem 2rem;
+    [class*=am-u-] {
+      padding: 0;
+    }
+    li {
+      width: 100%;
+      .l-h(4rem);
+      font-size: 1.5rem;
+      border-bottom: solid #ddd 1px;
+      color: #333;
+      input {
+        height: 3rem;
+        width: 100%;
+        border: none;
+        color: #646464;
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+.register-submit{
+  width: 90%;
+  .l-h(3.5rem);
+  font-size: 1.6rem;
+  color: #fff;
+  background: #37B698;
+  margin: 6rem auto 0;
+  border-radius: 0.5rem;
+  .text-c();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

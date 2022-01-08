@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vue的v-bind指令</title>
+  <style>
+  	ul{list-style: none;}
+    li{
+      display: inline-block;
+      border:1px solid #808080;
+      border-radius: 5px;
+      border-left: none;
+      width: 40px;height: 30px;
+      text-align: center;
+      line-height: 30px;
+    }
+    li:first-of-type{border-left: 1px solid #808080;}
+    li a{
+      display: block;
+      border-radius: 5px;
+      text-decoration: none;
+      color: green;
+    }
+    li a.activeNum{
+      background: green;
+      color: white;
+    }
+    li a:hover{background: #e0e0e0;}
+    .pagination .active {
+      color: #fff;
+      background-color: #009a61;
+      border-left: none;
+      border-right: none;
+    }
+    .pagination .active:hover {
+      background: #009a61;
+      cursor: default;
+    }
+
+    
+  </style>
+  <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<!--   v-bind指令可以在其名称后面带一个参数，中间放一个冒号隔开，这个参数通常是HTML元素的特性（attribute），例如：v-bind:class      v-bind:argument="expression"，可以缩写为:argument="expression" -->
+<!--   v-for="n in pageNum"这行代码，pageCount是一个整数，遍历时n从0开始，然后遍历到pageCount –1结束。 -->
+  <div id="app">
+    <ul class="pagination">
+      <li v-for="n in pageNum">
+        <a href="javascript:void(0)" v-bind:class="activeNum === n+1 ? 'active' : ''">{{n+1}}</a>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+  	var app = new Vue({
+  	  el:"#app",
+  	  data:{
+  	  	activeNum: 3,
+        pageNum: 16
+  	  }
+  	});
+  	
+  </script>
+</body>
+</html>

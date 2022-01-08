@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="wap-font-scale" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>完善资料</title>
+    <link rel="stylesheet" href="../../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../views/css/perfectdata.css">
+</head>
+<body>
+<header>
+    <a href="#" class="goback" onclick="javascript:history.go(-1)">返回</a>
+    <p>完善资料</p>
+</header>
+<div class="perfectdata">
+    <form action="" id="form">
+        <input type="hidden" name="clientFlag" value="1">
+        <ul>
+            <li>
+                <div class="am-u-sm-3">真实姓名:</div>
+                <div class="am-u-sm-9 input">
+                    <input type="text" name="username" placeholder="请输入真实姓名" id="username">
+                </div>
+            </li>
+            <li>
+                <div class="am-u-sm-3">性&emsp;&emsp;别:</div>
+                <div class="am-u-sm-9 sex">
+                    <span class="sex_l"><input type="radio" name="sex" value="男">男</span>
+                    <span><input type="radio" name="sex" value="女">女</span>
+                </div>
+            </li>
+            <li>
+                <div class="am-u-sm-3">出生日期:</div>
+                <div class="am-u-sm-9 input">
+                    <input type="date" placeholder="请输入出生日期" name="birthday" id="birthday">
+                </div>
+            </li>
+            <li>
+                <div class="am-u-sm-3">通讯地址:</div>
+                <div class="am-u-sm-9 input">
+                    <input type="text" placeholder="请输入通讯地址" name="address" id="address">
+                </div>
+            </li>
+            <!--<li>
+                <div class="am-u-sm-4">公司地址：</div>
+                <div class="am-u-sm-8">
+                    <input type="text" placeholder="请输入公司地址">
+                </div>
+            </li>-->
+
+        </ul>
+    </form>
+
+</div>
+<div class="submit" onclick="confirm()">提交</div>
+
+<script src="../../commonjs/jquery-2.1.0.js"></script>
+<script type="text/javascript">
+    function confirm(){
+        var username = $("#username").val();
+        var birthday = $("#birthday").val();
+        var address = $("#address").val();
+        var sex = $("input:radio:checked").val();
+        //'username':username,'birthday':birthday,'address':address,'sex':sex,'clientFlag':1
+        var formdata = $("#form").serialize();
+        console.log("=========="+formdata);
+
+        if(username!=null && username!=undefined && birthday!=null && birthday!=undefined && address!=null && address!=undefined && sex!=null && sex!=undefined){
+            $.post('perfectdata_confirm',formdata,function(data){
+                console.log(data);
+            })
+        }
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,101 @@
+@charset "utf-8";
+@import "../../node_modules/mixins-sass/src/mixins";
+@import "../mui/mixins.scss";
+
+/*APP下载*/
+.down_wrap{
+    background:whitesmoke;
+	.item_top{
+		overflow: hidden;
+		.logo{
+			width:100%;
+			display:block; 
+			@include rem(padding-top,200px);
+		}
+	}
+	.down_btn{
+		@include rem(margin,50px 0 70px);
+		text-align:center;
+		a{
+			@include rem(width,405px);
+			@include rem(line-height,110px);
+			@include rem(font-size,38px);
+			border-radius:5px;
+			display:block;
+			background:#0f63bb;
+			@include rem(margin,0 auto 40px);
+			position:relative;
+			@include rem(padding-left,70px);
+		}
+		.andirod_btn:before{
+			content:"";
+			background:url(../images/download/andriod_btn.png) no-repeat center;
+			@include rem(width,40px);
+			@include rem(height,40px);
+			background-size:100%;
+			display:block;
+		    position:absolute;
+			@include rem(left,50px);
+			@include rem(top,35px);
+		}
+		.ios_btn:before{
+			@extend .andirod_btn;
+			@include rem(height,50px);
+			background:url(../images/download/ios_btn.png) no-repeat center;
+			background-size:100% 100%;
+			@include rem(top,28px);
+		}
+	}
+	.item1{
+		@include rem(height,917px);
+		@include rem(margin-top,100px);
+		background: url(../images/download/item1.png) no-repeat center;
+		background-size:100%;
+	}
+	.item2{
+		@include rem(height,1202px);
+		background:url(../images/download/item2.png) no-repeat center;
+		background-size:100%;
+	}
+	.item3{
+		@include rem(height,1034px);
+		background: url(../images/download/item3.png) no-repeat center;
+		background-size:100%;
+	}
+	.item4{
+		@include rem(height,1078px);
+		background: url(../images/download/item4.png) no-repeat center;
+		background-size:100%;
+		}
+	.item5{
+		@include rem(height,1040px);
+		background: url(../images/download/item5.png) no-repeat center;
+		background-size:100%;
+		}
+	.item6{
+		@include rem(height,1040px);
+		background: url(../images/download/item6.png) no-repeat center;
+		background-size:100%;
+		}
+	.item7{
+		@include rem(height,1180px);
+		background: url(../images/download/item7.png) no-repeat center;
+		background-size:100%;
+	 }
+	.item_footer{
+		.copyright{
+			@include rem(font-size,18px);
+			text-align:center;
+			@include rem(padding,0 60px);
+			p{
+				@include rem(margin-bottom,35px);
+			}
+		}
+	}
+}
+
+
+
+
+
+

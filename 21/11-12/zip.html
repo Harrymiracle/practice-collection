@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="http://gildas-lormeau.github.io/zip.js/demos/zip.js"></script>
+    <script src="http://gildas-lormeau.github.io/zip.js/demos/mime-types.js"></script>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.0/jquery.js"></script> -->
+    <style></style>
+</head>
+
+<body>
+    <script>
+        // 参考地址 https://blog.csdn.net/weixin_39730801/article/details/111680010
+
+        const zip = new JSZip();// create a filezip.file("hello.txt", "Hello World\n");// create a file and a folderzip.file("nested/hello.txt", "Hello World\n");zip.folder("nested").file("hello.txt", "Hello World\n");// access the file contentzip.file("hello.txt").async("string").then(function (data) {  // data is "Hello World\n"});// remove a file or folderzip.remove("nested/hello.txt");zip.remove("nested");// generate a zip filevar promise = null;if (JSZip.support.uint8array) {  promise = zip.generateAsync({type : "uint8array"});} else {  promise = zip.generateAsync({type : "string"});}// read a zip filezip.loadAsync(content).then(function(zip) {    zip.file("hello.txt").async("string"); // a promise of "Hello World\n"});
+
+
+        // 生成一个压缩包
+        function readDir(zip, dirPath) { // 读取dist下的根文件目录  
+            const files = fs.readdirSync(dirPath);
+            files.forEach(fileName => {
+                const fillPath = dirPath + "/" + fileName;
+                const file = fs.statSync(fillPath); // 如果是文件夹的话需要递归遍历下面的子文件 
+                if (file.isDirectory()) {
+                    const dirZip = zip.folder(fileName);
+                    readDir(dirZip, fillPath);
+                } else { // 读取每个文件为buffer存到zip中      
+                    zip.file(fileName, fs.readFileSync(fillPath));
+                }
+            });
+        }
+
+        // 从CDN获取zip文件并解压
+        function getZipFiles(zipUrl) {
+            const response = await axios({
+                method: 'get',
+                url: zipUrl,
+                responseType: 'arraybuffer'  // 类型必须为arraybuffer 
+            }); // loadAsync加载其他类型资源会出问题，比如资源乱码  
+            const zipData = await JSZip.loadAsync(response.data);
+            return zipData.files;
+        }
+
+        // 把解压后的资源写进硬盘
+        function saveZipFiles(savePath) { // 获取解压后的文件  
+            const files = await getZipFiles(zipUrl)
+            try {
+                for (const filename of Object.keys(files)) {
+                    const dest = path.join(__dirname, savePath, filename); // 如果该文件为目录需先创建文件夹    
+                    if (files[filename].dir && !isDirSync(dest)) {
+                        fs.mkdirSync(dest, { recursive: true });
+                    } else { // 把每个文件buffer写到硬盘中      
+                        files[filename].async('nodebuffer')
+                            .then(content => fs.writeFileSync(dest, content));
+                    }
+                }
+            } catch (error) {
+                console.error('save zip files encountered error!', error.message);
+                return error;
+            }
+        }
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

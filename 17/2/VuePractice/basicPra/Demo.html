@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>增删综合例子</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 14px;
+            font-family: Ubuntu, simHei, sans-serif;
+            font-weight: 400
+        }
+        
+        body {
+            font-size: 1rem;
+        }
+        
+        #app {
+            max-width: 640px;
+            margin: 20px auto;
+        }
+        
+        fieldset {
+            padding: 2rem;
+        }
+        
+        p {
+            padding: 0.5rem;
+        }
+        
+        label {
+            display: inline-block;
+            width: 10rem;
+            text-align: right;
+        }
+        
+        button {
+            background: #009A61;
+            color: #fff;
+            outline: none;
+            cursor: pointer;
+            border: 0;
+            border-radius: .25rem;
+            padding: .25rem .5rem;
+        }
+        
+        button:hover {
+            opacity: 0.8;
+        }
+        
+        table {
+            width: 100%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        
+        tr:nth-of-type(odd) {
+            background: #fff
+        }
+        
+        tr:nth-of-type(even) {
+            background: #eee
+        }
+        
+        th,
+        td {
+            padding: 0.5rem 0;
+            border: 1px solid #bcbcbc;
+        }
+        
+        th {
+            background: #42b983;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #fff;
+        }
+        
+        td[class=change] {
+            text-indent: 1rem;
+            /*padding: 0 1rem;*/
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+    </style>
+
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <fieldset>
+            <legend>Create New Person</legend>
+            <p>
+                <label>Name:</label>
+                <input type="text" v-model="newPerson.name">
+            </p>
+            <p>
+                <label>Age:</label>
+                <input type="text" v-model="newPerson.age">
+            </p>
+            <p>
+                <label>Sex:</label>
+                <select v-model="newPerson.sex">
+	        <option value="Male">Male</option>
+		    <option value="Female">Female</option>
+  	  	  </select>
+            </p>
+            <p>
+                <label></label>
+                <button @click="createPerson">Create</button>
+            </p>
+        </fieldset>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="person in people">
+                    <td class="change">{{person.name}}</td>
+                    <td class="change">{{person.age}}</td>
+                    <td class="change">{{person.sex}}</td>
+                    <!-- :class="'text-center'" 绑定到class属性为某名的样式上-->
+                    <td :class="'text-center'"><button @click="deletePerson($index)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                newPerson: {
+                    name: '',
+                    age: 0,
+                    sex: 'Male'
+                },
+                people: [{
+                    name: 'Jack',
+                    age: 30,
+                    sex: 'Male'
+                }, {
+                    name: 'Bill',
+                    age: 26,
+                    sex: 'Male'
+                }, {
+                    name: 'Tracy',
+                    age: 22,
+                    sex: 'Female'
+                }, {
+                    name: 'Chris',
+                    age: 36,
+                    sex: 'Male'
+                }]
+            },
+            methods: {
+                createPerson: function() {
+                    this.people.push(this.newPerson);
+                    // 添加完newPerson对象后，重置newPerson对象
+                    this.newPerson = {
+                        name: '',
+                        age: 0,
+                        sex: 'Male'
+                    }
+                },
+                deletePerson: function(index) {
+                    // 删一个数组元素
+                    this.people.splice(index, 1);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

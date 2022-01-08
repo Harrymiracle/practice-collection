@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>css模态框</title>
+    <style>
+        .modalDialog {
+            /*
+             * 用下面五行代码让元素撑满整个屏幕。而四个方向都设置为 0，实现水平垂直居中还需设置固定宽高,position:absolute;margin:auot;
+             * 不定宽高的元素，可以设置position:absolute;top,left各50%，translate(-50%,-50%);实现水平垂直居中。
+             **/
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 99999999;
+            opacity: 0;
+            display: none;
+            -webkit-transition: opacity 400ms ease-in;
+            -moz-transition: opacity 400ms ease-in;
+            transition: opacity 400ms ease-in;
+            /**
+            * pointer-events CSS 属性指定在什么情况下 (如果有) 某个特定的图形元素可以成为鼠标事件的 target。 
+            *   auto与pointer-events属性未指定时的表现效果相同；
+            *   none元素永远不会成为鼠标事件的target。但是，当其后代元素的pointer-events属性指定其他值时，鼠标事件可以指向后代元素，在这种情况下，鼠标事件将在捕获或冒泡阶段触发父元素的事件侦听器。
+            */
+            /* 关键是此属性和opacity属性 */
+            pointer-events: none;
+        }
+        
+        .modalDialog:target {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .modalDialog>div {
+            /* 水平垂直居中 */
+            position: absolute;
+            width: 470px;
+            height: 500px;
+            background: #fff;
+            top: 50%;
+            left: 50%;
+            margin-left: -235px;
+            margin-top: -250px;
+            padding: 5px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-box-shadow: 0 0 18px 3px rgba(0, 0, 0, .07);
+            -moz-box-shadow: 0 0 18px 3px rgba(0, 0, 0, .07);
+            box-shadow: 0 0 18px 3px rgba(0, 0, 0, .07);
+        }
+        
+        .modalDialog>div>p {
+            margin: 5px;
+        }
+        
+        .close {
+            width: 24px;
+            background: #606061;
+            color: #FFFFFF;
+            line-height: 25px;
+            position: absolute;
+            top: -10px;
+            right: -12px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            -webkit-border-radius: 12px;
+            -moz-border-radius: 12px;
+            border-radius: 12px;
+            -moz-box-shadow: 1px 1px 3px #000;
+            -webkit-box-shadow: 1px 1px 3px #000;
+            box-shadow: 1px 1px 3px #000;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            background: #0088dd;
+        }
+    </style>
+</head>
+<script src="../../js/jquery-2.2.3.min.js"></script>
+
+<body>
+    <script>
+        function openPopup() {
+            $('#openModal').css({
+                'display': 'block'
+            });
+            setTimeout(function() {
+                $('#openModal').css({
+                    'opacity': '1',
+                    'pointer-events': 'auto'
+                });
+            }, 500);
+        }
+
+        function closePopup() {
+            $('#openModal').css({
+                'opacity': '0',
+                'pointer-events': 'none'
+            });
+            setTimeout(function() {
+                $('#openModal').css({
+                    'display': 'none'
+                });
+            }, 500);
+        };
+    </script>
+
+    <div id="openModal" class="modalDialog">
+        <div>
+            <div onclick="closePopup()" title="Close" class="close">X</div>
+            <p>欢迎访问「<a href="https://www.arefly.com/" target="_blank">畅享资源</a>」！</p>
+            <p style="color: blue;">你也可以试试拉伸浏览器窗口来查看效果哦～ :)</p>
+            <!-- 更多內容... -->
+
+        </div>
+
+    </div>
+
+    <a onclick="openPopup()">打开</a>
+</body>
+
+</html>

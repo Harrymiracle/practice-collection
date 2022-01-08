@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>七巧板</title>
+</head>
+<body>
+  <canvas id="canvas" width="800" height="800" style="border:1px solid #aaa;display:block;margin:50px auto;">
+  	你的浏览器不支持canvas,请更换浏览器后再试。
+  </canvas>
+
+  <script>
+  	var tangram = [		//存储的七巧板的七个板块的顶点的坐标值和各个板块的颜色值
+  	  {p:[{x:0,y:0},{x:800,y:0},{x:400,y:400}],color:"#cafa67"},
+  	  {p:[{x:0,y:0},{x:400,y:400},{x:0,y:800}],color:"#67becf"},
+  	  {p:[{x:800,y:0},{x:800,y:400},{x:600,y:600},{x:600,y:200}],color:"#ef3d61"},
+  	  {p:[{x:600,y:200},{x:600,y:600},{x:400,y:400}],color:"#f5f91a"},
+  	  {p:[{x:400,y:400},{x:600,y:600},{x:400,y:800},{x:200,y:600}],color:"#a594c0"},
+  	  {p:[{x:200,y:600},{x:400,y:800},{x:0,y:800}],color:"#fa8ecc"},
+  	  {p:[{x:800,y:400},{x:800,y:800},{x:400,y:800}],color:"#f6ca29"}
+  	]
+
+  	window.onload = function(){
+  	  var canvas = document.getElementById("canvas");
+  	  // canvas.width = 800;
+  	  // canvas.height = 800;
+  	  var context = canvas.getContext("2d");
+  	  for(var i = 0; i < tangram.length; i++){
+  	  	draw(tangram[i],context);	//用循环调用其次draw函数
+  	  }
+  	}
+
+  	function draw(piece,cxt){	//将单独的模块和context上下文环境作为参数传给draw函数
+  	  cxt.beginPath();	//开始一个状态路径
+  	  cxt.moveTo(piece.p[0].x,piece.p[0].y);	//状态设置：将笔触移到的地方
+  	  for(var j = 1; j < piece.p.length; j++){
+  	  	cxt.lineTo(piece.p[j].x,piece.p[j].y);	//用循环画一个模块
+  	  }
+  	  cxt.closePath();	//结束一个状态路径，如果当前的路径没有封闭，同时会起到封闭路径的作用。
+  	  cxt.fillStyle = piece.color;	
+  	  cxt.fill();
+
+  	  cxt.strokeStyle = "black";
+  	  cxt.lineWidth = 3;
+  	  cxt.stroke();
+  	}
+  	
+  </script>
+
+</body>
+</html>

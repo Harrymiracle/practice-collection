@@ -1,0 +1,104 @@
+@import "../../commoncss/common";
+body {
+    background: transparent;
+    .wrapper {
+        position: fixed;
+        top: 4rem;
+        overflow-y: scroll;
+        width: 100%;
+        height: 82%;
+        .search-wrapper {
+            width: 96%;
+            margin: 0.5rem auto;
+            height: 5rem;
+            padding: 1rem 0;
+            border-radius: 0.3rem;
+            color: #5b5b5b;
+            background-color: #fff;
+            font-size: 1.4rem;
+            .input-wrapper {
+                width: 80%;
+                height: 3rem;
+                border-radius: 4px;
+                border: solid #009f78 1px;
+                margin: 0 auto;
+                overflow: hidden;
+                input {
+                    height: 100%;
+                    border: none;
+                    padding: 0 1rem;
+                    outline: 0;
+                    font-size: 1rem;
+                }
+                span {
+                    display: inline-block;
+                    height: 100%;
+                    background-color: #37b798;
+                    background-image: url(../images/task/icon-header02.png);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    -webkit-background-size: 1.8rem 1.8rem;
+                    -moz-background-size: 1.8rem 1.8rem;
+                    -o-background-size: 1.8rem 1.8rem;
+                    background-size: 1.8rem 1.8rem;
+                }
+            }
+        }
+        .contact-list-wrapper {
+            width: 96%;
+            margin: 0.5rem auto;
+            border-radius: 0.3rem;
+            li {
+                position: relative;
+                height: 7rem;
+                margin: 0.3rem 0rem 0rem;
+                background-color: #fff;
+                padding-top: 0.3rem;
+                position: relative;
+                .item {
+                    overflow: hidden;
+                    padding: 0 1rem;
+                    font-size: 1.4rem;
+                    line-height: 2rem;
+                    .item-left {
+                        float: left;
+                        span {
+                            color: #797979;
+                            font-size: 1rem;
+                        }
+                    }
+                    .item-right {
+                        float: right;
+                        margin-right: 2rem;
+                        span {
+                            color: #797979;
+                            font-size: 1rem;
+                        }
+                        span.item-right-status {
+                            color: #008363;
+                        }
+                    }
+                }
+                a{
+                    display: block;
+                    border: 0;
+                    outline: 0;
+                    position: absolute;
+                    right: 0;
+                    top: 1.5rem;
+                    background: transparent;
+                    width: 2rem;
+                    height: 4rem;
+                    text-align: center;
+                    line-height: 4rem;
+                    img{
+                        height: 32%;
+                    }
+                }
+            }
+            li:first-child {
+                border-top: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Element类型的取得特性的特殊例子</title>
+    <style>
+        div {
+            background: violet;
+            border: 1px solid red;
+            border-radius: 50px;
+            line-height: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="width:100px;height:100px;margin:100px auto 0;" onclick="Alert('被点击了！')">测试div元素</div>
+    <p class="res"></p>
+    <p class="res"></p>
+    <q>————可以概括为，方法执行后 得到的是对应的文本或是执行后的字符串。   属性得到的是对应属性的 对象（包括函数）。</q>
+    <script>
+        function Alert(str) {
+            alert(str);
+        }
+        var odiv = document.querySelector('div'),
+            ps = document.querySelectorAll('p'),
+            styleContent = odiv.getAttribute('style'), //width:100px;height:100px;margin:100px auto 0;  返回style特性中包含的CSS文本
+            clickContent = odiv.getAttribute('onclick'); //Alert('被点击了！')   返回点击事件的函数代码的字符串
+
+        var styleContent2 = odiv.style, //[object CSSStyleDeclaration]   通过属性访问返回的是一个对象
+            clickContent2 = odiv.onclick; //function onclick(event) { Alert('被点击了！') }  返回一个javaScript函数
+
+        ps[0].innerHTML = '通过 getAttribute() 方法 得到的行内样式文本为：' + styleContent + ' ...... 得到的点击事件的函数代码的字符串： ' + clickContent; //width:100px;height:100px;margin:100px auto 0;
+        ps[1].innerHTML = '通过 属性 来访问 得到的为：' + styleContent2 + ' ...... ' + clickContent2;
+
+        //可以概括为，方法执行后 得到的是对应的文本或是执行后的字符串。   属性得到的是对应属性的 对象（包括函数）。
+    </script>
+</body>
+
+</html>

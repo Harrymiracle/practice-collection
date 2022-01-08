@@ -1,0 +1,81 @@
+doctype
+html
+	head
+		title 购物车
+		link(rel='stylesheet' href='./style/mobilepublic.css')
+		link(rel='stylesheet' href='./style/mshopcart.css')
+		link(href='./bower_components/bootstrap/dist/css/bootstrap.css' rel='stylesheet' type='text/css')
+		meta(http-equiv="X-UA-Compatible" content="IE=edge, chrome=1")
+		meta(charset='utf-8')
+		meta(name='viewport' content='width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1')
+		meta(name='aplus' content='1')
+		meta(name='apple-mobile-web-app-title' content='商城')
+		meta(name='apple-mobile-web-app-capable' content='yes')
+		meta(name='apple-mobile-web-app-status-bar-style' content='black-translucent')
+		meta(name='format-detection' content='telephone=no,address=no')
+	body(style="background:rgb(240, 242, 245);")
+		div.header
+			a.back(onclick="window.history.go(-1)")
+				span.glyphicon.glyphicon-chevron-left
+			h2.title 购物车
+		if hasWants
+			div.content
+				div.conHeader
+					span.conHeaderSelect
+						label(data-select="1").select.select-yes.all-select
+						label 全选
+					span.edit　编辑
+					each singleFloor in wants
+						div.conSin(data-gid="#{singleFloor.id}")
+							div.conSin-left
+								label(data-select="1").select.select-yes.single-select
+							div.conSin-middle
+								img(src="#{singleFloor.imgsrc}")
+							div.conSin-right
+								h4.goodsName #{singleFloor.name}　
+								span.standard #{singleFloor.stand}
+								div.goodsDetail
+									span.goodsDetailPrice
+										span.nowprice ￥#{singleFloor.nowprice}
+										span.count
+											span.countReduce +
+											input(type="text" value="#{singleFloor.count}").countNumber
+											span.countAdd -
+										span.goodsDetaiEdit
+											span.editbtn 编辑
+											span.editshow
+												span 移入关注
+												span　删除
+												span　完成
+						div.conSin-edit
+						div.conSin-hide
+							each sinStand in singleFloor.standard
+								div.conSin-hide-stand
+									span.conSin-hide-standname #{sinStand.name}
+									each sinItem in sinStand.items
+										span.conSin-hide-standitem #{sinItem}
+			div.footer
+				div.footer-left
+					label(data-select="1").select.select-yes.all-select
+					label.footer-selectTitle 全选
+				div.footer-middle
+					span.footer-middle-price 
+						label.price-title 合计:
+						span.footer-price-sign ￥
+						span#footer-price 0
+					span.footer-middle-add 
+				div.footer-right
+					span.footer-right-text 结算(
+					span.footer-right-count ０
+					span.footer-right-text )
+		else
+			div.content-null 购物车空空如也，赶紧逛逛吧～
+		div.mask
+			div.bodyalert
+				div.bodyalert-con 确认要删除此商品吗？
+				div.bodyalert-btn
+					div.btn-no 取消
+					div.btn-yes 确定
+		div.edit
+	script(src='./bower_components/jquery/dist/jquery.min.js')
+	script(src="./script/mshopcart.js")

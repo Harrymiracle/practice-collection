@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>websocket</title>
+</head>
+
+<body>
+    <h2>chat room</h2>
+    <input id="content" type="text">
+    <input id="submitBtn" value="发送" type="button">
+    <div id="receive"></div>
+
+    <script>
+        let websocket = new WebSocket('ws://localhost:8989');
+
+        function showmsg(str, type) {
+            let div = document.createElement('div');
+            div.innerHTML = str;
+            if (type == 'enter') div.style.color = 'blue';
+            else if (type == 'leave') div.style.color = 'red';
+            document.body.appendChild(div);
+        }
+
+        websocket.onopen = function() {
+            console.log('Websocket opend!');
+            document.getElementById('submitBtn').onclick = function() {
+                let txt = document.getElementById('content').value;
+                if (txt) websocket.send(txt);
+            }
+        };
+
+        websocket.onmessage = function(e) {
+            console.log(e.data);
+            let msg = JSON.parse(e.data); // 解析出数据
+            showmsg(msg.data, msg.type);
+        };
+
+        websocket.onclose = function() {
+            console.log('Websocket closed!');
+        };
+    </script>
+</body>
+
+</html>

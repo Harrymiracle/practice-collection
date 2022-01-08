@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <style>
+        img.Avatar {
+            width: 160px;
+        }
+    </style>
+
+    <!-- 引入react -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <!-- 引入react-dom -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 引入Babel,使浏览器可以识别JSX语法，如果不使用JSX语法，可以不引入 -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- 本地的file协议的引入上面三个文件有跨域的问题 -->
+</head>
+
+<body>
+    <div id="root"></div>
+    <div id="app"></div>
+
+    <script type="text/babel"> // 必须添加type="text/babel",否则不识别JSX语法
+        function Comment(props) {
+            return (
+                <div className="comment">
+                    <div className="userInfo">
+                        <img className="Avatar" src={props.author.avatarUrl} alt={props.author.name} />
+                        <div className="userInfoName">{props.author.name}</div>
+                    </div>
+                    <div className="commentText">{props.text}</div>
+                    <div className="commentDate">{props.date}</div>
+                </div>
+            )
+        }
+
+        let author = {
+            avatarUrl: '../imgs/1.jpg',
+            name: 'Harry'
+        }
+
+        ReactDOM.render(
+            <Comment author={author} text='This is a comment text.' date={new Date().toLocaleTimeString()} />,
+            document.getElementById('root')
+        )
+
+
+        let author2 = {
+            avatarUrl: '../imgs/2.jpg',
+            name: 'Miracle'
+        }
+
+        function Avatar(props) {
+            return (
+                <img className="Avatar" src={props.user.avatarUrl} alt={props.user.name} />
+            )
+        }
+
+        function UserInfo(props) {
+            return (
+                <div className="userInfo">
+                    <Avatar user={props.user} />
+                    <div className="userInfoName">{props.user.name}</div>
+                </div>
+            )
+        }
+
+        function Comments(props) {
+            return (
+                <div className="comment">
+                    <UserInfo user={props.author} />
+                    <div className="commentText">{props.text}</div>
+                    <div className="commentDate">{props.date}</div>
+                </div>
+            )
+        }
+
+        ReactDOM.render(
+            <Comments author={author2} text='This is a comment text too.' date={new Date().toLocaleTimeString()} />,
+            document.getElementById('app')
+        )
+
+    </script>
+
+
+</body>
+
+</html>

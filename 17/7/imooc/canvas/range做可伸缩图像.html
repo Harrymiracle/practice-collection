@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>range做可伸缩图像</title>
+	<style>
+    	body{background: #808080;}
+    	canvas{display:block;border:1px solid gray;margin:20px auto;}
+    	#slider{width: 225px;display: block;margin: 10px auto;}
+	</style>
+</head>
+<body>
+	<canvas id="canvas">您的浏览器不支持canvas,请升级。</canvas>
+	<input type="range" id="slider" min="0.5" max="2.0" step="0.01" value="2">
+
+	<script>
+		var canvas = document.getElementById("canvas");
+		var context = canvas.getContext("2d");
+		var image = new Image();
+		var slider = document.getElementById("slider");
+
+
+		window.onload = function(){
+			canvas.width = 300;
+			canvas.height = 225;
+
+			var scale = slider.value;
+
+			image.src = "images/13.jpg";
+			image.onload = function(){
+				//context.drawImage(image,0,0,canvas.width,canvas.height);
+				drawImageByScale(scale);
+			}
+		}
+
+		function drawImageByScale(scale){
+			var imgWidth = 300*scale;
+			var imgHeight = 225*scale;
+
+			var sx = imgWidth/2 - canvas.width/2;
+			var sy = imgHeight/2 - canvas.height/2;
+
+			context.drawImage(image, sx, sy, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
+		}
+	</script>
+</body>
+</html>

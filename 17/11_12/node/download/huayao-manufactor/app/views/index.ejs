@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="wap-font-scale" content="no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+	<title>首页</title>
+	<!--<script src="/login/check_cookie"></script>-->
+	<link rel="stylesheet" href="../commoncss/amazeui.min.css">
+	<link rel="stylesheet" href="../views/css/index2.css">
+	<script src="../commonjs/jquery-2.1.0.js"></script>
+	<!--<style>
+        .main{
+            position: relative;
+        }
+        .home-page-title{
+            z-index: 999;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .main .banner{
+            margin-top: 4rem;
+        }
+    </style>-->
+</head>
+
+<body>
+<div class="main">
+	<div class="home-page-title margin-b">
+		首页
+	</div>
+	<div class="banner container">
+		<div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{&quot;directionNav&quot;:false}'>
+			<ul class="am-slides">
+				<li>
+					<div class="banner01"><img src="../views/images/index/banner1-1.png" alt=""></div>
+					<div class="banner02"><img src="../views/images/index/banner1-2.png" alt=""></div>
+					<div class="banner03"><img src="../views/images/index/banner1-3.png" alt=""></div>
+				</li>
+				<li>
+					<div class="banner01"><img src="../views/images/index/banner1-1.png" alt=""></div>
+					<div class="banner02"><img src="../views/images/index/banner1-2.png" alt=""></div>
+					<div class="banner03"><img src="../views/images/index/banner1-3.png" alt=""></div>
+				</li>
+				<li>
+					<div class="banner01"><img src="../views/images/index/banner1-1.png" alt=""></div>
+					<div class="banner02"><img src="../views/images/index/banner1-2.png" alt=""></div>
+					<div class="banner03"><img src="../views/images/index/banner1-3.png" alt=""></div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="function container fl-cl">
+		<div class="message margin-r img-p">
+			<a href="#">
+				<!--消息-->
+				<img src="../views/images/index/message.png" alt="">
+				<div class="text-p">消息</div>
+			</a>
+		</div>
+		<div class="complaint-rest margin-r">
+			<!--投诉和休息-->
+			<div class="complaint margin-b img-p">
+				<a href="#">
+					<!--投诉-->
+					<img src="../views/images/index/evaluate.png" alt="" class="max-3">
+					<div class="text-p">评价</div>
+				</a>
+			</div>
+			<div class="rest img-p">
+				<a href="#">
+					<!--休息-->
+					<img src="../views/images/index/mail-list.png" alt="休息" class="max-3">
+					<div class="text-p">通讯录</div>
+				</a>
+			</div>
+		</div>
+		<div class="satisfaction-freight">
+			<!--客户满意度和运费-->
+			<div class="satisfaction margin-b img-p" onclick="javascript:location.href='/person/person'">
+				<a href="javascript:void(0)">
+					<!--客户满意度-->
+					<img src="../views/images/index/person-center.png" alt="休息" class="max-3">
+					<div class="text-p">个人中心</div>
+				</a>
+			</div>
+		</div>
+
+	</div>
+	<div class="activity-receiving-orders container fl-cl">
+		<!--活动和一键接单-->
+		<div class="activity margin-r">
+			<!--活动-->
+			<a href="#" class="width-3 position-r-t">
+				<img src="../views/images/index/img-01.png" alt="充值">
+			</a>
+			<a href="#" class="width-2 position-l-b">
+				<img src="../views/images/index/integral.png" alt="充值">
+				<div class="text-p">积分</div>
+			</a>
+			<a href="#" class="width-3 position-r-b">
+				<img src="../views/images/index/img-02.png" alt="充值">
+			</a>
+			<a href="#" class="position-c-c">
+				<img src="../views/images/index/activity.png" alt="休息" class="max-3">
+			</a>
+		</div>
+
+		<div class="receiving-orders img-p" onclick="javascript:location.href='/task/selectordertype'">
+			<a href="javascript:void(0)">
+				<!--一键接单-->
+				<img src="../views/images/index/icon-task.png" alt="休息" class="max-3">
+				<div class="text-p">发布任务</div>
+			</a>
+		</div>
+	</div>
+</div>
+<footer>
+	<div>
+		<a href="javascript:void(0)">
+			<div class="activeimg"></div>
+			<p>首页</p>
+		</a>
+	</div>
+	<div>
+		<a href="/task/task">
+			<div class="img"></div>
+			<p>任务</p>
+		</a>
+	</div>
+	<div>
+		<a href="/person/person">
+			<div class="img"></div>
+			<p>我的</p>
+		</a>
+	</div>
+</footer>
+<script src="../commonjs/amazeui.min.js"></script>
+</body>
+
+</html>

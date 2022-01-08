@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置type='date'的input标签不能选择大于当前时间的日期</title>
+</head>
+
+<body>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label">出生年月</label>
+        <div class="col-sm-9">
+            <input type="date" class="form-control" placeholder="请输入出生年月" name="" id="birthday" value="" max="">
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">出生年月</label>
+        <div class="col-sm-9">
+            <input type="date" class="form-control" placeholder="请输入出生年月" name="" id="birthday2" value="" max="">
+        </div>
+    </div>
+
+
+    <script>
+        function addZero(n) {
+            return parseInt(n) >= 10 ? n.toString() : '0' + n;
+        }
+        window.onload = function () {
+            let dateNow = new Date(),
+                yearNow = dateNow.getFullYear(),
+                monthNow = dateNow.getMonth() + 1,
+                dayNow = dateNow.getDate(),
+                maxDate = yearNow + '-' + (monthNow).toString().padStart(2, '0') + '-' + dayNow.toString().padStart(2, '0'),
+                maxDate2 = yearNow + '-' + addZero(monthNow) + '-' + addZero(dayNow);
+            let inp = document.querySelector('#birthday');
+            inp.setAttribute('max', maxDate);
+            let inp2 = document.querySelector('#birthday2');
+            inp2.setAttribute('max', maxDate2);
+        }
+
+        'TestString'.padStart(16); // "      TestString"
+        'TestString'.padStart(16, "xoo");  // "xooxooTestString"
+        'TestString'.padStart(16,"12345678"); // "123456TestString"
+        'TestString'.padStart(16, "0");     // "000000TestString"
+        'TestString'.padStart(6);   // "TestString"
+    </script>
+</body>
+
+</html>

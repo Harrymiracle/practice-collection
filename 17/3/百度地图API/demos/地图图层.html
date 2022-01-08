@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<title>地图图层</title>
+	<style>
+	  html, body, #container{width: 100%; height: 100%; margin: 0; overflow: auto; font-family: "微软雅黑"}
+	</style>
+	  <script src="http://api.map.baidu.com/api?v=2.0&ak=XvM4ueScwPRBKCVFXZ4TGximHHdWpgGk" type="text/javascript"></script>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script>
+    var map = new BMap.Map("container",{minZoom:4, maxZoom:11});	//创建地图实例,设置最小和最大的地图级别
+    var point = new BMap.Point(121.471, 31.223);	//设置创建点坐标
+    map.centerAndZoom(point,10);	//初始化地图，设置中心点坐标和地图级别
+    map.setCurrentCity("上海");		//设置当前的城市
+    map.enableScrollWheelZoom(true);	//允许鼠标滚动
+
+  //-----------添加地图图层
+	var traffic = new BMap.TrafficLayer();	//创建交通流量图实例
+	map.addTileLayer(traffic);		//将交通流量图添加到地图中去
+
+	//从地图上移除图层，需要调用map.removeTileLayer方法
+	map.removeTileLayer(traffic);
+
+/* //.gif有问题
+	var tilelayer = new BMap.TileLayer();         // 创建地图层实例    
+	tilelayer.getTilesUrl=function(){             // 设置图块路径     
+	  return "layer.gif";      
+	};      
+	map.addTileLayer(tilelayer);                // 将图层添加到地图上
+*/
+	setTimeout(function(){
+	  map.panTo(new BMap.Point(113.262,23.154));	//3秒后移动到广州
+	  map.setZoom(12);      //设置地图级别为14级
+	},3000);
+
+	var bs = map.getBounds();   //获取可视区域,一个西南顶点到东北顶点的值
+	console.log(bs);
+	var bssw = bs.getSouthWest();   //可视区域左下角
+	var bsne = bs.getNorthEast();   //可视区域右上角
+	console.log("当前地图可视范围是：" + bssw.lng + "," + bssw.lat + "到" + bsne.lng + "," + bsne.lat);
+
+  </script>
+</body>
+</html>

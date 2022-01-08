@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>非零环绕制作剪纸效果</title>
+</head>
+<body>
+  <canvas id="canvas" style="border:1px solid violet;margin:10px auto;">
+  	你的浏览器不支持canvas,请更换浏览器再试。
+  </canvas>
+
+  <script>
+//非零环绕即从一个区域内取一个点，从这个点开始引一条射线，这条射线会和多边形的边有交点，多边形的边有不同的绘制方向，我们指定一种绘制方向的边和射线的交点为一，另一种的为负一，把所有的交点的正负一的值相加，若为零，则此点在的区域就在多边形的外面，否则 ，若不为零则在多边形的里面。
+
+    window.onload = function(){
+      var canvas = document.getElementById("canvas");
+      canvas.width = 800;
+  	  canvas.height = 560;
+      var context = canvas.getContext("2d");
+
+      context.beginPath();
+      context.rect(30,30,700,500);
+      rectPath(context,80,80,570,165);
+      trianglePath(context,230,260,80,500,380,500);
+      context.arc(530,350,150,0,2*Math.PI,true);  //此时故意把圆的半径设的比较大，可以和前面三角形的效果比较
+      context.closePath();
+
+      context.fillStyle = "yellowgreen";
+      context.shadowColor = "gray";
+      context.shadowOffsetX = 10;
+      context.shadowOffsetY = 10;
+      context.shadowBlur = 10;
+      context.fill();
+
+    }
+
+
+
+    function rectPath(cxt,x,y,width,height){
+ //注意:不能用beginPath()和closePath(),因为rect()和arc()方法中没有设置这两方法,这里用了就达不到想要的结果了，在上面路径设置的开始和结尾用就可以，而且代码简洁集中。
+      // cxt.beginPath(); 
+      cxt.moveTo(x,y);   //moveTo和lineTo的位置不要放错了
+      cxt.lineTo(x,y+height);
+      cxt.lineTo(x+width,y+height);
+      cxt.lineTo(x+width,y);
+      cxt.lineTo(x,y);
+      // cxt.closePath();       //注意：不能用，同上。
+    }
+
+    function trianglePath(cxt,x1,y1,x2,y2,x3,y3){
+      // cxt.beginPath();       //注意：不能用，同上。
+      cxt.moveTo(x1,y1);
+      cxt.lineTo(x2,y2);
+      cxt.lineTo(x3,y3);
+      cxt.lineTo(x1,y1);
+      // cxt.closePath();       //注意：不能用，同上。
+    }
+  </script>
+</body>
+</html>

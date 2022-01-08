@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>取送货地址</title>
+    <link rel="stylesheet" href="../../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../plugin/area/amazeui.address.min.css">
+    <link rel="stylesheet" href="../css/address.css">
+</head>
+<body>
+<header>
+    <a href="#" class="goback" onclick="javascript:history.go(-1)"></a>
+    <div class="head-tab">
+        <div class="active am-u-sm-6">取货地址</div>
+        <div class="am-u-sm-6">送货地址</div>
+    </div>
+    <a href="#" class="manege">管理</a>
+</header>
+
+<div class="address">
+    <div class="qu">
+        <ul>
+            <li>
+                <div class="am-u-sm-3">联系人：</div>
+                <div class="am-u-sm-9"><input type="text" placeholder="联系人姓名"></div>
+            </li>
+            <li>
+                <div class="am-u-sm-3">联系方式：</div>
+                <div class="am-u-sm-9"><input type="text" placeholder="联系方式"></div>
+            </li>
+            <li>
+                <div class="am-u-sm-3">公司：</div>
+                <div class="am-u-sm-9"><input type="text" placeholder="公司名称"></div>
+            </li>
+            <li>
+                <div class="am-u-sm-3">地址：</div>
+                <div class="am-u-sm-9" id="address_qu">
+                    <input readonly type="text" name="text" placeholder="请选择省市区">
+                    <input type="hidden" name="district1">
+                </div>
+            </li>
+            <li class="last">
+                <div class="am-u-sm-3">详细地址：</div>
+                <div class="am-u-sm-9">
+                    <textarea  placeholder="详细街牌号" rows="2"></textarea>
+                </div>
+            </li>
+        </ul>
+        <div class="btn">
+            <span class="small-btn" onclick="javascript:window.location.href='tasksubmit.html'">下一步</span>
+            <span class="small-btn" onclick="javascript:window.location.href='tasksubmit.html'">企业通讯录</span>
+        </div>
+    </div>
+    <div class="shou hide">
+        <ul>
+            <li>
+                <div class="am-u-sm-3">联系人：</div>
+                <div class="am-u-sm-9"><input type="text" placeholder="联系人姓名"></div>
+            </li>
+            <li>
+                <div class="am-u-sm-3">联系方式：</div>
+                <div class="am-u-sm-9"><input type="text" placeholder="联系方式"></div>
+            </li>
+            <li>
+                <div class="am-u-sm-3">公司：</div>
+                <div class="am-u-sm-9"><input type="text" placeholder="公司名称"></div>
+            </li>
+            <li>
+                <div class="am-u-sm-3">地址：</div>
+                <div class="am-u-sm-9" id="addres_send">
+                    <input readonly type="text" name="text" placeholder="请选择省市区">
+                    <input type="hidden" name="district1">
+                </div>
+            </li>
+            <li class="last">
+                <div class="am-u-sm-3">详细地址：</div>
+                <div class="am-u-sm-9">
+                    <!--<input type="text" placeholder="详细街牌号">-->
+                    <textarea  placeholder="详细街牌号" rows="2"></textarea>
+                </div>
+            </li>
+        </ul>
+        <div class="btn">
+            <span class="small-btn" onclick="javascript:window.location.href='tasksubmit.html'">下一步</span>
+            <span class="small-btn" onclick="javascript:window.location.href='tasksubmit.html'">客户通讯录</span>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" value="0" id="check01">
+<input type="hidden" value="0" id="check02">
+</body>
+<script src="../../commonjs/jquery-2.1.0.js"></script>
+<script src="../../commonjs/amazeui.min.js"></script>
+<script src="../plugin/area/address.js"></script>
+<script type="text/javascript">
+
+    $("header .head-tab div").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        var index=$(this).index();
+        $(".address>div").eq(index).show().siblings("div").hide();
+    });
+
+    $(function(){
+        $("#address_qu").address({
+            prov: "210000",
+            city: "210200",
+            district: "210203",
+            footer: true,
+            scrollToCenter: true,
+            selectNumber: 3,
+        });
+        $("#addres_send").address({
+            prov: "210000",
+            city: "210200",
+            district: "210203",
+            footer: true,
+            scrollToCenter: true,
+            selectNumber: 3,
+        });
+    });
+</script>
+</html>

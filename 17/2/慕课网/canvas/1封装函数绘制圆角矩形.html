@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>封装函数绘制圆角矩形</title>
+</head>
+<body>
+  <canvas id="canvas" style="border:1px dotted black;">
+  	你的浏览器不支持canvas,请更换后再试。
+  </canvas>
+  <script>
+  	window.onload = function(){
+  	  var canvas = document.getElementById("canvas");
+  	  canvas.width = 800;
+  	  canvas.height = 600;
+
+      var context = canvas.getContext("2d");
+      drawRoundRect(context,100,100,600,400,30);
+  	}
+
+  	function drawRoundRect(cxt,x,y,width,height,radius){
+      cxt.save();
+      cxt.translate(x,y);
+      pathRoundRect(cxt,width,height,radius);
+      cxt.strokeStyle = "red";
+      cxt.stroke();
+      cxt.restore();
+  	}
+
+
+  	function pathRoundRect(cxt,width,height,radius){
+   	  cxt.beginPath();
+   	  cxt.arc(width-radius,radius,radius,1.5*Math.PI,0); //右上角
+   	  cxt.lineTo(width,height-radius);	//右边
+   	  cxt.arc(width-radius,height-radius,radius,0,0.5*Math.PI);	//右下角
+   	  cxt.lineTo(radius,height);	//底边
+   	  cxt.arc(radius,height-radius,radius,0.5*Math.PI,Math.PI);	//左下角
+   	  cxt.lineTo(0,radius);	//左边
+   	  cxt.arc(radius,radius,radius,Math.PI,1.5*Math.PI);	//左上角
+
+   	  cxt.closePath();	//封闭路径时补上上边
+  	}
+  	
+
+  </script>
+</body>
+</html>

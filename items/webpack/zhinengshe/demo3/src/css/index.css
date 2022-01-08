@@ -1,0 +1,12 @@
+.logo {
+    width: 512px;
+    height: 381px;
+    background: url('../imgs/10.jpg') no-repeat;
+    text-indent: -999px;
+}
+
+
+.my-dialog {
+    width: 400px;
+    margin: 0 auto;
+}

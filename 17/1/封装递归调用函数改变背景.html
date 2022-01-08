@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>递归调用</title>
+<style>
+  body{
+    background: violet;
+  }
+</style>
+</head>
+<body>
+<script>
+  var fade = function(nodes){
+    var level = 1;
+    var step = function(){
+      var hex = level.toString(16);
+      nodes.style.background = "#ffff" + hex + hex;
+      if(level < 16){
+      	level += 1;
+        setTimeout(step,1000);
+      }
+    };
+    setTimeout(step,1000);
+  };
+  fade(document.body);
+</script>
+</body>
+</html>

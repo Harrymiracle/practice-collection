@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分页01</title>
+    <style>
+        .pagination {
+            /* display: -webkit-flex;
+    display: flex; */
+            display: none;
+            justify-content: flex-end;
+            list-style: none;
+            overflow: hidden;
+            font-size: 14px;
+        }
+
+        .pagination li {
+            padding: 6px 10px;
+            line-height: 1.5;
+            border: 1px solid #e0e0e0;
+            border-right: none;
+            cursor: pointer;
+        }
+
+        .pagination li:last-of-type {
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .pagination li a {
+            text-decoration: none;
+        }
+
+        .pagination li a:link,
+        .pagination li a:hover,
+        .pagination li a:visited,
+        .pagination li a:active {
+            color: #666666;
+        }
+
+        .pagination li.active a {
+            color: #c2e2f1;
+        }
+
+        .pagination li.disable {
+            pointer-events: none;
+            cursor: default;
+        }
+    </style>
+
+<script crossorigin="anonymous" integrity="sha384-rY/jv8mMhqDabXSo+UCggqKtdmBfd3qC2/KvyTDNQ6PcUJXaxK1tMepoQda4g5vB" src="https://lib.baomitu.com/jquery/2.2.4/jquery.min.js"></script></head>
+
+
+<body>
+    <ul class="pagination"></ul>
+
+    <script>
+        ; (function ($, window, undefined) {
+            var totPage = '',
+                curPage = '';
+
+            var defaultOpts = {
+                container: '.pagination',
+                totalLists: null,   //需要和pageSize组合使用
+                pageSize: 10,
+                totalPage: null,    //可单独使用，不传totalLists、pageSize
+                currentPage: 1,
+                disabledColor: '#666',
+                normalColor: '#000',
+                callBack: null,
+            }
+
+            var Pagination = function (opts) {
+                this.settings = $.extend({}, defaultOpts, opts);
+                totPage = this.settings.totalPage
+                    || Math.ceil(this.settings.totalLists / this.settings.pageSize);
+                curPage = this.settings.currentPage;
+                this.init();
+            }
+
+            Pagination.prototype = {
+                init: function () {
+                    this.creatPage(totPage, curPage);
+                    this.bindEvent();
+                },
+                creatPage: function (totPage, curPage) {
+                    var _this = this,
+                        _container = $(_this.settings.container);
+
+                    // 小于1页时隐藏分页组件
+                    if (totPage <= 1) {
+                        _container.hide();
+                        return;
+                    }
+
+                    // 判断中间需要展示的页码数是从多少开始到多少结束
+                    _container.children('li').remove();
+                    // 获取当前页,根据当前页 计算 需要显示的页码（最多显示5个页码，
+                    // 假定当前的是中间一个，前后各两个，检查前后两个是否超出边界）
+                    var startIndex = curPage - 2; //组件开始展示的页码
+                    var endIndex = curPage + 2;  //组件结束展示的页码
+                    // 超出修正
+                    if (startIndex < 1) { //开始展示的页码小于1，即当前页小于3
+                        startIndex = 1; //开始页重置为1
+                        //结束页设置为 x+4（总共展示五个页码数，当前页码后面最多展示4个页码数）
+                        endIndex = startIndex + 4;
+                    }
+                    if (endIndex > totPage) { //假定展示的结束页码数大于总页码数
+                        endIndex = totPage; //结束页重置为总页码数
+                        //结束页码数倒推4个页码数大于0，即开始展示的页码数为 x-4，否则重置为1
+                        startIndex = (endIndex - 4) > 0 ? endIndex - 4 : 1;
+                    }
+
+                    // 生成页码
+                    var $li = '<li data-page="1">首页</li>';
+                    // 生成前面可能的…
+                    if (startIndex >= 2 && totPage > 5) {
+                        $li += '<li class="disable"><a href="#">…</a></li>';
+                    }
+                    for (var i = startIndex; i <= endIndex; i++) {
+                        // 高亮当前页，生成中间展示的页码数
+                        if (i == curPage) { //当前页
+                            $li += '<li class="active disable" data-page="' + i + '"><a href="#">' + i + '</a></li>';
+                        } else { //非当前页
+                            $li += '<li  data-page="' + i + '"><a href="#">' + i + '</a></li>';
+                        }
+                    }
+                    // 生成后面可能的…
+                    if (curPage + 2 < totPage && totPage > 5) {
+                        $li += '<li class="disable"><a href="#">…</a></li>';
+                    }
+                    $li += '<li data-page="">尾页</li>';
+                    // 添加到ul中
+                    _container.html($li);
+                    _this.refreshStyle();
+                },
+                bindEvent: function () {
+                    var _this = this,
+                        _container = $(_this.settings.container),
+                        _fn = function () {
+                            curPage = +$(this).attr('data-page');
+                            _this.settings.currentPage = curPage;
+                            if ($.isFunction(_this.settings.callBack)) {
+                                //把当前页码数传出去给回调函数使用
+                                _this.settings.callBack(_this.settings.currentPage);
+                                _container.off('click', 'li', _fn);   //解绑事件
+                            }
+                        };
+                    _container.on('click', 'li', _fn);
+                },
+                // 处理首页、尾页按钮样式
+                refreshStyle: function () {
+                    var _this = this,
+                        _container = $(_this.settings.container),
+                        _firstLi = _container.children('li:first'),
+                        _lastLi = _container.children('li:last');
+                    if (curPage == 1) {
+                        _firstLi.css({ 'color': _this.settings.disabledColor, 'pointer-events': 'none' });
+                    } else {
+                        _firstLi.css({ 'color': _this.settings.normalColor, 'pointer-events': 'auto' });
+                    }
+                    if (curPage == totPage) {
+                        _lastLi.css({ 'color': _this.settings.disabledColor, 'pointer-events': 'none' });
+                    } else {
+                        _lastLi.css({ 'color': _this.settings.normalColor, 'pointer-events': 'auto' });
+                    }
+                    _lastLi.attr('data-page', totPage).end()
+                        .css({ 'display': '-webkit-flex', 'display': 'flex' });
+                }
+            }
+
+            var paginationInit = function (opts) {
+                return new Pagination(opts);
+            }
+
+            window.paginationInit = $.paginationInit = paginationInit;
+        })(jQuery, window, undefined);
+
+
+        $.paginationInit({
+            container: '.pagination',
+            totalLists: 100,      //总条数
+            totalPage: 10,
+            pageSize: 10,
+            currentPage: 9,
+            callBack: function (cur) {
+                // fn();   //要执行的函数(可以为查询列表函数，查询成功后调用分页组件)
+                console.log('currentPage', cur);
+            }
+        });
+
+    </script>
+</body>
+
+</html>

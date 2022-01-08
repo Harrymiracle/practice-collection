@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>粉丝认同</title>
+    <style>
+        html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input, textarea, th, td, select {margin: 0; padding: 0;}
+        #wrap {padding-left: 122px; min-width: 900px; overflow: hidden;}
+        #navList,#content {float: left; position: relative; min-height: 400px;}
+        #content {width: 100%; background: orange;}
+        #navList {margin-left: -100%; left: -122px; width: 122px; background: pink;}
+        #logo {height: 70px; background: blue;}
+        .navs {background-color: #101e35; padding-bottom: 10px; color: #fff; min-width: 122px;}
+        dt {height: 61px; line-height: 61px; text-indent: 20px; position: relative; min-width: 122px; }
+        dd {height: 61px; line-height: 61px; background: #2d3a4e; text-indent: 30px; font-size: 14px; min-width: 122px;}
+        .rot {transform: rotate(90deg); }
+        dt span {width: 6px; height: 12px; display: inline-block; background: url(images/ba_a.png); position: absolute; top: 26px; right: 15px; background-size: 6px 12px; }
+        .frontTag {background: url(images/selected-tag.png) 0 10px no-repeat #2d3a4e; }
+        .cur {color: #fae71c; }
+
+        header{height: 70px; background: purple;}
+        #content article {}
+        #negKeyword, #servIntime {width: 94%; margin: 3% 0 3% 3%; min-height: 300px;}
+        #negKeyword {background: darkred;}
+        #servIntime {background: greenyellow;}
+
+    </style>
+
+    <script src="js/jquery-2.1.0.js"></script>
+</head>
+<body>
+<div id="wrap">
+    <div id="content">
+        <header></header>
+        <article>
+            <div id="negKeyword">
+
+            </div>
+            <div id="servIntime">
+
+            </div>
+        </article>
+    </div>
+    <div id="navList">
+        <div id="logo"></div>
+        <nav>
+            <div class="navs">
+                <dl>
+                    <dt class="curItem cur frontTag">首页</dt>
+                </dl>
+                <dl>
+                    <dt>粉丝专题
+                        <span></span>
+                    </dt>
+                    <dd>粉丝获取</dd>
+                    <dd>粉丝活跃</dd>
+                    <dd class="">粉丝认同</dd>
+                    <dd>粉丝忠诚</dd>
+                    <dd>粉丝明细</dd>
+                </dl>
+                <dl>
+                    <dt>活动专题
+                        <span></span>
+                    </dt>
+                    <dd>指标视图</dd>
+                    <dd>活动明细</dd>
+                </dl>
+            </div>
+        </nav>
+    </div>
+
+</div>
+
+<script>
+    $(function(){
+        var $dt = $("dt");
+        $dt.each(function(){
+            if(!$(this).hasClass("curItem")){
+                $(this).siblings("dd").hide();
+            }
+        });
+
+        $("dl").click(function(){
+            $(this).find("dt span").toggleClass("rot");
+            $(this).find("dd").slideToggle();
+        })
+
+        $("dd").click(function(e){
+            e.stopPropagation();
+        })
+    })
+
+</script>
+</body>
+</html>

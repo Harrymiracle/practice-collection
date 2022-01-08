@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>封装的栈对象的使用</title>
+</head>
+<script src="./js/stack.js"></script>
+
+<body>
+    <script>
+        var stack = new Stack();
+        console.log(stack); //Stack {push: function, pop: function, peek: function, isEmpty: function, clear: function…}
+
+        stack.push('张三');
+        stack.push('李四');
+
+        stack.print(); //张三,李四
+
+        console.log(stack.pop()); //李四
+        console.log(stack.peek()); //张三
+        console.log(stack.isEmpty()); //false
+        console.log(stack.size()); //1
+
+        stack.clear();
+
+        console.log(stack.isEmpty()); //true
+
+
+        /**
+         * 十进制转二进制
+         */
+        function divideTo2(num) {
+            var stack = new Stack(),
+                remain,
+                str = '';
+
+            while (num > 0) {
+                remain = Math.floor(num % 2);
+                num = Math.floor(num / 2);
+                stack.push(remain);
+                // str += stack.pop().toString();//不能放在这个循环里，因为每次加一个，就取一个，取的都是当前项，没起到倒序的作用。
+            }
+            while (!stack.isEmpty()) {
+                str += stack.pop().toString();
+            }
+            return str;
+        }
+        divideTo2(6); //110
+
+        /**
+         * 十进制转其他任意进制
+         */
+        function divideToAny(num, base) {
+            var stack = new Stack(),
+                remain,
+                str = '',
+                list = '0123456789abcdef';
+            debugger
+
+            while (num > 0) {
+                remain = Math.floor(num % base);
+                stack.push(remain);
+                num = Math.floor(num / base);
+            }
+            while (!stack.isEmpty()) {
+                str += list[stack.pop().toString()];
+            }
+            return str;
+        }
+
+        divideToAny(39, 16); //27
+    </script>
+</body>
+
+</html>

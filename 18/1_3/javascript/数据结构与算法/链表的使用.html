@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>封装的链表对象的使用</title>
+</head>
+<script src="./js/linkedList.js"></script>
+
+<body>
+    <script>
+        var linkedList = new LinkedList();
+        debugger
+        linkedList.append('兆');
+        linkedList.append('亿');
+        console.log(linkedList.getHead());
+
+        linkedList.removeAt(1);
+        console.log(linkedList.size());
+
+        linkedList.insert(0, '十亿');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>积分商城</title>
+    <script src="/commonjs/jquery-2.1.0.js"></script>
+    <script src="/commonjs/amazeui.min.js"></script>
+    <link rel="stylesheet" href="/commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../css/scoreMall.css">
+</head>
+
+<body>
+    <header>
+        <a href="javascript:history.back(-1)" class="goback"> </a>
+        <p>积分商城</p>
+    </header>
+    <div class="wrapper">
+        <div class="wrapper-item">
+            <div class="item-left">
+                <img src="../images/scoreMall/scoreMallImg.png" alt="商品">
+            </div>
+            <div class="item-right">
+                <p class="right-title">移动50元话费充值</p>
+                <p class="right-sub-title">移动用户可兑换50元话费充值卡</p>
+                <p class="right-value">积分:300</p>
+            </div>
+            <button class="item-btn">兑换</button>
+        </div>
+        <div class="wrapper-item">
+            <div class="item-left">
+                <img src="../images/scoreMall/scoreMallImg.png" alt="商品">
+            </div>
+            <div class="item-right">
+                <p class="right-title">移动50元话费充值</p>
+                <p class="right-sub-title">移动用户可兑换50元话费充值卡</p>
+                <p class="right-value">积分:300</p>
+            </div>
+            <button class="item-btn">兑换</button>
+        </div>
+        <div class="wrapper-item">
+            <div class="item-left">
+                <img src="../images/scoreMall/scoreMallImg.png" alt="商品">
+            </div>
+            <div class="item-right">
+                <p class="right-title">移动50元话费充值</p>
+                <p class="right-sub-title">移动用户可兑换50元话费充值卡</p>
+                <p class="right-value">积分:300</p>
+            </div>
+            <button class="item-btn">兑换</button>
+        </div>
+        <div class="wrapper-item">
+            <div class="item-left">
+                <img src="../images/scoreMall/scoreMallImg.png" alt="商品">
+            </div>
+            <div class="item-right">
+                <p class="right-title">移动50元话费充值</p>
+                <p class="right-sub-title">移动用户可兑换50元话费充值卡</p>
+                <p class="right-value">积分:300</p>
+            </div>
+            <button class="item-btn">兑换</button>
+        </div>
+        <div class="wrapper-item">
+            <div class="item-left">
+                <img src="../images/scoreMall/scoreMallImg.png" alt="商品">
+            </div>
+            <div class="item-right">
+                <p class="right-title">移动50元话费充值</p>
+                <p class="right-sub-title">移动用户可兑换50元话费充值卡</p>
+                <p class="right-value">积分:300</p>
+            </div>
+            <button class="item-btn">兑换</button>
+        </div>
+        <div class="wrapper-item">
+            <div class="item-left">
+                <img src="../images/scoreMall/scoreMallImg.png" alt="商品">
+            </div>
+            <div class="item-right">
+                <p class="right-title">移动50元话费充值</p>
+                <p class="right-sub-title">移动用户可兑换50元话费充值卡</p>
+                <p class="right-value">积分:300</p>
+            </div>
+            <button class="item-btn">兑换</button>
+        </div>
+        
+    </div>
+    <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+        <div class="am-modal-dialog">
+            <div class="am-modal-bd">
+                确定兑换吗？
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $("body .wrapper").delegate(".item-btn","click",function () {
+            var $currentEle = $(this);
+            $('#my-confirm').modal({
+                relatedTarget: this,
+                onConfirm: function (options) {
+                    $currentEle.text("已换").css("background","#bfbfbf");
+                },
+                onCancel: function () {
+                    
+                }
+            });
+        })
+    </script>
+    
+
+</body>
+
+</html>

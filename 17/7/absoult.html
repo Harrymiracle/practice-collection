@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>定位布局</title>
+	<style type="text/css">
+	.wraps{
+		position: absolute;
+		border: 1px solid #000;
+		top: 20px;
+		left: 20px;
+		right: 20px;
+		bottom: 20px;
+	}
+	.left{
+		width:300px;
+		height: 100%;
+		background: red;
+	}
+	.right{
+		position: absolute;
+		top: 0px;
+		left: 300px;
+		right: 20px;
+		bottom: 20px;
+		background: yellow;
+
+	}
+	</style>
+</head>
+<body>
+<div class="wraps">
+	<div class="left"></div>
+	<div class="right"></div>
+</div>	
+</body>
+</html>

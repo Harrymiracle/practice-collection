@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function randomize(n) {
+            var values = [];
+            var rand;
+            while (n--) {
+                //将随机数乘以2n取整。如果 | 后面不是零，则是将后面的数同前面的结果分别转换成二进制相加
+                rand = Math.random() * n * 2 | 0;   
+                if (rand < values.length) {
+                values.push(values[rand]);
+                }else {
+                switch (Math.random() * 3 | 0) {
+                    case 0:
+                    values.push(Math.random() * 1e10 | 0);
+                    break;
+                    case 1:
+                    values.push((Math.random() * 1e32).toString(36));
+                    break;
+                    case 2:
+                    values.push({});
+                    break;
+                }
+                }
+            }
+            return values;
+        };    
+
+        var result = randomize(10);
+        console.log(result);
+        /*
+            0:"1vb56htu6h8g000000000"
+            1:"3crioqa5hum0000000000"
+            2:2020784028
+            3:{}
+            4:"34eh6kivsn00000000000"
+            5:"3crioqa5hum0000000000"
+            6:{}
+            7:{}
+            8:"3crioqa5hum0000000000"
+            9:"1vb56htu6h8g000000000"
+            length:10
+            __proto__:Array(0)
+        */
+    </script>
+</body>
+</html>

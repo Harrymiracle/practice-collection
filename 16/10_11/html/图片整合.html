@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片整合</title>
+	<style>	
+	/*方法一、把背景图设在a上:	*/
+		/*li{
+			list-style: none;
+			float: left;
+		}
+		a{
+			text-decoration: none;
+			width: 62px;height: 22px;
+			line-height: 22px;
+			display: block;
+			text-align: center;
+			color: black;
+			background: url(bg.gif);
+		}
+		li:hover a{
+			background-position: 0 -22px;
+		}
+		.list2 a{background: url(bg.gif) no-repeat -62px 0;}
+		.list2:hover a{background-position: -62px -22px;}
+		.list3 a{background: url(bg.gif) no-repeat -124px 0;}
+		.list3:hover a{background-position: -124px -22px;}
+		.list4 a{background: url(bg.gif) no-repeat -186px 0;}
+		.list4:hover a{background-position: -186px -22px;}*/
+
+
+	/*方法一、把背景图设在li上:	*/
+		li{
+			list-style: none;
+			float: left;
+			width: 62px;height: 22px;
+			line-height: 22px;
+			text-align: center;
+			background: url(bg.gif);
+		}
+		a{
+			text-decoration: none;			
+			color: black;			
+		}
+		li:hover{
+			background-position: 0 -22px;
+		}
+		.list2{background: url(bg.gif) no-repeat -62px 0;}
+		.list2:hover{background-position: -62px -22px;}
+		.list3{background: url(bg.gif) no-repeat -124px 0;}
+		.list3:hover{background-position: -124px -22px;}
+		.list4{background: url(bg.gif) no-repeat -186px 0;}
+		.list4:hover{background-position: -186px -22px;}
+
+
+	/*方法三、可以用nth-of-type(n)来获取li，不用再对每一个都设置id或class属性*/
+	
+	</style>
+</head>
+<body>
+	<ul>
+		<li><a href="#">服装</a></li>
+		<li class="list2"><a href="#">图书</a></li>
+		<li class="list3"><a href="#">电器</a></li>
+		<li class="list4"><a href="#">家具</a></li>
+	</ul>
+	
+	
+</body>
+</html>

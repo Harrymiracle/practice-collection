@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="根据官方数据计算，实际…">
+
+    <title>不同年人民币购买力转换</title>
+    <style>
+        html,
+        body,
+        div {
+            margin: 0;
+            padding: 0;
+        }
+        
+        input {
+            width: 220px;
+            border: none;
+            outline: none;
+            border-bottom: 1px solid blue;
+        }
+        
+        input[type="button"],
+        input[type="reset"] {
+            width: 70px;
+            text-align: center;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            margin-right: 20px;
+            margin-top: 10px;
+            border-bottom: none;
+            border-radius: 6px;
+            background: #00956d;
+            color: white;
+        }
+        
+        label {
+            padding-right: 20px;
+        }
+        
+        P:nth-child(3) {
+            height: 22px;
+            font-size: 14px;
+            color: #d80c18;
+        }
+        
+        p:nth-child(4) {
+            text-align: right;
+        }
+        
+        p:last-child {
+            font-size: 10px;
+            color: #d80c18;
+        }
+        
+        .container {
+            position: absolute;
+            padding: 20px 30px;
+            border: 1px solid violet;
+            border-radius: 6px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p class="row">
+            <input type="text" placeholder="请输入要计算的年份"><label for="">年</label>
+            <input type="text" placeholder="请输入要计算的人民币"><label for="">元</label>
+        </p>
+
+        <p class="row">
+            <input type="text" placeholder="请输入要参照的年份"><label for="">年</label>
+            <input type="text" placeholder="计算后的人民币"><label for="">元</label>
+        </p>
+        <p>结果描述：</p>
+        <p class="row">
+            <input type="button" value="计 算">
+            <input type="reset" value="重 置">
+        </p>
+        <p>注：所有输入框只能输入数字，年的范围为1980~2016，年的格式是：1990。</p>
+    </div>
+
+    <script>
+        var DATA = [{
+            'year': 1980,
+            'inflation': '6%'
+        }, {
+            'year': 1981,
+            'inflation': '2.4%'
+        }, {
+            'year': 1982,
+            'inflation': '1.9%'
+        }, {
+            'year': 1983,
+            'inflation': '1.5%'
+        }, {
+            'year': 1984,
+            'inflation': '2.8%'
+        }, {
+            'year': 1985,
+            'inflation': '9.3%'
+        }, {
+            'year': 1986,
+            'inflation': '6.5%'
+        }, {
+            'year': 1987,
+            'inflation': '7.3%'
+        }, {
+            'year': 1988,
+            'inflation': '18.8%'
+        }, {
+            'year': 1989,
+            'inflation': '18%'
+        }, {
+            'year': 1990,
+            'inflation': '3.1%'
+        }, {
+            'year': 1991,
+            'inflation': '3.4%'
+        }, {
+            'year': 1992,
+            'inflation': '6.4%'
+        }, {
+            'year': 1993,
+            'inflation': '14.7%'
+        }, {
+            'year': 1994,
+            'inflation': '24.1%'
+        }, {
+            'year': 1995,
+            'inflation': '17.1%'
+        }, {
+            'year': 1996,
+            'inflation': '8.3%'
+        }, {
+            'year': 1997,
+            'inflation': '2.8%'
+        }, {
+            'year': 1998,
+            'inflation': '-0.8%'
+        }, {
+            'year': 1999,
+            'inflation': '-1.4%'
+        }, {
+            'year': 2000,
+            'inflation': '0.4%'
+        }, {
+            'year': 2001,
+            'inflation': '0.7%'
+        }, {
+            'year': 2002,
+            'inflation': '-0.8%'
+        }, {
+            'year': 2003,
+            'inflation': '1.2%'
+        }, {
+            'year': 2004,
+            'inflation': '3.9%'
+        }, {
+            'year': 2005,
+            'inflation': '1.8%'
+        }, {
+            'year': 2006,
+            'inflation': '1.5%'
+        }, {
+            'year': 2007,
+            'inflation': '4.8%'
+        }, {
+            'year': 2008,
+            'inflation': '5.9%'
+        }, {
+            'year': 2009,
+            'inflation': '-0.7%'
+        }, {
+            'year': 2010,
+            'inflation': '3.3%'
+        }, {
+            'year': 2011,
+            'inflation': '5.4%'
+        }, {
+            'year': 2012,
+            'inflation': '2.6%'
+        }, {
+            'year': 2013,
+            'inflation': '3.2%'
+        }, {
+            'year': 2014,
+            'inflation': '1.5%'
+        }, {
+            'year': 2015,
+            'inflation': '1.4%'
+        }, {
+            'year': 2016,
+            'inflation': '3%' //此数字为预测数据
+        }];
+        var INPUTS = document.querySelectorAll('input[type="text"]'); //提出来似乎没影响
+
+        function resetDATA() {
+            //var  INPUTS = document.querySelectorAll('input[type="text"]');
+            INPUTS.forEach(function(item, index) {
+                item.value = null;
+            });
+            document.querySelectorAll('p')[2].innerHTML = '结果描述：';
+        }
+
+        function calculate() {
+            var //INPUTS = document.querySelectorAll('input[type="text"]'),
+                tempArry = [],
+                tempRes = {};
+
+            for (var i = 0, len = INPUTS.length - 1; i < len; i++) {
+                if (INPUTS[i].value == null || INPUTS[i].value == '' || INPUTS[i].value == 'undefined') {
+                    alert('请输入数字！');
+                    return;
+                }
+                if (isNaN(parseInt(INPUTS[i].value)) || typeof parseInt(INPUTS[i].value) != "number") {
+                    alert('请输入数字！');
+                    INPUTS[i].value = null;
+                    return;
+                }
+                if (i != 1 && (parseInt(INPUTS[i].value) < 1980 || parseInt(INPUTS[i].value) > 2016)) {
+                    alert('请输入正常范围的年份！');
+                    return;
+                }
+                tempArry.push(parseInt(INPUTS[i].value));
+            }
+
+            if (tempArry[0] > tempArry[2]) { //2000 和  1990
+                //方法一、没彻底的运用reduce方法
+                // tempRes = DATA.reduce(function(pre, cur, ind) {
+                //     if (cur.year >= tempArry[2] && cur.year < tempArry[0]) {
+                //         pre.money = tempArry[1] / (1 + parseFloat(cur.inflation.substr(0, cur.inflation.length - 1)) / 100);
+                //         tempArry[1] = pre.money;
+                //     }
+                //     return pre;
+                // }, {});
+
+                //方法二、充分运用reduce方法
+                tempRes = DATA.reduce(function(pre, cur, ind) {
+                    if (cur.year >= tempArry[2] && cur.year < tempArry[0]) {
+                        pre.money = pre.money / (1 + parseFloat(cur.inflation.substr(0, cur.inflation.length - 1)) / 100);
+                    }
+                    return pre;
+                }, {
+                    'money': tempArry[1]
+                });
+                console.log(tempRes)
+            } else if (tempArry[0] < tempArry[2]) { //1990 和 2000
+                //方法一、没彻底的运用reduce方法
+                // tempRes = DATA.reduce(function(pre, cur, ind) {
+                //     if (cur.year > tempArry[0] && cur.year <= tempArry[2]) {
+                //         pre.money = tempArry[1] * (1 + parseFloat(cur.inflation.substr(0, cur.inflation.length - 1)) / 100);
+                //         tempArry[1] = pre.money;
+                //     }
+                //     return pre;
+                // }, {});
+
+                //方法二、充分运用reduce方法
+                tempRes = DATA.reduce(function(pre, cur, ind) {
+                    if (cur.year > tempArry[0] && cur.year <= tempArry[2]) {
+                        pre.money = pre.money * (1 + parseFloat(cur.inflation.substr(0, cur.inflation.length - 1)) / 100);
+                    }
+                    return pre;
+                }, {
+                    'money': tempArry[1]
+                })
+                console.log(tempRes);
+            } else {
+                alert('请输入不同的年份！');
+                document.querySelectorAll('input[type="text"]')[3].value = null;
+                return;
+            }
+            document.querySelectorAll('input[type="text"]')[3].value = tempRes.money;
+            console.log(tempArry[1]);
+            document.querySelectorAll('p')[2].innerHTML = '结果描述：在' + tempArry[0] + '年的' + INPUTS[1].value + '元钱相当于' + tempArry[2] + '年的' + tempRes.money.toFixed(2) + '元钱的购买力。';
+            tempArry = [];
+            tempRes = {};
+        }
+
+        window.onload = function() {
+            var resetBtn = document.querySelector('input[type="reset"]');
+            resetBtn.onclick = function() {
+                resetDATA();
+            };
+
+            var calBtn = document.querySelector('input[type="button"]');
+            calBtn.onclick = function() {
+                calculate();
+            };
+
+        }
+    </script>
+</body>
+
+</html>

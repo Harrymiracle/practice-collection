@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>桌面时间</title>
+  <script src="js/jquery-2.2.3.min.js"></script>
+</head>
+<body>
+  <span class="time">123</span>
+  <script>
+  //&&和||是逻辑运算的，返回的是boolean值，  &和|是位运算的, 他们最大的区别是，&& 和|| 是短路的，&和|不是短路的。
+  //由于&和|是逐位运算符，它们总是要比较两个运算数才得出结果，才导致性能会比&&和||低一些。
+  	var time = $(".time");
+  	time.text("00 : 00");
+  	console.log(time.html());
+  	var second = 0;
+  	var timer = setInterval(function(){
+  	  second ++;
+
+  	  time.text(((second/60 | 0) + " : " + (second%60)).replace(/\b\d\b/g,"0$&"));  //处理时间
+  	  if(second >= 59){
+  	  	clearInterval(timer);
+  	  	console.log(time.html() + " TIMEOUT!")
+  	  }
+  	},1000);
+
+  	var xx = 30/7 || 0;
+  	console.log(xx);  //4.285714…… 返回的是一个小数
+  	var yy = 0 | 7/30;
+  	console.log(yy);  //0  返回为真的那个式子的值，是一个整数
+  	var zz = 30/7 | 0;
+  	console.log(zz);  //4
+  </script>
+</body>
+</html>

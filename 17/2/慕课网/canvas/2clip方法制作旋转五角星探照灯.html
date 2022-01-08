@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>clip方法制作旋转五角星探照灯</title>
+</head>
+
+<body>
+    <canvas id="canvas" style="border:1px solid violet;margin:10px auto;">
+  	你的浏览器不支持canvas,请更换浏览器再试。
+  </canvas>
+
+    <script>
+        var searchLight = {
+                x: 400,
+                y: 300,
+                radius: 160,
+                vx: Math.random() * 5 + 10,
+                vy: Math.random() * 5 + 10
+            } //设置探照灯的初始信息
+        var rot = 0; //设置初始旋转角度
+
+        window.onload = function() {
+            var canvas = document.getElementById("canvas");
+            canvas.width = 800; //此方法不可取 ，应该使用属性方法
+            canvas.height = 600;
+            var context = canvas.getContext("2d");
+
+            setInterval(function() { //设置定时器
+                draw(context);
+                update(canvas.width, canvas.height);
+            }, 34);
+        }
+
+
+        function draw(cxt) {
+            var canvas = cxt.canvas; //获取到canvas元素
+            cxt.clearRect(0, 0, canvas.width, canvas.height); //清空画布
+
+            cxt.save(); //保存当前的绘图环境  ,注意save()和restore()的嵌套
+
+            cxt.beginPath(); //要绘制新的路径
+            cxt.fillStyle = "springgreen";
+            cxt.fillRect(0, 0, canvas.width, canvas.height);
+
+            cxt.beginPath();
+            cxt.save(); //保存当前的绘图环境
+            cxt.translate(searchLight.x, searchLight.y); /*把原点变换到这个设定的位置*/
+            cxt.scale(searchLight.radius, searchLight.radius); /*代替传人的半径参数*/
+            cxt.rotate(rot * Math.PI / 180); //设置旋转角度
+            starPath(cxt);
+            cxt.fillStyle = "white"; //小的绘制环境的背景色
+            cxt.fill();
+            cxt.restore(); //返回在保存设置的栈结构中向前返回一级
+            cxt.clip(); //使用clip将剪切上面starPath()绘制的区域作为下面文字绘制的环境,这个clip和上面的restore位置不能换
+
+            cxt.font = "bold 130px Arial"; //设置文本绘制的属性
+            cxt.textAlign = "center";
+            cxt.textBaseline = "middle";
+            cxt.fillStyle = "#058";
+            cxt.fillText("我是测试", canvas.width / 2, canvas.height / 2 - 130);
+            cxt.fillText("canvas的", canvas.width / 2, canvas.height / 2);
+            cxt.fillText("clip的内容", canvas.width / 2, canvas.height / 2 + 130);
+
+            cxt.restore(); //返回在保存设置的栈结构中向前返回一级
+        }
+
+        function starPath(cxt) { //创建一个绘制五角星的标准模板   
+            cxt.beginPath(); //开始一个绘图路径
+            for (var i = 0; i < 5; i++) { //循环分别画出大小圆的五个顶点
+                //Math.cos()的参数为用弧度表示的角度，具体角度可以画一个五角星，以中心为原点推理出各个顶点的角度
+                cxt.lineTo(Math.cos((18 + i * 72) * Math.PI / 180), -Math.sin((18 + i * 72) * Math.PI / 180)); //绘图路径
+                cxt.lineTo(Math.cos((54 + i * 72) * Math.PI / 180) * 0.5, -Math.sin((54 + i * 72) * Math.PI / 180) * 0.5);
+            }
+            cxt.closePath(); //结束一个绘图路径
+        }
+
+        function update(canvasWidth, canvasHeight) {
+            rot += 8;
+            searchLight.x += searchLight.vx;
+            searchLight.y += searchLight.vy;
+
+            if (searchLight.x - searchLight.radius <= 0) {
+                searchLight.vx = -searchLight.vx; //改变运动方向
+                searchLight.x = searchLight.radius;
+            }
+            if (searchLight.x + searchLight.radius >= canvasWidth) {
+                searchLight.vx = -searchLight.vx; //改变运动方向
+                searchLight.x = canvasWidth - searchLight.radius;
+            }
+            if (searchLight.y - searchLight.radius <= 0) {
+                searchLight.vy = -searchLight.vy; //改变运动方向
+                searchLight.y = searchLight.radius;
+            }
+            if (searchLight.y + searchLight.radius >= canvasHeight) {
+                searchLight.vy = -searchLight.vy; //改变运动方向
+                searchLight.y = canvasHeight - searchLight.radius;
+            }
+        }
+    </script>
+</body>
+
+</html>

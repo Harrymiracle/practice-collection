@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>无缝滚动</title>
+	<style>
+		*{margin:0;padding:0;}   
+		#container{width:300px;height:150px;border:1px solid;margin:300px;position:relative;overflow:hidden;}
+		#box{list-style:none;width:100%;position:absolute;top:0;left:0;border:1px solid red;}
+		li{height:25px;width:100%;line-height:25px;display: inline-block;}
+	</style>                     <!--给容器设置了margin,修改了隐藏，ul加了边框，便于观察ul的运动-->
+	<script src="../js/jquery-2.1.0.js"></script>
+	<script>
+		window.onload = function(){
+			var index=1,		//下一次显示到顶部的公告li索引
+				liHeight=$("li")[0].offsetHeight,//li的高度
+				len=$("li").length;
+
+				//将box的所有内容复制一份追加到box中
+				var cont = $("#box").html();
+				$("#box").html(cont + cont);
+
+			setInterval(function(){
+				//计算运动过程中的Top值
+				var _top= -1*index*liHeight;
+				//运动
+				$("#box").animate({"top":_top},700,function(){
+					if(_top=== -len*liHeight){	//当原有所有公告信息滚动完毕，还原为初始状态
+						index=1;
+						// $("#box").style.top=0;
+						$("#box").css({top:0});
+					}
+				});
+				//修改index
+				index++;
+			},1500);
+		};
+	</script>
+</head>
+<body>
+	<div id="container">
+		<ul id="box">
+			<li><a href="#">公告标题1</a></li>
+			<li><a href="#">公告标题2</a></li>
+			<li><a href="#">公告标题3</a></li>
+			<li><a href="#">公告标题4</a></li>
+			<li><a href="#">公告标题5</a></li>
+			<li><a href="#">公告标题6</a></li>
+			<li><a href="#">公告标题7</a></li>
+			<li><a href="#">公告标题8</a></li>
+		</ul>
+	</div>
+</body>
+</html>

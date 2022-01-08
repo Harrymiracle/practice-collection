@@ -1,0 +1,1110 @@
+.tap-wrap{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+	background: white;
+	z-index: 11;
+	display: none;
+}	
+	.tap-middle{
+		width: 1190px;
+		margin: 0 auto;
+	}
+		.tap-wrap-null{
+			width: 238px;
+			height: 50px;
+			background: red;
+			float: left;
+		}
+		.tap-middle .detail-tap-head{
+			width: 952px;
+			margin-left: 238px;
+			/* float: left; */
+		}
+			.detail-tap-head a{
+				color: black;
+			}
+			.detail-tap-head span a:hover{
+				text-decoration: none;
+			}
+			.detail-tap-head .detail-tap-selec a{
+				color: #b10000;
+			}
+			.tap-cart{
+				background: #c40000;
+				color: white;
+				float: right;
+				height: 50px;
+				line-height: 50px;
+				font-size: 14px;
+				width: 200px;
+				text-align: center;
+				cursor: pointer;
+				position: relative;
+				/* display: block; */
+			}
+		
+.detail{
+	width: 1190px;
+	/* height: 100px; */
+	margin: 20px auto;
+	/* border: 1px dotted red; */
+	/* overflow: hidden; */
+	height: 800px;
+}
+.detail a{
+	color: black;
+}
+.detail a:hover{
+	text-decoration: none;
+}
+	.detail-img{
+		width: 460px;
+		float: left;
+		
+		position: relative;
+		/* background: pink; */
+	}	
+		.manifyImg{
+			width: 416px;
+			height: 416px;
+			z-index: 10;
+			position: absolute;
+			top: 10px;
+			right: -415px;
+			/* border: 1px solid black; */
+			overflow: hidden;
+			display: none;
+		}
+			.manifyImg img{
+				width: 832px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		.detail-img-main{
+			display: block;
+			width: 418px;
+			margin: 10px auto 0px;
+			position: relative;
+			/* border: 1px solid black; */
+			cursor: move;
+		}	
+			#imgLoc{
+				width: 218px;
+				height: 218px;
+				background: skyblue;
+				opacity: .5;
+				border: #aaa 1px solid;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 10;
+				display: none;
+			}
+			.detail-img-main img{
+				width: 100%;
+			}
+		.detail-img-list{
+			margin-top: 20px;
+			margin-left: 20px;
+			width: 440px;
+			height: 60px;
+		}
+			.detail-img-list>li{
+				float: left;
+				margin-left: 10px;
+				border: 2px solid white;
+			}
+			.detail-img-list>li:hover{
+				border: 2px solid black;
+			}
+			.detail-img-list>li>a{
+				width: 60px;
+				display: block;
+			}
+			.detail-img-list>li>a>img{
+				width: 100%;
+			}
+		.detail-share{
+			color: gray;
+			margin-top: 20px;
+			margin-left: 20px;
+			font-size: 13px;
+			/* position: relative; */
+		}
+			.detail-share>a>span{
+				color: gray;
+				font-size: 13px;
+				margin-left: 5px;
+			}
+			.detail-share>a{
+				margin-left: 20px;
+			}
+			.detail-share>span{
+				float: right;
+				margin-right: 40px;
+			}
+			#collect{
+				position: relative;
+			}
+			#penta{
+				color: red;
+				font-size: 18px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				z-index: 100;
+			}
+	.detail-content{
+		width: 500px;
+		float: left;
+		/* background: skyblue; */
+	}
+
+
+		.decon-title{
+			margin-top: 10px;
+		}
+			.decon-title h1{
+				font-size: 16px;
+				margin: 0;
+				font-weight: 600;
+				margin-bottom: 5px;
+				margin-left: 10px;
+			}
+			.decon-title>span{
+				color: red;
+				margin-left: 10px;
+				margin-bottom: 30px;
+				display: block;
+			}
+			.price-panel{
+				color: #c40000;
+				font-size: 24px;
+				font-weight: 600;
+			}
+			.carriage span{
+				font-size: 12px;
+				margin-right: 10px;
+			}
+			.activity-panel dd{
+				font-size: 12px;
+			}
+			.detail-desc{
+				border-bottom: 1px dotted gray;
+				border-top:  1px dotted gray;
+				margin: 20px 0px;
+			}	
+				.inter-span{
+					width: 1px;
+					height: 100%;
+					background: gray;
+					/* display: inline-block; */
+				}
+				.detail-desc div{
+					text-align: center;
+
+				}
+				.detail-desc div dt{
+					margin-right: 0;
+				}
+				.detail-desc>div dd{
+					/* background: red; */
+					width: 120px;
+				}
+				.detail-desc dd{
+					color: #c40000;
+					font-weight: bold;
+				}
+				.detail-desc dd span:first-child{
+					color: #280;
+				}
+				.detail-desc dd span:nth-child(2n){
+					color: gray;
+				}
+			.panel{
+				/* height: 35px; */
+				margin: 0;
+				margin-bottom: 2px;
+				overflow: hidden;
+				/* overflow: hidden; */
+			}
+			.panel dd {
+				line-height: 30px;
+				/* background: yellow; */
+				/* float: left; */
+				/* height: 100%; */
+			}
+			.panel dt{
+				font-size: 12px;
+				color: gray;
+				float: left;
+				line-height: 30px;
+				margin: 0px 10px;
+				width: 60px;
+				/* background: green; */
+				/* text-align: center; */
+				/* float: left; */
+			}
+			.detail-chioce .panel dd{
+				float: left;
+				/* height: 35px; */
+				display: table-cell;
+				overflow: hidden;
+				width: 400px;
+			}
+			.panel dd ul li{
+				float: left;
+				margin-right: 10px;
+				height: 35px;
+				margin-bottom: 5px;
+			}
+
+	/* take look section */
+	.detail-lookRepeatedly{
+		width: 225px;
+		height: 700px;
+		/* background: pink; */
+		float: left;
+		padding: 10px 0px 0 30px;
+		font-size: 12px;
+	}
+		.detail-lookRepeatedly-wrapdiv{
+			width: 190px;
+			height: 642px;
+			overflow: hidden;
+			position: relative;
+			/* background: blue;  */
+		}
+			.detail-lookRepeatedly-absoluteDiv{
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.detail-lookRepeatedly-header{
+				vertical-align: middle;
+			}	
+				.detail-lookRepeatedly-line{
+					width: 40px;
+					height: 1px;
+					border-top: 1px dotted #aaa;
+					display: inline-block;
+				}
+				.detail-lookRepeatedly-words{
+					margin:0 10px;
+					display: inline-block;
+					color: #aaa;
+
+				}
+			.detail-lookRepeatedly-single{
+				width: 215px;
+				margin-bottom: 15px;
+				position: relative;
+			}
+				.detail-lookRepeatedly-single a img{
+					width: 120px;
+				}
+				.detail-lookRepeatedly-title{
+					font-weight: normal;
+					font-size: 12px;
+					width: 160px;
+					height: 16px;
+					line-height: 16px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					margin: 0;
+				}
+
+			.detail-lookRepeatedly-activity{
+				color: #E31436;
+				margin: 5px 0px 5px 0px;
+				display: inline-block;
+			}
+				.detail-lookRepeatedly-price{
+					display: block;
+				}
+				.detail-lookRepeatedly-price span:first-child{
+					margin-right: 10px;
+					font-size: 18px;
+					color: #E31436;
+					font-weight: bold;
+				}
+				.detail-lookRepeatedly-price span:last-child{
+					color: #aaa;
+					text-decoration: line-through;
+				}
+			.detai-lookRepeatedly-hasEvaluate{
+				display: block;
+				color: #aaa;
+			}
+	.detail-lookRepeatedly-btn{
+		width: 100%;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		margin-top: 20px;
+	}
+		.detail-lookRepeatedly-btn span{
+			cursor: pointer;
+			font-size: 20px;
+		}
+		.detail-lookRepeatedly-btn span:hover{
+			color:#E31436 ;
+		}
+		.detail-lookRepeatedly-btn span:first-child{
+			margin-right: 50px;
+		}
+/* sell rate section */
+.detail-sellRate-number{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 27px;
+	height: 27px;
+	color: white;
+	background: url('./style-icon/colaIcon.png') -104px -304px no-repeat;
+	font-weight: bold;
+	text-indent: 2px;
+}
+
+
+/* select section */
+	.selec{
+		border: 1px solid #bbb;	
+		/* box-shadow: 0 0 0 2px gray; */
+		/* outline: 1px solid gray; */
+		box-sizing: border-box;
+		padding: 0 8px ;
+		font-size: 12px;
+		color: black;
+		font-weight: 600;
+		cursor: pointer;
+		position: relative;
+
+	}
+	.btn-select{
+		border: 2px solid #c40000;
+	}	
+	.has-select{
+		position: absolute;
+		bottom: 0px;
+		right: 0px;
+		background-image: url(./detail.png);
+		width: 12px;
+		height: 12px;
+		background-position: -65px -0px;
+	}
+				.detail-desc{
+					width: 500px;
+					overflow: hidden;
+				}
+				.detail-desc div{
+					width: 165px;
+					float: left;
+				}
+	.buy-panel{
+		width: 500px;
+		height: 60px;
+		padding-left: 66px;
+		margin-top: 40px;
+		/* background: green; */
+	}
+		.buy-panel a{
+			width: 178px;
+			height: 38px;
+			border: 1px solid #c40000;
+			text-align: center;
+			display: block;
+			line-height: 38px;
+			font-size: 16px;
+			float: left;
+			margin-left: 10px;
+			cursor: pointer;
+		}
+		.buy-panel .buy-btn{
+			color: #C40000;
+		}
+		.buy-panel .shopcar-btn{
+			background: #c40000;
+			color: white;
+			position: relative;
+		}
+			#cartImg{
+				width: 35px;
+				position: absolute;
+				border-radius: 50%;
+				border: 1px solid gray;
+				top: 0;
+				left: 0;
+			}
+			.buy-panel .shopcar-btn span:first-child{
+				margin-right: 5px;
+			}
+.detail-chioce{
+	width: 500px;
+	/* height: 30px; */
+	/* background: blue; */
+	overflow: hidden;
+}
+	.serve-commiment{
+		
+	}
+		.serve-commiment dt{
+			float: left;
+			width: 80px;
+			height: 20px;
+			font-size: 12px;
+			font-weight: normal;
+			color: gray;
+			/* background: green; */
+		}
+		.serve-commiment dd{
+			float: left;
+			width: 300px;
+			overflow: hidden;
+			/* color: ; */
+			/* background: red; */
+		}
+			.serve-commiment dd ul li a{
+				float: left;
+				margin-right: 30px;
+				margin-bottom: 10px;
+				color: #555;
+				font-size: 12px;
+			}
+	.detail-chioce div{
+		float: right;
+	}
+	.detail-count{
+		width: 50px;
+		text-indent: 5px;
+	}
+		.panel-stroge span{
+			margin-left: 10px;
+			color: gray;
+		}
+
+
+	.detail-more{
+		width: 1190px;
+		margin: 0px auto;
+		/* border: 1px dotted #c40000; */
+		/* height: 1000px; */
+		overflow: hidden;
+	}
+		.detail-more a{
+			color: inherit;
+		}
+		.detail-more a:hover{
+			text-decoration: none;
+		}
+
+
+		/* detail recommand part*/
+		.detail-recommand{
+			width: 20%;
+			height: 800px;
+			/* background: lightblue; */
+			float: left;
+			/* margin-top: 60px; */
+		}
+
+
+
+
+
+
+
+		/* detail tap part */
+		.detail-tap{
+			width: 80%;
+			float: left;
+			/* float: left; */
+			/* height: 240px; */
+			/* background: skyblue; */
+		}
+			.detail-tap-head{
+				border:1px solid #ddd;
+				box-shadow: 1px 0px 1px gray inset;
+			}
+				.detail-tap-head span{
+					width: 100px;
+					text-align: center;
+					font-size: 14px;
+					height: 50px;
+					line-height: 50px;
+					font-weight: 600;
+					display: inline-block;
+					box-sizing: border-box;
+				}
+				.detail-tap-selec{
+					border-top: 2px solid #c40000;
+					color: #b10000;
+					position: relative;
+				}
+				.detail-tap-selec:after{
+					content: '   ';
+					display: block;
+					border-width: 5px;
+					border-style: solid;
+					border-color: #b10000 transparent transparent;
+					width: 0;
+					height: 0;
+					position: absolute;
+					top: -1px;
+					left: 50%;
+					margin-left: -5px;
+				}
+				.detail-tap-head a{
+					border-right: 1px dotted #d2d2d2;
+					padding: 0 20px;
+					outline: none;
+					color: gray;
+				}
+				.detail-tap-head a:active{
+					text-decoration: none;
+				}
+				.detail-tap-selec a{
+					font-weight: bold;
+					border-left: 1px solid #cfbfb1;
+					border-right: 1px solid #cfbfb1;
+					width: 100%;
+					display: block;
+					outline: none;
+				}
+
+
+
+			/* detail info */
+			#detail-tap-info{
+				/* display: none; */
+			}
+
+			.detail-tap-info{
+				width:100% ;
+				/* border: 1px dotted red; */
+				overflow: hidden;
+				border: 1px solid #ddd;
+				margin: 10px 0px ;
+				padding: 10px;
+			}
+				.detail-tapInfo-imgWrap{
+					width: 100%;
+				}
+					.detail-tapInfo-imgWrap img{
+						width: 100%;
+					}
+
+				.detail-info-brand>div{
+					font-size: 12px;
+					color: #666;
+					margin-left: 20px;
+					margin-top: 20px;
+				}	
+			
+
+					.detail-info-brand>div>a{
+						color: #35a;
+					}
+					.detail-info-brand>div>span{
+						background: #c40000;
+						color: white;
+						display: inline-block;
+						height: 25px;
+						width: 70px;
+						border-radius: 12px/12px;
+						line-height: 25px;
+						text-indent: 15px;
+						letter-spacing: 2px;
+						margin-left: 20px;
+					}
+
+				.detail-info-title{
+					width: 100%;
+					padding: 0 40px 0 20px;
+					/* height: 50px; */
+					overflow: hidden;
+					/* background: pink; */
+				}
+					.detail-info-title p{
+						width: 70px;
+						/* height: 30px; */
+						float: left;
+						color: #666;
+						font-weight: bold;
+					}
+					.detail-info-title a{
+						float: right;
+						color: gray;
+					}
+						.more-icon{
+							background-image: 
+						}
+				.detail-info li{
+					float: left;
+					width: 240px;
+					font-size: 12px;
+					color: #666;
+					height: 18px;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+					line-height: 18px;
+					margin-bottom: 5px;
+					margin-left: 20px;
+				}
+
+			/*param */
+			#detail-tap-param{
+				
+				/* height: 1000px; */
+				/* margin-top: 10px; */
+				/* background: blue; */
+				/* border: 1px dotted red; */
+				display: none;
+			}
+			.detail-tap-param{
+				width: 100%;
+			}
+				.detail-tap-param table {
+					/* margin-left: 20px; */
+					/* margin-top: 20px; */
+					width: 100%;
+					border: 1px solid #CCC;
+					display: table;
+					/* border-collapse: separate; */
+				}
+
+				.detail-tap-param table tr {
+					height: 30px;
+					line-height: 30px;
+					padding-left: 20px;
+					/* display: table-row; */
+					/* width: 900px; */
+				}	
+					.detail-tap-param>table>thead>tr {
+						/* border: 1px solid red; */
+						width: 100%;
+						height: 40px;
+						font-size: 14px;
+						
+						line-height: 40px;
+						/* background: red; */
+					}
+					.detail-tap-param table thead tr th{
+						/* font-size: 16px; */
+						font-weight: bold;
+						color: #666;
+						padding-left: 20px;
+						/* width: 100%; */
+						
+						/* width: 100%; */
+
+					}
+					.detail-tapParam-subTitle{
+					
+					}
+					.detail-tapParam-content{
+						/* width: 100%; */
+						/* background: lightsalmon; */
+					}
+						.detail-tapParam-subTitle{
+							/* width: 900px; */
+							/* border-top: 1px solid #333; */
+							/* background: red; */
+							border-top: 1px solid #ccc;
+							font-size: 12px;
+						}
+						.detail-tapParam-subTitle td{
+							font-weight: bold;
+							padding-left: 20px;
+							/* background: pink; */
+							/* width: 900px; */
+							/* width: 100%; */
+						}
+						.detail-tap-param .detail-tapParam-content td:first-child{
+							/* width: 150px; */
+							text-align: right;
+							padding-right: 20px;
+							font-size: 12px;
+							color: #666;
+							/* background: lightyellow; */
+							/* background: red; */
+						}
+						.detail-tapParam-content td:last-child{
+							/* width: 750px; */
+							font-size: 12px;
+							/* background: lightgreen; */
+							/* color: ; */
+						}
+			#detail-tap-evaluate{
+				display: none;
+			}
+
+			.detail-tap-evaluate{
+				width: 100%;
+				/* height: 1000px; */
+				/* margin-top: 10px; */
+				/* background: pink; */
+				/* border: 1px dotted red; */
+				/* display: none; */
+				font-size: 12px;
+			}
+				.detail-rate-header{
+					width: 100%;
+					padding: 15px;
+					border: 1px solid #aaa;
+					overflow: hidden;
+				}
+					.detail-tapEva-score{
+						width: 13%;
+						float: left;
+						text-align: center;
+						border-right: 1px dotted #ccc;
+					}
+						.detail-tapEva-title {
+							
+						}
+						.detail-tapEva-number{
+							font-size: 32px;
+							font-weight: bold;
+							color: #f60;
+							display: block;
+						}
+						.detail-tapEva-score span:last-child{
+							position: relative;
+							background: url('./style-icon/detail-rate.png');
+							width: 60px;
+							height: 10px;
+							display: block;
+							background-position: 0 -27px;
+							margin: 0 auto;
+						}
+							.detail-tapEva-score span em{
+								position: absolute;
+								background: url('./style-icon/detail-rate.png');
+								width: 60px;
+								height: 10px;
+								display: block;
+								background: 0 -15px;
+							}
+					.detail-tapEva-listTitle {
+						width: 2%;
+						float: left;
+						color: #aaa;
+						margin:5px 20px;
+						font-size: 12px;
+						line-height: 12px;
+					}
+					.detail-tapEva-list{
+						width: 75%;
+						float: left;
+					}
+						.detail-tapEva-list li{
+							float: left;
+							padding:2px 5px;
+							display: inline-block;
+							/* height:  */
+							margin-right: 10px;
+							margin-bottom: 10px;
+							cursor: pointer;
+							position: relative;
+						}
+							.detail-tapEva-list li i{
+								position: absolute;
+								bottom: -7px;
+								right: -9px;
+								width: 14px;
+								height: 12px;
+								/* background: pink; */
+								background: url('./style-icon/list-checked.png') no-repeat 0px 0px;
+							}
+						.detail-tapEva-well{
+							color: #b10000;
+							
+							border: 1px solid #ffd7dd;
+						}
+						.detail-tapEva-bad{
+							color: #409280;
+							border: 1px solid #d3f4e4;
+						}
+					.detail-tapEva-btn{
+						width: 20px;
+						height: 13px;
+						background: url('./style-icon/list-toggle.png') no-repeat;
+						float: left;
+						background-position: 0 -96px;
+						/* -109px */
+						cursor: pointer;
+					}
+				.detail-rate-tool{
+					width: 100%;
+					border: 1px solid #aaa;
+					padding: 5px 10px;
+					height: 35px;
+					vertical-align: middle;	
+
+				}
+					.detail-tapEva-radio{
+						float: left;
+						width: 70%;
+					}
+						.detail-tapEva-radio label{
+							margin:0px 5px 0 2px;
+						}
+					.detail-tapEva-check{
+						float: right;
+						width: 30%;
+					}
+						.detail-tapEva-select{
+							display: inline-block;
+							position: relative;
+							margin-left: 20px;
+						}	
+							.detail-tapEva-select>span{
+								border: 1px solid #ccc;
+								display: inline-block;
+								padding: 3px 10px;
+								/* margin-right: 20px; */
+
+							}
+							.detail-tapEva-select>span>span:first-child{
+								margin-right: 10px;
+							}
+							.detail-tapEva-options{
+									position: absolute;
+									top: 25px;
+									left: 0;
+									z-index: 1;
+									border: 1px solid #ccc;
+									width: 80px;
+									background: white;
+									height: 40px;
+									line-height: 20px;
+									text-indent: 10px;
+									display: none;
+							}
+								.detail-tapEva-select>span>span:last-child{
+									transition: transform 0.3s ease-out;
+								}
+								.detail-tapEva-iconToggle{
+									transform: rotate(180deg);
+								}
+								.detail-tapEva-select:hover .detail-tapEva-options{
+									display: block;
+								}
+							.detail-tapEva-options li:hover{
+								background: #aaa;
+							}
+
+
+
+				.detail-rate-single{
+					border-bottom: 1px solid #aaa;
+				}
+					.detail-rate-content table{
+						table-layout: fixed;
+					}
+					.detail-rate-content>table>tbody{
+						display: table-row-group;
+					}
+					.detail-rate-single{
+						display: table-row;
+					}
+					.detail-rate-single td{
+						/* border: 1px solid red; */
+					}
+						.detail-user-header{
+							width: 20%;
+							/* vertical-align: middle; */
+							padding: 10px 10px;
+							text-align: center;
+						}
+							.detail-user-header p{
+								color: #666;
+							}
+							.detail-user-header img{
+								width: 50px;
+								border: 1px solid #aaa;
+								border-radius: 50%;
+							}
+							.detail-userHead-rate span{
+								color: #b10000;
+							}
+							.detail-userHead-icon{
+								background-image: url('./style-icon/detail-rate.png');
+								width: 100px;
+								height: 10px;
+								display: inline-block;
+								background-position: 0 -15px;
+							}
+						.detail-user-master{
+							width: 60%;
+						}
+							.detail-user-primery{
+								margin-top: 10px;
+								position: relative;
+								padding-left: 105px;
+								padding-right: 50px;
+							}
+								.detail-userPri-title{
+									/* float: left; */
+									/* width: 20%; */
+									/* height: 50px; */
+									position: absolute;
+									top: 0;
+									left: 10px;
+									color: #666;
+
+								}
+									.detail-userPri-title span:last-child{
+										display: block;
+									}
+							.detail-user-append{
+								margin-top: 10px;
+								position: relative;
+								padding-left: 105px;
+								padding-right: 50px;
+							}
+							.detail-user-reply{
+								margin-top: 10px;
+								padding: 0px 50px 0px 105px;
+							}
+								.detail-userRep-content{
+									
+									color: #AF874D;
+								}
+						.detail-user-meta{
+							width: 20%;
+							vertical-align: middle;
+							padding-left: 20px;
+							color:#aaa;
+
+						}
+							.detail-user-meta dt{
+								font-weight: normal;
+								color: #333;
+								height: 20px;
+								line-height: 20px;
+								float: left;
+								clear: left;
+							}
+							.detail-user-meta dd{
+								float: left;
+							}
+
+				.detail-rate-pages{
+					width: 100%;
+					margin-top: 20px;
+				}
+					.detail-rate-pages ul{
+						float: right;
+					}
+						.detail-rate-pages ul li{
+							border: 1px solid #ccc;
+							display: inline-block;
+							padding: 5px 10px;
+							font-size: 16px;
+
+						}
+						.detail-rate-pages ul li a{
+							color: #2953a6;
+						}
+						.detail-rate-pages .detail-rate-omit{
+							border: none;
+						}
+						.detail-rate-pages .detail-rate-nowpage {
+							color: #aaa;
+						}
+						
+			#detail-tap-service{
+				display: none;
+			}
+			.detail-tap-service{
+				width: 100%;
+				height: 100px;
+				/* margin-top: 10px; */
+				/* background: yellow; */
+				border: 1px dotted red;
+				/* display: none; */
+			}
+			#detail-tap-advise{
+				display: none;
+			}
+			.detail-tap-advise{
+				width: 100%;
+				/* height: 1000px; */
+				overflow: hidden;
+				/* margin-top: 10px; */
+				/* background: brown; */
+				/* border: 1px dotted red; */
+				/* display: none; */
+				padding: 40px;
+			}
+				.detail-tapAd-wrap{
+					width: 220px;
+					float: left;
+					margin-right: 40px;
+					margin-bottom: 20px;
+				/* 	margin-top: 40px;
+					margin-left: 20px; */
+				}
+
+					.detail-tapAd-wrap .detail-tapAd-imgWrap img{
+						width: 100%;
+						cursor: pointer;
+					}
+						.detail-tapAd-imgWrap{
+							position: relative;
+						}
+						.detail-tapAd-imgWrap span{
+							position: absolute;
+							bottom: 0;
+							left: 0;
+							width: 100%;
+							color: red;
+							background: black;
+							opacity: 0.65;
+							text-indent: 10px;
+							display: block;
+							height: 30px;
+							line-height: 30px;
+							font-weight: bold;
+						}
+							.detail-advise-roll>div{
+								border-bottom: 1px dashed #aaa;
+								/* width: 90%; */
+								padding:0px 5px;
+							}
+							.detail-advise-roll>div:last-child{
+								border-bottom: 1px solid #aaa;
+							}
+								.detail-adRoll-title{
+									color: #666;
+									font-size: 12px;
+									font-weight: bold;
+									margin-right: 10px;
+									height: 25px;
+									line-height: 25px;
+								}
+								.detail-adRoll-content {
+									color: #aaa;
+									font-weight: normal;
+									font-size: 12px;
+									height:25px;
+									line-height: 25px;
+								}
+			.detail-tap-title{
+				width: 100%;
+				height: 35px;
+				line-height: 35px;
+				/* font-size: 16px; */
+				text-indent: 20px;
+				font-weight: bold;
+				color: white;
+				background:#8e0101;
+				margin-top: 10px;
+			}

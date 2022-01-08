@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>通过类名获取元素</title>
+	<style>
+		.test{width: 100px;height: 100px;background: violet;}
+	</style>
+</head>
+<body>
+	<div class="xxx">
+		<div class="test"></div>
+	</div>
+	
+	
+	<script>
+		function $(param, obj){
+		  obj = obj!=undefined ? obj : document;
+		  if (param.indexOf("#") === 0){	// 根据 id 查找元素
+		  	return obj.getElementById(param.substring(1));
+		  } 			
+          if (param.indexOf(".") === 0){  // 根据 className 查找元素
+			return getByClass(param.substring(1), obj);
+          }
+			return obj.getElementsByTagName(param); // 根据标签名查找元素
+		}
+
+	//方法一、
+		function getByClass(clsName,parent){
+		//1、用下面这一行代码，此时$的第二个参数不能传，传了后第二个参数传到oParent这里只是一个字符串,不能调用方法getElementsByTagName方法	[实际上此方法没有意义，不建议用]
+		//  var oParent = parent || document;
+		//2、用下面这一行代码，此时定义有一个ID属性的父元素为必传参数
+		//  var oParent = parent!=undefined ? document.getElementById(parent) : document;
+		//3、用下面这一行代码，此时parent定义为一个有ID属性的父元素参数或是不定义[建议用]
+		//  var oParent = document || document.getElementById(parent);
+		//4、用下面这一行代码，此时定义的父元素为一个必传标签名参数的元素节点
+		//  var oParent = parent!=undefined ? document.getElementsByTagName(parent)[0] : document;
+		//5、用下面这一行代码，此时的parent可以传一个父元素的标签名也可以不传
+		//  var oParent = document || document.getElementsByTagName(parent)[0];
+		//6、兼容几种方法
+		  var oParent = document.getElementsByTagName(parent)[0] || document.getElementById(parent) || document;
+		  if(oParent.getElementsByClassName){
+		  	return oParent.getElementsByClassName(clsName);
+		  }
+		  var eles = [],
+			  elements = oParent.getElementsByTagName("*");
+		  for(var i = 0,l=elements.length; i<l; i++){
+			if(elements[i].className == clsName){
+			  eles.push(elements[i]);
+			}	
+		  }
+		  return eles;
+		}
+
+
+	//方法二、
+		// function getByClass(names, element) {  
+		//   element = element || document;      
+		//   var result = [];
+		//   var all = element.getElementsByTagName('*');
+		//   for(var i = 0;i < all.length; i++){
+		//     if ((new RegExp('(\\s|^)' + names + '(\\s|$)')).test(all[i].className)) {
+		//       result.push(all[i]);
+		//     }
+		//   }
+		//   return result;
+		// }
+
+		var div = $(".test","xxx")[0];	//如果此时获得的是一个多元素的数组，可以遍历添加事件处理函数
+		console.log(div);
+		div.onclick =function(){
+			alert("123");
+		}
+	</script>
+</body>
+</html>

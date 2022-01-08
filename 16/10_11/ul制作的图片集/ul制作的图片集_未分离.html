@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片集</title>
+	<style>
+		body{
+			font-family: "Hevtica","Arial",serif;
+			color:#333;
+			background: #ccc;
+			margin:1em 10%;
+		}
+		h1{
+			color:#333;
+			background: transparent;
+		}
+		a{
+			color: #c60;
+			background: transparent;
+			font-weight: bold;
+			text-decoration: none;
+		}
+		ul{
+			padding:0;
+		}
+		li{
+			list-style: none;
+			float: left;
+			padding: 1em;
+		}
+		img{
+			width: 600px;
+			height: 400px;
+			text-align: center;
+			line-height: 400px;
+			font-size: 40px;
+			font-weight: bold;
+			display: block;
+			clear: both;
+		}
+
+		#box{
+			width: 90px;height: 90px;
+			background: green;
+			text-align: center;
+			line-height: 90px;
+		}
+		#description{
+			font-weight: bolder;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>pictures</h1>
+	<ul>
+		<li>
+			<a href="../images/1.jpg" title="running boy" onclick="showPic(this);
+			return false;">running boy</a>
+		</li>
+		<li>
+			<a href="../images/2.jpg" title="sanding playing" onclick="showPic(this);
+			return false;">sanding playing</a>
+		</li>
+		<li>
+			<a href="../images/3.jpg" title="writing girl" onclick="showPic(this);
+			return false;">writing girl</a>
+		</li>
+		<li>
+			<a href="../images/4.jpg" title="standing kid" onclick="showPic(this);
+			return false;">standing kid</a>
+		</li>	
+	</ul>
+	<img id="placeholder" src="" alt="my image gallery">
+	<p id="description">choose a picture.</p>
+
+
+	<div id = "box" onclick="jump()">
+		测试
+	</div>
+	<script>
+		// window.onload = function(){
+
+		// };
+		function jump(){
+			console.log("123");
+		};
+		function showPic(whichpic){
+			var source = whichpic.getAttribute("href");
+			var placeholder = document.getElementById("placeholder");
+			placeholder.setAttribute("src",source);
+			var title = whichpic.getAttribute("title");
+			var description = document.getElementById("description");
+			description.firstChild.nodeValue = title;
+		};
+	</script>
+</body>
+
+</html>

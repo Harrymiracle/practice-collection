@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keyword" content="http://mp.weixin.qq.com/s/pKO971Y8MOf5pWGDDk-Sig">
+    <title>常用的css技巧</title>
+    <style>
+        div,
+        ul {
+            text-align: center;
+        }
+        
+        li {
+            list-style: none;
+            float: left;
+            width: 230px;
+        }
+        /**
+        1、黑白图像 
+        **/
+        
+        div.desaturate img {
+            height: 300px;
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+            filter: grayscale(100%);
+        }
+        /**
+        2、 使用 :not() 在菜单上应用/取消应用边框
+        **/
+        
+        ul.navbar {
+            padding: 5px;
+        }
+        
+        ul.navbar li:not(:last-child) {
+            border-right: 1px solid red;
+        }
+        
+        ul.navbar li:not(:last-child)::after {
+            /* 让html列表项看上去像一个真正的，用逗号分隔的列表。 ::是伪元素，：是伪类 */
+            content: ",";
+        }
+        /* 利用兄弟节点 */
+        /* ul>li:first-child~li {
+            border-left: 1px solid red;
+        } */
+        /**
+        3、 页面顶部阴影
+        **/
+        
+        div.shadowTest {
+            width: 600px;
+            height: 100px;
+            margin: 0 auto;
+            margin-top: 30px;
+            border: 1px solid violet;
+            position: relative;
+            z-index: 2;
+        }
+        
+        div.shadowTest:before {
+            content: "";
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            z-index: 1;
+            -webkit-box-shadow: 0 0 16px rgba(0, 0, 0, 1);
+            -moz-box-shadow: 0 0 16px rgba(0, 0, 0, 1);
+            box-shadow: 0 0 16px rgba(0, 0, 0, 1);
+        }
+        /**
+        4、 使用负的 nth-child 选择项目
+        **/
+        
+        ul.nthTest {
+            overflow: hidden;
+        }
+        
+        ul.nthTest>li {
+            width: 100px;
+            text-align: center;
+            margin-right: 1px;
+            background: yellowgreen;
+            display: none;
+        }
+        
+        ul.nthTest>li:nth-child(-n+3) {
+            /* 在CSS中使用负的 nth-child 选择项目1到项目n ,n从0开始,-n+3必须为大于0的整数*/
+            display: block;
+        }
+        /**
+        5、 对纯 CSS 滑块使用 max-height
+        **/
+        
+        div.sliderTest {
+            height: 100px;
+            background: cyan;
+        }
+        
+        div.sliderTest ul {
+            max-height: 0;
+            overflow: hidden;
+        }
+        
+        div.sliderTest:hover ul {
+            max-height: 1000px;
+            transition: .3s ease;
+        }
+        /**
+        6、 使用属性选择器用于空链接
+        **/
+        
+        div.aTest a[href^="http"]:empty::before {
+            /* 匹配属性值以指定值开头的每个元素 */
+            content: attr(href);
+        }
+        /**
+        7、 伪元素的运用
+        **/
+        
+        div.pseudo-element a {
+            position: relative;
+            display: inline-block;
+            outline: none;
+            margin-right: 100px;
+            text-decoration: none;
+            color: #000;
+            font-size: 32px;
+            padding: 5px 10px;
+        }
+        
+        div.pseudo-element a:hover::before,
+        div.pseudo-element a:hover::after {
+            position: absolute;
+        }
+        
+        div.pseudo-element a:hover::before {
+            content: "\5B";
+            left: -20px;
+        }
+        
+        div.pseudo-element a:hover::after {
+            content: "\5D";
+            right: -20px;
+        }
+        /**-----------------**/
+        
+        div.pseudo-element2 a {
+            position: relative;
+            display: inline-block;
+            margin-right: 100px;
+            outline: none;
+            text-decoration: none;
+            color: #000;
+            font-size: 32px;
+            padding: 0 10px;
+        }
+        /* 大框 */
+        
+        div.pseudo-element2 a:hover::before,
+        div.pseudo-element2 a:hover::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: -15%;
+            left: -14%;
+            width: 120%;
+            height: 120%;
+            border-style: solid;
+            border-width: 4px;
+            border-color: #DDD;
+        }
+        /* 小框 */
+        
+        div.pseudo-element2 a:hover::after {
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            border-width: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="desaturate ">
+        <img src="../imgs/girl.jpg" alt="girl">
+    </div>
+
+    <ul class="navbar">
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+        <li>item4</li>
+        <li>item5</li>
+    </ul>
+
+    <div class="shadowTest"></div>
+
+    <ul class="nthTest">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+
+    <div class="sliderTest">
+        <h3>把鼠标放上面看效果</h3>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+
+    <div class="aTest">
+        <h3>下面是一个空连接Demo，当a元素没有文本值，但 href 属性有链接的时候显示链接。</h3>
+        <a href="http://www.baidu.com"></a>
+    </div>
+
+    <div class="pseudo-element">
+        <a href="">PSEUDO</a>
+        <a href="">ELEMENT</a>
+    </div>
+    <div class="pseudo-element2">
+        <a href="">PSEUDO</a>
+        <a href="">ELEMENT</a>
+    </div>
+</body>
+
+</html>

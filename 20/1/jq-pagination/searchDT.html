@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>南京多特工具有限公司</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/searchDT.css" />
+    <script src="./js/jquery.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>产品筛选</h2>
+        <div class="step step-type">
+            <header class="hd-type">
+                <em>1. 选择类型</em>
+                <span class="filter-notes">(请选择一项)</span>
+                <span class="triang"></span>
+            </header>
+            <div class="filter-groups-container">
+                <!-- <div class="filter-groups">
+                    <ul class="wizard-select">
+                        <li id="DRILLS" class="item-select">
+                            <a href="javascript:void(0);"><p>Drills <span>(6608)</span></p></a>
+                        </li>
+                        <li id="END_MILLS" class="item-select">
+                            <a href="javascript:void(0);"><p>End Mills <span>(6339)</span></p></a>
+                        </li>
+                        <li id="REAMERS" class="item-select">
+                            <a href="javascript:void(0);"><p>Reamers <span>(2571)</span></p></a>
+                        </li>
+                        <li id="COUNTERSINKS" class="item-select">
+                            <a href="javascript:void(0);"><p>Countersinks <span>(952)</span></p></a>
+                        </li>
+                        <li id="BURS" class="item-select">
+                            <a href="javascript:void(0);"><p>Burs <span>(1656)</span></p></a>
+                        </li>
+                        <li id="ROUTERS" class="item-select">
+                            <a href="javascript:void(0);"><p>Routers <span>(307)</span></p></a>
+                        </li>
+                    </ul> 
+                </div> -->
+                <div class="filter-btn-groups">
+                    <div class="reset-button-area">
+                        <button class="reset">重置</button>
+                    </div>
+                    <div class="button-area">
+                        <!-- <span class="current-results">4753 项</span> -->
+                        <button class="next-step">步骤2</button>
+                        <button class="next-step-prod">查看产品</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="step step-material single">
+            <header class="hd-material">
+                <em>2. 选择工件材质</em>
+                <span class="filter-notes">(请选择一项)</span>
+                <span class="triang"></span>
+            </header>
+            <div class="filter-groups-container">
+                <!-- <div class="filter-groups">
+                    <ul class="wizard-select">
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Drills <span>(6608)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>End Mills <span>(6339)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Reamers <span>(2571)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Countersinks <span>(952)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Burs <span>(1656)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Routers <span>(307)</span></p></a>
+                        </li>
+                    </ul> 
+                </div> -->
+                <div class="filter-btn-groups">
+                    <div class="reset-button-area">
+                        <button class="reset">重置</button>
+                    </div>
+                    <div class="button-area">
+                        <!-- <span class="current-results">4753 项</span> -->
+                        <button class="next-step">步骤3</button>
+                        <button class="next-step-prod">查看产品</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="step step-structure single">
+            <header class="hd-structure">
+                <em>3. 选择工具结构</em>
+                <span class="filter-notes">(请选择所有适用项)</span>
+                <span class="triang"></span>
+            </header>
+            <div class="filter-groups-container">
+                <!-- <div class="filter-groups">
+                    <ul class="wizard-select">
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Drills <span>(6608)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>End Mills <span>(6339)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Reamers <span>(2571)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Countersinks <span>(952)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Burs <span>(1656)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Routers <span>(307)</span></p></a>
+                        </li>
+                    </ul> 
+                </div> -->
+                <div class="filter-btn-groups">
+                    <div class="reset-button-area">
+                        <button class="reset">重置</button>
+                    </div>
+                    <div class="button-area">
+                        <!-- <span class="current-results">4753 项</span> -->
+                        <button class="next-step">步骤4</button>
+                        <button class="next-step-prod">查看产品</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="step step-standard single">
+            <header class="hd-standard">
+                <em>4. 选择计算标准</em>
+                <span class="filter-notes">(请选择一项)</span>
+                <span class="triang"></span>
+            </header>
+            <div class="filter-groups-container">
+                <!-- <div class="filter-groups">
+                    Diameter  
+                    <ul class="wizard-select">
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Drills <span>(6608)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>End Mills <span>(6339)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Reamers <span>(2571)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Countersinks <span>(952)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Burs <span>(1656)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Routers <span>(307)</span></p></a>
+                        </li>
+                    </ul> 
+                </div>
+                <div class="filter-groups">
+                    Flute Length  
+                    <ul class="wizard-select">
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Drills <span>(6608)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>End Mills <span>(6339)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Reamers <span>(2571)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Countersinks <span>(952)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Burs <span>(1656)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Routers <span>(307)</span></p></a>
+                        </li>
+                    </ul> 
+                </div> -->
+                <div class="filter-btn-groups">
+                    <div class="reset-button-area">
+                        <button class="reset">重置</button>
+                    </div>
+                    <div class="button-area">
+                        <!-- <span class="current-results">4753 项</span> -->
+                        <button class="next-step">步骤5</button>
+                        <button class="next-step-prod">查看产品</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="step step-specif mult">
+            <header class="hd-specif">
+                <em>5. 选择规格</em>
+                <span class="filter-notes">(请选择所有适用项)</span>
+                <span class="triang"></span>
+            </header>
+            <div class="filter-groups-container">
+                <!-- <div class="filter-groups">
+                    End Type  
+                    <ul class="wizard-select">
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Drills <span>(6608)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>End Mills <span>(6339)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Reamers <span>(2571)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Countersinks <span>(952)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Burs <span>(1656)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Routers <span>(307)</span></p></a>
+                        </li>
+                    </ul> 
+                </div>
+                <div class="filter-groups">
+                    Corner Options
+                    <ul class="wizard-select">
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Drills <span>(6608)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>End Mills <span>(6339)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Reamers <span>(2571)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Countersinks <span>(952)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Burs <span>(1656)</span></p></a>
+                        </li>
+                        <li id="" class="item-select">
+                            <a href="javascript:void(0);"><p>Routers <span>(307)</span></p></a>
+                        </li>
+                    </ul> 
+                </div> -->
+                <div class="filter-btn-groups">
+                    <div class="reset-button-area">
+                        <button class="reset">重置</button>
+                    </div>
+                    <div class="button-area">
+                        <!-- <span class="current-results">4753 项</span> -->
+                        <button class="next-step">步骤6</button>
+                        <button class="next-step-prod">查看产品</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="step step-extra mult">
+            <header class="hd-extra">
+                <em>6. 额外属性</em>
+                <span class="filter-notes">(请选择所有适用项)</span>
+                <span class="triang"></span>
+            </header>
+            <div class="filter-groups-container">
+                <div class="filter-btn-groups">
+                    <div class="reset-button-area">
+                        <button class="reset">重置</button>
+                    </div>
+                    <div class="button-area">
+                        <!-- <span class="current-results">4753 项</span> -->
+                        <button class="next-step-prod">查看产品</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="step step-prod">
+            <header class="hd-prod">
+                <em>7. 产品</em>
+                <span class="triang"></span>
+            </header>
+            <div class="filter-groups-container">
+                <div class="filter-groups">
+                    <div class="dataTables-wrapper">
+                        <div class="dataTables-controller">
+                            <div class="dataTables-length" id="results-table-length">
+                                <label>显示 
+                                    <select name="results-table-length" class="">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                    条
+                                </label>
+                            </div>
+                            <!-- <div class="dataTables-filter" id="results-table-filter">
+                                <label>搜索:
+                                    <input type="search" class="" placeholder="" aria-controls="results-table">
+                                </label>
+                            </div> -->
+                        </div>
+                        <div id="results-table-processing" class="dataTables-processing">加载中...</div>
+                        <table id="results-table" class="dataTable" role="grid" aria-describedby="results-table_info" style="width: 0px;">
+                            <thead>
+                                <tr role="row">
+                                    <th rowspan="1" colspan="1" style="width: 0px;">工具</th>
+                                    <th rowspan="1" colspan="1" style="width: 0px;">系列</th> 
+                                    <th rowspan="1" colspan="1" style="width: 0px;">电子数据处理</th>
+                                    <th rowspan="1" colspan="1" style="width: 0px;">直径</th>
+                                    <th rowspan="1" colspan="1" style="width: 0px;">刀柄直径</th>
+                                    <th rowspan="1" colspan="1" style="width: 0px; overflow: hidden; display: table-cell;">燕麦</th>
+                                    <th rowspan="1" colspan="1" style="width: 0px;">长笛长度</th>   
+                                    <th rowspan="1" colspan="1" style="width: 0px;">可用的</th>
+                                    <th rowspan="1" colspan="1" style="width: 0px; overflow: hidden;">价钱</th>
+                                </tr>
+                            </thead>
+                            <tfoot style="display: table-row-group;">
+                                <tr>
+                                    <th rowspan="1" colspan="1"></th>
+                                    <th rowspan="1" colspan="1"></th>
+                                    <th rowspan="1" colspan="1"></th>
+                                    <th class="js-description-field" rowspan="1" colspan="1">
+                                        <select class="diameter">
+                                            <option value="">请选择…</option>
+                                            <!-- <option value="#1">#1</option>
+                                            <option value="#10">#10</option>
+                                            <option value="#100">#100</option> -->
+                                        </select>
+                                    </th>
+                                    <th class="js-description-field" rowspan="1" colspan="1">
+                                        <select class="shankDiameter">
+                                            <option value="">请选择…</option>                       
+                                        </select>
+                                    </th>
+                                    <th class="js-description-field" rowspan="1" colspan="1">
+                                        <select class="oal">
+                                            <option value="">请选择…</option>
+                                        </select>
+                                    </th>
+                                    <th class="js-description-field" rowspan="1" colspan="1">
+                                        <select class="fluteLength">
+                                            <option value="">请选择…</option>
+                                        </select>
+                                    </th>
+                                    <th rowspan="1" colspan="1"></th>
+                                    <th rowspan="1" colspan="1"></th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <!-- <tr role="row" class="odd">
+                                    <td class="sorting_1"><a href="/product-details/22608270"> 22608270 </a></td>
+                                    <td class="sorting_2"><a href="/series/225"> 225 </a></td>
+                                    <td> 26107 </td>
+                                    <td> 2.10mm </td>
+                                    <td> 2.10 </td>
+                                    <td> 38 </td>
+                                    <td> 12.00 </td>
+                                    <td>  </td>
+                                    <td> Call for price </td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+                <div class="filter-btn-groups">
+                    <div class="dataTables_info" id="results-table_info" role="status" aria-live="polite">
+                        <!-- 显示1000个条目中的1至10个 (从总共6608个条目中筛选) -->
+                    </div>
+                    <ul class="pagination-sel"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="loading">
+            <div class="loading-sel">
+                <div class="loading-item"></div>
+                <div class="loading-item"></div>
+                <div class="loading-item"></div>
+                <div class="loading-item"></div>
+                <div class="loading-item"></div>
+                <div class="loading-item"></div>
+                <div class="loading-item"></div>
+                <div class="loading-item"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <script src="./js/mobile.min.js"></script> -->
+    <!-- 原分页插件 -->
+    <!-- <script src="./js/jquery.pagination.js"></script> -->
+    <!-- 静态分页插件 -->
+    <!-- <script src="./js/jquery.static.pagination.js"></script> -->
+    <!-- 新分页插件 -->
+    <script src="./js/jquery.new.pagination.js"></script>
+    <script src="./js/searchDT.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "myfirstpackage",
+  "version": "1.0.0",
+  "description": "first demo",
+  "main": "demo1_createServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "harry",
+  "license": "ISC"
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>插件编写</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+        
+        li {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            left: 40px;
+            border: 1px solid black;
+            margin-bottom: -1px;
+            line-height: 100px;
+            text-align: center;
+        }
+    </style>
+    <script src="../../js/jquery-2.2.3.min.js"></script>
+</head>
+
+<body>
+    <!-- 模仿的练习收藏\16\12月\慕课网\jQuery\jQuery插件写法1.html -->
+    <ul class="list">
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+        <li>item4</li>
+        <li>item5</li>
+    </ul>
+    <script>
+        ;
+        (function($) {
+            $.fn.extend({
+                rotateAnimate: function(opt) {
+                    var defaults = {
+                        'borderRadius': '50%',
+                        'Left': 40,
+                        'color': 'red',
+                    };
+                    opt = $.extend(defaults, opt);
+                    console.log(this);
+                    return this.each(function() {
+                        console.log(this);
+                        var o = opt,
+                            _this = $(this),
+                            item = $('li', _this);
+                        item.hover(function() {
+                            $(this).css('color', o.color);
+                            $(this).animate({
+                                borderRadius: o.borderRadius,
+                                left: o.Left,
+                            }, {
+                                queue: false,
+                                duration: 300
+                            });
+                        }, function() {
+                            $(this).css('color', 'black');
+                            $(this).animate({
+                                borderRadius: 0,
+                                left: '40px',
+                                color: 'black'
+                            }, {
+                                queue: true,
+                                duration: 300
+                            })
+                        })
+                    });
+                }
+            });
+        }(jQuery));
+
+        $(function() {
+            $('.list').rotateAnimate({
+                'borderRadius': '30%',
+                'Left': '100px',
+                'color': 'violet'
+            });
+        });
+    </script>
+</body>
+
+</html>

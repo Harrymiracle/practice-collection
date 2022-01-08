@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>canvas做背景</title>
+</head>
+<body>
+  <canvas id="canvas" style="border:1px solid black;">
+  	你的浏览器不支持canvas,请更换后再试。
+  </canvas>
+  <script>
+  	window.onload = function(){
+  	  var canvas = document.getElementById("canvas");
+  	  canvas.width = 800;
+  	  canvas.height = 600;
+
+  	  var context = canvas.getContext("2d");
+  	  var backCanvas = createBackgroundCanvas();
+  	  var pattern = context.createPattern(backCanvas,"repeat");	//将另一个canvas作为当前canvas的背景
+  	  context.fillStyle = pattern;
+  	  context.fillRect(0,0,canvas.width,canvas.height);
+  	}
+
+
+  	function createBackgroundCanvas(){
+  	  var backCanvas = document.createElement("canvas");	//动态创建一个canvas元素,
+  	  backCanvas.width = 100;
+  	  backCanvas.height = 100;
+  	  var backCanvasContext = backCanvas.getContext("2d");	//并在此基础上创建一个绘图环境上下文
+  	  drawStar(backCanvasContext,50,50,50,72);
+  	  return backCanvas;
+  	}
+
+  	function drawStar(cxt,x,y,R,rot){
+  	  rot = rot || 0; //传人旋转的角度
+
+      cxt.save(); //保存当前图形状态
+  	  
+      cxt.translate(x,y); //位移
+      cxt.rotate(rot*Math.PI/180);  //旋转
+      
+      starPath(cxt,R);
+
+      cxt.fillStyle = "#fb3";//设置各个绘制状态
+      cxt.strokeStyle = "#fd5";
+      cxt.lineWidth = 2;
+      cxt.lineJoin = "round";//线条相交点
+
+      cxt.fill();
+      cxt.stroke(); //绘制
+
+      cxt.restore();   
+  	}
+
+    function starPath(cxt,r){ //创建一个绘制五角星的标准模板
+      cxt.beginPath();  //开始一个绘图路径
+      for(var i = 0; i < 5; i++){ //循环分别画出大小圆的五个顶点
+    //Math.cos()的参数为用弧度表示的角度，具体角度可以画一个五角星，以中心为原点推理出各个顶点的角度
+        cxt.lineTo(Math.cos((18 + i*72)*Math.PI/180)*r, -Math.sin((18 + i*72)*Math.PI/180)*r);  //绘图路径
+        cxt.lineTo(Math.cos((54 + i*72)*Math.PI/180)*0.5*r, -Math.sin((54 + i*72)*Math.PI/180)*0.5*r);
+      }
+      cxt.closePath();  //结束一个绘图路径
+    }
+  </script>
+</body>
+</html>

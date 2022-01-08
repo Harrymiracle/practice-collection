@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+
+<script type="text/javascript">
+	window.onload = function(){
+		// var divs = document.getElementsByClassName("cls");
+		// console.log(divs);    //注释掉的内容为不兼容模式
+
+	  function add(clss){
+		if(document.getElementsByClassName){
+		  return document.getElementsByClassName(clss);	
+		}else{
+		  var tags = document.getElementsByTagName("*");
+		  var tagsArr = [];
+		  for(var i=0; i<tags.length; i++){
+			if(tags[i].className == clss){
+			  tagsArr.push(tags[i]);
+			}	
+		  }		
+		  return tagsArr;	
+		}
+	  }
+	  alert(add("cls"));	
+
+	  function getByClass(clsName,parent){
+	  	var oParent = parent?document.getElementById(parent):document,
+	  	    eles = [],
+	  		elements = oParent.getElementsByTagName("*");
+	  	for(var i = 0,l=elements.length; i<l; i++){
+	  	  if(elements[i].className == clsName){
+	  	  	eles.push(elements[i]);
+	  	  }	
+	  	}
+	  	return eles;
+	  }
+
+
+	}
+</script>	
+
+	<div class="cls">内容一</div>
+	<div class="cls">内容二</div>
+	<div class="cls">内容三</div>
+	<div class="cls">内容四</div>
+	<div class="cls">内容五</div>
+	<p class="cls">我是段落</p>
+
+</body>
+</html>

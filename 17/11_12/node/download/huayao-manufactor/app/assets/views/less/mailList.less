@@ -1,0 +1,110 @@
+@import "../../commoncss/z.less";
+@import "../../commoncss/common.less";
+
+body{
+  background: none;
+  font-size: 1.4rem;
+  position: relative;
+}
+.content{
+  margin: 4.5rem 0 2rem;
+  padding: 0 0.6rem;
+  .search{
+    height: 4.8rem;
+    padding: 0.9rem 0;
+    background: #fff;
+    div{
+      width: 76%;
+      height: 3rem;
+      border: solid #008363 1px;
+      margin: 0 auto;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+      input{
+        width: 88%;
+        height: 100%;
+        display: inline-block;
+        padding: 0 0.5rem;
+        border: none;
+        font-size: 1.5rem;
+      }
+      span{
+        width: 3.5rem;
+        height: 100%;
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        background-color: #37b798;
+        .bgi("../images/task/icon-header02.png");
+        background-position: center;
+        .bgr-no();
+        .bga-size(1.8rem,1.8rem);
+      }
+    }
+  }
+  ul{
+    margin-bottom: 7rem;
+    li{
+      background: #fff;
+      margin-top: 0.5rem;
+      padding: 0 0.8rem;
+      div{
+        .l-h(3.6rem);
+        border-bottom: solid #C9C9C9 1px;
+        font-size: 1.5rem;
+        position: relative;
+        span{
+          font-size: 1.25rem;
+          color: #787878;
+          margin-left: 0.5rem;
+        }
+        .check{
+          width: 3rem;
+          position: absolute;
+          right: 0;
+          top: 0;
+          span{
+            display: inline-block;
+            width: 1.6rem;
+            height: 1.6rem;
+            border-radius: 100%;
+            border: solid #c9c9c9 1px;
+          }
+          .active{
+            border: none;
+            .bg-m("../images/person/icon_y_checked.png",@x:center,@y:center,@repeat:no-repeat);
+            background-size: 100%;
+          }
+          input{
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 9;
+            position: absolute;
+            right: 1rem;
+            top: 0.9rem;
+          }
+        }
+      }
+      .last{
+        border: none;
+      }
+    }
+  }
+  .fixed-btn{
+    width: 80%;
+    position: fixed;
+    left: 10%;
+    bottom: 3rem;
+    .am-u-sm-5{
+      background: #37b798;
+      .l-h(3rem);
+      .tc();
+      color: #fff;
+      border-radius: 5px;
+    }
+  }
+}
+

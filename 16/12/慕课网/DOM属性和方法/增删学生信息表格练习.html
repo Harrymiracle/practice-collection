@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> 增删学生信息表格练习 </title>  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>  
+  <style>
+  	table{border-collapse:collapse;border:1px solid #808080;}
+	th,td{text-align: center;padding:5px 0;}
+  </style> 
+  <script type="text/javascript">   
+/*
+//1.改变背景颜色
+    window.onload = function(){
+      // 鼠标移动改变背景,可以通过给每行绑定鼠标移上事件和鼠标移除事件来改变所在行背景色
+    	var otr = document.getElementsByTagName("tr");
+    	for(var i=0,len=otr.length;i<len;i++){
+    		otr[i].onmouseover = function(){
+    			this.style.background = "#f2f2f2";
+    			this.onmouseout = function(){
+    				this.style.background = "#fff";
+    			}
+    		}
+    	}    
+	}*/
+
+  //高手的方法,分离了函数。传人参数,减少了代码量。
+	window.onload = function(){
+		var otr = document.getElementsByTagName("tr");
+    	for(var i=0,len=otr.length;i<len;i++){
+    		bgchange(otr[i]);
+    	}
+	}
+    function bgchange(obj){
+    	obj.onmouseover = function(){
+			this.style.background = "#f2f2f2";
+			this.onmouseout = function(){
+				this.style.background = "#fff";
+			}
+		}
+    }
+
+
+//2.增加新的一行
+     // 编写一个函数，供添加按钮调用，动态在表格的最后一行添加子节点
+/*    	function addrow(){  //还没完成
+    		var otable = document.getElementsByTagName("table")[0],	
+    			newtr = document.createElement("tr");
+    		newtr.innerHTML = "<td></td><td></td><td></td>";
+    		otable.appendChild(newtr);
+    	//	var otd = document.getElementsByTagName() 
+    	}*/
+
+    	//高手的代码,分别创建tr及里面的内容,做的比较细致。没有做的就是删除了对应的新增项后，其他新增项的学号和姓名的番号不得变。
+    	var num = 3;
+    	function addrow(){
+    		num++;
+    		var tr = document.createElement("tr"),
+    			Num = document.createElement("td"),
+    			stuname = document.createElement("td"),
+    			del = document.createElement("td"),
+    			tBody = document.getElementById("table").lastChild;
+    		console.log(tBody);
+    		Num.innerHTML = "xh00" + num;
+    		stuname.innerHTML = "第" + num + "学生";
+    		del.innerHTML= "<a href='javascript:;' onclick='removechild(this)'>删除</a>";
+    		tr.appendChild(Num);
+    		tr.appendChild(stuname);
+    		tr.appendChild(del);
+    		tBody.appendChild(tr);
+    		var tr = document.getElementsByTagName("tr");
+    		for(var i=0,len=tr.length;i<len;i++){
+    			bgchange(tr[i]);
+    		}
+    	}
+
+
+//3.创建删除函数       	 
+    	//不能用table删tr，因为table内置有tbody这一层;定义的这个removechild函数太复杂，删除的时候第一次删除的是空的，点第二次才能删除点击的那一行。
+/*    	function removechild(){ 
+    		var oa = document.getElementsByTagName("a");
+    		console.log(oa.length);
+    		for(var i=oa.length-1;i>=0;i--){
+    			oa[i].onclick = function(){
+    				this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);   				
+    			}
+    		}
+    	}*/
+
+    	//高手的代码，简洁明了。传人了obj,即a标签本身,免去了像上面样的获取a,遍历a,在来触发点击事件等麻烦的过程。
+    	function removechild(obj){ 
+        	var tr=obj.parentNode.parentNode;
+        	tr.parentNode.removeChild(tr);
+        }
+
+  </script> 
+ </head> 
+ <body> 
+	<table border="1" width="80%" id="table">
+	   <tr>
+		<th>学 号</th>
+		<th>姓 名</th>
+		<th>操 作</th>
+	   </tr>  
+	   <tr>
+		<td>xh001</td>
+		<td>王小明</td>
+		<td><a href="javascript:;" onclick="removechild(this)">删除</a></td>
+	   </tr>
+	   <tr>
+		<td>xh002</td>
+		<td>刘小芳</td>
+		<td><a href="javascript:;" onclick="removechild(this)">删除</a></td>
+	   </tr> 
+	   <tr>
+		<td>xh003</td>
+		<td>罗小胖</td>
+		<td><a href="javascript:;" onclick="removechild(this)">删除</a></td>
+	   </tr>  
+	</table>
+	<input type="button" value="添加一行" onclick="addrow()" /> 
+ </body>
+</html>

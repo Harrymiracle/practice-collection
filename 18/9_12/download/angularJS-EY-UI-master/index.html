@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>EY-UI</title>
+    <link rel="stylesheet" href="./theme/css/common.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./lib/ey-ui/dist/css/ey-ui.min.css">
+</head>
+
+<body>
+    <!-- top nav -->
+    <div ng-controller="topCtrl">
+        <div ng-include="topTemplate"></div>
+    </div>
+
+    <!-- center contain -->
+    <div ui-view></div>
+
+    <!-- bottom nav -->
+    <div ng-controller="bottomCtrl">
+        <div ng-include="bottomTemplate"></div>
+    </div>
+
+    <script src="./lib/require.js"></script>
+    <script src="./lib/jquery.js"></script>
+    <script src="./lib/angularjs/angular.js"></script>
+    <script src="./lib/angularjs/angular-ui-router.js"></script>
+    <script src="./lib/lazy-load/ocLazyLoad.js"></script>
+    <!-- <script src="./lib/ey-ui/src/ey-ui.all.js"></script> -->
+    <script src="./lib/ey-ui/dist/scripts/ey-ui.all.js"></script> <!-- 如果不想自己写指令插件，这里推荐我个人觉得很不错的第三方插件： angular-uihttp://angular-ui.github.io/bootstrap/-->
+    <script src="./main.js"></script>
+</body>
+</html>

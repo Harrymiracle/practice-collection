@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>未定义属性报错</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 错误例子示范
+         */
+        var obj = {
+            initObj: {
+
+            },
+            theSecondProp: {
+
+            }
+        }
+        console.log(obj.initObj); //{}
+        console.log(obj.initObj.a); //undefined
+        // console.log(obj.initObj.a.b); // Cannot read property 'b' of undefined
+
+
+        /**
+         * 解决办法
+         */
+        if (obj.initObj.a && obj.initObj.a.b) { //整个条件是undefined，因此不会执行大括号中的代码。
+            console.log(obj.initObj.a.b);
+        }
+    </script>
+</body>
+
+</html>

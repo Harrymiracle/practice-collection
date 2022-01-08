@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TEST</title>
+	<style>
+		a{display: inline-block;width: 50px;height:50px;border:1px solid red;}
+		img{width: 50px;height: 50px;}
+
+		.ddxq-msg {
+		  background: #fff;
+		  width: 100%;
+		  color: #444;
+		  line-height: 42px;
+		}
+		.ddxq-msg tr:first-child td {
+		  padding-top: 25px;
+		}
+		.ddxq-msg td {
+		  vertical-align: top;
+		  padding: 14px 0 12px;
+		  text-align: left;
+		}
+		.ddxq-msg td:nth-child(1) {
+		  white-space: nowrap;
+		  padding-left: 29px;
+		  width: 4em;
+		}
+		.ddxq-msg td:nth-child(2) {
+		  padding-right: 29px;
+		  word-break: break-all;
+		}
+		.ddxq-msg span {
+		  color: #d80c18;
+		}
+		em{font-style:normal;}
+	</style>
+</head>
+<script src="js/jquery-2.2.3.min.js"></script>
+<body>
+
+	<a href=""></a>
+	<a href=""></a>
+	<a href=""></a>
+	<a href=""></a>
+	<a href=""></a>
+	<a href=""></a>
+	<img src="images/2.jpg" alt="">
+
+	<table class="ddxq-msg">
+        <tr>
+            <td>
+                改价金额：
+            </td>
+            <td style="position:relative;">
+                <span class="red" style="float:right;">￥3170</span>
+                <em style="position:absolute;top:50px;right:29px;font-size:12px;text-decoration:line-through;color:#c6c6c6;">￥3170</em>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                改价原因：
+            </td>
+            <td>
+                两个衣柜各加价100元
+            </td>
+        </tr>
+    </table>
+
+    <canvas id="canvas">你的浏览器不支持canvas.</canvas>
+
+    <button onclick="showthis(this);">点击</button>
+
+	<script>
+		$(function(){
+			var as = $("a");
+			console.log(as.length);
+			var fonta = as.splice(0,3);
+			console.log(fonta);
+			// $(fonta).each(function(){
+				$(fonta).append('<img src="images/2.jpg">');
+			// });
+			// fonta.append('<img src="images/2.jpg">');		//搞不起
+		});
+
+		var canvas = document.getElementById("canvas");
+		canvas.width = 600;
+		canvas.height = 600;
+		var context = canvas.getContext("2d");
+		context.lineWidth = 30;
+		context.strokeStyle = "red";
+
+		context.shadowOffsetX = 5; // 阴影Y轴偏移
+		context.shadowOffsetY = 5; // 阴影X轴偏移
+		context.shadowBlur = 10; // 模糊尺寸
+		context.shadowColor = 'rgba(0, 0, 0, 0.5)'; // 颜色
+
+		context.beginPath();
+		context.arc(300,300,200,0,2*Math.PI,true);
+		context.closePath();
+		context.stroke();
+
+		function showthis(obj){
+			alert(obj);
+		}
+
+		var norepeat='';
+		if(!(norepeat!=''))
+		alert(123);
+
+	</script>
+	
+</body>
+</html>

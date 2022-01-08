@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../views/css/drugdetails.css">
+</head>
+<body>
+<header>
+    <a href="#" class="goback" onclick="javascript:history.back(-1)">返回</a>
+    <p><%= title %></p>
+</header>
+
+<div class="drugdetails">
+    <% if(status == "SUCCEED"){ %>
+        <% if(data && data.length!=0 && data!=""){ %>
+            <div class="drug drug01">
+                <div><img src="../views/images/task/icon-drugnum.png" alt=""><label>药品编码：</label><span><%= data.pCode %></span></div>
+                <div><img src="../views/images/task/icon-drugname.png" alt=""><label>药品名称：</label><span><%= data.pName %></span></div>
+            </div>
+            <div class="drug drug02">
+                <div class="first">
+                    <label>单价：</label>
+                    <span><%= data.pPrice %></span>￥
+                </div>
+                <div>
+                    <label>单位质量：</label>
+                    <span><%= data.quality %></span>kg
+                </div>
+                <div>
+                    <label>单位体积：</label>
+                    <span><%= data.volume %></span>m³
+                </div>
+                <div class="last">
+                    <label>规格：</label>
+                    <% if(data.specifications && data.specifications!=""){ %>
+                        <% var specifications = data.specifications.split(",") %>
+                        <span><%= specifications[0] %> <i>长</i></span>x
+                        <span><%= specifications[1] %> <i>宽</i></span>x
+                        <span><%= specifications[2] %> <i>高</i></span>mm
+                    <% } %>
+                </div>
+            </div>
+            <div class="drug drug01">
+                <div><img src="../views/images/task/icon-produce.png" alt=""><label>生产商：</label><span><%= data.manufactor %></span></div>
+                <div><img src="../views/images/task/icon-date.png" alt=""><label>生产日期：</label><span><%= data.pCreateDate %></span></div>
+                <div><img src="../views/images/task/icon-guaranteeperiod.png" alt=""><label>保质期：</label><span><%= data.pGuarantee %></span></div>
+            </div>
+            <div class="drug drug02">
+                <div>
+                    <label>货损单价：</label>
+                    <span><%= data.hsPrice %></span>￥
+                </div>
+                <div>
+                    <label>装卸单价：</label>
+                    <span><%= data.zxPrice %></span>￥
+                </div>
+            </div>
+        <% }else{ %>
+            <p style="text-align: center;line-height: 5rem;color: #5b5b5b;">该药品暂时无详细数据！</p>
+        <% } %>
+    <% }else{ %>
+        <p style="text-align: center;line-height: 5rem;color: #5b5b5b;">没有网络，数据跑丢了！</p>
+    <% } %>
+</div>
+
+</body>
+</html>

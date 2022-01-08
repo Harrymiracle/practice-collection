@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>扩展canvas的context独立moveTo</title>
+</head>
+<body>
+  <canvas id="canvas" style="border:1px solid violet;margin:10px auto;">
+  	你的浏览器不支持canvas,请更换浏览器再试。
+  </canvas>
+
+  <script>
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+
+// CanvasRenderingContext2D为context的原型对象，此处是将fillStar方法加入到context的原型对象中
+    //将原来context中的moveTo储存在originalMoveTo这个变量中
+    var originalMoveTo = CanvasRenderingContext2D.prototype.moveTo;
+    //在原型中申明一个lastMoveToLoc对象来储存传人的moveTo对象的值
+    CanvasRenderingContext2D.prototype.lastMoveToLoc = {};
+
+    //复写了原来的moveTo函数
+    CanvasRenderingContext2D.prototype.moveTo = function(x,y){
+      //由于原来的moveTo(originalMoveTo)是一个函数,可以用apply方法(第一个参数为调用的对象，第二个参数是一个数组)
+      originalMoveTo.apply(context,[x,y]);  //apply的第二个参数是一个数组
+      //将传进来的moveTo(x,y)的值存入lastMoveToLoc对象中
+      this.lastMoveToLoc.x = x;
+      this.lastMoveToLoc.y = y;
+    }
+
+    CanvasRenderingContext2D.prototype.fillStar = function(r, R, rot) { //注意第一个 C 为大写的
+      this.beginPath();
+      for(var i = 0; i < 5; i++){
+        this.lineTo( Math.cos( (18+i*72 - rot) * Math.PI/180) * R + this.lastMoveToLoc.x, -Math.sin( (18+i*72 - rot) * Math.PI/180) * R+ this.lastMoveToLoc.y ),
+        this.lineTo( Math.cos( (54+i*72 - rot) * Math.PI/180) * r + this.lastMoveToLoc.x, -Math.sin( (54+i*72 - rot) * Math.PI/180) * r+ this.lastMoveToLoc.y )
+      }
+      this.closePath();
+      this.fill();
+    };
+
+    window.onload = function(){
+      canvas.width = 800;
+      canvas.height = 600;
+
+      context.fillStyle = "cyan";
+      context.strokeStyle = "pink";
+      context.lineWidth = 3;
+      context.lineJoin = "round";
+
+      context.moveTo(400,300);
+      context.fillStar(109,280,3);
+      context.stroke();
+    }
+     
+
+  </script>
+</body>
+</html>

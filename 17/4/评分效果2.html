@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>评分效果</title>
+    <style>
+        .wrapper{width:300px; margin:10px auto; font:14px/1.5 arial;}
+        /*tab*/
+        #star{overflow:hidden;}
+        #star li{float:left; width:20px; height:20px; margin:2px; display:inline; color:#999; font:bold 18px arial; cursor:pointer}
+        #star .act{color:#c00;}
+        #star_word{width:80px; height:30px; line-height:30px; border:1px solid #ccc; margin:10px; text-align:center; display:none}
+
+    </style>
+    <script>
+        window.onload = function(){
+
+            var star = document.getElementById("star");
+            var star_li = star.getElementsByTagName("li");
+            var star_word = document.getElementById("star_word");
+            var result = document.getElementById("result");
+            var i=0;
+            var j=0;
+            var len = star_li.length;
+            var word = ['很差','差','一般',"好","很好"];
+            star_word.index = 0;
+
+            var clearAll =  function(){     //封装一个循环清除列表类的函数。在每个事件的开始都调用这个函数。
+                for(i=0;i<star_li.length;i++){
+                    star_li[i].className = "";
+                }
+            }
+
+            for(i=0; i<len; i++){
+                star_li[i].index = i;   //用循环给每个列表定义一个自定义的index属性并赋予i的值
+
+                star_li[i].onmouseover = function(){
+                    clearAll();
+                    star_word.style.display = "block";
+                    star_word.innerHTML = word[this.index];
+                    for(i=0; i<=this.index; i++){   //循环加上高亮类
+                        star_li[i].className = "act";
+                    }
+                }
+
+                star_li[i].onmouseout = function(){
+                    clearAll();
+                    star_word.style.display = "none";
+                    var rel = star_word.index;
+                    for(i=0; i<rel; i++){
+                        star_li[i].className = "act";
+                    }
+                }
+
+                star_li[i].onclick = function(){
+                    clearAll();
+                    var rel = this.getAttribute("rel");
+                    console.log(rel);
+                    star_word.index = rel;
+                    console.log(star_word.index);
+                    for(i=0; i<rel; i++){
+                        star_li[i].className = "act";
+                    }
+                    result.innerHTML = (this.index+1)+"分";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    打分结果
+    <span id="result"></span>
+    <ul id="star">
+        <li rel="1">★</li>
+        <li rel="2">★</li>
+        <li rel="3">★</li>
+        <li rel="4">★</li>
+        <li rel="5">★</li>
+    </ul>
+    <div id="star_word">一般</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin:0; padding:0;}
+		#container {width:400px; height:400px; position:relative; margin:0 auto; border:1px solid; overflow:hidden;}
+		ul {list-style:none;}
+		#box {height:400px; position:absolute; left:0; top:0;}
+		li {width:400px; height:400px; float:left;}
+		#pages, #pages_bg{ width:100%; height:20px; padding:5px 0; position:absolute; bottom:0; }
+		#pages_bg{ opacity:0.1; background:black;}
+		#pages div {width:20px; height:20px; border-radius:10px; margin:0 5px; float:left; background:white; opacity:0.5;}
+		#pages div.curr {background:red; opacity:1;}
+		#prev,#next{width:45px; height:100px; background:url(img/sprite.bmp) no-repeat; top:0; bottom:0; margin:auto; position: absolute; opacity:0;}
+		#next {background-position:top right; right:0;}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			// 将轮播显示出来的最后一张图片复制添加到头部
+			$("#box>li:last").clone(true).prependTo("#box");
+			// 将轮播显示出来的第一张图片复制添加到最后
+			$("#box>li:eq(1)").clone(true).appendTo("#box");
+
+			// 设置 ul#box 宽度
+			var len = $("#box>li").length, // 实际轮播显示出的图片张数应为 len - 2，因为最后添加了多余的第一张图片，头部添加了多余的最后一张图片
+				liWidth = $("li").outerWidth(true);
+			$("#box").css("width", len*liWidth);
+
+			// 初始显示的第一张图片为盒子中的第二张图片
+			$("#box").css("left", -liWidth);
+
+			var index = 2; // 即将显示的图片索引
+			var timer = null; // 轮播计时器id
+			var realLen = len - 2; // 小圆点个数，因为多了两张复制的图片，所以减2
+
+			// 添加翻页的小圆点
+			for (var i = 0; i < realLen; i++) {
+				$("<div></div>").appendTo("#pages");
+			}
+
+			// 鼠标进入轮播图范围，则暂停轮播，离开后继续轮播
+			$("#container").hover(function(){
+				$("#prev,#next").stop(true).fadeTo(400, 0.1);
+				clearInterval(timer);
+			}, function(){
+				$("#prev,#next").stop(true).fadeOut();
+				timer = setInterval(move, 2000);
+			}).trigger("mouseleave"); // 默认每隔2s自动轮播一次
+
+			// 点击小圆点，切换图片
+			$("#pages>div").on("click", function(){
+				if (!$("#box").is(":animated")) { // 如果 ul#box 没有运动，则切换图片，否则说明 ul#box 的上一次运动还没有结束
+					index = $("#pages>div").index(this) + 1; // 获取当前点击的小圆点索引，设置待显示图片的索引，待显示图片的索引比当前小圆点索引值多1
+					move();
+				}
+			}).eq(0).click(); // .trigger("click"); 默认第一个小圆点设置红色背景
+
+			// 鼠标进入/离开 上/下一页图片盒子范围时淡入淡出效果
+			$("#prev,#next").hover(function(){
+				$(this).stop(true).fadeTo(400, 0.5);
+			}, function(){
+				$(this).stop(true).fadeTo(400, 0.1);
+			});
+
+			// 下一页
+			$("#next").click(function() {
+				if (!$("#box").is(":animated"))
+					move();
+			});
+
+			// 上一页
+			$("#prev").click(function() {
+				if (!$("#box").is(":animated")){
+					index -= 2; // 求上一页的图片索引
+					move();
+				}
+			});
+
+			// 轮播运动
+			function move() {
+				// 计算小圆点索引，index 中存放的是 ul#box 盒子中下一张即将显示图片的索引，其值比小圆点索引值大1
+				var circleIndex = index - 1; 
+				if (circleIndex === realLen)
+					circleIndex = 0;
+				else if (circleIndex === -1)
+					circleIndex = realLen - 1;
+				// 将当前显示的图片对应的小圆点背景设置为红色
+				$("#pages>div").eq(circleIndex).addClass('curr').siblings().removeClass('curr');
+				// 计算定位的 left 值
+				var _left = -1 * index * liWidth;
+				// 设置下一次即将显示图片的索引
+				index++;
+				// 定位的动画
+				$("#box").stop(true).animate({"left":_left}, 600, function(){ // 运动完成后判断是否重新设置 ul#box 盒子定位
+					if (index === len){ // index 自增到 len 说明下一张图片的索引在盒子中最后一张图片之后，则重新定位 ul#box
+						index = 2;
+						$("#box").css("left", -liWidth);
+					} else if (index === 1) { // index 自增到 1(下一张图片索引为1)，说明当前显示的是盒子中第一张图片，盒子中的第一张图片为轮播显示的最后一张图片，则重新定位 ul#box
+						index = len - 1;
+						$("#box").css("left", -1 * (len - 2) * liWidth);
+					}
+				});
+			}
+		});
+	</script>
+</head>
+<body>
+	<div id="container">
+		<ul id="box">
+			<li><img src="img/002.jpg"></li>
+			<li><img src="img/003.jpg"></li>
+			<li><img src="img/004.jpg"></li>
+			<li><img src="img/005.jpg"></li>
+			<li><img src="img/006.jpg"></li>
+		</ul>
+		<div id="pages_bg"></div>
+		<div id="pages"></div>
+		<div id="prev"></div>
+		<div id="next"></div>
+	</div>
+</body>
+</html>

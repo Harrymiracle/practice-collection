@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>单行和多行文本溢出</title>
+    <style>
+        p,
+        div {
+            width: 500px;
+        }
+        
+        p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        div {
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 4;
+        }
+    </style>
+</head>
+
+<body>
+    <p>单行文本溢出。单行文本溢出。单行文本溢出。单行文本溢出。单行文本溢出。单行文本溢出。单行文本溢出。</p>
+    <div>多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。多行文本溢出。</div>
+</body>
+
+</html>

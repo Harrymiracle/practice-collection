@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery插件</title>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+<!-- 原文出自 http://www.jquery001.com/how-to-write-jquery-plugin.html 
+    根据《jQuery高级编程》的描述,jQuery插件开发方式主要有三种:
+        1、通过$.extend()来扩展jQuery
+        2、通过$.fn 向jQuery添加新的方法
+        3、通过$.widget()应用jQuery UI的部件工厂方式创建
+    通常我们使用第二种方法来进行简单插件开发,说简单是相对于第三种方式。第三种方式是用来开发更高级jQuery部件的,该模式开发出来的部件带有很多jQuery内建的特性,比如插件的状态信息自动保存,各种关于插件的常用方法等。
+-->
+    <ul id="catagory">
+        <li><a href="#">jQuery</a></li>
+        <li><a href="#">Asp.net</a></li>
+        <li><a href="#">Sql Server</a></li>
+        <li><a href="#">CSS</a></li>
+    </ul>
+
+    <script type="text/javascript">
+    //为避免冲突，将我们的方法用一个匿名方法包裹起来
+    //插件一、
+        ;(function ($) {
+            //扩展这个方法到jquery
+            $.fn.extend({
+                //插件名称 - paddingList //将可选择的变量传递给方法
+                paddingList: function (options) {
+                    //参数和默认值 //设置默认值并用逗号隔开
+                    var defaults = {
+                        animatePadding: 10,
+                        hoverColor: "Black"
+                    };
+                    var options = $.extend(defaults, options);
+                    //遍历匹配元素的集合
+                    return this.each(function () {
+                        var o = options;
+                        //将元素集合赋给变量 本例中是 ul对象 
+                        var obj = $(this);
+                        //得到ul中的a对象
+                        var items = $("li a", obj);
+                        //添加hover()事件到a
+                        items.hover(function () {
+                            $(this).css("color", o.hoverColor);
+                            //queue false表示不添加到动画队列中
+                            $(this).animate({ paddingLeft: o.animatePadding }, { queue: false, duration: 300 });
+                        }, function () {
+                            $(this).css("color", "");
+                            $(this).animate({ paddingLeft: "0" }, { queue: true, duration: 300 });
+                        });
+                    });
+                }
+            });
+        //将jQuery作为自执行函数的参数,在自执行函数内部用$来作为参数,等同于jQuery.
+        })(jQuery);
+
+        //使用插件
+        $(document).ready(function() {
+            $("#catagory").paddingList({ animatePadding: 30, hoverColor: "Red" });
+        });   
+    </script>
+
+</body>
+
+</html>

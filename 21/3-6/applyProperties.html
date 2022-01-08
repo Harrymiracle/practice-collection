@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>applyProperties</title>
+</head>
+
+<body>
+    <script>
+        let applyProperties = function (target, props) {
+            let result = null;
+            if (target == null || target instanceof Array) {
+                result = props;
+            } else if (typeof target === "object" && typeof props === "object") {
+                result = {};
+                for (let key in target) {
+                    if (!target.hasOwnProperty(key)) {
+                        continue;
+                    }
+                    result[key] = target[key];
+                }
+                for (let key in props) {
+                    if (!props.hasOwnProperty(key)) {
+                        continue;
+                    }
+                    result[key] = applyProperties(target[key], props[key]);
+                }
+            } else {
+                result = props;
+            }
+            return result;
+        };
+
+        let target = {
+            a: 123,
+            b: {
+                bb: '46'
+            },
+            c: [1, 2, 43, 67, 'sdfg']
+        }
+
+        let props = {
+            a: {
+                aa: [54, 'sd']
+            },
+            b: 'dfds',
+            c: [1, 2, 43, 67, 'sdfg']
+        }
+
+        let res = applyProperties(target, props);
+
+
+        let listeners = {};
+        let binder = function () {
+            console.log('This is a binder.')
+        }
+        listeners['MSG'] = [];
+        listeners['MSG'].push(binder);
+        console.log(listeners);
+
+
+
+    </script>
+</body>
+
+</html>

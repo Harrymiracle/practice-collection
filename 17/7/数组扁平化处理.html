@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组扁平化处理</title>
+</head>
+<body>
+	<script>
+		var array0=[1, [3, [4], [5, [6, 7] ], 8], [9, [10] ] ];
+		var newArr0 = [];
+	    function steamroller(arr){     
+	         for(var i = 0; i < arr.length; i++){
+	            if(!Array.isArray(arr[i])){
+	              newArr0.push(arr[i]);
+	            }else{
+	              steamroller(arr[i]);     //递归调用   
+	            }   
+	         }
+	      return newArr0;
+	    }
+	    console.log(steamroller(array0));
+	</script>
+	
+
+	<script type="text/javascript">
+	   var array=[1, [3, [4], [5, [6, 7] ], 8], [9, [10] ] ];
+	   var newarray=[];
+
+	   function flat(array,newarray){
+	      for (var i = 0; i < array.length; i++) {
+	         //类型为number, 则放入到新数组中
+	         if(typeof array[i]=="number"){
+	            newarray.push(array[i]);
+	         }else{
+	         //否则, 继续分解, 判断, 放入....
+	            flat(array[i],newarray);		//递归调用
+	         }       
+	      }      
+	      console.log(newarray);
+	   }
+	   flat(array,newarray);
+	</script>
+
+
+	<script type="text/javascript">
+	   var array2=[1, [3, [4], [5, [6, 7] ], 8], [9, [10] ] ];
+	   var str2=array2.toString();
+	   //"string" "1,3,4,5,6,7,8,9,10"
+	   var newarray2=str2.split(",");
+	   //newarray: ["1", "3", "4", "5", "6", "7", "8", "9", "10"] 
+	   for (var i = 0; i < newarray2.length; i++) {
+	     newarray2[i]=parseInt(newarray2[i]);
+	     // "string"->"number"
+	   }
+	   console.log(newarray2);
+	</script>
+</body>
+</html>

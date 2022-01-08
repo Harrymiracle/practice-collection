@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>渐变星空</title>
+</head>
+<body>
+  <canvas id="canvas" style="border:1px solid black;margin:10px auto;">
+  	你的浏览器不支持canvas,请更换浏览器再试。
+  </canvas>
+
+  <script>
+  	window.onload = function(){
+  	  var canvas = document.getElementById("canvas");
+  	  canvas.width = 1200;
+  	  canvas.height = 600;
+  	  var context = canvas.getContext("2d");
+
+      var skyColor = context.createLinearGradient(0,0,0,canvas.height); //创建一个渐变状态
+      skyColor.addColorStop(0.0,"black"); //渐变中间值，可以有多个
+      skyColor.addColorStop(1.0,"#035");
+      context.fillStyle = skyColor; //将渐变状态赋值给填充模式
+      context.fillRect(0,0,canvas.width,canvas.height);
+  	  
+      
+      var starNum = Math.floor(Math.random()*70) + 30; //星星的数量为一个随机数
+      for(var i = 0; i < starNum; i++){
+        var R = Math.random()*3 + 5;  //随机生成drawStar函数的参数
+        var x = Math.random()*canvas.width;
+        var y = Math.random()*canvas.height*0.6;
+        var a = Math.random()*360;
+        drawStar(context,x,y,R,a);
+      }
+
+      fillMoon(context,2,900,200,100,30);
+      drawLand(context);
+  	}
+
+ //绘制星星
+  //5个参数分别为上下文的绘图环境，x轴上的偏移，y轴上的偏移，小圆半径，大圆半径，旋转的角度
+  	function drawStar(cxt,x,y,R,rot){
+  	  rot = rot || 0; //传人旋转的角度
+
+      cxt.save(); //保存当前图形状态
+  	  
+      cxt.translate(x,y); //位移
+      cxt.rotate(rot*Math.PI/180);  //旋转
+      
+      starPath(cxt,R);
+
+      cxt.fillStyle = "#fb3";//设置各个绘制状态
+      cxt.strokeStyle = "#fd5";
+      cxt.lineWidth = 3;
+      cxt.lineJoin = "round";//线条相交点
+
+      cxt.fill();
+      cxt.stroke(); //绘制
+
+      cxt.restore();   
+  	}
+
+    function starPath(cxt,r){ //创建一个绘制五角星的标准模板
+      
+      cxt.beginPath();  //开始一个绘图路径
+      for(var i = 0; i < 5; i++){ //循环分别画出大小圆的五个顶点
+    //Math.cos()的参数为用弧度表示的角度，具体角度可以画一个五角星，以中心为原点推理出各个顶点的角度
+        cxt.lineTo(Math.cos((18 + i*72)*Math.PI/180)*r, -Math.sin((18 + i*72)*Math.PI/180)*r);  //绘图路径
+        cxt.lineTo(Math.cos((54 + i*72)*Math.PI/180)*0.5*r, -Math.sin((54 + i*72)*Math.PI/180)*0.5*r);
+      }
+      cxt.closePath();  //结束一个绘图路径
+    }
+
+
+
+  //绘制弯月
+    function fillMoon(cxt,d,x,y,R,rot,fillColor){
+      cxt.save(); //保存当前图形状态
+      cxt.translate(x,y);
+      cxt.rotate(rot*Math.PI/180);
+      cxt.scale(R,R);
+
+      moonPath(cxt,d);
+
+    cxt.fillStyle = fillColor || "#fb5";
+    cxt.fill();
+      cxt.restore();  //返回在save()点时的状态
+    }
+
+    //此时绘制的一个以一个单位长度大小的弯月，圆心坐标为(0,0),正的东南西北四个方向上的坐标分别为(1,0),(0,1),(-1,0),(0,-1)
+    function moonPath(cxt,d){  //参数d为选定的控制点的横坐标
+      cxt.beginPath();//一般成对出现
+      cxt.arc(0,0,1,0.5*Math.PI,1.5*Math.PI,true); //true表示逆时针画
+      cxt.moveTo(0,-1);
+       //画一个以(0,-1)为起点，(d,0),(0,1)为控制点的圆弧。最后一个参数为求圆弧线的半径
+      cxt.arcTo(d,0,0,1,dis(0,-1,d,0) *1 / d);
+      cxt.closePath();//一般成对出现
+    }
+
+    function dis(x1,y1,x2,y2){
+  //表示对(x1-x2)的平方与(y1-y2)的平方的和进行开方，即为(x1,y1),(x2,y2)这两个点之间的直线距离 
+      return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+    }
+
+
+
+ //绘制绿地
+    function drawLand(cxt){
+      cxt.save();
+
+      cxt.beginPath();
+      //使用的贝塞尔三次曲线，
+      cxt.moveTo(0,450);     //起点
+      //参数分别为两个控制点和一个结束点的坐标 ，给的是固定值，实际运用可以用变量代替
+      cxt.bezierCurveTo(540,380,660,600,1200,450);
+      cxt.lineTo(1200,600);
+      cxt.lineTo(0,600);
+      cxt.closePath();
+
+      var landStyle = cxt.createLinearGradient(0,600,0,0);
+      landStyle.addColorStop(0.0,"#030");
+      landStyle.addColorStop(1.0,"#580");
+      cxt.fillStyle = landStyle;
+      cxt.fill();
+
+      cxt.restore();
+    } 
+  	
+
+  </script>
+</body>
+</html>

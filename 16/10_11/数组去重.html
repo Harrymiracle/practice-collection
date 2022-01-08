@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>数组去重的方法</title>
+<style></style>
+
+</head>
+<body>
+</body>
+
+<script>
+//方法零：
+	function oSort(arr) {
+      var result =[];
+      var newArr=[];
+      for(var i=0;i<arr.length;i++){
+        if(!result[arr[i]]) {
+          newArr.push(arr[i]);
+          result[arr[i]]=1;
+        } 
+      }
+      return newArr;
+    }
+
+    ax = [1,4,56,3457,788,56,1];
+    var ax2 = oSort(ax);
+    console.log(ax2);
+
+//方法一：利用indexOf()方法
+	function aa(arr){
+		var result = [];
+		for(var i = 0,len = arr.length;i < len;i++){
+			if(result.indexOf(arr[i])==-1){
+				result.push(arr[i]);
+			}
+		}
+		console.log(result);
+		return result.sort(function(a,b){ 
+        	return a-b;
+        });
+	}
+	var arr = [3,1,4,5,8,4,3,7,5];
+	var results = aa(arr);
+	console.log(results);
+
+	
+//方法二：内套两个for循环，利用splice截取相同项( 删除后面重复元素)
+	function removeRepeat1(arr){
+        var a1=((new Date).getTime())
+        console.warn(a1);
+        for(var i=0;i<arr.length;i++){
+        	for(var j=i+1;j<arr.length;j++){
+        		if(arr[i]===arr[j]){
+                	arr.splice(j,1);
+                	j--;
+                }
+        	}              
+        }          
+        console.info((new Date).getTime()-a1) //记录去除数组重复元素所花费时间
+        return arr.sort(function(a,b){  //方法一(更简便)
+        	return a-b;
+        });
+		// return arr.sort(compare);  //方法二
+    }
+    // function compare(a,b){	//方法二
+    // 	if(a > b){
+    // 		return 1;
+    // 	}else if(a < b){
+    // 		return -1;
+    // 	}else{
+    // 		return 0;
+    // 	}
+    // }
+    var list = [3,1,4,5,8,4,3,7,5];
+    var la = removeRepeat1(list);
+    console.error(la);
+
+
+//方法三：相邻的比较，遇到相同的跳出循环
+	function removeRepeat2(arr){
+		var a1 = ((new Date).getTime());
+		var b = [],n = arr.length,i,j;
+		for(i = 0;i < n;i++){
+			for(j = i + 1;j < n;j++){
+				if(arr[i] === arr[j]){
+					j = false;
+					break;
+				};								
+			};
+			if(j){
+				b.push(arr[i]);
+			};				
+		};
+		console.info((new Date).getTime() - a1);	
+		return b.sort(function(a,b){
+			return a - b;
+		});
+	}
+	var list2 = [3,1,4,5,8,4,3,7,5];
+	var la2 = removeRepeat2(list2);
+	console.error(la2);
+
+
+//方法四：j循环虽然继续了，但是i值已经改变了。就等于是一个新的i循环
+	function resortFn(arr){
+		var t1 = (new Date).getTime();
+		var b = [],i,j,len = arr.length;
+		for(i = 0;i < len;i++){
+			for(j = i+1;j < len;j++){
+				if(arr[i] === arr[j]){
+					j = ++i;
+				}
+			}
+			b.push(arr[i]);
+		}
+		console.info((new Date).getTime() - t1);
+		return b.sort(function(a,b){
+			return a - b;
+		});
+	}
+	var lis = [3,1,4,5,8,4,3,7,5];
+	var lis3 = resortFn(lis);
+	console.log(lis3);
+
+//第四种 保证新数组中元素唯一
+	function resure(arr){
+		var T = ((new Date).getTime());
+		var b = [],s;
+		for(var i = 0;i < arr.length;i++){
+			s = true;
+			for(var j = 0;j < b.length;j++){
+				if(arr[i] === b[j]){
+					s = false;
+					break;
+				}
+			}
+			if(s){
+				b.push(arr[i]);
+			}
+		}
+		console.warn((new Date).getTime() - T);
+		return b.sort(function(a,b){
+			return a - b;
+		});
+	}
+	var arrR = [3,1,4,5,8,4,3,7,5];
+	var list4 = resure(arrR);
+	console.warn(list4);
+
+
+</script>
+</html>

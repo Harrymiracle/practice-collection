@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上传测试</title>
+</head>
+
+<body>
+    <div>
+        <form>
+            <input type="file" id="file-input" name="fileContent" multiple>
+        </form>
+    </div>
+
+    <script>
+        // var fileInput = document.querySelector('#file-input');
+        // fileInput.onchange = function () {
+        //     console.log('this:', this)  // <input type="file" id="file-input" name="fileContent">
+        //     console.log('文件名:', this.value)  // 文件名: C:\fakepath\15542169094.jpg
+        //     var formData = new FormData(this.form);
+        //     console.log(formData)  //FormData {}
+        // }
+
+
+        var fileInput = document.querySelector('#file-input');
+        fileInput.onchange = function () {
+            var filereader = new FileReader();
+            var fileType = this.files[0].type;
+            filereader.onload = function (evt) {
+                console.log(evt.target.result); // 同第35行 this.result
+                if (/^image\/[jpeg|png|gif]/.test(fileType)) {
+                    console.log(this.result);   // data:image/jpeg;base64,/9j/4QbeRXhpZgAATU0AKgAAAAgADAEAAAMAAAABBaAAAAEBAAMAAAABA2YAAAECAAMAAAADAAAAngEGAA…
+                }
+            }
+            console.log(this.files[0]); // File {name: "58b3ee87b92dd.jpg", lastModified: 1554474994000, lastModifiedDate: Fri Apr 05 2019 22:36:34 GMT+0800 (中国标准时间), webkitRelativePath: "", size: 80287, …}
+            filereader.readAsDataURL(this.files[0]);
+        }
+        console.dir(fileInput); // upload.html:40 input#file-input
+
+
+        // var fileInput = document.querySelector('#file-input');
+        // fileInput.onchange = function(){
+		// 	var imgFile = this.files[0];
+		// 	var size = imgFile.size/1024;
+		// 	if(size > 30){
+		// 		alert("图片超过30K");
+		// 		return false;
+		// 	}
+		// 	var fr = new FileReader();
+		// 	fr.onload = function(e) {
+		// 		  var data = e.target.result;
+		// 	      //加载图片获取图片真实宽度和高度
+		// 	      var image = new Image();
+		// 	      image.onload = function(){
+		// 	          var width = image.width;
+		// 	          var height = image.height;
+		// 	        //   if( width != 121 || height != 75){
+		// 	        // 	  alert("图片尺寸不对，格式为(121 x 75)");
+		// 	        // 	  return false;
+		// 	        //   }
+        //             console.log(width, height);
+        //             console.log(fr.result);
+		// 	      };
+		// 	      image.src = data
+        //           console.log(image.src);
+		// 	};
+		// 	fr.readAsDataURL(imgFile);
+		// }
+    </script>
+</body>
+
+</html>

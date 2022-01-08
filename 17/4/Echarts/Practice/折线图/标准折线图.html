@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>标准折线图</title>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 800px; height: 400px; margin: 100px auto;"></div>
+
+    <!-- ECharts单文件引入 -->
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+
+    <script type="text/javascript">
+        //配置路径
+        require.config({
+            paths: {
+                echarts: "http://echarts.baidu.com/build/dist"
+            }
+        });
+
+        //使用
+        require(
+                [
+                    "echarts",
+                    "echarts/chart/bar",
+                    "echarts/chart/line"      // 使用柱状图就加载line模块，按需加载
+                ],
+                function(ec){
+                    // 基于准备好的dom，初始化echarts图表
+                    var myChart = ec.init(document.getElementById("main"));
+
+                    option = {      //可选择的项目
+                        title : {       //标题
+                            text: '未来一周气温变化',   //标题内容
+                            subtext: '纯属虚构'     //副标题及内容
+                        },
+                        tooltip : {         //提示框
+                            trigger: 'axis'       //触发类型，默认数据触发.
+                        },
+                        legend: {       //图例
+                            data:['最高气温','最低气温']        //图例项
+                        },
+                        toolbox: {      //工具箱
+                            show : true,        //设置工具箱显示
+                            feature : {         //特点,显示的顺序和下面写的顺序有关系
+                                mark : {show: true},    //辅助线标志
+                                dataView : {show: true, readOnly: false},   //数据视图
+                                magicType : {show: true, type: ['line', 'bar']},    //动态类型切换
+                                restore : {show: true},     //还原，复位原始图表
+                                saveAsImage : {show: true}      //保存图片
+                            }
+                        },
+                        calculable : true,      //可预见性
+                        xAxis : [
+                            {
+                                type : 'category',  //坐标轴类型，横轴默认为类目型'category'，纵轴默认为数值型'value'
+                                boundaryGap : false,//类目型，类目起始和结束两端空白策略，见下图，默认为true留空，false则顶头。
+                                data : ['周一','周二','周三','周四','周五','周六','周日'] //类目型
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value',
+                                axisLabel : {   //坐标轴文本标签选项
+                                    formatter: '{value} °C'     //间隔名称格式器
+                                }
+                            }
+                        ],
+    // series 通用，驱动图表生成的数据内容数组，数组中每一项为一个系列的选项及数据，其中个别选项仅在部分图表类型中有效，请注意适用类型
+                        series : [
+                            {
+                                name:'最高气温',
+                                type:'line',
+                                data:[11, 11, 15, 13, 12, 13, 10],
+                                markPoint : {       //系列中的数据标注内容
+                                    data : [    //标注图形数据
+                                        {type : 'max', name: '最大值'},
+                                        {type : 'min', name: '最小值'}
+                                    ]
+                                },
+                                markLine : {    //标注图形数据
+                                    data : [    //数据标线数据
+                                        {type : 'average', name: '平均值'}
+                                    ]
+                                }
+                            },
+                            {
+                                name:'最低气温',
+                                type:'line',
+                                data:[1, -2, 2, 5, 3, 2, 0],
+                                markPoint : {
+                                    data : [
+                                        {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name : '平均值'}
+                                    ]
+                                }
+                            }
+                        ]
+                    };
+
+                    //为Echarts对象加载数据
+                    myChart.setOption(option);
+                }
+        )
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let applyProperties = function (target, props) {
+            let result = null;
+            if (target == null || target instanceof Array) {
+                result = props;
+            } else if (typeof target === "object" && typeof props === "object") {
+                result = {};
+                for (let key in target) {
+                    if (!target.hasOwnProperty(key)) {
+                        continue;
+                    }
+                    result[key] = target[key];
+                }
+                for (let key in props) {
+                    if (!props.hasOwnProperty(key)) {
+                        continue;
+                    }
+                    result[key] = applyProperties(target[key], props[key]);
+                }
+            } else {
+                result = props;
+            }
+            return result;
+        };
+
+        let t = {
+            name: 'Tom',
+            age: 18,
+            job: {
+                today: 'eng',
+                yesterday: 'server',
+                after: 'do not know'
+            }
+        }
+
+        let prop = {
+            name: 'Jack',
+            age: 19,
+            job: {
+                today: 'eng',
+                yesterday: 'eng',
+                after: 'do not know'
+            },
+            like: 'do sth...'
+        }
+
+        applyProperties(t, prop)
+    </script>
+</body>
+</html>

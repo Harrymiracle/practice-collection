@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>string例子</title>
+</head>
+<body>
+    <script>
+        let num = 16;
+        let s = 'a string';
+        let b = false;
+        let bt = true;
+        let obj = {
+            a: 'What is string',
+            b: 99
+        }
+        let obj2 = {
+            a: 'What is string',
+            b: 99,
+            toString: function(){
+                return num;
+            }
+        }
+        let n = null;
+        let un = undefined;
+
+        console.log(num.toString());    // "16"
+        console.log(s.toString());  // "a string"
+        console.log(b.toString());  // "false"
+        console.log(bt.toString()); // "true"
+        console.log(obj.toString());    // "[object Object]"
+        console.log(typeof obj2.toString());    // number
+
+        let numb = 20;
+        console.log(numb.toString(2));  // "10100"
+        console.log(numb.toString(8));  // "24"
+        console.log(numb.toString(10)); // "20"
+        console.log(numb.toString(16)); // "14"
+
+
+        console.log(String(num));    // "16"
+        console.log(String(s));  // "a string"
+        console.log(String(b));  // "false"
+        console.log(String(bt)); // "true"
+        console.log(String(obj));    // "[object Object]"
+        console.log(typeof String(obj2));    // string
+        console.log(String(n)); // "null"
+        console.log(String(un));    // "undefined"
+
+        console.log((18).toString(2))   // "10010"
+        console.log((-18).toString(2))  // "-10010"
+        
+    </script>
+</body>
+</html>

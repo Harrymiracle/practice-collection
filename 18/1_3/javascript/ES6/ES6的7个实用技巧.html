@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>ES6的7个实用技巧</title>
+</head>
+
+<body>
+    <script>
+        //1、交换元素
+        let a = 'World!',
+            b = 'Hello ';
+        console.log(a, b); //World! Hello
+        [a, b] = [b, a];
+        console.log(a, b) //Hello  World!
+
+
+        //2、console.table来进行调试
+        const aa = 5,
+            bb = 6,
+            cc = 7;
+        console.log({ //{aa: 5, bb: 6, cc: 7}
+            aa,
+            bb,
+            cc
+        });
+        console.table({
+            aa,
+            bb,
+            cc,
+            mm: {
+                name: '曦曦',
+                age: 28
+            }
+        });
+        /**console.table打印出来为：
+         * (index)      Value      name     age
+         * aa           5
+         * bb           6
+         * cc           7
+         * mm                       "曦曦"    28
+         */
+
+
+        //3、单条语句，ES6时代，操作数组的语句将会更加的紧凑。
+        //寻找数组最大值
+        console.log(...[123, 321, 32]); //123 321 32
+        let max = (arr) => console.log(Math.max(...arr)); //等同于 Math.max.apply(null,arr) Math.max不接受数组作为参数，apply会把数组拆分传入调用函数
+        max([123, 321, 32]); //321
+
+        //计算数组的总和
+        let sum2 = function(arr) { //简化前
+            return arr.reduce(function(a, b) {
+                return a + b;
+            }, 0)
+        };
+        console.log(sum2([1, 2, 3, 4])); //10
+
+        let sum = (arr) => arr.reduce((a, b) => (a + b), 0); //简化后
+        console.log(sum([1, 2, 3, 4])); //10
+
+
+        //4、数组拼接
+        let arr4a = [1, 2],
+            arr4b = [3, 4],
+            arr4c = [5, 6];
+        let result4 = [...arr4a, ...arr4b, ...arr4c]; //由此可以，...arr是将数组解构成一个个的数组项
+        console.log(result4); //(6) [1, 2, 3, 4, 5, 6]
+
+
+        //5、浅拷贝(浅拷贝只是拷贝引用类型数据的指针，深拷贝会拷贝引用类型数据的值。)
+        let oldArr = [1, 2, 3, 4]; //数组成员只是简单数据类型值
+        let newArr = [...oldArr];
+        console.log(newArr); //(4) [1, 2, 3, 4]
+
+        let Jack = {
+                name: 'Jack',
+                age: 18
+            },
+            Lisa = {
+                name: 'Lisa',
+                age: 19
+            },
+            John = {
+                name: 'John',
+                age: 20
+            },
+            oldArr2 = [Jack, Lisa, John],
+            newArr2 = [...oldArr2];
+        console.log(newArr2[0] === oldArr2[0] && newArr2[1] === oldArr2[1] && newArr2[2] === oldArr2[2]); //true
+    </script>
+</body>
+
+</html>

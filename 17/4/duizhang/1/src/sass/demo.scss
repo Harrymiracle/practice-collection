@@ -1,0 +1,26 @@
+@charset "utf-8";
+@import "../../node_modules/mixins-sass/src/mixins";
+@import "../mui/mixins.scss";
+
+
+
+
+header{
+	width:100%;
+	text-align:center;
+	background-color:#000;
+	color:#fff;
+	@include rem(height,80px);
+	@include rem(line-height,80px);
+	@include rem(font-size,32px);
+}
+
+.mint-tab-item-label{
+	color:#000;
+}
+.mint-tab-container-item{
+	display: block;
+}
+.bopx{
+	margin-bottom:70px;
+}

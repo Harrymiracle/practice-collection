@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+//eg.1
+        // 传入的参数为一个函数，fn为一个具名参数，并返回一个闭包函数
+        var currying = function(fn){
+            var args = [];
+            // arguments为传入的参数的集合
+            // return function(){
+            return function res(){
+                if(arguments.length === 0){
+                    // console.log(this);
+                    return fn.apply(this,args);
+                }else{
+                    // [].push.apply(args,arguments);
+                    Array.prototype.push.apply(args,arguments);
+                    // arguments.callee当前正在执行的函数，即currying的return值（一个函数）一个闭包，此前的args,fn都得以保存，并能访问
+                    // 在ES6中不建议用arguments.callee，因此用一个具名函数代替
+                    // return arguments.callee;
+                    return res;
+                }
+            }
+        };
+
+        // 此函数的作用：将传入的参数累加
+        var cost = (function(){
+            var money = 0;
+            return function(){
+                for(var i = 0; i < arguments.length; i++){
+                    money += arguments[i];
+                }
+                return money;
+            }
+        })();
+
+        // 第一次调用currying函数并传入cost函数
+        var calc = currying( cost );
+
+        // calc(100);
+        // calc(200);
+        // calc(300);
+        // calc();         // Window   600
+
+
+        calc(100, 200, 300);
+        calc(400);
+        calc();         //  Window   1000
+
+
+
+//eg.2
+        // var add = (num1) => (num2) => console.log(num1 + num2);
+        var add = function(num1){
+            return function(num2){
+                console.log(num1+num2);
+            }
+        }
+            
+        add3 = add(3);
+        add5 = add(5);
+
+        add3(5) // 8
+        add5(5) // 10
+
+
+
+// eg.3 类似于eg.1
+        var curry = function(fn){
+            args = [];
+            return function res(){
+                if (arguments.length == 0){
+                    return fn.apply(this, args)
+                }else{
+                    [].push.apply(args, arguments);
+                    return arguments.callee;
+                }
+            }
+        }
+
+        var addSum = function(){
+            sum = 0;
+            for(var i = 0, len = arguments.length; i < len; i++){
+                sum += arguments[i];
+            }
+            return sum;
+        }
+            
+        currySum = curry(addSum);
+
+        currySum(1, 2, 3);
+        currySum(1);
+        currySum(1);
+        currySum(1);
+        currySum(1);
+        currySum();     // 10
+
+
+
+
+// eg.4     此种思路中使用curry函数中参数的个数做限定不是很好。只能像如下调用currySumFn函数，且传入的参数多余时后面的会被忽略。
+       
+        var sumFn2 = function(num1, num2){
+            return num1 + num2;
+        }
+        // console.log(sumFn2.length);  //2
+
+        var curryFn2 = function(fn){
+            // 传入函数的参数个数
+            var limitLen = fn.length;
+            return function res(...argsOuter){
+                if(argsOuter.length >= limitLen){
+                    return fn.apply(null,argsOuter);
+                }else{
+                    return function(...argsInner){
+                        return res.apply(null,argsOuter.concat(argsInner));
+                    }    
+                }
+            }
+        }
+
+        var currySumFn2 = curryFn2(sumFn2);
+
+        // currySumFn2(1,2);        //3
+        currySumFn2(1,2,3,4);        //3
+        
+
+
+// eg.5  
+
+        var sumFn = function(...args){
+        // var sumFn = function(){
+            var sum = 0;
+            for(item of args){
+            // console.log(args)        // [1, 2, 3, 4, 5, 6]
+
+            // for(item of arguments){
+                sum += item;
+            }
+            return sum;
+        }
+
+        sumFn(1, 2, 3, 4, 5, 6); //21
+
+        
+
+
+
+    </script>
+</body>
+</html>
+

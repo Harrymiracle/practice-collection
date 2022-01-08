@@ -1,0 +1,37 @@
+{
+  "name": "eyean-app",
+  "version": "0.0.1",
+  "description": "Eeyan App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "eyean-app"
+  ],
+  "author": "LiuQing",
+  "license": "MIT",
+  "dependencies": {
+    "bole": "^2.0.0",
+    "bole-console": "^0.1.10",
+    "co-request": "^0.2.1",
+    "extend": "^3.0.0",
+    "koa": "^0.21.0",
+    "koa-bodyparser": "^2.0.0",
+    "koa-compress": "^1.0.8",
+    "koa-ejs": "^2.0.1",
+    "koa-favi": "^0.1.0",
+    "koa-generic-session": "^1.9.0",
+    "koa-jade": "1.1.0",
+    "koa-json-logger": "0.0.20",
+    "koa-logger2": "0.0.1",
+    "koa-redis": "^1.0.0",
+    "koa-router": "^5.1.2",
+    "koa-static": "^1.4.9",
+    "koa-static-cache": "^4.1.1",
+    "rand-token": "^0.2.1",
+    "request": "^2.58.0",
+    "gm": "^1.21.1",
+    "lodash": "^3.10.1"
+  }
+}

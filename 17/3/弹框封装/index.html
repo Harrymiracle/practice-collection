@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>弹框测试</title>
+	<style href="alert.css"></style>
+	<script src="../js/jquery-2.2.3.min.js"></script>
+	<script src="Event_alert.js"></script>
+</head>
+<body>
+	<button >点击</button>
+	<script>
+		var btn = $("button");
+		console.log(btn);
+		btn.onclick = function(){
+			alertEC("正在领券中...");
+		}
+	</script>
+</body>
+</html>

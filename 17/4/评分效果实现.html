@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>评分效果</title>
+    <style>
+        /*.starts,.starts ul{float:left;margin: 0;}*/
+        /*.starts{padding-left:16px;padding-top:7px;}*/
+        /*.starts ul li{width:32px;height:31px;float:left;background:#ddd;padding-right:3px;}*/
+        /*.starts ul li.on{background:red;}*/
+        /*.starts ul span{display:inline;float:left;padding-left:10px;height:31px;line-height:31px;}*/
+
+        /**--  重写的CSS  --**/
+        .starts{width: 300px; height: 30px; border: 1px solid #008000; margin: 20px auto; border-radius: 6px;}
+        #pingStar {list-style: none; clear: both; height: 100%; margin: 0; padding: 0; font-size: 26px;}
+        #pingStar li{float: left; width: 28px;height: 28px; line-height: 25px; text-align: center; border: 1px solid #ff0000; border-radius: 50%; margin: 0;}
+        .starts ul span{display:inline;padding-left:20px;height:31px;line-height:31px;}
+        .on{ background: #ff0000; color: white;}
+    </style>
+</head>
+<body>
+    <div class="starts">
+        <ul id="pingStar">
+            <li rel="1" title="特别差，给1分">★</li>
+            <li rel="2" title="很差，给2分">★</li>
+            <li rel="3" title="一般般，给3分">★</li>
+            <li rel="4" title="很好，给4分">★</li>
+            <li rel="5" title="非常好，给5分">★</li>
+            <span id="dir"></span>
+        </ul>
+        <input type="hidden" value="" id="startP">   <!-- input为hidden的妙用 -->
+    </div>
+
+    <script>
+        window.onload = function () {
+            var s = document.getElementById("pingStar"),
+                n = s.getElementsByTagName("li"),
+                m = document.getElementById('dir'),
+                input = document.getElementById('startP'); //保存所选值
+            var clearAll = function () {
+                for (var i = 0; i < n.length; i++) {        //循环清空所有li上的类名
+                    n[i].className = '';
+                }
+            };
+            for (var i = 0; i < n.length; i++) {
+                n[i].onclick = function () {
+                    var q = this.getAttribute("rel");   //获取自定义的属性时要用getAttribute
+                    clearAll();
+                    input.value = q;    //把 li 的 rel 属性上的值存在 input 的 value 属性中
+                    for (var i = 0; i < q; i++) {   //循环给前面的所有li加上 on 属性
+                        n[i].className = 'on';
+                    };
+                    m.innerHTML = this.getAttribute("title");  //设置span 的内容
+                };
+                n[i].onmouseover = function () {
+                    var q = this.getAttribute("rel");
+                    clearAll();
+                    for (var i = 0; i < q; i++) {
+                        n[i].className = 'on';
+                    };
+                };
+                n[i].onmouseout = function () {
+                    clearAll();     //鼠标移除时先调用clearAll 函数清空所有的 on 类
+                    console.log(input.value);
+                    var q = input.value;
+                    for (var i = 0; i < q; i++) {
+                        n[i].className = 'on';
+                    };
+                };
+            };
+        };
+    </script>
+</body>
+</html>

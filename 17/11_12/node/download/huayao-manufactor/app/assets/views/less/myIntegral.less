@@ -1,0 +1,78 @@
+@import "../../commoncss/common";
+
+body{
+  background: none;
+  font-size: 1.4rem;
+  .content{
+    margin: 4rem auto 2rem;
+    .integral-show{
+      width: 100%;
+      height: 11rem;
+      padding: 2.5rem 0;
+      background: #5fcbb0;/* 一些不支持背景渐变的浏览器 */
+      background:-moz-linear-gradient(top, #5fcbb0, #5fae9b);
+      background:-webkit-gradient(linear, 0 0, 0 bottom, from(#5fcbb0), to(#5fae9b));
+      background:-o-linear-gradient(top, #5fcbb0, #5fae9b);
+      color: #fff;
+      .am-u-sm-6{
+        height: 6rem;
+        overflow: hidden;
+      }
+      .right{
+        border-right: solid #fff 1px;
+        .tr();
+        .details{
+          font-size: 4.3rem;
+          line-height: 4.5rem;
+        }
+      }
+      .left{
+        .tl();
+        .details{
+          height: 4rem;
+          img{
+            width: 2rem;
+            line-height: 4.5rem;
+          }
+          span{
+            line-height: 4.5rem;
+          }
+        }
+      }
+      .describe{
+        font-size: 1.2rem;
+      }
+    }
+    .integral-list{
+      margin-top: 0.8rem;
+      padding: 0 0.6rem;
+      ul{
+        li{
+          padding: 0.8rem;
+          height: 5rem;
+          position: relative;
+          margin-bottom: 1px;
+          background: #fff;
+          div{
+            line-height: 1.8rem;
+            &:nth-child(1){
+              color: #656565;
+              font-size: 1.6rem;
+            }
+            &:nth-child(2){
+              color: #a1a1a1;
+              font-size: 1.3rem;
+            }
+            &:nth-child(3){
+              position: absolute;
+              right: 1rem;
+              top: 1.7rem;
+              color: #008363;
+              font-size: 1.8rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

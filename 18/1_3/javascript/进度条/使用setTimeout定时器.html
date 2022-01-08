@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>进度条</title>
+    <style>
+        .container {
+            width: 450px;
+            border: 1px solid #6C9C2C;
+            height: 25px;
+        }
+        
+        #bar {
+            background: #95CA0D;
+            float: left;
+            height: 100%;
+            text-align: center;
+            line-height: 150%;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function run() {
+            bar.style.width = parseInt(bar.style.width) + 1 + "%"; //给定一个固定的进度值
+            total.innerHTML = bar.style.width;
+
+            if (bar.style.width == "100%") {
+                window.clearTimeout(timeout);
+                return;
+            }
+
+            var timeout = window.setTimeout("run()", 100); //使用setTimeout定时递归调用
+        }
+
+        window.onload = function() {
+            var bar = document.getElementById("bar"),
+                total = document.getElementById("total");
+            run();
+        };
+    </script>
+
+    <div class="container">
+        <div id="bar" style="width:0%;"></div>
+    </div>
+    <span id="total"></span>
+
+</body>
+
+</html>

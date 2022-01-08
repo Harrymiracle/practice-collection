@@ -1,0 +1,341 @@
+@import "z";
+@color-y: #009f78;//绿色字体
+@color-b: #4586f7;//蓝色字体
+@background: #f0f0f0;
+@border-color: #d6d6d6;
+@font-content-color: #a6a6a6;
+@font-color-title: #656565;
+
+*{margin: 0;padding: 0;list-style: none;}
+
+/** 清除内外边距 **/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+pre, /* text formatting elements 文本格式元素 */
+form, fieldset, legend, button, input, textarea, /* form elements 表单元素 */
+th, td /* table elements 表格元素 */ {
+  margin: 0;
+  padding: 0;
+}
+
+/** 设置默认字体 **/
+body,button, input, select, textarea /* for ie */ {
+  font-family:"微软雅黑";
+}
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
+code, kbd, pre, samp { font-family: courier new, courier, monospace; } /* 统一等宽字体 */
+small { font-size: 1.2rem; } /* 小于 12px 的中文很难阅读，让 small 正常化 */
+
+/** 重置列表元素 **/
+ul, ol { list-style: none; }
+
+/** 重置文本格式元素 **/
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+
+/** 重置表单元素 **/
+legend { color: #000; } /* for ie6 */
+fieldset, img { border: 0; } /* img 搭车：让链接里的 img 无边框 */
+button, input, select, textarea { font-size: 100%; } /* 使得表单元素在 ie 下能继承字体大小 */
+/* 注：optgroup 无法扶正 */
+
+/** 重置表格元素 **/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {vertical-align: middle;  }
+
+.font-s() {
+  font-size: 1.2rem;
+}
+.font-m() {
+  font-size: 1.4rem;
+}
+.font-l() {
+  font-size: 1.6rem;
+}
+.font-g() {
+  font-size: 1.8rem;
+}
+.fl-cl {
+  &>div {
+    float: left;
+  }
+  &>li {
+    float: left;
+  }
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  &>ul {
+    float: left;
+  }
+}
+.fr-cl {
+  &>div {
+    float: right;
+  }
+  &>li {
+    float: right;
+  }
+  &>ul {
+    float: right;
+  }
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+.fl{
+  float: left;
+}
+.fr {
+  float: right;
+}
+.cl {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+html{
+  font-size: 62.5%;
+  font-family: "Microsoft Yahei ui", "微软雅黑";
+  .pos (r);
+  background: @background;
+}
+.banner{
+  width: 100%;
+  img{
+    width: 100%;
+  }
+}
+.back-f(){
+  background: #fff;
+}
+.height-line(@h){
+  height: @h;
+  line-height: @h;
+}
+/* 公共的头部样式和尾部样式开始*/
+
+footer {
+  .maxBody(100%, 4.5rem);
+  .fix();
+  z-index: 100;
+  bottom: 0;
+  background: #008362;
+  div {
+    .maxBody(33.3%, 5rem);
+    .fl();
+    position: relative;
+    a {
+      color: #fff;
+      .img {
+        .maxBody(2rem, 2rem);
+        .bga-size(100%, auto);
+        .bgr-no();
+        .abs();
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: 0.5rem;
+      }
+      .activeimg {
+        .maxBody(2rem, 2rem);
+        .bga-size(100%, auto);
+        .bgr-no();
+        .abs();
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: 0.5rem;
+      }
+      p {
+        .font-m();
+        .maxBody();
+        .fl();
+        position: relative;
+        .text-c();
+        color: #fff;
+        margin-top: 2.5rem;
+      }
+      .active {
+        color: @color-y;
+      }
+    }
+    &:nth-child(1) {
+      .img {
+        background-image: url("../images/index/home.png");
+      }
+      .activeimg {
+        background-image: url("../images/index/homeActive.png");
+      }
+    }
+    &:nth-child(2) {
+      .img {
+        background-image: url("../images/index/myWayBill.png");
+      }
+      .activeimg {
+        background-image: url("../images/index/myWayBillActive.png");
+      }
+    }
+    &:nth-child(3) {
+      .img {
+        background-image: url("../images/index/personCenter.png");
+      }
+      .activeimg {
+        background-image: url("../images/index/personCenterActive.png");
+      }
+    }
+  }
+}
+
+header{
+  width: 100%;
+  height: 4rem;
+  line-height: 4rem;
+  background: #008363;
+  color: #fff;
+  font-size: 1.8rem;
+  text-align: center;
+  .pos (f);
+  top: 0;
+  left: 0;
+  z-index: 999;
+  p{
+    margin: 0;
+    padding: 0;
+  }
+  p.order-num{
+    font-size: 1.6rem;
+  }
+  a{
+    height: 4rem;
+    line-height: 4rem;
+    color: #fff;
+    .font-m();
+    .pos(a);
+    img{
+      height: 1.8rem;
+      margin: 1rem auto;
+      vertical-align: middle;
+    }
+  }
+  a:hover{
+    color: #fff;
+    text-decoration: none;
+  }
+  a.manege{
+    width: 4rem;
+    .font-s();
+    right: 0;
+    top:0;
+  }
+  a.goback{
+    min-width: 4rem;
+    left: 0;
+    top:0;
+    padding-left: 2.1rem;
+    .font-l();
+    .bg-m("../images/person/icon-return.png",@x:left 1rem,@y:center,@repeat:no-repeat);
+    background-size: 0.8rem 1.45rem;
+  }
+}
+.hide{
+  display: none;
+}
+.small-btn(){
+  width: 36%;
+  height: 3rem;
+  margin: 0 auto;
+  line-height: 3rem;
+  background: #36B798;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  font-size: 1.4rem;
+}
+.small-btn-current(){
+  background: #008363;
+}
+.myorder-type--alert(){
+  width: 90%;
+  height: 150px;
+  padding: 8% 8% 0 8%;
+  z-index: 1200;
+  position: fixed;
+  top: 30%;
+  left: 5%;
+  background: #fff;
+  border-radius: 5px;
+  .am-modal-dialog{
+    width: 100%;
+  }
+  .am-modal-bd{
+    height: 5rem;
+  }
+}
+.order(){
+  li {
+    width: 100%;
+    height: 3rem;
+    padding-left: 1.2rem;
+    label {
+      //width: 9rem;
+      font-weight: normal;
+      font-size: 1.5rem;
+      .font-w400();
+    }
+    .list {
+      font-size: 1.35rem;
+      color: #7e7e7e;
+      .txt-overflowed();
+      .line {
+        padding-right: 2rem;
+      }
+      .un {
+        text-decoration: underline;
+      }
+    }
+    .input-check {
+      position: relative;
+      span {
+        position: absolute;
+        top: 0.03rem;
+        display: inline-block;
+        width: 1.4rem;
+        height: 1.4rem;
+        z-index: 9;
+        .bg-m("../images/task/icon-check01.png",@x:center,@y:center,@repeat:no-repeat);
+        background-size: 100%;
+      }
+      .active {
+        .bg-m("../images/task/icon-checked01.png",@x:center,@y:center,@repeat:no-repeat);
+        background-size: 100%;
+      }
+      input {
+        width: 1.4rem;
+        height: 1.4rem;
+        margin-right: 0.3rem;
+        background: none;
+        visibility: hidden;
+      }
+    }
+  }
+  .last {
+    .one{
+      margin-right: 0.8rem;
+    }
+  }
+}
+/* 公共的头部样式和尾部样式结束*/

@@ -1,0 +1,72 @@
+{
+  "result": 1,
+  "msg": "操作成功",
+  "data": {
+    "list": [
+      {
+        "sapTjCode": "12134445",
+        "sapTjName": "63980三门酒柜839#",
+        "sapBjCode": "249737943",
+        "sapBjName": "68870三门酒柜839#6-1"
+      },
+      {
+        "sapTjCode": "12134445",
+        "sapTjName": "63980三门酒柜839#",
+        "sapBjCode": "249737943",
+        "sapBjName": "68870三门酒柜839#6-1"
+      },
+      {
+        "sapTjCode": "12134445",
+        "sapTjName": "63980三门酒柜839#",
+        "sapBjCode": "249737943",
+        "sapBjName": "68870三门酒柜839#6-1"
+      },
+      {
+        "sapTjCode": "12134445",
+        "sapTjName": "63980三门酒柜839#",
+        "sapBjCode": "249737943",
+        "sapBjName": "68870三门酒柜839#6-1"
+      },
+      {
+        "sapTjCode": "12134445",
+        "sapTjName": "63980三门酒柜839#",
+        "sapBjCode": "249737943",
+        "sapBjName": "68870三门酒柜839#6-1"
+      },
+      {
+        "sapTjCode": "12134445",
+        "sapTjName": "63980三门酒柜839#",
+        "sapBjCode": "249737943",
+        "sapBjName": "68870三门酒柜839#6-1"
+      },
+      {
+        "sapTjCode": "12134445",
+        "sapTjName": "63980三门酒柜839#",
+        "sapBjCode": "249737943",
+        "sapBjName": "68870三门酒柜839#6-1"
+      },
+      {
+        "sapTjCode": "12134445",
+        "sapTjName": "63980三门酒柜839#",
+        "sapBjCode": "249737943",
+        "sapBjName": "68870三门酒柜839#6-1"
+      },
+      {
+        "sapTjCode": "12134445",
+        "sapTjName": "63980三门酒柜839#",
+        "sapBjCode": "249737943",
+        "sapBjName": "68870三门酒柜839#6-1"
+      },
+      {
+        "sapTjCode": "12134445",
+        "sapTjName": "63980三门酒柜839#",
+        "sapBjCode": "249737943",
+        "sapBjName": "68870三门酒柜839#6-1"
+      }
+    ],
+    "pageNum": 1,
+    "pageSize": 10,
+    "pages": 2,
+    "total": 13
+  }
+}

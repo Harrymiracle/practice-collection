@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 奇特的 hover 效果4</title>
+    <style>
+        #circle-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30vh;
+        }
+
+        #circle-btn .btn-container {
+            position: relative;
+        }
+
+        #circle-btn button {
+            border: 0;
+            border-radius: 50px;
+            color: white;
+            background: #5f55af;
+            padding: 15px 20px 16px 60px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #f72585 50%, #5f55af 50%);
+            background-size: 200% 100%;
+            background-position: right bottom;
+            transition: all 2s ease;
+        }
+
+        #circle-btn svg {
+            background: #f72585;
+            padding: 8px;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 0%;
+        }
+
+        #circle-btn button:hover {
+            background-position: left bottom;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 四.圆形效果 -->
+
+    <div id="circle-btn">
+        <div class="btn-container">
+            <!-- 这里有一个svg元素 -->
+            <button>Hover me</button>
+        </div>
+    </div>
+</body>
+
+</html>

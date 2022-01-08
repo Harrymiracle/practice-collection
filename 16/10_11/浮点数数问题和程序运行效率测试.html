@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>程序运行效率和浮点数的一种解决方法</title>
+	<style></style>
+</head>
+
+<body>
+</body>
+<script>
+
+	//那如何来避免这类 ` 1.0-0.9 != 0.1 ` 的非bug型问题发生呢？下面给出一种目前用的比较多的解决方案, 在判断浮点运算结果前对计算结果进行精度缩小，因为在精度缩小的过程总会自动四舍五入.方法二、三是对此方法的运用。
+	//(1.0-0.9).toFixed(digits)       // toFixed() 精度参数须在 0 与20 之间
+	parseFloat((1.0-0.9).toFixed(10)) === 0.1   // 结果为True
+	parseFloat((1.0-0.8).toFixed(10)) === 0.2   // 结果为True
+	parseFloat((1.0-0.7).toFixed(10)) === 0.3   // 结果为True
+	parseFloat((11.0-11.8).toFixed(10)) === -0.8   // 结果为True
+
+
+//用下面的方法可以测试两个程序谁的效率高
+	var date1 = new Date(); //获取开始时间
+	for(var i = 0; i < 10000; i++){  //运行程序
+	   var result1 = (10.22 - 0.11).toFixed(2);              
+	}
+	console.log(result1);
+	console.log(new Date() - date1);//用现在的时间减去开始时间。	效率低
+	     
+	var date2 = new Date();
+	for(var j = 0; j < 10000; j++){
+//方法一：乘以10的对应整数倍后在除以相应的倍数
+	   var result2 = (10.22 * 1000 - 0.11 * 1000) / 1000;             
+	}
+	console.log(result2);
+	console.log(new Date() - date2);//效率高
+	   
+	console.log(0.1 + 0.2 == 0.3); //既然返回false
+	console.log(0.1 + 0.2); //既然返回0.30000000000000004
+	console.log(parseFloat(0.1) + parseFloat(0.2)); //还是返回0.30000000000000004
+   	
+
+	var result3 = (1.0 - 0.8);
+   	console.log(result3);
+
+//方法二：通过isEqual工具方法判断数值是否相等，面向对象的风格
+   	Number.prototype.isEqual = function(number,digits){
+   		var digits = digits==undefined ? 10 : digits; //默认精度为10
+   		return this.toFixed(digits) === number.toFixed(digits);
+   	}
+   	var result = (1.0 - 0.8).isEqual(0.2);
+   	console.log(result);
+   
+//方法三：原生扩展方式
+   	function isEqual(num1,num2,digits){
+   		var digits = digits==undefined ? 10 : digits;
+   		return num1.toFixed(digits) === num2.toFixed(digits);
+   	}
+   	var result4 = isEqual((1.0-0.8),0.2);
+   	console.log(result4);
+
+</script>
+</html>

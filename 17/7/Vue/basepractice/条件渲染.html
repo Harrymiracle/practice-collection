@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>条件渲染</title>
+	<script src="../../js/vue.js"></script>
+</head>
+<body>
+	<div id="app-1">
+		<div>
+			<template v-if="loginType === 'username'">
+			  <label>Username</label>
+			  <input placeholder="Enter your username">
+			</template>
+			<template v-else>
+			  <label>Email</label>
+			  <input placeholder="Enter your email address">
+			</template>
+		</div>
+		<p>		
+			<button @click="changeLoginType()">Toggle login type</button>
+		</p>
+	</div>
+
+	<div id="app-2">
+		<div>
+			<template v-if="loginType === 'username'">
+			  <label>Username</label>	
+			  <input placeholder="Enter your username" key="username-input">	<!-- 添加一个具有唯一值的 key 属性 -->
+			</template>
+			<template v-else="">
+			  <label>Email</label>
+			  <input placeholder="Enter your email address" key="email-input">		<!-- 添加一个具有唯一值的 key 属性 -->
+			</template>
+		</div>
+		<p>		
+			<button @click="changeLoginType()">Toggle login type</button>
+		</p>
+	</div>
+
+
+	<script>
+		var app1 = new Vue({
+			el: '#app-1',
+			data: {
+				loginType: 'username'		//默认是用户名登陆
+			},
+			methods: {
+				changeLoginType: function(){	//点击时切换
+					return this.loginType = this.loginType === 'username' ? 'address':'username';				
+				}
+			}
+		});
+
+		var app2 = new Vue({
+			el: '#app-2',
+			data: {
+				loginType: 'username'
+			},
+			methods:{
+				changeLoginType: function(){
+					return this.loginType = this.loginType === 'username' ? 'address':'username';
+				}
+			}
+		});
+	</script>
+</body>
+</html>

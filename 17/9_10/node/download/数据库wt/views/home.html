@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<style type="text/css">
+		.btn-default1{
+			background: #337ab7;
+			color: #fff;
+		}
+		.btn-default1:hover{
+			color: #fff!important;
+		}
+	</style>
+</head>
+<body>
+	<% include header.html %>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <h1>后台管理</h1>
+    <% if (status) { %>
+        <p class="lead">欢迎您： <%= username %></p> 
+        <p class="label label-info">登陆时间： <%= date %></p>
+        <h3>管理员列表</h3>
+        <% if (adminlist.length) { %>  
+            <table class="table table-hover span12">
+                <thead>
+                <tr>
+                    <th>#id</th>
+                    <th>用户名</th>
+                    <th>密码</th>
+                    <th>年龄</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% adminlist.forEach(function(data){ %>
+                	<script type="text/javascript">console.log('<%= data.id %>')</script>
+                    <tr>
+                        <td><%= data.id %></td>
+                        <td><%= data.user %></td>
+                        <td><%= data.password %></td>
+                        <td><%= data.age %></td>
+                        <td><a href="javascript:" onclick="handleClick($(this))" class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bs-example-modal-sm">删除</a></td>
+                    </tr>
+                <% }) %>  
+                </tbody>
+            </table>
+            <!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">新增</h4>
+			      </div>
+			      <div class="modal-body">
+			        <table class="table table-hover span12 el_Tk">
+			        	<thead>
+			                <tr>
+			                    <th>用户名</th>
+			                    <th>密码</th>
+			                    <th>年龄</th>
+			                    <th>操作</th>
+			                </tr>
+		                </thead>
+			        	<tbody>
+		                    <tr>
+		                        <td><input type="text"/></td>
+		                        <td><input type="text"/></td>
+		                        <td><input type="text"/></td>
+		                        <td><a href="javascrpt:" onclick="handleClick2()" class="btn btn-primary btn-sm">+</a></td>
+		                    </tr>
+		                </tbody>
+			        </table>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			        <button type="button" class="btn btn-primary">保存</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<!--小模态框-->
+			<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+			  <div class="modal-dialog modal-sm" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title" id="myModalLabel">删除</h4>
+			      </div>
+				      <div class="modal-body">
+				        确定删除吗？
+				      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			        <button type="button" class="btn btn-default1" data-dismiss="modal">确定</button>
+			      </div>
+			  </div>
+			</div>
+		</div>
+            <!--<a href="javascript:">新增</a>-->
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+			 		新增
+			</button>
+            <a href="/" class="btn btn-primary btn-sm">退出</a>
+        <% } %>  
+    <% } else {%>
+        <strong>登录失败 <a href="/">回首页</a></strong>
+    <% } %>  
+    </div>
+</div>
+<% include footer.html %>
+<script type="text/javascript">
+	function handleClick(obj){
+//		var _id = $(obj).parent().parent().find('td').eq(0).text();
+		var el_td = $(obj).parent().parent().find('td')
+		
+	}
+	function handleClick2(){
+		var html = '';
+		html += '<tr>';
+		html += '<td><input type="text"/></td>';
+		html += '<td><input type="text"/></td>';
+		html += '<td><input type="text"/></td>';
+		html += '<td><a href="javascrpt:" onclick="handleClick2()" class="btn btn-primary btn-sm">+</a></td>';
+		html += '</tr>';
+		$('.el_Tk>tbody>tr:last-child').after(html);
+	}
+	var user = 'wangtao'
+//	$('.btn-default1').on('click',function(){
+//		$.ajax({
+//			type:"get",
+//			url:"/delete",
+//			async:false,
+//			success:function(dates){
+//				console.log(dates)
+//			},
+//			error:function(){
+//				alert('连接失败!')
+//			}
+//		});
+//	})
+</script>
+
+</body>
+</html>

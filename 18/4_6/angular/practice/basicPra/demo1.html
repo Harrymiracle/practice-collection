@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>表达式</title>
+    <script src="../js/angular-1.5.0.js"></script>
+</head>
+
+<body>
+    <!-- <div ng-app="demoapp" ng-controller="myctrl" ng-init="user.name=Harry"> -->
+    <div ng-app ng-init="name='Harry'">
+        <input type="text" ng-model="name" />
+        <p>{{name}}</p>
+        <!-- <ul>
+            <li ng-repeat="item in items">{{item.name}}</li>
+        </ul> -->
+    </div>
+
+
+    <script>
+        // var app = angular.module('demoapp', []);
+        // app.controller('myctrl', function($scope) {
+        //     $scope.items = [{
+        //         name: 'Harry'
+        //     }, {
+        //         name: 'Jack'
+        //     }, {
+        //         name: 'Lisa'
+        //     }]
+        // })
+    </script>
+
+</body>
+
+</html>

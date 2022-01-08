@@ -1,0 +1,250 @@
+    <!doctype html>  
+    <html lang="en">  
+    <head>  
+        <meta htttp-equiv="Content-Type" content="text/html; charset=UTF-8"/>  
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no"/>  
+      
+        <link rel="stylesheet" type="text/css" href="GZMap.css">  
+      
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=XvM4ueScwPRBKCVFXZ4TGximHHdWpgGk"></script>  
+      
+        <!-- 路况信息 -->  
+        <link href="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.css" rel="stylesheet" type="text/css" />  
+        <!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script> -->  
+        <script type="text/javascript" src="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.js"></script>  
+      
+        <!-- 加载百度地图样式信息窗口 -->  
+        <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>  
+        <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />  
+      
+        <!-- 测距 -->  
+        <script type="text/javascript" src="http://api.map.baidu.com/library/DistanceTool/1.2/src/DistanceTool_min.js"></script>  
+      
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>  
+        <script type="text/javascript" src="js/organictabs.jquery.js"></script>  
+        <script type="text/javascript">  
+        $(function() {  
+            $("#filter_d").organicTabs({  
+                "speed": 100,  
+            });  
+        });  
+        </script>  
+      
+        <title>广州旅图</title>  
+    </head>  
+    <body>  
+        <div id="container">  
+            <div id="title_d">  
+                <div id="logo_d">  
+                    <img src="images/logo.jpg">  
+                </div>  
+        <div id="filter_d">  
+            <ul class="nav">  
+                <li class="nav-one"><a href="#featured2" class="current">地点搜索</a></li>  
+                <li class="nav-two"><a href="#core2">公交换乘</a></li>  
+                <li class="nav-three"><a href="#jquerytuts2">驾车路线</a></li>  
+            </ul>       
+            <div class="list-wrap">  
+                <ul id="featured2">  
+                    <div style="margin-right:10px;margin-top:10px">地点搜索:<input type="text" style="width:400px;height:30px;font-size: 18px" id="suggestId" autocomplete="off">  
+                </ul>  
+                <ul id="core2" class="hide">  
+                    <div style="margin-top:10px">公交换乘:<input type="text" id="txtBusSta" autocomplete="off" style="width:400px;height:30px;font-size: 18px"> 到 <input type="text" id="txtBusEnd" autocomplete="off" style="width:400px;height:30px;font-size: 18px">  
+                </ul>  
+                <ul id="jquerytuts2" class="hide">  
+                    <div style="margin-top:10px">驾车路线:<input type="text" id="txtTraveSta" autocomplete="off" style="width:400px;height:30px;font-size: 18px"> 到 <input type="text" id="txtTraveEnd" autocomplete="off" style="width:400px;height:30px;font-size: 18px">  
+                </ul>  
+            </div>  
+        </div>  
+            </div>  
+            <div id="type_selection">  
+                <ul id="navlist">  
+                    <li><a href="index.htm" target="_self" id="current">人文建筑</a></li>  
+                </ul>  
+            </div>  
+            <div id="map_d"></div>  
+            <div id="result_d"></div>  
+        </div>   
+    </body>  
+    </html>  
+        <script type="text/javascript">  
+        // 百度地图API功能  
+        var map = new BMap.Map("map_d",{minZoom:10,maxZoom:18});    // 创建Map实例  
+        map.centerAndZoom(new BMap.Point(113.37319,23.165775), 11);     // 初始化地图,设置中心点坐标和地图级别  
+        map.addControl(new BMap.NavigationControl());       // 添加平移缩放控件  
+        map.addControl(new BMap.ScaleControl());    // 添加比例尺控件  
+        map.addControl(new BMap.OverviewMapControl());      //添加缩略地图控件  
+        map.enableScrollWheelZoom();    //启用滚轮放大缩小  
+        map.addControl(new BMap.MapTypeControl());      //添加地图类型控件  
+        map.setCurrentCity("广州");       // 设置地图显示的城市 此项是必须设置的  
+      
+        var customLayer;  
+        function addCustomLayer(keyword) {  
+            if (customLayer) {  
+                map.removeTileLayer(customLayer);  
+            }  
+            customLayer=new BMap.CustomLayer({  
+                geotableId: 62093,  
+                q: '', //检索关键字  
+                tags: '', //空格分隔的多字符串  
+                filter: '' //过滤条件,参考http://developer.baidu.com/map/lbs-geosearch.htm#.search.nearby  
+            });  
+            map.addTileLayer(customLayer);  
+            customLayer.addEventListener('hotspotclick',callback);  
+        }  
+        addCustomLayer();  
+      
+        function callback(e)//单击热点图层  
+        {  
+                var customPoi = e.customPoi;//poi的默认字段  
+                var contentPoi=e.content;//poi的自定义字段  
+                var content = '<p style="width:280px;margin:0;line-height:20px;">地址：'+customPoi.address+'</p>';  
+                var searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {  
+                    title: customPoi.title, //标题  
+                    width: 290, //宽度  
+                    height: 40, //高度  
+                    panel : "panel", //检索结果面板  
+                    enableAutoPan : true, //自动平移  
+                    enableSendToPhone: true, //是否显示发送到手机按钮  
+                    searchTypes :[  
+                        BMAPLIB_TAB_SEARCH,   //周边检索  
+                        BMAPLIB_TAB_TO_HERE,  //到这里去  
+                        BMAPLIB_TAB_FROM_HERE //从这里出发  
+                    ]  
+                });  
+                var point = new BMap.Point(customPoi.point.lng, customPoi.point.lat);  
+                searchInfoWindow.open(point);  
+        }  
+      
+        // 路况信息  
+        var ctrl = new BMapLib.TrafficControl({  
+               showPanel: false //是否显示路况提示面板  
+          });        
+        map.addControl(ctrl);  
+        ctrl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);         
+      
+        // 本地查询  
+        var s_poi = new BMap.Autocomplete(    //建立一个自动完成的对象  
+            {"input" : "suggestId",  
+             "location" : map  
+        });  
+        var myValue;  
+        s_poi.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件  
+            var _value = e.item.value;  
+            myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;    
+            setPlace();  
+        });  
+      
+        function setPlace(){  
+            document.getElementById("txtBusSta").value ="";  
+            document.getElementById("txtBusEnd").value ="";  
+            document.getElementById("txtTraveSta").value ="";  
+            document.getElementById("txtTraveEnd").value ="";  
+            map.clearOverlays();    //清除地图上所有覆盖物  
+            function myFun(){  
+                var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果  
+                map.centerAndZoom(pp,15);  
+                var marker = new BMap.Marker(pp);  
+                map.addOverlay(marker);    //添加标注  
+                marker.setAnimation(BMAP_ANIMATION_BOUNCE);//标注跳动  
+            }  
+            var local = new BMap.LocalSearch(map, {  //智能搜索  
+                onSearchComplete: myFun  
+            });  
+            local.search(myValue);  
+        }  
+      
+        // 公交查询  
+        var t_BusSta = new BMap.Autocomplete({  
+            "input":"txtBusSta",  
+            "location":map  
+        });  
+        var busStaValue;  
+        t_BusSta.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件  
+            var _value = e.item.value;  
+            busStaValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;  
+        });  
+      
+        var t_BusEnd = new BMap.Autocomplete({  
+            "input":"txtBusEnd",  
+            "location":map  
+        });  
+        var busEndValue;  
+        t_BusEnd.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件  
+            var _value = e.item.value;  
+            busEndValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;  
+            transitRoute();  
+        });  
+      
+        function transitRoute(){  
+            document.getElementById("suggestId").value = "";  
+            document.getElementById("txtTraveSta").value ="";  
+            document.getElementById("txtTraveEnd").value ="";  
+            map.clearOverlays();  
+            var transit = new BMap.TransitRoute(map,{  
+                renderOptions:{map:map,panel:"result_d"}  
+            });  
+            transit.search(busStaValue,busEndValue);  
+        }  
+      
+        // 驾车查询  
+        var t_TraveSta= new BMap.Autocomplete({  
+            "input":"txtTraveSta",  
+            "location":map  
+        });  
+        var traveStaValue;  
+        t_TraveSta.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件  
+            var _value = e.item.value;  
+            traveStaValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;  
+        });  
+      
+        var t_TraveEnd = new BMap.Autocomplete({  
+            "input":"txtTraveEnd",  
+            "location":map  
+        });  
+        var traveEndValue;  
+        t_TraveEnd.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件  
+            var _value = e.item.value;  
+            traveEndValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;  
+            drivingRoute();  
+        });  
+      
+        function drivingRoute(){  
+            document.getElementById("suggestId").value = "";  
+            document.getElementById("txtBusSta").value ="";  
+            document.getElementById("txtBusEnd").value ="";  
+            map.clearOverlays();  
+            var driving = new BMap.DrivingRoute(map,{  
+                renderOptions:{map:map,panel:"result_d"}  
+            });  
+            driving.search(traveStaValue,traveEndValue);  
+        }  
+      
+        // 右键菜单  
+      
+        var contextMenu = new BMap.ContextMenu();  
+        var txtMenuItem = [  
+          {  
+            text:'测距',  
+           callback:function(){  
+            var myDis = new BMapLib.DistanceTool(map);  
+            myDis.open();  
+           }  
+          },  
+          {  
+           text:'在此添加标注',  
+           callback:function(p){  
+            var marker = new BMap.Marker(p), px = map.pointToPixel(p);  
+            map.addOverlay(marker);  
+           }  
+          },  
+          {  
+           text:'放置到最大级',  
+           callback:function(){map.setZoom(14)}  
+          },  
+         ];  
+         for(var i=0; i < txtMenuItem.length; i++){  
+          contextMenu.addItem(new BMap.MenuItem(txtMenuItem[i].text,txtMenuItem[i].callback,100));  
+         }  
+         map.addContextMenu(contextMenu);  
+       </script>  

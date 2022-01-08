@@ -1,0 +1,121 @@
+@charset "utf-8";
+@import "../../node_modules/mixins-sass/src/mixins";
+@import "../mui/mixins.scss";
+
+
+.user_wrap{
+	.user_head{
+		@include rem(height,300px);
+		@include rem(margin-bottom,30px);
+		border-bottom:1px solid #e1e1e1;
+		background:#fff;
+		text-align:center;
+		img{
+			@include rem(width,180px);
+			@include rem(height,180px);
+			@include rem(margin,25px 0 15px);
+			border:1px solid #cfcfcf;
+			border-radius:50%;
+		}
+	}
+	.user_box{
+		background:#fff;
+		@include rem(margin-bottom,30px);
+		.user_box_list{
+			@include rem(line-height,100px);
+			border-bottom:1px solid #e1e1e1;
+			@include rem(padding,0 35px 0 40px);
+			span{
+				float:right;
+			}
+		}
+		.user_box_content{
+			@include rem(padding,0);
+			@include rem(margin,0 35px 0 40px);
+			.user_box_list{
+				@include rem(padding,0);
+				font-weight:bold;
+				position:relative;
+				span{
+					@include rem(font-size,28px);
+					color:#666;
+					font-weight:normal;
+					position: absolute;
+				    right:0;
+				    top:0;
+				}
+				&:last-child{
+					border:none;
+				}
+				.pro_tit{
+					white-space: nowrap;
+				    text-overflow: ellipsis;
+				    overflow: hidden;
+					@include rem(padding-right,10px);
+				}
+				.pro_title{
+					@extend .pro_tit;
+					@include rem(padding-right,400px);
+				}
+			}
+		}
+		.user_product{
+			.user_box_list{
+				position:relative;
+				@include rem(padding,0 200px 0 90px);
+				@include rem(line-height,120px);
+				.user_pro_icon{
+					@include rem(width,70px);
+					@include rem(height,70px);
+					position:absolute;
+					@include rem(left,5px);
+					@include rem(top,25px);
+				}
+			}
+			a{
+				@include rem(width,130px);
+				@include rem(line-height,50px);
+				@include rem(margin-top,30px);
+				@include rem(font-size,24px);
+				color:#2882e0;
+				border:1px solid #2882e0;
+				@include rem(border-radius,30px);
+				display:block;
+				text-align:center;
+				position:absolute;
+			    right:0;
+			    top:0;
+
+			}
+		}
+		.user_icon{
+			@include rem(width,35px);
+			@include rem(height,35px);
+			@include rem(margin-top,35px);
+			display:block;
+			float:right;
+			background-size:cover;
+			&.user_bottom_icon{
+				background-image:url('../images/user/arr_bottom.png');
+			}
+			&.user_top_icon{
+				background-image:url('../images/user/arr_top.png');
+			}
+			&.user_left_icon{
+				background-image:url('../images/user/arr_left.png');
+			}
+		}
+	}
+}
+.wordContent{
+	@include rem(height,20px);
+	@include rem(text-indent,20px);
+	.colorBlack{
+		color:#000;
+		font-weight:bold;
+	}
+	.textIndent{
+		@include rem(text-indent,30px);
+	}	
+}
+    

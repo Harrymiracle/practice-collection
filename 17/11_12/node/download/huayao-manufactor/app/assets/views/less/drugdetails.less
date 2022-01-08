@@ -1,0 +1,48 @@
+@import "../../commoncss/common";
+
+body{
+  background: none;
+}
+@bordercolor: #e1e1e1;
+.drugdetails{
+  padding: 4rem 0.8rem 0;
+  .type>div{
+    padding: 0 1.5rem;
+    background: #fff;
+  }
+  .type{
+    margin: 1rem 0;
+    .title{
+      .l-h(4rem);
+      font-size: 1.6rem;
+      .font-wb();
+      color: #292929;
+      padding: 0 1rem;
+      img{
+        width: 2rem;
+        display: inline-block;
+        margin-right: 1rem;
+        margin-bottom: 0.35rem;
+      }
+    }
+    .content{
+      margin-top: 0.5rem;
+      div{
+        .l-h(4rem);
+        color: #7e7e7e;
+        font-size: 1.4rem;
+        border-bottom: solid #e1e1e1 1px;
+        .txt-overflowed();
+        label{
+          color: #5b5b5b;
+          font-size: 1.5rem;
+          margin-right: 0.4rem;
+          font-weight: normal;
+        }
+      }
+      .last{
+        border: none;
+      }
+    }
+  }
+}

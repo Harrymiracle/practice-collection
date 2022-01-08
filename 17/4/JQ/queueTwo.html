@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>通过设定队列数组来删除动画队列</title>
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<style>
+	   div { margin:3px; width:40px; height:40px;
+        position:absolute; left:0px; top:30px; 
+        background:green; display:none; }
+  	   div.newcolor { background:blue; }
+	</style>
+</head>
+<body>
+	<button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <div></div>
+
+  	<script>
+  	//显示或操作在匹配元素上执行的函数队列. queue(element,[queueName]); queueName:字符串值，包含序列的名称。默认是 fx, 标准的效果序列。callback():要添加进队列的函数.
+  	  $("#start").click(function () {
+	      $("div").show("slow");
+	      $("div").animate({left:'+=200'},5000);
+	      $("div").queue(function () {
+	          $(this).addClass("newcolor");
+	          $(this).dequeue();
+	      });
+	      $("div").animate({left:'-=200'},1500);
+	      $("div").queue(function () {
+	          $(this).removeClass("newcolor");
+	          $(this).dequeue();
+	      });
+	      $("div").slideUp();
+	  });
+	  $("#stop").click(function () {
+	      $("div").queue("fx", []);
+	      $("div").stop();
+	  });
+  	</script>
+</body>
+</html>

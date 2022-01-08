@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas练习</title>
+	<style>
+		body{
+			background: gray;
+		}
+		#canvas{
+			background: white;
+		}
+		#nest{
+			background: white;
+		}
+		#changeWord{
+			background: white;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas id="canvas">这是画布</canvas>
+	<canvas id="nest">网格图</canvas>
+	<canvas id="changeWord">变换文字</canvas>
+	<script>
+		var canvas = document.getElementById("canvas");
+		canvas.width = 400;
+		canvas.height = 400;
+//线段绘制
+		var drawing = canvas.getContext("2d");
+
+		drawing.beginPath();
+		drawing.moveTo(100,100);
+		drawing.lineTo(150,100);
+		drawing.lineTo(200,200);
+		drawing.lineTo(50,200);	
+		
+		drawing.strokeStyle = "blue";
+		drawing.lineWidth = 5;
+		drawing.closePath();
+		drawing.stroke();
+
+		drawing.fillStyle = "pink";
+		drawing.fill();
+
+
+		var drawing2 = canvas.getContext("2d");
+		drawing2.beginPath();
+		drawing2.moveTo(300,300);
+		drawing2.lineTo(350,300);
+		drawing2.lineTo(350,350);
+		drawing2.lineTo(300,350);
+		drawing2.lineWidth = 15;
+		drawing2.strokeStyle = "purple";
+		drawing2.closePath();
+		drawing2.stroke();
+		drawing2.fillStyle = "pink";
+		drawing2.fill();
+		drawing2.lineWidth = 20;
+		drawing2.stroke();
+
+
+//矩形绘制
+		var drawing3 = canvas.getContext("2d");
+		drawing3.beginPath();
+		drawing3.strokeStyle = "tomato";
+		drawing3.strokeRect(200,15,150,150);
+		drawing3.fillStyle = "cyan";
+		drawing3.fillRect(200,15,150,150);
+
+		drawing3.strokeRect(210,120,100,150);
+		drawing3.fillStyle = "orange";
+		drawing3.fillRect(210,120,100,150);
+
+		drawing3.clearRect(160,150,50,50);
+
+
+//网格图的绘制
+		var nest = document.getElementById("nest");
+		nest.width = 400;
+		nest.height = 400;
+		var drNest = nest.getContext("2d");
+		drNest.beginPath();
+		for(var i = 0;i < nest.width/10;i++){
+			drNest.moveTo(i*10,0);
+			drNest.lineTo(i*10,nest.height);			
+		}
+		for(var j = 0;j < nest.height/10;j++){
+			drNest.moveTo(0,j*10);
+			drNest.lineTo(nest.width,j*10);
+		}
+		drNest.strokeStyle = "#e1e1e1";
+		drNest.stroke();
+
+
+		drNest.beginPath();
+		drNest.moveTo(200,200);
+		drNest.arc(200,200,100,0,-30*Math.PI/180,true);
+		drNest.fillStyle="red";
+		drNest.fill();
+		drNest.strokeStyle="green";
+		drNest.stroke();
+
+		drNest.beginPath();
+		drNest.moveTo(200,200);
+		drNest.arc(200,200,110,-30*Math.PI/180,-70*Math.PI/180,true);
+		drNest.fillStyle = "darkred";
+		drNest.fill();
+
+		drNest.beginPath();
+	//	drNest.moveTo(130,230);
+		drNest.arc(130,230,60,0,2*Math.PI,true);
+		drNest.stroke();
+		drNest.font = "30px 微软雅黑";
+		drNest.strokeText("Hello,",100,100);
+		drNest.fillText("world!",100,150);
+
+
+
+		var changeword = document.getElementById("changeWord");
+		changeword.width = 300;
+		changeword.height = 300;
+		if(changeword.getContext){
+			var context = changeword.getContext("2d");
+			var fontSize = 100;
+			context.font = fontSize + "px Arial";
+			while(context.measureText("hello word!").width > 140){
+				fontSize --;
+				context.font = fontSize + "px Arial";
+			}
+			context.fillText("hello word!",10,10);
+			context.fillText("Font size is " + fontSize + "px",10,50);
+		}
+		
+
+	</script>
+	
+</body>
+
+</html>

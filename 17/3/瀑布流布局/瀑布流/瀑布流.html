@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+      var box;
+      //最小height的下标
+      var index=0;
+      //图片数组
+      var images = new Array('images/1.jpg','images/0.jpg','images/2.jpg','images/3.jpg','images/4.jpg','images/5.jpg','images/6.jpg','images/7.jpg');
+	 window.onload = function () {
+	 	box = document.getElementById('box');
+        addBoxChild(50);
+        
+	 	
+	 }
+
+
+	 		 window.onscroll=function(){
+               if (checkAdd()) {
+               addBoxChild(10); 
+             
+         }
+
+        console.log(box.getElementsByTagName('div').length);
+
+	 }
+       //是否加载
+	   function checkAdd(){
+	   	 //box内所有的图片
+           var childBox = box.getElementsByTagName('div');
+	   	     if (childBox.length==100) {
+              return false;
+	   	     }
+            //滚动距离
+           var  scrollTops = document.documentElement.scrollTop||document.body.scrollTop;//兼容
+           //body高度
+           var  bodyHeight =  document.body.clientHeight||document.documentElement.clientHeight; 
+           //最后一张图片的高度和距离顶部距离之和
+           var lastImgHeight = childBox[childBox.length-1].offsetTop+Math.floor(childBox[childBox.length-1].offsetHeight/2);
+           if (lastImgHeight<scrollTops+bodyHeight) {
+               return true;
+           }else{
+           	   return false;
+           }
+
+ 
+	   }
+
+
+	  function addBoxChild(num){
+      
+       for (var i = 0; i < num; i++) {
+       	  
+       	     var div = document.createElement('div');
+                div.className = 'tuPian';
+             var img = document.createElement('img');
+                img.className = 'imgs';
+                img.src = images[parseInt(Math.random()*images.length)];
+                div.appendChild(img);
+                box.appendChild(div);
+       }
+
+             postionBox();
+
+
+	  }
+
+
+	  /*        //获取最小值的下标
+        function getIndex(minHeight,arr){
+             var index=0;
+        	for (var i = 0; i < arr.length; i++) {
+
+        		if (minHeight==arr[i]) {
+
+        			index = i;
+               console.log('getIndex'+index);
+        			return index;
+
+        		}
+        		
+        	}
+         
+        	return index;
+
+
+        }*/
+         //获取最小值
+	 	function getMin(arr){
+	 		index =0;
+             var min = arr[0];
+	 		for (var i = 1; i < arr.length; i++) {
+                     if (min>arr[i]) {
+                     	//得到小值
+                        min = arr[i];
+                         //得到下标
+                         index = i;
+                         //console.log('getMin'+i);
+                     }
+	 		}
+              
+	 		return min;
+
+	 	}
+
+          //定位
+	 	function postionBox(){
+
+	 	//所有容器下的装载图片的Box
+	 	var childBox = box.getElementsByTagName('div');
+	 	//每行的列数
+	 	var num = Math.floor(document.documentElement.clientWidth/childBox[0].offsetWidth);
+	 	//console.log(num+','+childBox[0].offsetWidth);//损失了1px
+	 	box.style.width = num*childBox[0].offsetWidth+'px';
+
+         //存放每列高度的数组
+         var childBoxHeight = [];
+         console.log(num+','+childBox[0].offsetHeight);
+	 	//将图片定位
+	 	for (var i = 0; i < childBox.length; i++) {
+
+	 		if (i<num) {
+      
+               childBoxHeight[i] = childBox[i].offsetHeight;
+              
+              console.log(childBox[i].offsetHeight+','+i);
+	 		}else{
+	 		     //获取当前集合之中高度最小的那位
+	 			var minHeight =getMin(childBoxHeight);
+
+	 			childBox[i].style.position='absolute';
+
+	 			//index = getIndex(minHeight,childBoxHeight); 得到对应下标
+	 			
+                childBox[i].style.left = childBox[index].offsetLeft +'px';
+                childBox[i].style.top = minHeight+'px';
+                childBoxHeight[index] +=  childBox[i].offsetHeight;
+	 		}
+
+
+
+	 	  
+	 	}
+
+           }
+
+
+
+		
+	</script>
+	<style type="text/css">
+	   *{margin: 0px;padding: 0px;}
+		.tuPian{padding: 10px;float: left;}
+		.imgs{box-shadow:0px 0px 10px #3c3c3c;border: 10px solid #fff;border-radius: 20px;width: 150px;height: auto;}
+		#box{margin: 0 auto;position: relative;}
+	</style>
+</head>
+<body>
+  <!-- 大盒子 -->
+ <div id="box">
+
+
+
+ 	
+ </div>
+
+</body>
+</html>

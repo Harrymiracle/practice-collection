@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>根据评论字数禁用按钮</title>
+    <style>
+        form {
+            width: 600px;
+            height: 300px;
+            margin: 100px auto 0 auto;
+        }
+        
+        textarea {
+            border: 1px solid gray;
+            border-radius: 2px;
+            box-shadow: 3px 3px 8px #e0e0e0 inset;
+            resize: none;
+        }
+        
+        a {
+            padding: 2px 10px;
+            border-radius: 2px;
+            border: 1px solid gray;
+        }
+        
+        .test-btn {
+            /* 使用此属性禁用标签 */
+            pointer-events: auto;
+        }
+        
+        .test-btn-disable {
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        window.onload = function() {
+            var supportsPointerEvents = (function() { //验证是否支持pointer-events属性
+                var dummy = document.createElement('_');
+                if (!('pointerEvents' in dummy.style)) return false; //检测样式中是否有某属性
+                dummy.style.pointerEvents = 'auto';
+                dummy.style.pointerEvents = 'x';
+                document.body.appendChild(dummy);
+                //相比style（element.style 只能获取元素style属性中的CSS样式。）属性，getComputedStyle（获取的是最终应用在元素上的所有CSS属性对象）只能读取样式。
+                var r = getComputedStyle(dummy).pointerEvents === 'auto';
+                document.body.removeChild(dummy);
+                return r;
+            })();
+
+            var textareaobj = document.querySelector('textarea'),
+                btn = document.querySelector('a');
+
+            textareaobj.onkeyup = function() {
+                debugger
+                var words = (this.value).trim().length;
+                if (words == 0 || words > 140) {
+                    btn.className = 'test-btn-disable';
+                    btn.removeAttribute('href');
+                } else {
+                    btn.className = 'test-btn';
+                    btn.setAttribute('href', 'javascript:;');
+                    // btn.href = 'javascript:;';//同上
+                }
+            };
+
+            btn.onclick = function() {
+                //如果支持CSS3 pointer-events，CSS自动判定是否执行点击事件，脚本这边可以无顾忌执行弹出
+                //如果不支持CSS3 pointer-events
+                //通过按钮状态判定是否弹出
+                if (supportsPointerEvents || (!supportsPointerEvents && this.href)) {
+
+                    alert("发送成功");
+                }
+                return false;
+            };
+        };
+    </script>
+    <form action="" method="post">
+        <textarea name="" id="" cols="60" rows="10"></textarea>
+        <a class="test-btn test-btn-disable">提 交</a>
+    </form>
+
+</body>
+
+</html>

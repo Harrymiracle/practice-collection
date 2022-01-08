@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>ES6之symbol消除强耦合</title>
+</head>
+
+<body>
+    <script>
+        //ES5例子
+        function getArea(shape, option) {
+            let area = 0;
+            switch (shape) {
+                case 'triangle': //此字符串就是强耦合
+                    area = 0.5 * option.width * option.height;
+                    break;
+            }
+            return area;
+        }
+
+        let result = getArea('triangle', { //此字符串就是强耦合
+            width: 100,
+            height: 100
+        });
+        console.log(result);
+
+        //改进方法一、
+        const shapeType = { //放到一个变量中，解除强耦合
+            triangle: 'triangle'
+        }
+
+        function getArea2(shape, option) {
+            let area = 0;
+            switch (shape) {
+                case shapeType.triangle:
+                    area = 0.5 * option.width * option.height;
+                    break;
+            }
+            return area;
+        }
+
+        let result2 = getArea2(shapeType.triangle, {
+            width: 100,
+            height: 100
+        });
+        console.log(result2);
+
+        //symbol改进方法
+        const shapeType3 = {
+            triangle: Symbol() //shapeType.triangle等于哪个值并不重要，只要确保不会跟其他shapeType属性的值冲突即可。因此，这里就很适合改用 Symbol 值。
+        }
+
+        function getArea3(shape, option) {
+            let area = 0;
+            switch (shape) {
+                case shapeType3.triangle:
+                    area = 0.5 * option.width * option.height;
+                    break;
+            }
+            return area;
+        }
+
+        let result3 = getArea3(shapeType3.triangle, {
+            width: 100,
+            height: 100
+        });
+        console.log(result3);
+    </script>
+</body>
+
+</html>

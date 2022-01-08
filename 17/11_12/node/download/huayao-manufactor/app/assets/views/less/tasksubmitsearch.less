@@ -1,0 +1,178 @@
+@import "../../commoncss/common";
+
+body{
+  background: none;
+  position: relative;
+}
+@color: #5b5b5b;
+.main{
+  padding: 4rem 0;
+  .input-search{
+    width: 100%;
+    height: 5rem;
+    padding: 1rem 0;
+    .back-f();
+    .fix(@fix:fixed);
+    top: 4rem;
+    left: 0;
+    color: @color;
+    .font-m();
+    div{
+      width: 80%;
+      height: 3rem;
+      border-radius: 4px;
+      border: solid @color-y 1px;
+      margin: 0 auto;
+      input{
+        height: 100%;
+        border: none;
+        padding: 0 1rem;
+      }
+      span{
+        display: inline-block;
+        height: 100%;
+        background-color: #37b798;
+        .bgi("../images/task/icon-header02.png");
+        background-position: center;
+        .bgr-no();
+        .bga-size(1.8rem,1.8rem);
+      }
+    }
+    .result-list{
+      width: 80%;
+      margin: 0 auto;
+      z-index: 1100;
+      background-color: #fff;
+      li{
+        height: 3rem;
+        line-height: 3rem;
+        padding-left: 3.5rem;
+        border: solid @color-y 1px;
+        border-top: 0;
+        .bg-m("../images/task/icon-search02.png",@x:left 1rem,@y:center,@repeat:no-repeat);
+        background-size: 1.5rem;
+        span{
+          display: inline-block;
+          .txt-overflowed();
+        }
+        span:nth-child(1){
+          width: 40%;
+        }
+        span:nth-child(2){
+          width: 60%;
+        }
+      }
+    }
+  }
+  .result{
+    margin-top: 6rem;
+    .back-f();
+    padding: 0 0.8rem 1rem;
+    .title{
+      height: 3rem;
+      line-height: 3rem;
+      .font-l();
+      color: #000;
+      margin-bottom: 0.8rem;
+    }
+    [class*=am-u-]{
+      padding: 0;
+      position: static;
+    }
+    table{
+      width: 100%;
+      margin-bottom: 0.5rem;
+      z-index: 1;
+      thead{
+        height: 1.4rem;
+
+        line-height: 1.4rem;
+        color: @color;
+        font-size: 1.5rem;
+      }
+      tbody{
+        td{
+          height: 3rem;
+          line-height: 3rem;
+          color: #8c8c8c;
+          .font-m();
+          .txt-overflowed();
+        }
+      }
+      .am-u-sm-5{
+        a{
+          color: #8c8c8c;
+          text-decoration: none;
+          height: 100%;
+          display: inline-block;
+        }
+      }
+      .am-u-sm-2{
+        .tc();
+      }
+      input{
+        display: none;
+      }
+      img{
+        width: 1.45rem;
+        margin-top: -0.25rem;
+      }
+    }
+  }
+  .add-btn{
+    width: 100%;
+    position: fixed;
+    bottom: 3rem;
+    left: 0;
+    .small-btn{
+      .small-btn();
+    }
+  }
+}
+
+.shopcar{
+  width: 5rem;
+  height: 5rem;
+  border-radius: 100%;
+  .pos (f);
+  right: 1.3rem;
+  bottom: 8rem;
+  .bg-m("../images/task/icon-shopcar.png",@x:center,@y:center,@repeat:no-repeat);
+  background-size: 70%;
+  background-color: #fff;
+  a{
+    display: inline-block;
+    width: 100%;
+    height:100%;
+    background: none;
+    span{
+      display: block;
+      width: 1.3rem;
+      .height-line(1.3rem);
+      border-radius: 100%;
+      background: #f00;
+      color: #fff;
+      .font-s();
+      .pos (a);
+      right: 0rem;
+      top: -0.5rem;
+      .tc();
+    }
+  }
+}
+#order-type--alert{
+  .myorder-type--alert();
+  height: 150px;
+}
+#addscuess{
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  display: none;
+  span{
+    background: rgba(0,0,0,0.3);
+    color: #fff;
+    padding: 0.4rem 1rem 0.4rem 1.6rem;
+  }
+}

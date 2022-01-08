@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DOM事件</title>
+</head>
+
+<body>
+    <!-- 事件处理程序 -->
+
+
+    <!-- HTML事件处理程序 -->
+    <!-- 注：
+      优点:
+        1、会创建一个封装着元素属性值的函数，这个函数中有一个局部变量event（事件对象），可以直接访问事件对象，不用在自己定义，也不用在函数参数列表中去读取它。
+           在这个函数内部，this等于事件的目标元素。
+        2、这个创建的函数可以扩展作用域，在这个函数内部可以像访问局部变量一样访问document和该元素本身的成员。
+           如果这个元素是一个表单输入元素，则作用域还包括访问表单元素的入口（父元素），这样做的目的是让事件处理程序无需引用表单元素就可以访问其他表单字段。
+      缺点：    
+        1、时间差问题。如果用户在js中函数代码解析前触发了事件处理程序，此时没有执行条件，会引发错误。一般的解决办法是在处理函数中使用try{fn();}catch(ex){}块。
+        2、扩展的事件处理程序的作用域在不同的浏览器中会导致不同的结果。
+        3、js代码同HTML紧密耦合，修改时必须修改两个地方。
+    -->
+    <h4>HTML 事件处理程序：</h4>
+    <form method="post">
+        <input type="text" name="testOne" value="默认值">
+        <input type="button" value="点击我弹出输入框的值" onclick="alert(testOne.value)">
+        <input type="button" value="clickedMe!!!" onclick="alert(event+'; '+event.type+'; '+value)">
+        <input type="reset" value="重置">
+    </form>
+
+    <!-- DOM0级事件处理程序 -->
+    <h4>DOM0 级事件处理程序：</h4>
+    <input type="button" id="setNull" value="事件处理程序被 DOM0 置空" onclick="alert(value)" />
+    <script>
+        var setNull = document.getElementById('setNull'); //获取当前元素的引用
+        setNull.onclick = null; //可以将html事件处理程序设置为空，也可以设置为其他处理程序。
+    </script>
+
+    <!-- DOM2级事件处理程序 -->
+    <!-- 三个参数分别是：要处理的事件名，事件处理函数，布尔值（true 在捕获阶段调用事件处理程序，false 在冒泡阶段调用事件处理程序） -->
+    <h4>DOM2 级事件处理程序：</h4>
+    <input type="button" id="dom2" value="点击">
+    <script>
+        var fn1 = function() {
+            alert('独立函数事件处理程序1。')
+        }
+        var fn2 = function() {
+            alert('独立函数事件处理程序2。')
+        }
+        var dom2 = document.getElementById('dom2');
+        dom2.addEventListener('click', function() { //按添加的顺序调用事件处理程序
+            alert('匿名函数事件处理程序。');
+        });
+        dom2.addEventListener('click', fn1, false);
+        dom2.addEventListener('click', fn2, false);
+        dom2.removeEventListener('click', function() { //匿名函数事件处理程序无法移除，因为增加和删除时不是同一个对象
+            alert('匿名函数事件处理程序。');
+        });
+        dom2.removeEventListener('click', fn1, false);
+    </script>
+
+    <!-- IE 事件处理程序 -->
+    <!-- 第一个参数是on+事件类型，没有第三个参数，事件执行顺序是倒序执行的。事件处理程序是在全局作用中运行的(this为window对象)。 -->
+    <h4>IE 事件处理程序：</h4>
+    <input type="button" id="ieControl" value="IE 事件处理程序">
+    <script>
+        var fun1 = function() {
+            alert('ie 事件处理程序1.');
+        };
+        var ieControl = document.getElementById('ieControl');
+        // ieControl.attachEvent('onclick', function() {  //在chrome中会报错没有此方法
+        //     alert('匿名函数事件处理程序。');
+        // });
+        // ieControl.attachEvent('onclick', fun1);
+    </script>
+
+    <!-- 跨浏览器 事件处理程序 -->
+    <h4>跨浏览器 事件处理程序：</h4>
+    <input type="button" id="cross" value="跨浏览器 事件处理程序">
+    <script>
+        var EventUtil = {
+            addHandler: function(el, type, handler) {
+                if (el.addEventListener) { //能力检测
+                    el.addEventListener(type, handler, false);
+                } else if (el.attachEvent) {
+                    el.attachEvent('on' + type, handler);
+                } else {
+                    el['on' + type] = handler;
+                }
+            },
+            removeHandler: function(el, type, handler) {
+                if (el.removeEventListener) {
+                    el.removeEventListener(type, handler, false);
+                } else if (el.detachEvent) {
+                    el.detachEvent('on' + type, handler);
+                } else {
+                    el['on' + type] = null;
+                }
+            }
+        }
+        var handler1 = function() {
+            alert('跨浏览器事件处理程序1。')
+        }
+        var handler2 = function() {
+            alert('跨浏览器事件处理程序2。')
+        }
+        var cross = document.getElementById('cross');
+        EventUtil.addHandler(cross, 'click', handler1); //调用
+        EventUtil.addHandler(cross, 'click', handler2);
+        EventUtil.removeHandler(cross, 'click', handler1);
+    </script>
+
+
+
+
+    <!-- 跨浏览器事件封装 -->
+    <script>
+        var EventUtil_2 = {
+            addHandler: function(el, type, handler) { //添加事件处理函数
+                if (el.addEventListener) { //能力检测
+                    el.addEventListener(type, handler, false);
+                } else if (el.attachEvent) {
+                    el.attachEvent('on' + type, handler);
+                } else {
+                    el['on' + type] = handler;
+                }
+            },
+            removeHandler: function(el, type, handler) { //移除事件处理函数
+                if (el.removeEventListener) {
+                    el.removeEventListener(type, handler, false);
+                } else if (el.detachEvent) {
+                    el.detachEvent('on' + type, handler);
+                } else {
+                    el['on' + type] = null;
+                }
+            },
+            getEvent: function(event) { //获取event对象
+                return event ? event : window.event; //兼容DOM的浏览器中直接返回event,IE中event在window对象上
+            },
+            getTarget: function(event) { //获取事件的目标
+                return event.target || event.srcElement; //检测event对象的target属性，不存在则返回event.srcElement
+            },
+            preventDefault: function(event) { //取消事件的默认行为
+                if (event.preventDefault) {
+                    event.preventDefault();
+                } else {
+                    event.returnValue = false;
+                }
+            },
+            stopPropagation: function(event) { //阻止事件流
+                if (event.stopPropagation) {
+                    event.stopPropagation();
+                } else {
+                    event.cancelBubble = true;
+                }
+            },
+            getRelatedTarget: function(event) { //获取相关元素
+                if (event.relatedTarget) { //DOM通过EVENT对象的relatedTarget对象提供相关信息，只有对mouseover和mouseout事件才有值，对其他事件，这个属性的值是null
+                    return event.relatedTarget;
+                } else if (event.toElement) { //IE中，mouseout事件触发时，toElement属性中保存了相关元素信息
+                    return event.toElement;
+                } else if (event.fromElement) { //IE中，mouseover事件触发时，fromElement属性中保存了相关元素信息
+                    return event.fromElement;
+                } else {
+                    return null;
+                }
+            },
+            getButton: function(event) { //获取button属性 //对于mousedown和mouseup事件，其event对象中有一个button属性。
+                if (document.implementation.hasFeature('MouseEvents', '2.0')) { //用hasFeature()方法检测支持DOM版鼠标事件的浏览器
+                    return event.button;
+                } else { //IE
+                    switch (event.button) {
+                        case 0: //没有按下键
+                        case 1: //左键
+                        case 3: //左键+右键
+                        case 5: //左键+中键
+                        case 7: //左键+中键+右键
+                            return 0;
+                        case 2: //右键
+                        case 6: //右键+中键
+                            return 2;
+                        case 4: //中键
+                            return 1;
+                    }
+                }
+            },
+            getWheelDelta: function(event) { //获取鼠标滚轮增量值
+                if (event.wheelDelta) { //检测event对象是否有wheelDelta属性
+                    return (client.engine.opera && client.engine.opera < 9.5 ? -event.wheelDelta : event.wheelDelta); //在OPera的9.5版本之前，向前是负，向后是正。
+                } else { //不存在 就在event对象的detail属性中查找（FireFox 支持DOMMouseScroll的事件，相关信息保存在event的detail属性中，向前是-3的倍数，向后是3的倍数。）
+                    return -event.detail * 40;
+                }
+            },
+            getCharCode: function(event) {
+                if (typeof event.charCode == 'number') { //只发生在keypress事件时才有值（按下那个键代表字符的ASCII编码），此时keyCode等于0或所按键的键码。
+                    return event.charCode;
+                } else { //IE8及以前版本和opera是在keyCode中保存字符的ASCII码
+                    return event.keyCode;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

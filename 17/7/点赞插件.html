@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>点赞插件</title>
+    <style>
+        .content {
+            padding: 0 20px;
+            overflow: hidden;
+            ;
+        }
+        
+        .content h3 {
+            margin: 0;
+            font-size: 30px;
+            color: #4c4c4c;
+            line-height: 46px;
+        }
+        
+        .like-box {
+            overflow: hidden;
+            ;
+            height: 64px;
+            font-size: 28px;
+            padding: 20px;
+        }
+        
+        .like-box .num {
+            float: left;
+            width: 179px;
+            height: 62px;
+            border: 1px solid #e3e3e3;
+            line-height: 62px;
+            text-align: center;
+        }
+        
+        .like-box .like {
+            float: right;
+            width: 199px;
+            height: 64px;
+            line-height: 64px;
+            color: #fff;
+            position: relative;
+        }
+        
+        .like-box .like .active {
+            width: 115px;
+            height: inherit;
+            padding-left: 84px;
+            background: url("images/sprites_icons.png") 0 -140px no-repeat;
+            cursor: pointer;
+        }
+        
+        .like-box .like .inactive {
+            width: 115px;
+            height: inherit;
+            padding-left: 84px;
+            background: url("images/sprites_icons.png") 0 -220px no-repeat;
+            cursor: default;
+        }
+        
+        .like-box .like .has-like {
+            width: 115px;
+            height: inherit;
+            padding-left: 84px;
+            background: url("images/sprites_icons.png") 0 -300px no-repeat;
+            cursor: default;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h3>成都最TOP宝宝-小宝</h3>
+        <div class="like-box">
+            <div class="num"><span>400</span>赞</div>
+            <div class="like">
+                <div class="active">赞一个</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-2.1.0.js"></script>
+
+    <script>
+        /**
+         * 点赞动画效果jQuery Plugin
+         * @author Warren Xia
+         * @params color,speed
+         */
+        (function($, document, window, undefined) {
+            $.fn.like = function(options) {
+                var defaults = {
+                    color: '#fff',
+                    speed: 'slow'
+                };
+                var settings = $.extend({}, defaults, options);
+                return this.each(function() {
+                    $(this).click(function() {
+                        if ($(this).attr("disable") == "true") {
+                            return false;
+                        }
+                        if ($('span[data-like]').length) {
+                            return false;
+                        }
+                        if ($(this).children('.inactive').length) {
+                            alert('你已经点过赞了！');
+                            return false;
+                        }
+                        var elem = $(this),
+                            left = 40,
+                            top = -10;
+                        elem.append('<i data-like="like">+1</i>');
+                        //animation effect
+                        $('i[data-like]').css({
+                            'position': 'absolute',
+                            'z-index': '1',
+                            'font-style': 'normal',
+                            'color': settings.color,
+                            'left': left + 'px',
+                            'top': top + 'px'
+                        }).animate({
+                                top: top - 10,
+                                left: left + 10
+                            },
+                            settings.speed,
+                            function() {
+                                $(this).fadeIn('fast').remove();
+                                var toAdd = elem.siblings('.num').find('span');
+                                var num = parseInt(toAdd.text());
+                                num++;
+                                toAdd.text(num);
+                            }
+                        );
+                        elem.children('div').addClass('inactive').removeClass('active');
+                        elem.children('div').text("已赞");
+                    });
+                });
+            };
+        })(jQuery, document, window);
+
+
+
+        $(function() {
+            $('.like-box').find('.like').like();
+        });
+    </script>
+</body>
+
+</html>

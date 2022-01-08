@@ -1,0 +1,202 @@
+doctype
+html
+	head
+		title #{gname} 
+		link(rel='stylesheet' href='./style/mobilepublic.css')
+		link(rel='stylesheet' href='./style/mdetail.css')
+		link(href='./bower_components/bootstrap/dist/css/bootstrap.css' rel='stylesheet' type='text/css')
+		meta(http-equiv="X-UA-Compatible" content="IE=edge, chrome=1")
+		meta(charset='utf-8')
+		meta(name='viewport' content='width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1')
+		meta(name='aplus' content='1')
+		meta(name='apple-mobile-web-app-title' content='商城')
+		meta(name='apple-mobile-web-app-capable' content='yes')
+		meta(name='apple-mobile-web-app-status-bar-style' content='black-translucent')
+		meta(name='format-detection' content='telephone=no,address=no')
+		body
+			div.header
+				span#header-info.header-focus 基本信息
+				span#header-more 商品详情
+				span#header-comment 评价1734
+			div.middle-outer
+				div.middle 
+					div.info 
+						div.piclist-outer
+							div.piclist-inner
+								each singleBig in gmainImgs
+									img(src='#{singleBig}' alt='slide img')
+							div.piclist-signal-wrapper
+								ul.piclist-signal
+									each singleBig in gmainImgs
+										li
+									//li.piclist-signal-selec
+									//li
+									//li
+									//li
+									//li
+						div.info-info(data-gid="#{gid}")
+							div.info-info-title #{gname}
+							div.info-info-price ￥#{gnowprice}
+							div.info-info-other 
+								span 快递: 0.00
+								span 月销量 185件
+								span 上海
+						div.info-vouchers
+							div.voucher-item
+								span.vouchers-titel 购物券
+								span 全商城实物商品通用
+								span.button 领取
+							div.vochers-divider
+							div.integral
+								span.vouchers-titel 积分
+								span 购买可得599积分
+								span.text-btn ...
+						div.cover
+							div.info-selec
+								div.info-selec-title
+									div.info-selec-imgwrap
+										img(src="#{gmainImgs[0]}" alt="selec area img")
+									div.info-selec-main
+										span.infoSeTit-price ¥#{gnowprice}
+										span.infoSeTit-last
+											span 库存
+											span 4
+											span 件
+										span.infoSeTie-haschoose
+											span 已选择: 
+											each singleStandard in gstandard
+												span.infoSeTie-first #{singleStandard.items[0]}
+											//39
+											//span.infoSeTie-second 大学红
+									div.info-selec-close X
+								div.info-selec-btnsarea
+									div.info-selec-btnarea
+										-var btnindex=1
+										each singleStandard in gstandard
+											div.info-selec-btntitle #{singleStandard.name}
+											div.info-selec-btns1(data-index="#{btnindex}")
+												-btnindex=btnindex+1
+													each singleStandItem in singleStandard.items
+														span #{singleStandItem}
+									div.devider
+										div.info-selec-btntitle 数量
+										div.info-selec-number
+											span.btn-unable.number-decreaseBtn -
+											input.number-input(type="number" value="1")
+											span.number-addBtn +
+								div.info-selec-yes 确定
+						div.selec
+							span 选择：鞋码/颜色分类
+							span.text-btn ...
+						div.goods-popular
+							span.goods-popular-title 看了又看
+							div.goods-popular-content
+								div.goods-popular-singer
+									img(src="./images/mobile/detail/nike-popular1.webp" alt="popular singer")
+									span.goodsPopSinTil  Nike 耐克官方 KYRIE 3 EP 男子篮球鞋 852396
+									span.goodsPopSinOldPrice ¥1565
+									span.goodsPopSinPrice ¥1199.00
+								div.goods-popular-singer
+									img(src="./images/mobile/detail/nike-popular2.webp" alt="popular singer")
+									span.goodsPopSinTil  Nike 耐克官方 NIKE LEBRON XIV EP 男子篮球鞋 921084
+									span.goodsPopSinOldPrice ¥1659
+									span.goodsPopSinPrice ¥1199.00
+								div.goods-popular-singer
+									img(src="./images/mobile/detail/nike-popular3.webp" alt="popular singer")
+									span.goodsPopSinTil  Nike 耐克官方NIKE ZOOM KOBE VENOMENON 5 EP 男子篮球鞋 853939
+									span.goodsPopSinOldPrice ¥899
+									span.goodsPopSinPrice ¥659
+					div.more 
+						span 商品图片
+						div.more-wrapper
+							each singDetailImg in gdetailImgs
+								img(src="#{singDetailImg}" alt="")
+					div.comment 
+						div.comment-keyword
+							span.keywords-selected 全部
+							span 追加(569)
+							span 有图(453)
+							span 鞋子不错(452)
+							span 做工一般(12)
+							span 舒适度不错(659)
+						div.comment-content
+							div.comment-sin
+								div.comment-sin-title 
+									img.comment-sin-title-headerimg(src='./images/mobile/detail/header1.jpg') 
+									span.comment-sin-title-name m******n
+									span.comment-sin-title-date 2017-04-03
+								div.comment-divider
+								div.comment-sin-main
+									div.main-mark
+										span.glyphicon.glyphicon-star
+										span.glyphicon.glyphicon-star
+										span.glyphicon.glyphicon-star
+										span.glyphicon.glyphicon-star
+										span.glyphicon.glyphicon-star-empty
+									div.main-text 鞋子不错，设计也很到位，刚到，其他的等先穿几天在追评
+									div.main-img
+										img(src="./images/mobile/detail/nike-comment1.jpg" alt="nike comment img")
+										img(src="./images/mobile/detail/nike-comment1.jpg" alt="nike comment img")
+								div.goods-info 颜色分类：深藏青蓝/银灰色/大学红
+								div.goods-info 购买时间：2017-03-12 10:45:12
+								div.comment-divider
+							div.comment-sin
+								div.comment-sin-title 
+									img.comment-sin-title-headerimg(src='./images/mobile/detail/header1.jpg') 
+									span.comment-sin-title-name m******n
+									span.comment-sin-title-date 2017-04-03
+								div.comment-divider
+								div.comment-sin-main
+									div.main-mark
+										span.glyphicon.glyphicon-star
+										span.glyphicon.glyphicon-star
+										span.glyphicon.glyphicon-star
+										span.glyphicon.glyphicon-star
+										span.glyphicon.glyphicon-star-empty
+									div.main-text 鞋子不错，设计也很到位，刚到，其他的等先穿几天在追评
+									div.main-img
+										img(src="./images/mobile/detail/nike-comment1.jpg" alt="nike comment img")
+										img(src="./images/mobile/detail/nike-comment1.jpg" alt="nike comment img")
+								div.goods-info 颜色分类：深藏青蓝/银灰色/大学红
+								div.goods-info 购买时间：2017-03-12 10:45:12
+								div.comment-divider
+							div.comment-sin
+								div.comment-sin-title 
+									img.comment-sin-title-headerimg(src='./images/mobile/detail/header1.jpg') 
+									span.comment-sin-title-name m******n
+									span.comment-sin-title-date 2017-04-03
+								div.comment-divider
+								div.comment-sin-main
+									div.main-mark
+										span.glyphicon.glyphicon-star
+										span.glyphicon.glyphicon-star
+										span.glyphicon.glyphicon-star
+										span.glyphicon.glyphicon-star
+										span.glyphicon.glyphicon-star-empty
+									div.main-text 鞋子不错，设计也很到位，刚到，其他的等先穿几天在追评
+									div.main-img
+										img(src="./images/mobile/detail/nike-comment1.jpg" alt="nike comment img")
+										img(src="./images/mobile/detail/nike-comment1.jpg" alt="nike comment img")
+								div.goods-info 颜色分类：深藏青蓝/银灰色/大学红
+								div.goods-info 购买时间：2017-03-12 10:45:12
+								div.comment-divider
+			div.footer
+				div.footer-iconlist
+					a(href='javascript:;').footer-iconlist-link
+						span.glyphicon.glyphicon-user
+						span.footer-iconList-txt 客服
+					a(href='javascript:;').footer-iconlist-link
+						span.glyphicon.glyphicon-star-empty
+						span.footer-iconList-txt 收藏
+					a(href='/mshopcart').footer-iconlist-link
+						span.glyphicon.glyphicon-shopping-cart
+						span.footer-iconList-txt 购物车
+				div#footer-btns
+					a(href='javascript:;').footer-btn.footer-btn-addToCart 加入购物车
+					a(href='javascript:;').footer-btn.footer-btn-buyNow 立即购买
+			div.masker
+				span.masker-text 加入购物车成功
+				span.masker-sign 
+					span.glyphicon.glyphicon-ok
+		script(src='./bower_components/jquery/dist/jquery.min.js')
+		script(src='./script/mdetail.js')

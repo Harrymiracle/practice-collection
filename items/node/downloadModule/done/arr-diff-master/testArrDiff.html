@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //参数arr是一个显示参数，为传入diff函数的第一个参数
+        function diff(arr/*, arrays*/) {
+            //diff函数参数的个数
+            var len = arguments.length; 
+            //初始化为0，下面将形参初始数组值同arguments对象的第二个值开始，逐个比较
+            var idx = 0;
+            while (++idx < len) {
+                //将每次调用diffArray的值重新赋值给arr
+                arr = diffArray(arr, arguments[idx]);
+            }
+            return arr;
+        };
+
+        function diffArray(one, two) {
+            //如果形参two不是数组，返回形参one
+            if (!Array.isArray(two)) {
+                return one.slice();
+            }
+
+            var tlen = two.length
+            var olen = one.length;
+            var idx = -1;
+            var arr = [];
+
+            //以one数组的每个元素为对比基数，逐个比较two数组的元素，把不在two数组中的one数组的元素加入arr中，最后返回
+            while (++idx < olen) {
+                var ele = one[idx];
+
+                //flag值默认one中的当前元素不在two中
+                var hasEle = false;
+                for (var i = 0; i < tlen; i++) {
+                    var val = two[i];
+                    //one中的当前元素在two中，break本轮循环
+                    if (ele === val) {
+                        hasEle = true;
+                        break;
+                    }
+                }
+                //本轮循环结束，one中的当前元素不在two中
+                if (hasEle === false) {
+                    arr.push(ele);
+                }
+            }
+            return arr;
+        }
+
+
+        // var a = [1,5,5,6];
+        // var b = [5,7];
+        // var c = [1];
+
+        // var result = diff(a,b);
+        // console.log(result);    //[1,6]
+
+        // var result1 = diff(a,b,c);
+        // console.log(result1);       //[6]    
+
+
+
+
+        var d= ["a", "b", "c", "d", [1, 2]];
+        var e= [ "b", "c", "d", "e", [1, 2], [3]];
+        var result2 = diff(d, e);
+        console.log(result2);   //["a", [1, 2]]   對於引用類型的值，d中的[1, 2]和e中的[1, 2]是兩個不同的對象
+        console.log(d); //["a", "b", "c", "d", [1, 2]];
+        
+    </script>
+</body>
+</html>

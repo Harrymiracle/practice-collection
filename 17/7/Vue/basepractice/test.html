@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<style>
+		.redColor{
+			color: red;
+		}
+	</style>
+	<script src="../../js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p v-bind:class="{redColor:isRed}">wo shi ceshi neirong.</p>
+		<span v-bind:style="spanStyle">kan kan wo de yan se.</span>
+	</div>
+
+	<script>
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				isRed: true
+				,spanStyle: {color: 'red', background: 'yellowgreen'}
+			}
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>bind函数练习</title>
+	<style>
+		*{margin: 0; padding: 0;}
+		#panel h4 { line-height: 2;}
+		#panel div{ line-height: 1.5; display: none;}
+		#panel{width: 400px; margin: 30px auto; border: 1px solid #333;border-radius: 6px; }
+		h4 {border-bottom: 1px solid #333; background: #ccc;}
+	</style>
+	<script src="../../js/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+	<div id="panel">
+		<h4>我是标题</h4>
+		<div>我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。我是内容。</div>
+	</div>
+
+	<script>
+		$(function(){
+			// $("#panel>h4").bind("mouseover", function(){
+			// 	$(this).next("div").show();
+			// });
+			// $("#panel>h4").bind("mouseout", function(){
+			// 	$(this).next("div").hide();
+			// });
+
+
+		//上面可以简写成下面的代码
+			// $("#panel>h4").mouseover(function(){
+			// 	$(this).next("div").show();
+			// }).mouseout(function(){
+			// 	$(this).next("div").hide();
+			// });
+
+
+		//使用hover来改写
+			$("#panel>h4").hover(function(){
+				$(this).next("div").show();
+			},function(){
+				$(this).next("div").hide();
+			});
+
+		});
+	</script>
+</body>
+</html>

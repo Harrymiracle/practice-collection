@@ -1,0 +1,62 @@
+@import "../../commoncss/z.less";
+@import "../../commoncss/common.less";
+
+html{
+  position: relative;
+}
+body{
+  position: static;
+  background: none;
+}
+.perfectdata{
+  width: 100%;
+  margin-top: 5rem;
+  margin-bottom: 8rem;
+  ul{
+    width: 96%;
+    margin: 0 auto;
+    background: #fff;
+    padding: 0 1rem 2rem;
+    [class*=am-u-]{
+      padding: 0;
+    }
+    li{
+      width: 100%;
+      .l-h(4.5rem);
+      font-size: 1.5rem;
+      border-bottom: solid #ddd 1px;
+      color: #333;
+      .input{
+        input{
+          height: 3rem;
+          width: 98%;
+          padding: 2%;
+          border: none;
+          color: #646464;
+        }
+        //display: none;
+      }
+      .sex{
+        .sex_l{
+          margin-right: 2rem;
+        }
+        input{
+          margin: 0 0.5rem;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+}
+.submit{
+  width: 90%;
+  .l-h(3.5rem);
+  font-size: 1.6rem;
+  color: #fff;
+  background: #37B698;
+  position: absolute;
+  bottom: 3rem;
+  left: 5%;
+  border-radius: 0.5rem;
+  .text-c();
+}

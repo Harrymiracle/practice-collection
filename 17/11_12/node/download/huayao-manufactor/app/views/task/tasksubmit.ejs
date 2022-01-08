@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../views/css/tasksubmit.css">
+</head>
+<body>
+<header>
+    <a href="#" class="goback" onclick="javascript:history.go(-1)">返回</a>
+    <p><%= title %></p>
+    <% if(orderType == 1){ %>
+        <a href="#" class="manege">仓储订单</a>
+    <% } %>
+    <% if(orderType == 2){ %>
+        <a href="#" class="manege">物流订单</a>
+    <% } %>
+    <% if(orderType == 3){ %>
+        <a href="#" class="manege">退换货订单</a>
+    <% } %>
+</header>
+
+<div class="tasksubmit">
+    <div class="table ch">
+        <table>
+            <thead>
+                <tr>
+                    <td class="am-u-sm-2">序号</td>
+                    <td class="am-u-sm-4">编号</td>
+                    <td class="am-u-sm-4">药品名称</td>
+                    <td class="am-u-sm-2">数量</td>
+                </tr>
+                </thead>
+                <tbody>
+                <% if(cartlist && cartlist.length!=0 && cartlist!=undefined){ %>
+                    <% for(var i=0; i<cartlist.length; i++){ %>
+                        <tr>
+                            <td class="am-u-sm-2"><%= i+1 %></td>
+                            <td class="am-u-sm-4"><%= cartlist[i].productCode %></td>
+                            <td class="am-u-sm-4"><a href="/drug/drugdetails?product=<%= cartlist[i].productId %>"><%= cartlist[i].productName %></a></td>
+                            <td class="am-u-sm-2"><%= cartlist[i].quantity %></td>
+                        </tr>
+                    <% } %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    <div class="show-detail ch">
+        <div>
+            <div class="am-u-sm-3">总体积：</div>
+            <div class="am-u-sm-9">
+                <span><%= all_volume %></span>m³
+            </div>
+        </div>
+        <div>
+            <div class="am-u-sm-3">总&emsp;重：</div>
+            <div class="am-u-sm-9">
+                <span><%= all_weight %></span>kg
+            </div>
+        </div>
+        <div>
+            <div class="am-u-sm-3">总&emsp;价：</div>
+            <div class="am-u-sm-9">
+                <span><%= all_price %></span>元
+            </div>
+        </div>
+    </div>
+    <div class="address ch">
+        <div class="start">
+            <div class="title">
+                <div class="am-u-sm-4">寄件人</div>
+                <div class="time am-u-sm-8">工作时段 <span>8:00—20:00</span></div>
+            </div>
+            <p>
+                <span><%= addressStart.realname %></span>：<span><%= addressStart.mobile %></span>
+            </p>
+            <p><%= addressStart.address %></p>
+        </div>
+        <hr/>
+        <div  class="end">
+            <div class="title">
+                <div class="am-u-sm-4">收件人</div>
+                <div class="time am-u-sm-8">工作时段 <span>10:00—22:00</span></div>
+            </div>
+            <p>
+                <span><%= addressEnd.realname %></span>：<span><%= addressEnd.mobile %></span>
+            </p>
+            <p><%= addressEnd.address %></p>
+        </div>
+    </div>
+
+    <div class="small-btn" onclick="submitTaskForMyTask()">提交</div>
+
+    <div class="hide" id="order-type--alert">
+        <div class="am-modal-dialog">
+            <div class="am-modal-bd">
+                提交成功!
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" onclick="clickComfirmGoTo()">确定</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../commonjs/jquery-2.1.0.js"></script>
+<script type="text/javascript">
+    function submitTaskForMyTask(){
+        $.post('/createorder/tasksubmit',function(data){
+            console.log(data)
+            if(data.status == "SUCCEED"){
+                $('<div class="am-dimmer am-active" data-am-dimmer> </div>').appendTo("body").show();
+                $("#order-type--alert").show();
+            }
+        });
+    }
+
+    function clickComfirmGoTo(){
+        $('#order-type--alert').hide();
+        $('div.am-dimmer').remove();
+        location.href='/task/task';
+    }
+</script>
+</html>

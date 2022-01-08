@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>JS</title>
+    <style>
+        ul {
+            float: left;
+        }
+        
+        li {
+            width: 100px;
+            margin-bottom: 6px;
+            background: violet;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>点击列表弹出对应的索引值</h2>
+    <ul class="No">
+        <li>1 糟糕的例子</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <ul class="No1">
+        <li>1 改进方法一</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <ul class="No2">
+        <li>1 改进方法二</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <ul class="No3">
+        <li>1 改进方法三</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <ul class="No4">
+        <li>1 改进方法四</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <ul class="No5">
+        <li>1 改进方法五</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+
+    <script>
+        //A、利用闭包改变body的背景
+        var fade = function(node) {
+            var level = 1;
+            var step = function() {
+                var hex = level.toString(16); //将level的值转换成16进制的值
+                node.style.background = '#ffff' + hex + hex; //设置背景由黄逐渐变白
+                if (level < 15) {
+                    level += 1;
+                    setTimeout(step, 100);
+                }
+            }
+            setTimeout(step, 100);
+        }
+        fade(document.body);
+
+
+        //B、闭包的解决方案
+        //糟糕的例子
+        var alert_index = function(nodes) {
+            var i;
+            for (i = 0; i < nodes.length; i++) {
+                nodes[i].onclick = function() {
+                    alert(i);
+                }
+            }
+        }
+        alert_index(document.querySelectorAll('.No>li'));
+
+        //a、改进方法1
+        alert_index1 = function(nodes) {
+            var j;
+            for (j = 0; j < nodes.length; j++) {
+                nodes[j].onclick = function(j) { //匿名函数的参数为值传递
+                    return function() {
+                        alert(j);
+                    }
+                }(j);
+            }
+        }
+        alert_index1(document.querySelectorAll('.No1>li'));
+
+        //b、改进方法2
+        alert_index2 = function(nodes) {
+            var k;
+            for (k = 0; k < nodes.length; k++) {
+                nodes[k].k = k; //给每一个节点创建一个k属性，赋值为k的值
+                nodes[k].onclick = function() {
+                    alert(this.k);
+                }
+            }
+        }
+        alert_index2(document.querySelectorAll('.No2>li'));
+
+        //c、改进方案3
+        alert_index3 = function(nodes) {
+            var x;
+            for (x = 0; x < nodes.length; x++) {
+                (function(arg) {
+                    nodes[x].onclick = function() {
+                        alert(arg);
+                    }
+                })(x);
+            }
+        }
+        alert_index3(document.querySelectorAll('.No3>li'));
+
+        //d、改进方案4
+        alert_index4 = function(nodes) {
+            var y;
+            for (y = 0; y < nodes.length; y++) {
+                nodes[y].onclick = (function() {
+                    var temp = y;
+                    return function() {
+                        alert(temp);
+                    }
+                })();
+            }
+        }
+        alert_index4(document.querySelectorAll('.No4>li'));
+
+        //e、改进方案5
+        alert_index5 = function(nodes) {
+            var z;
+            for (z = 0; z < nodes.length; z++) {
+                (function() {
+                    var temp = z;
+                    nodes[z].onclick = function() {
+                        alert(temp);
+                    }
+                })()
+            }
+        }
+        alert_index5(document.querySelectorAll('.No5>li'));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,293 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/** 清除内外边距 **/
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+/** 设置默认字体 **/
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "微软雅黑";
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+address,
+cite,
+dfn,
+em,
+var {
+  font-style: normal;
+}
+/* 将斜体扶正 */
+code,
+kbd,
+pre,
+samp {
+  font-family: courier new, courier, monospace;
+}
+/* 统一等宽字体 */
+small {
+  font-size: 1.2rem;
+}
+/* 小于 12px 的中文很难阅读，让 small 正常化 */
+/** 重置列表元素 **/
+ul,
+ol {
+  list-style: none;
+}
+/** 重置文本格式元素 **/
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+/** 重置表单元素 **/
+legend {
+  color: #000;
+}
+/* for ie6 */
+fieldset,
+img {
+  border: 0;
+}
+/* img 搭车：让链接里的 img 无边框 */
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+}
+/* 使得表单元素在 ie 下能继承字体大小 */
+/* 注：optgroup 无法扶正 */
+/** 重置表格元素 **/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+img {
+  vertical-align: middle;
+}
+.fl-cl > div {
+  float: left;
+}
+.fl-cl > li {
+  float: left;
+}
+.fl-cl:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.fl-cl > ul {
+  float: left;
+}
+.fr-cl > div {
+  float: right;
+}
+.fr-cl > li {
+  float: right;
+}
+.fr-cl > ul {
+  float: right;
+}
+.fr-cl:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.cl:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+html {
+  font-size: 62.5%;
+  font-family: "Microsoft Yahei ui", "微软雅黑";
+  position: relative;
+  background: #f0f0f0;
+}
+.banner {
+  width: 100%;
+}
+.banner img {
+  width: 100%;
+}
+/* 公共的头部样式和尾部样式开始*/
+footer {
+  width: 100%;
+  height: 4.5rem;
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  background: #008362;
+}
+footer div {
+  width: 33.3%;
+  height: 5rem;
+  display: inline;
+  float: left;
+  position: relative;
+}
+footer div a {
+  color: #fff;
+}
+footer div a .img {
+  width: 2rem;
+  height: 2rem;
+  -webkit-background-size: 100% auto;
+  -moz-background-size: 100% auto;
+  -o-background-size: 100% auto;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0.5rem;
+}
+footer div a .activeimg {
+  width: 2rem;
+  height: 2rem;
+  -webkit-background-size: 100% auto;
+  -moz-background-size: 100% auto;
+  -o-background-size: 100% auto;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0.5rem;
+}
+footer div a p {
+  font-size: 1.4rem;
+  width: 100%;
+  height: 100%;
+  display: inline;
+  float: left;
+  position: relative;
+  text-align: center;
+  color: #fff;
+  margin-top: 2.5rem;
+}
+footer div a .active {
+  color: #009f78;
+}
+footer div:nth-child(1) .img {
+  background-image: url("../images/index/home.png");
+}
+footer div:nth-child(1) .activeimg {
+  background-image: url("../images/index/homeActive.png");
+}
+footer div:nth-child(2) .img {
+  background-image: url("../images/index/myWayBill.png");
+}
+footer div:nth-child(2) .activeimg {
+  background-image: url("../images/index/myWayBillActive.png");
+}
+footer div:nth-child(3) .img {
+  background-image: url("../images/index/personCenter.png");
+}
+footer div:nth-child(3) .activeimg {
+  background-image: url("../images/index/personCenterActive.png");
+}
+header {
+  width: 100%;
+  height: 4rem;
+  line-height: 4rem;
+  background: #008363;
+  color: #fff;
+  font-size: 1.8rem;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+header p {
+  margin: 0;
+  padding: 0;
+}
+header p.order-num {
+  font-size: 1.6rem;
+}
+header a {
+  height: 4rem;
+  line-height: 4rem;
+  color: #fff;
+  font-size: 1.4rem;
+  position: absolute;
+}
+header a img {
+  height: 1.8rem;
+  margin: 1rem auto;
+  vertical-align: middle;
+}
+header a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+header a.manege {
+  width: 4rem;
+  font-size: 12px;
+  font-size: 1.2rem;
+  right: 0;
+  top: 0;
+}
+header a.goback {
+  min-width: 4rem;
+  left: 0;
+  top: 0;
+  padding-left: 2.1rem;
+  font-size: 1.6rem;
+  background: url("../images/person/icon-return.png") left 1rem center no-repeat;
+  background-size: 0.8rem 1.45rem;
+}
+.hide {
+  display: none;
+}
+/* 公共的头部样式和尾部样式结束*/

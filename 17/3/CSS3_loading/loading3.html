@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>loadingThree</title>
+    <style>
+        .spinner {
+            width: 60px;
+            height: 60px;
+            background-color: #67CF22;
+
+            margin: 100px auto;
+            -webkit-animation: rotateplane 1.2s infinite ease-in-out;
+            animation: rotateplane 1.2s infinite ease-in-out;
+        }
+
+ /*遵守左手螺旋定理，X,Y,Z轴分别是向右，向下，向外为正，大拇指指向正反向，四指的方向即为大拇指所在方向的轴上的正方向的旋转的方向*/
+        @-webkit-keyframes rotateplane {
+            0% {
+                -webkit-transform: perspective(120px) rotateY(0deg) rotateX(0deg);
+            }
+            50% {
+                -webkit-transform: perspective(120px) rotateY(-180.1deg) rotateX(0deg);
+            }
+            100% {  /*此时要写rotateY,否则在50%到100%之间会做2d旋转*/
+                -webkit-transform: perspective(120px) rotateY(-180deg) rotateX(-179.9deg);
+            }
+        }
+
+        @keyframes rotateplane {
+            0% {
+                transform: perspective(120px) rotateY(0deg) rotateX(0deg);
+            }
+            50% {
+                  transform: perspective(120px) rotateY(-180.1deg) rotateX(0deg);
+            }
+            100% {
+                    transform: perspective(120px) rotateY(-180deg) rotateX(-179.9deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="spinner"></div>
+</body>
+</html>

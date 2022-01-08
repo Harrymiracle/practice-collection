@@ -1,0 +1,21 @@
+https://github.com/parro-it/awesome-micro-npm-packages 此地址上的小功能库及相关库。
+
+is-sorted：1、exports和module.exports区别，exports是module对象的一个属性，导出尽量使用module.exports。（https://blog.csdn.net/sir1241/article/details/83146663）；
+           2、使用Array.isArray()来判断传入的参数是否是数组，解决跨iframe判断不准确的问题；
+array-first：
+is-number：1、在字符串前面使用“+”可以将字符串尝试转换成数字;
+           2、Number.isFinite用了判断传入的参数是否是一个有穷数，返回布尔值true/false。如果没有此方法就使用全局的isFinite方法；
+array-slice：1、使用while循环，一个循环迭代完了后迭代索引++来进入下一个循环；2、内部定义方法返回对应的开始和结束位置（设计巧妙）；
+array-last：1、根据要截取的数组的长度n来调用new Array(n)，建一个长度为n的数组，每个位置上的元素都是undefined，n若不是有效值（比如负数），则会抛出 RangeError 异常；
+            2、使用while循环，一个循环迭代完了后迭代索引--来进入下一个循环；要点一中创建的数字n的位置开始赋值为源数组中的--len项（倒序取值倒序赋值）；
+array-flatten：1、module.exports = flatten; module.exports.from = flattenFrom; module.exports.depth = flattenDepth; module.exports.fromDepth = flattenFromDepth;
+      共导出了四个方法，导出的第一个可以分别调用后面的方法，也可以在其他文件中单独使用后面导出的三个方法；2、在flattenDownDepth函数中，传入的第三个参数为处理的数组深度，--做自减；
+dedupe：1、导出函数的第二个参数为一个过滤器方法函数，传入就使用传入的，否则用JSON.stringify；2、用一个对象lookup作为字典容器，若lookup中过滤器处理过的项为key的属性值是false，
+      就表示不存在此项，将该项放入临时容器，并设置loolup中的改key值为true；
+array-range：
+arr-diff：
+filled-array：1、如果存在数组的fill方法就调用该方法，否则循环数组并赋值为给定值；
+map-array：
+map-obj：1、使用WeakMap作为默认参数；2、在options对象中使用对象的展开运算符 加入对象属性；3、使用对象的解构取出对应的对象属性及值存入本地变量中；
+         4、用key value 解构Object.entries的返回值
+filter-obj：1、if语句的判断中使用三目，三目的两个支项各返回一个布尔值来作为if语句的判断条件；

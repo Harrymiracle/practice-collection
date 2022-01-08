@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <style>
+        .blog {
+            overflow: hidden;
+        }
+
+        .blog ul.sidebar,
+        .blog div.content {
+            float: left;
+        }
+
+        .sidebar {
+            margin-right: 30px;
+            font-weight: bold;
+        }
+    </style>
+
+    <!-- 引入react -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <!-- 引入react-dom -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 引入Babel,使浏览器可以识别JSX语法，如果不使用JSX语法，可以不引入 -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- 本地的file协议的引入上面三个文件有跨域的问题 -->
+</head>
+
+<body>
+    <div id="base-list"></div>
+    <div id="list"></div>
+    <div id="list-rigth-key"></div>
+    <div id="blog-wrap"></div>
+
+    <script type="text/babel"> // 必须添加type="text/babel",否则不识别JSX语法
+        const nums = [0, 1, 2, 3];
+        const lists = nums.map((n) => <li key={n.toString()}>{n}</li>)
+        ReactDOM.render(
+            <ul>{lists}</ul>,
+            document.getElementById('base-list')
+        )
+
+
+
+        function NumList(props) {
+            const lists = props.nums;
+            const listItems = lists.map((n) => <li key={n.toString()}>{n}</li>)
+            return (
+                <ul>{listItems}</ul>
+            )
+        }
+        ReactDOM.render(
+            <NumList nums={nums} />,
+            document.getElementById('list')
+        )
+
+
+
+        // 元素的 key 只有放在就近的数组上下文中才有意义。
+        function NumListItem(props) {
+            return (
+                // 错误！你不需要在这里指定 key
+                <li
+                // key={key.toString()}
+                >
+                    {props.value}
+                </li>
+            )
+        }
+        function NumList(props) {
+            const lists = props.nums;
+            // const listItems = lists.map((n) =>
+            //     // 正确的 key 应该在数组的上下文中被指定
+            //     <NumListItem
+            //         key={n.toString()}
+            //         value={n}
+            //     />
+            // )
+            // return (
+            //     <ul>{listItems}</ul>
+            // )
+
+            // JSX 允许在大括号中嵌入任何表达式，所以我们可以内联 map() 返回的结果
+            return (
+                <ul>
+                    {lists.map(n =>
+                        // 正确的 key 应该在数组的上下文中被指定
+                        <NumListItem key={n.toString()}
+                            value={n} />
+                    )}
+                </ul>
+            );
+        }
+        ReactDOM.render(
+            <NumList nums={nums} />,
+            document.getElementById('list-rigth-key')
+        )
+
+
+
+        // key 只是在兄弟节点之间必须唯一
+        // 数组元素中使用的 key 在其兄弟节点之间应该是独一无二的。然而，它们不需要是全局唯一的。当我们生成两个不同的数组时，我们可以使用相同的 key 值。
+        function Blog(props) {
+            const sidebar = (
+                <ul className="sidebar">
+                    {props.posts.map(post =>
+                        <li key={post.id}>{post.title}</li>
+                    )}
+                </ul>
+            )
+            const content = props.posts.map(post =>
+                <div className="contentItem" key={post.id}>
+                    <h3>{post.title}</h3>
+                    <p>{post.content}</p>
+                </div>
+            )
+            return (
+                <div className="blog">
+                    {sidebar}
+                    <div className="content">{content}</div>
+                </div>
+            )
+        }
+        const posts = [
+            { id: 1, title: 'Title One!', content: 'Hello man! This is the first content.' },
+            { id: 2, title: 'Title Two!', content: 'Hello man! This is the second content.' },
+            { id: 3, title: 'Title Three!', content: 'Hello man! This is the third content.' }
+        ]
+        ReactDOM.render(
+            <Blog posts={posts} />,
+            document.getElementById('blog-wrap')
+        )
+
+
+    </script>
+
+
+</body>
+
+</html>

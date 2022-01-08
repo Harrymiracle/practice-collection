@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>柯里化</title>
+</head>
+
+<body>
+    <script>
+        // 传入的参数为一个函数，并返回一个闭包函数
+        var currying = function (fn) {
+            var args = [];
+            // return function(){
+            return function res() {
+                if (arguments.length === 0) {
+                    return fn.apply(this, args);
+                } else {
+                    // [].push.apply(args,arguments);
+                    Array.prototype.push.apply(args, arguments);
+
+                    // arguments.callee当前正在执行的函数，即currying的return值（一个闭包函数），此前的args,fn都得以保存，并能访问
+                    // 在ES6中不建议用arguments.callee，因此用一个具名函数代替
+                    // return arguments.callee;
+                    return res;
+                }
+            }
+        };
+
+        var count = function (...args) {
+            var sum = 0;
+            for (item of args) {
+                sum += item;
+            }
+            return sum;
+        }
+
+        var calc = currying(count);
+
+        calc(100);
+        calc(200);
+        calc(300);
+        console.log(calc());         //  600
+
+
+        calc(100, 200, 300);
+        calc(400);
+        console.log(calc());         //  1600
+
+    </script>
+</body>
+
+</html>

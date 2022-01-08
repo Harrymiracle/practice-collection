@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../views/css/personcenter.css">
+</head>
+<body>
+<div class="head">
+    <header>
+        <p>个人中心</p>
+    </header>
+    <div class="detail">
+        <div class="am-u-sm-4">
+            <div class="img"><img src="<%= user.imgUrl %>" alt=""></div>
+        </div>
+        <div class="am-u-sm-8">
+            <div class="username"><span><%= user.username %></span> <span class="position">（<%= user.roleVo.roleName %>）</span></div>
+            <div class="company"><%= user.organizationVo.orgName %></div>
+        </div>
+    </div>
+</div>
+<div class="person-info">
+    <div class="tab">
+        <div class="am-u-sm-6 left">
+            <div class="am-u-sm-4"><img src="../views/images/person/icon-integral.png" alt=""></div>
+            <div class="am-u-sm-8">
+                <p>积分180</p>
+                <p class="p2">如何获取积分？</p>
+            </div>
+        </div>
+        <div class="am-u-sm-6">
+            <div class="am-u-sm-4"><img src="../views/images/person/icon-shop.png" alt=""></div>
+            <div class="am-u-sm-8">
+                <p>积分商城</p>
+                <p class="p2">充值卡、加油卡</p>
+            </div>
+        </div>
+    </div>
+    <div class="person-list">
+        <ul>
+            <li><img src="../views/images/person/icon-person01.png" alt="" ><span>我的消息</span></li>
+            <li><img src="../views/images/person/icon-person02.png" alt="" ><span>我的积分</span></li>
+            <li><img src="../views/images/person/icon-person03.png" alt="" ><span>我的联系人</span></li>
+            <li><img src="../views/images/person/icon-person04.png" alt="" ><span>我的投诉</span></li>
+            <li><img src="../views/images/person/icon-person05.png" alt="" ><span>设置</span></li>
+        </ul>
+    </div>
+</div>
+<footer>
+    <div onclick="person('index')">
+        <a href="javascript:void(0)">
+            <div class="img"></div>
+            <p class="">首页</p>
+        </a>
+    </div>
+    <div class="">
+        <a href="javascript:void(0)" onclick="person('task')">
+            <div class="img"></div>
+            <p class="">任务</p>
+        </a>
+    </div>
+    <div>
+        <a href="###">
+            <div class="activeimg"></div>
+            <p class="">我的</p>
+        </a>
+    </div>
+</footer>
+
+<script>
+    function person(name){
+        if(name == "task"){
+            location.href = "/task/task";
+        }
+        if(name == 'index'){
+            location.href = '/';
+        }
+    }
+
+</script>
+</body>
+</html>

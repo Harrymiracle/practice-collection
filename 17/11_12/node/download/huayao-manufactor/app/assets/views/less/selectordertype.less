@@ -1,0 +1,87 @@
+@import "../../commoncss/common";
+
+body{
+  background: none;
+}
+
+.selectordertype{
+  margin: 5rem 0.8rem 0rem;
+  padding-bottom: 1rem;
+  .back-f();
+  color: #7c7b7b;
+  form{
+    padding: 1rem 0.8rem;
+    .list{
+      height: 3rem;
+      line-height: 3rem;
+      margin-bottom: 2rem;
+      [class*=am-u-]{
+        padding: 0;
+      }
+      label{
+        color: #353535;
+        font-size: 1.55rem;
+        .tr();
+      }
+      .am-u-sm-8{
+        height: 100%;
+        padding: 0 1rem;
+        font-size: 1.5rem;
+        input[type=text],select{
+          width: 100%;
+          height: 100%;
+          padding: 0 1rem;
+          color: #666666;
+          border: solid #d8d8d8 1px;
+          option{
+            height: 100%;
+          }
+        }
+        .input-check{
+          position: relative;
+          margin-right: 0.5rem;
+          span{
+            position: absolute;
+            top: 0.7rem;
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            z-index: 9;
+            .bg-m("../images/task/icon-check01.png",@x:center,@y:center,@repeat:no-repeat);
+            background-size: 100%;
+          }
+          .active{
+            .bg-m("../images/task/icon-checked01.png",@x:center,@y:center,@repeat:no-repeat);
+            background-size: 100%;
+          }
+          input{
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: 0.5rem;
+            background: none;
+            visibility: hidden;
+          }
+          a{
+            color: #989898;
+            font-size: 1.3rem;
+            text-decoration: underline;
+            float: right;
+          }
+        }
+      }
+    }
+    .no{
+      .am-u-sm-8{
+        padding-right: 0;
+      }
+    }
+  }
+  .button{
+    span{
+      display: inline-block;
+      .small-btn();
+      width: 35%;
+      margin: 4rem 7.16% 3rem;
+    }
+  }
+}

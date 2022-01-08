@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>混合</title>
+	<script src="../../js/vue.js"></script>
+</head>
+<body>
+  <!-- ^^^^^^^^^^^^^^^^^^^基础 -->
+	<script>
+	  //mixins的基本使用
+		//mixins 选项接受一个混合对象的数组。这些混合实例对象可以像正常的实例对象一样包含选项,他们将在 Vue.extend() 里最终选择使用相同的选项合并逻辑合并。举例：如果你混合包含一个钩子而创建组件本身也有一个,两个函数将被调用。Mixin钩子按照传入顺序依次调用,并在调用组件自身的钩子之前被调用。
+		var mixin = {
+			created: function(){
+				console.log(1);
+			}
+		};
+		var vm = new Vue({
+			created: function(){
+				console.log(2);
+			},
+			mixins: [mixin]
+		});
+	</script>
+	
+	<script>
+		// 定义一个混合对象
+		var myMixin = {
+		  created: function () {
+		    this.hello();
+		  },
+		  methods: {
+		    hello: function () {
+		      console.log('hello from mixin!')
+		    }
+		  }
+		};
+		// 定义一个使用混合对象的组件
+		var Component = Vue.extend({
+		  mixins: [myMixin]
+		});
+		var component = new Component() // -> "hello from mixin!"
+	</script>
+
+
+  <!--^^^^^^^^^^^^^^^^^^ 选项合并 -->
+	<script>
+		//同第一个例子
+		var mixin = {
+		  created: function () {
+		    console.log('混合对象的钩子被调用')
+		  }
+		}
+		new Vue({
+		  mixins: [mixin],
+		  created: function () {
+		    console.log('组件钩子被调用')
+		  }
+		})
+		// -> "混合对象的钩子被调用"
+		// -> "组件钩子被调用"
+	</script>
+
+	<script>
+	  //值为对象的选项，例如 methods, components 和 directives，将被混合为同一个对象。 两个对象键名冲突时，取组件对象的键值对。
+		var mixin = {
+		  methods: {
+		    foo: function () {
+		      console.log('foo')
+		    },
+		    conflicting: function () {
+		      console.log('from mixin')
+		    }
+		  }
+		}
+		var vm = new Vue({
+		  mixins: [mixin],
+		  methods: {
+		    bar: function () {
+		      console.log('bar')
+		    },
+		    conflicting: function () {
+		      console.log('from self')
+		    }
+		  }
+		})
+		vm.foo() // -> "foo"
+		vm.bar() // -> "bar"
+		vm.conflicting() // -> "from self"
+	</script>
+</body>
+</html>

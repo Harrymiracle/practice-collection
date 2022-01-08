@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module</title>
+</head>
+
+<body>
+    <script>
+        var myModules = (function creater() {
+            var modules = {};
+
+            function define(name, deps, impl) {
+                for (var i = 0; i < deps.length; i++) { // 如果deps依赖数组中有值
+                    //将依赖数组中的每一个依赖项的字符串的值换成该标识符对应的依赖本身，
+                    //即将调用define时传的依赖数组中对应的标识符deps[i]指向modules中对应的已经定于的方法
+                    //deps = [{'say': function(name){…}}]
+                    deps[i] = modules[deps[i]];
+                }
+                //引入包装函数并传入依赖，返回值为模块的API（一个用名字管理的模块列表）。
+                //参数deps数组，deps数组中的依赖被当做实参传入impl中，因此在下面的使用例子中有foo
+                modules[name] = impl.apply(impl, deps)
+            }
+
+            function get(name) {
+                return modules[name];
+            }
+
+            return {
+                define,
+                get
+            }
+        })()
+
+
+        myModules.define("foo", [], function () {
+            function say(name) {
+                return "My name is " + name;
+            }
+            return {
+                say
+            };
+        })
+
+        myModules.define("foo", [], function () {
+            function say(name) {
+                return "My name is " + name;
+            }
+            return {
+                say
+            };
+        })
+
+        //myModules.define("bar", ["foo"], function(){ // aaa
+        myModules.define("bar", ["foo"], function (foo) { // bbb
+            var name = "Harry";
+            function sayAnother() {
+                // console.log(foo.say(name).toUpperCase()); //对应上面注释aaa处，foo是下面的全局变量foo
+                console.log(foo.say(name).toUpperCase()); //对应上面注释bbb处，foo是局部变量foo
+            }
+            return {
+                sayAnother
+            };
+        })
+
+        var foo = myModules.get("foo");
+        var bar = myModules.get("bar");
+        console.log(foo.say("jack"));   //My name is jack
+        bar.sayAnother();       //MY NAME IS HARRY
+
+
+    </script>
+</body>
+
+</html>

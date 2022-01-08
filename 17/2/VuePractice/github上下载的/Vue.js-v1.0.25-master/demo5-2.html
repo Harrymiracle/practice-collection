@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/demo5.css" />
+	</head>
+	<body>
+		<div id="app">
+			<div class="container">
+				<div class="form-group">
+					<label>Search</label>
+					<input type="text" class="search-input" v-model="search"/>
+				</div>
+			</div>
+			<result-component :search="search" :columns="columns" :students="students"></result-component>
+		</div>
+		
+		<template id="resultComponent">
+			<table>
+				<thead>
+					<tr>
+						<th v-for="col in columns">{{col.colName}}</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(index,student) in students | filterBy search">
+						<td v-for="col in columns">{{student[col.name]}}</td>
+						<td class="text-centers">
+							<button @click="deleteStudent(index)">delete</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</template>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		
+		Vue.component('result-component',{
+			template:'#resultComponent',
+			props:['search','columns','students'],
+			methods:{
+				deleteStudent:function(index){
+					this.students.splice(index,1)
+				}
+			}
+		})
+		
+		var app = new Vue({
+			el:'#app',
+			data:{
+				search:'',
+				columns:[
+					{
+						colName:'学号',
+						name:'studentId'
+					},
+					{
+						colName:'姓名',
+						name:'name'
+					},
+					{
+						colName:'性别',
+						name:'sex'
+					},
+					{
+						colName:'年龄',
+						name:'age'
+					},
+					{
+						colNmae:'专业',
+						name:'major'
+					}
+				],
+				students:[
+					{
+						name:'赵一',
+						age:20,
+						sex:'男',
+						studentId:'2012508050',
+						major:'数学'
+					},
+					{
+						name:'刘文彩',
+						age:19,
+						sex:'女',
+						studentId:'2012509005',
+						major:'汉语言文学'
+					},
+					{
+						name:'张家港',
+						age:20,
+						sex:'男',
+						studentId:'2011510110',
+						major:'土木工程'
+					},
+					{
+						name:'周久耕',
+						age:21,
+						sex:'男',
+						studentId:'2010502001',
+						major:'机械电气'
+					},
+					{
+						name:'唐龙',
+						age:18,
+						sex:'男',
+						studentId:'2014501060',
+						major:'计算机'
+					},
+					{
+						name:'王露',
+						age:18,
+						sex:'女',
+						studentId:'2013501105',
+						major:'英语'
+					},
+					{
+						name:'陈霞',
+						age:20,
+						sex:'女',
+						studentId:'2012507088',
+						major:'财经'
+					},
+					]
+			}
+		})
+	</script>
+</html>

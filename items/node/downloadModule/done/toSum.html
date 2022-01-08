@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TO SUM</title>
+  <style>
+    ul {
+      list-style: decimal-leading-zero;
+    }
+    li {
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+  </ul>
+
+  <script>
+    var pointList = [
+      `is-sorted：1、exports和module.exports区别，exports是module对象的一个属性，导出尽量使用module.exports。（https://blog.csdn.net/sir1241/article/details/83146663）；
+                  2、使用Array.isArray()来判断传入的参数是否是数组，解决跨iframe判断不准确的问题；`,
+      `is-number：1、在字符串前面使用“+”可以将字符串尝试转换成数字；`,
+    ];
+
+
+
+    var obj = '';
+    pointList.length && pointList.forEach((cur,ind) => {
+      obj += `<li>${cur}</li>`;
+    });
+    document.querySelector('ul').innerHTML = obj;
+  </script>
+</body>
+</html>

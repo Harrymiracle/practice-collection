@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>进度事件(Progress Events)</title>
+</head>
+
+<body>
+    <!-- loadstart：在接收到相应数据的第一个字节时触发。
+        progress：在接收相应期间持续不断触发。
+        error：在请求发生错误时触发。
+        abort：在因为调用abort()方法而终止链接时触发。
+        load：在接收到完整的相应数据时触发。
+        loadend：在通信完成或者触发error、abort或load事件后触发。
+    
+        progress事件会在浏览器接收新数据期间周期性地触发。而onprogress事件处理程序会接收到一个event对象，其target属性是XHR对象，但包含着三个额外的属性：
+            lengthComputable、loaded和total。其中，lengthComputable是一个表示进度信息是否可用的布尔值，
+            loaded表示已经接收的字节数，loaded表示根据Content-Length响应头部确定的预期字节数。
+        为确保正常执行，必须在调用open()方法之前添加onprogress事件处理程序。
+    
+    -->
+    <script>
+        // 1.load事件
+        function createXHR() {
+            if (typeof XMLHttpRequest != "undefined") {
+                return new XMLHttpRequest();
+            } else if (typeof ActiveXObject != "undefined") {
+                if (typeof arguments.callee.activeXString != "string") {
+                    var versions = ["MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.3.0", "MSXML2.XMLHttp"],
+                        i, len;
+
+                    for (i = 0, len = versions.length; i < len; i++) {
+                        try {
+                            var xhr = new ActiveXObject(versions[i]);
+                            arguments.callee.activeXString = versions[i];
+                            return xhr;
+                        } catch (ex) {
+                            //跳过
+                        }
+                    }
+                }
+
+                return new ActiveXObject(arguments.callee.activeXString);
+            } else {
+                throw new Error("No XHR object available.");
+            }
+        }
+
+        window.onload = function() {
+            var xhr = createXHR();
+            xhr.onload = function() {
+                if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                    alert(xhr.responseText);
+                } else {
+                    alert("Request was unsuccessful: " + xhr.status);
+                }
+            };
+            xhr.onprogress = function(event) {
+                var divStatus = document.getElementById("status");
+                if (event.lengthComputable) {
+                    divStatus.innerHTML = "接收到 " + event.loaded + " of " + event.total + " bytes";
+                }
+            };
+            xhr.open("get", "./altevents.php", true);
+            xhr.send(null);
+        };
+    </script>
+
+    <div id="status"></div>
+</body>
+
+</html>

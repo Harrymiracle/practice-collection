@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>任务提交</title>
+    <link rel="stylesheet" href="../../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../css/tasksubmit.css">
+</head>
+<body>
+<header>
+    <a href="#" class="goback" onclick="javascript:history.go(-1)">返回</a>
+    <p>任务提交</p>
+    <a href="#" class="manege">物流订单</a>
+</header>
+
+<div class="tasksubmit">
+    <div class="table ch">
+        <div class="info-title"><span></span>药品信息</div>
+        <table>
+            <thead>
+                <tr>
+                    <td class="am-u-sm-2">序号</td>
+                    <td class="am-u-sm-3">编号</td>
+                    <td class="am-u-sm-5">药品名称</td>
+                    <td class="am-u-sm-2">数量</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="am-u-sm-2">1</td>
+                    <td class="am-u-sm-3">huayao001</td>
+                    <td class="am-u-sm-5" onclick="seeDrugDetails(this,1)">阿莫西林注射液</td>
+                    <td class="am-u-sm-2">100</td>
+                </tr>
+                <tr>
+                    <td class="am-u-sm-2">2</td>
+                    <td class="am-u-sm-3">huayao001</td>
+                    <td class="am-u-sm-5">阿莫西林胶囊</td>
+                    <td class="am-u-sm-2">200</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="show-detail ch">
+        <div class="info-title" style="font-size: 1.65rem;padding-left: 1.2rem;"><span></span>包装信息</div>
+        <div>
+            <div class="am-u-sm-3">总体积：</div>
+            <div class="am-u-sm-9">
+                <span>100</span>m³
+            </div>
+        </div>
+        <div>
+            <div class="am-u-sm-3">总&emsp;重：</div>
+            <div class="am-u-sm-9">
+                <span>2000</span>kg
+            </div>
+        </div>
+        <div>
+            <div class="am-u-sm-3">总&emsp;价：</div>
+            <div class="am-u-sm-9">
+                <span>400000.00</span>元
+            </div>
+        </div>
+    </div>
+    <div class="address ch">
+        <div class="info-title" style="font-size: 1.65rem;padding-left: 0.2rem;"><span></span>拖运信息</div>
+        <div class="start">
+            <div class="title">
+                <div class="am-u-sm-4">寄件人</div>
+            </div>
+            <p>
+                <span>张鹏</span>：<span>15812342131</span>
+            </p>
+            <p>四川省成都市新都区通祥物流园区2栋3层</p>
+        </div>
+        <hr/>
+        <div  class="end">
+            <div class="title">
+                <div class="am-u-sm-4">收件人</div>
+            </div>
+            <p>
+                <span>李海</span>：<span>15700001111</span>
+            </p>
+            <p>重庆渝北区金开大道1596号</p>
+        </div>
+    </div>
+
+    <div class="order ch">
+        <div class="info-title"><span></span>订单要求</div>
+        <ul>
+            <li>
+                <label class="">订单类型：&emsp;&emsp;</label>
+                <span class="list">
+                    <span class="un line">物流订单</span>
+                    <span class="un">销售出库</span>
+                </span>
+            </li>
+            <li>
+                <label class="">取货要求：&emsp;&emsp;</label>
+                <span class="list input-check">
+                    <span data-state="false"></span>
+                    <input type="checkbox" value="">需要装卸工
+                </span>
+            </li>
+            <li>
+                <label class="">最迟到达时间：</label>
+                <span class="list">2017-7-9 19:30</span>
+            </li>
+            <li>
+                <label class="">运费付款方式：</label>
+                <span class="list">现付</span>
+            </li>
+            <li>
+                <label class="">交货方式：&emsp;&emsp;</label>
+                <span class="list">营业点自提</span>
+            </li>
+            <li>
+                <label class="">回单要求：&emsp;&emsp;</label>
+                <spanv class="list">原件</spanv>
+            </li>
+            <li class="last">
+                <label class="">增值服务：&emsp;&emsp;</label>
+                <span class="list">
+                    <span class="one input-check">
+                        <span data-state="false"></span>
+                        <input type="checkbox" value="">货物保价
+                    </span>
+                    <span class="input-check">
+                        <span data-state="false"></span>
+                        <input type="checkbox" value="">代收货款
+                    </span>
+                </span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="small-btn" onclick="submitTaskForMyTask()">提交</div>
+
+    <div class="hide" id="order-type--alert">
+        <div class="am-modal-dialog">
+            <div class="am-modal-bd">
+                提交成功!
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" onclick="clickComfirmGoTo()">确定</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../commonjs/jquery-2.1.0.js"></script>
+<script type="text/javascript">
+    $(".input-check span").click(function(){
+        var state = $(this).attr("data-state");
+        if(state == "false"){
+            $(this).addClass("active").attr("data-state","true").siblings("input").attr("checked",true);
+        }else {
+            $(this).removeClass("active").attr("data-state","false").siblings("input").attr("checked",false);
+        }
+    });
+
+    function submitTaskForMyTask(){
+        $('<div class="am-dimmer am-active" data-am-dimmer> </div>').appendTo("body").show();
+        $("#order-type--alert").show();
+    }
+
+    function clickComfirmGoTo(){
+        $('#order-type--alert').hide();
+        $('div.am-dimmer').remove();
+        window.location.href='./task.html';
+    }
+
+    function seeDrugDetails(a,num){
+        console.log(num)
+        if(num == 1){
+            window.location.href = './drugdetails.html';
+        }
+    }
+</script>
+</html>

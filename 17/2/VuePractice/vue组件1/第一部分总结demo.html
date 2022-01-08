@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>第一部分练习demo</title>
+  <style>
+  /*css有问题*/
+    #searchBar{
+      width: 50%;
+      text-indent: 20px;
+      margin: 0 auto;
+    }
+    input{
+      border: 1px solid navy;
+    }
+    table{
+      width: 400px;
+      height: 120px;
+      box-sizing:border-box;
+      margin:20px auto;
+      border:1px solid gray;
+      border-collapse:collapse;
+    }
+    th{
+      background: lightgreen;
+      text-align: center;
+    }
+    tr:nth-of-type(2n){
+      background: #ffffff;
+    }
+    tr:nth-of-type(2n+1){
+      background: #eaeaea;
+    }
+    td{
+      border: 1px solid gray;
+      width: 50%;
+      padding: 5px 0;
+      text-align: center;
+    }
+
+  </style>
+  <script src="../js/vue.min.js"></script>
+</head>
+<body>
+  <div id="app">  <!-- 挂载元素 -->
+  	<div id="searchBar">
+  	  	Search <input type="text" v-model="searchQuery">
+  	</div>
+  	<simple-grid :data="gridData" :columns="gridColumns" :filter-key="searchQuery"></simple-grid>
+  </div>
+ 
+  <template id="grid-template">
+  	<table>
+  	  <thead>
+  	  	<tr>
+  	  	  <th v-for="col in columns">{{col | capitalize}}</th>
+  	  	</tr>
+  	  </thead>
+  	  <tbody>
+  	  	<tr v-for="entry in data | filterBy filterKey"> <!-- 根据指定的字符串过滤数据 -->
+  	  	  <td v-for="col in columns">{{entry[col]}}</td>
+  	    </tr>
+  	  </tbody>
+  	</table>
+  </template>
+  
+
+  <script>
+  
+  	Vue.component('simple-grid', {
+      template: '#grid-template',
+        props: {    //父组件传递过来的data和columns必须是Array类型，filterKey必须是字符串类型
+          data: Array,
+          columns: Array,
+          filterKey: String
+      }
+    })
+
+  	var demo = new Vue({
+  	  el:"#app",
+  	  data:{
+  	  	searchQuery:"",
+  	  	gridColumns: ['name', 'age', 'sex'],
+        gridData: [{
+            name: 'Jack',
+            age: 30,
+            sex: 'Male'
+        }, {
+            name: 'Bill',
+            age: 26,
+            sex: 'Male'
+        }, {
+            name: 'Tracy',
+            age: 22,
+            sex: 'Female'
+        }, {
+            name: 'Chris',
+            age: 36,
+            sex: 'Male'
+        }]
+  	  }
+  	});
+
+  </script>
+</body>
+</html>

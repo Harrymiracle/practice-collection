@@ -1,0 +1,12 @@
+@charset "utf-8";
+@import "../../node_modules/mixins-sass/src/mixins";
+@import "../mui/mixins.scss";
+
+
+.welfare_wrap{
+	width:100%;
+	@include rem(height,3804px);
+	background:url('../images/welfare.jpg');
+	background-size:100%;
+}
+    

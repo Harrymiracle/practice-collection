@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>药品确认</title>
+    <link rel="stylesheet" href="../../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../css/drugconfirm.css">
+</head>
+<body>
+<header>
+    <a href="#" class="goback" onclick="javascript:history.back(-1)"></a>
+    <p>药品确认</p>
+</header>
+
+<div class="drugconfirm">
+    <div class="title">
+        <div><img src="../images/task/icon-drugform.png" alt="">药品清单</div>
+    </div>
+    <div class="drug-list">
+        <div class="tab-title">
+            <div class="am-u-sm-2">序号</div>
+            <div class="am-u-sm-6">药品名称</div>
+            <div class="am-u-sm-4">数量</div>
+        </div>
+        <ul>
+            <li>
+                <div class="am-u-sm-2" data-state="true">
+                    <span class="img" onclick="checkDrugConfirm(this)"><img src="../images/task/icon-checked01.png" alt=""></span>
+                    <input type="checkbox" checked>
+                    <span>1</span>
+                </div>
+                <div class="am-u-sm-6"  onclick="seeDrugDetails(this,1)">阿莫西林注射液</div>
+                <div class="num am-u-sm-4">
+                    <div class="am-u-sm-4" onclick="delectOrAddDrugNum(this,'del')"><img src="../images/task/icon-delect.png" alt=""></div>
+                    <div class="am-u-sm-4"><input type="text" value="100"></div>
+                    <div class="am-u-sm-4" onclick="delectOrAddDrugNum(this,'add')"><img src="../images/task/icon-add.png" alt=""></div>
+                </div>
+            </li>
+            <li>
+                <div class="am-u-sm-2" data-state="true">
+                    <span class="img" onclick="checkDrugConfirm(this)"><img src="../images/task/icon-checked01.png" alt=""></span>
+                    <input type="checkbox" checked>
+                    <span>2</span>
+                </div>
+                <div class="am-u-sm-6" onclick="seeDrugDetails(this,1)">阿莫西林胶囊</div>
+                <div class="num am-u-sm-4">
+                    <div class="am-u-sm-4" onclick="delectOrAddDrugNum(this,'del')"><img src="../images/task/icon-delect.png" alt=""></div>
+                    <div class="am-u-sm-4"><input type="text" value="200"></div>
+                    <div class="am-u-sm-4" onclick="delectOrAddDrugNum(this,'add')"><img src="../images/task/icon-add.png" alt=""></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="btn">
+        <div class="am-u-sm-6"><div class="delect" onclick="delectDrugList()">删除</div> </div>
+        <div class="am-u-sm-6"><div class="next-btn" onclick="javascript:window.location.href='address.html'">下一步</div></div>
+    </div>
+</div>
+</body>
+<script src="../../commonjs/jquery-2.1.0.js"></script>
+<script src="../../commonjs/amazeui.min.js"></script>
+<script type="text/javascript">
+    //选择
+    function checkDrugConfirm(check){
+        var state = $(check).parent("div").attr("data-state");
+        if(state == "true"){
+            $(check).children("img").attr("src","../images/task/icon-check01.png");
+            $(check).siblings("input").attr('checked',false) ;
+            $(check).parent("div").attr("data-state","false");
+        }
+        if(state == "false"){
+            $(check).children("img").attr("src","../images/task/icon-checked01.png");
+            $(check).siblings("input").attr('checked',true) ;
+            $(check).parent("div").attr("data-state","true");
+        }
+    }
+
+    //数量加减
+    function delectOrAddDrugNum(click,state){
+        var value = $(click).siblings().children("input").val();
+        if(value>0){
+            if(state == "del"){
+                value--;
+            }
+            if(state == "add"){
+                value++;
+            }
+        }
+
+        $(click).siblings().children("input").val(value);
+        console.log(value);
+    }
+
+    function delectDrugList(){
+        $("input:checkbox:checked").parent().parent().hide();
+    }
+
+    function seeDrugDetails(a,num){
+        console.log(num)
+        if(num == 1){
+            window.location.href = './drugdetails.html';
+        }
+    }
+</script>
+</html>

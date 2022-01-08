@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>对象、数组</title>
+<style>	
+</style>
+
+</head>
+<body>
+</body>
+<script>
+//函数变量作用域
+	
+	var count = 20; 	 //全局变量。
+	var result = addTen(count);
+	console.log(count);
+	console.log(result);
+
+	function addTen(num){   //函数放在最后不影响结果
+		num += 10;
+		return num;
+	}
+
+
+//函数声明
+	var a = 1;
+	function fs(){
+		console.log(a);
+		var a = 2;
+		console.log(a);
+	}
+	fs();
+	
+
+//开关设置
+	if(false){
+		var color = 'red';
+	}else{
+		var color = 'cyan';
+	}
+	console.log(color);
+
+
+//创建Object实例
+	function createPerson(name){
+		var localPerson = new Object();   //用new操作符创建一个对象
+		localPerson.name = name;
+		return localPerson;
+	}
+	var globalPerson = createPerson('Jhon');
+	console.log(globalPerson);
+	var anotherPerson = globalPerson;  //anotherPerson保存了globalPerson的指针
+	globalPerson = null;
+	console.log(globalPerson);  //null
+	console.log(anotherPerson);	//object {name:'Jhon'}
+
+
+
+//用对象字面量向函数传递大量可选参数
+	function displayInfo(args){
+		var output = '';
+		if(typeof args.name == 'string'){
+			console.log('name:' + args.name + '\n');
+		}
+		if(typeof args.age == 'number'){
+			console.log('age:' + args.age + '\n');
+		}
+	}
+	displayInfo({
+		'name': 'Jack',
+		'age': 27
+	});
+	displayInfo({
+		'name': 'Lucy'
+	})
+
+
+//利用数组长度来增加数组项
+	var arr = ['red','yellow','blue','pink'];
+	console.log(arr.length);
+	console.log(arr[0]);
+	console.log(arr[4]);
+	arr[arr.length] = 'cyan';
+	console.log(arr[4]);
+	arr[arr.length] = 'orange';
+	console.log(arr.length + ', ' + arr);
+
+
+//typeof检测数据类型	
+	var color = ['tomoato','white'];
+	console.log(typeof(color.toString()));
+	console.log(color.valueOf());
+	console.log(color);
+	var color2 = color.join(' || ');
+	console.log(color2);
+	console.log(typeof(color2));
+
+	console.log(typeof(undefined));  //undefined
+	console.log(typeof({}));    //object
+	console.log(typeof([]));  	//object
+	console.log(typeof(false));	//boolean
+	console.log(typeof(NaN)); 	//number
+	console.log(typeof(typeof 3)); //string
+	console.log(typeof(null));		//object
+
+
+//数组重排序，给sort函数传人一个比较函数作为参数
+	var num = [1,4,67,2,0,10];
+	num.sort();  
+	console.log(num);   //得出的结果是按字符串的先后顺序排列的，不是按数字大小顺序排列的
+	function compare(a,b){  //比较函数
+		if(a>b){
+			return 1;
+		}else if(a<b){
+			return -1;
+		}else{
+			return 0;
+		}
+	}
+	num.sort(compare);  //传人比较函数参数
+	console.log(num);
+
+
+//数组的concat 拼接 方法 
+	var arrl = [2,4,1,8,5,3,6];
+	var arrl2 = arrl.concat(10,[9,7]);
+	console.log(arrl);
+	console.log(arrl2);
+
+
+//数组的方法splice 截取，返回截取到的元素，会影响原来的数组
+	var arr2 = [2,6,78,36,756,46];
+	arr2.splice(2,4,123);
+	console.log(arr2);
+
+	var sb = [10,2,3,4,5];
+	var list = sb.concat('wo','ni','ta');
+	console.log(list);
+	console.log(sb);
+
+
+//数组的位置方法
+	var number = [1,2,3,4,5,4,3,2,1];
+	console.log(number.indexOf(1));  //返回数组项1的索引0
+	console.log(number.lastIndexOf(1));  //返回从后向前的第一个1的索引是 8
+	console.log(number.indexOf(9));  //-1,未找到
+	console.log(number.indexOf(1,2));  //从索引值为2开始查找 1这一项，返回索引 8
+
+
+
+
+	
+</script>
+</html>

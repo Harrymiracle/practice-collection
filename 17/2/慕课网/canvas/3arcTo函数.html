@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>arcTo()函数</title>
+</head>
+<body>
+  <canvas id="canvas" style="border:1px solid black;">
+  	你的浏览器不支持canvas,请更换后再试。
+  </canvas>
+  <script>
+ /*
+  	window.onload = function(){
+  	  var canvas = document.getElementById("canvas");
+  	  canvas.width = 800;
+  	  canvas.height = 800;
+
+      var context = canvas.getContext("2d");
+
+      context.beginPath();
+      context.moveTo(150,150);
+    //arcTo(x1,y1,x2,y2,R)，参数分别表示控制点和结束点的横纵坐标，圆弧半径
+      context.arcTo(650,150,650,650,300);
+
+      context.lineWidth = 6;
+      context.strokeStyle = "red";
+
+      context.stroke();
+
+    //辅助线
+      //红线与辅助线的第一个交点分别为切点。(x1,yx)不一定为圆弧的起点，(x2,y2)不一定为圆弧的终点
+      context.beginPath();
+      context.moveTo(150,150);
+      context.lineTo(650,150);
+      context.lineTo(650,650);
+
+      context.lineWidth = 1;
+      context.strokeStyle = "gray";
+      context.stroke();
+  	}
+ */
+
+//上面的代码封装成函数
+	window.onload = function(){
+  	  var canvas = document.getElementById("canvas");
+  	  canvas.width = 800;
+  	  canvas.height = 600;
+
+      var context = canvas.getContext("2d");
+      arcToTest(context,150,50,650,50,650,550,300);
+    }
+
+    function arcToTest(cxt,x0,y0,x1,y1,x2,y2,radius){
+      cxt.beginPath();
+      cxt.moveTo(x0,y0);
+    //arcTo(x1,y1,x2,y2,R)，参数分别表示控制点和结束点的横纵坐标，圆弧半径
+      cxt.arcTo(x1,y1,x2,y2,radius);
+
+      cxt.lineWidth = 6;
+      cxt.strokeStyle = "red";
+      cxt.stroke();
+
+    //辅助线
+      //红线与辅助线的第一个交点分别为切点。(x1,yx)不一定为圆弧的起点，(x2,y2)不一定为圆弧的终点
+      cxt.beginPath();
+      cxt.moveTo(x0,y0);
+      cxt.lineTo(x1,y1);
+      cxt.lineTo(x2,y2);
+
+      cxt.lineWidth = 1;
+      cxt.strokeStyle = "gray";
+      cxt.stroke();
+    }
+
+  </script>
+</body>
+</html>

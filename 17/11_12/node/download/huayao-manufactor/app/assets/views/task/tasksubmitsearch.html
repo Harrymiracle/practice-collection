@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>选择药品</title>
+    <link rel="stylesheet" href="../../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../css/tasksubmitsearch.css">
+</head>
+<body>
+    <header>
+        <a href="#" class="goback" onclick="javascript:history.go(-1)">返回</a>
+        <p>选择药品</p>
+        <a href="#" class="manege">管理</a>
+    </header>
+    <div class="main">
+        <div class="input-search">
+            <div>
+                <input type="text" placeholder="(搜索药品名称：例如阿莫)" class="am-u-sm-10" id="search">
+                <span class="am-u-sm-2" onclick="searchInputValue(this)"></span>
+            </div>
+            <ul class="result-list hide" id="result-list">
+                <li><span>huayao001</span><span class="name">阿莫西林注射液</span></li>
+                <li><span>huayao002</span><span class="name">阿莫西林胶囊</span></li>
+            </ul>
+        </div>
+
+        <div class="result">
+            <div class="title">药品检索结果</div>
+            <table class="hide">
+                <thead>
+                    <tr>
+                        <td class="am-u-sm-1">&emsp;&emsp;</td>
+                        <td class="am-u-sm-2">序号</td>
+                        <td class="am-u-sm-4">编号</td>
+                        <td class="am-u-sm-5">药品名称</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="am-u-sm-1" onclick="checkedThisDrugs(this)" data-state="false"><input type="checkbox"> <img src="../images/person/icon-check.png" alt=""></td>
+                        <td class="am-u-sm-2">1</td>
+                        <td class="am-u-sm-4">huayao001</td>
+                        <td class="am-u-sm-5" onclick="seeDrugDetails(this,1)">阿莫西林注射液 </td>
+                    </tr>
+                    <tr>
+                        <td class="am-u-sm-1" onclick="checkedThisDrugs(this)" data-state="false"><input type="checkbox"> <img src="../images/person/icon-check.png" alt=""></td>
+                        <td class="am-u-sm-2">2</td>
+                        <td class="am-u-sm-4">huayao002</td>
+                        <td class="am-u-sm-5" onclick="seeDrugDetails(this,0)">阿莫西林胶囊  </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="add-btn">
+                <div class="small-btn hide" onclick="addDrugForShopCar()">添加</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="shopcar" id="shopcar"><span>2</span></div>
+
+    <div class="hide" id="order-type--alert">
+        <div class="am-modal-dialog">
+            <div class="am-modal-bd">
+                你还没有添加任何药品!
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" onclick="javascript:$('#order-type--alert').hide();$('div.am-dimmer').remove();">确定</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="../../commonjs/jquery-2.1.0.js"></script>
+<script src="../../commonjs/amazeui.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var num = $("input:checkbox:checked").length;
+        $("#shopcar span").text(num);
+    });
+    var count = 0;
+    //    选中效果
+    function checkedThisDrugs(check){
+        var state = $(check).attr("data-state");
+
+        if(state == "false"){
+            $(check).children("img").attr("src","../images/person/icon-checked.png");
+            $(check).children("input").attr('checked',true) ;
+            $(check).attr("data-state","true");
+            count++;
+        }
+        if(state == "true"){
+            $(check).children("img").attr("src","../images/person/icon-check.png");
+            $(check).children("input").attr('checked',false);
+            $(check).attr("data-state","false");
+            count--;
+        }
+//        var num = $("input:checkbox:checked").length;
+    }
+
+    function addDrugForShopCar(){
+        $("#shopcar span").text(count);
+    }
+
+    //    输入框监听
+    $("#search").bind('input propertychange',function(){
+        var value = $(this).val();
+        console.log(value);
+        if(value!==""){
+            $("#result-list").show();
+        }
+        if(value==""){
+            $(".result table").hide();
+        }
+    });
+
+    //    购物车点击
+    $("#shopcar").click(function(){
+//        var num = $("input:checkbox:checked").length;
+        if($("#shopcar span").text()>0){
+
+            window.location.href='./drugconfirm.html';
+            $(".result table").hide();
+        }else {
+            $('<div class="am-dimmer am-active" data-am-dimmer> </div>').appendTo("body").show();
+            $("#order-type--alert").show();
+        }
+    })
+
+    //    搜索结果列表点击
+    $("#result-list li").click(function(){
+        var value = $(this).children(".name").text();
+        $("#search").val(value);
+        $("#result-list").hide();
+        $(".result table").show();
+        $(".main .small-btn").show();
+    });
+
+    //    点击搜索按钮
+    function searchInputValue(click){
+        var value = $("#search").val();
+        $("#result-list").hide();
+        if(value!==""){
+            $(".result table").show();
+            $(".main .small-btn").show();
+        }
+    }
+
+    function seeDrugDetails(a,num){
+        console.log(num)
+        if(num == 1){
+            window.location.href = './drugdetails.html';
+        }
+    }
+</script>
+</html>

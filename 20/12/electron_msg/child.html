@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>child</title>
+  </head>
+  <body>
+    <p>
+      接收的消息：
+      <input type="text" placeholder="接收的消息" class="c_receive_input">
+    </p>
+    <p>
+      发送的消息：
+      <input type="text" placeholder="请输入…" class="c_input">
+    </p>
+    <input type="button" value="发送" class="c_send_btn">
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./child.js"></script>
+  </body>
+</html>

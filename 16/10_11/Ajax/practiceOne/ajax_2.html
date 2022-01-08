@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ajax视频学习</title>
+</head>
+<body>
+	<a href="helloAjax.txt">hello Ajax!</a>
+</body>
+	<script>
+		window.onload = function(){
+			//获取超链接
+			var oA = document.getElementsByTagName("a")[0];
+			//设置超链接的点击响应函数
+			oA.onclick = function(){
+				//创建一个XMLHttpRequest对象
+				var xhr = new XMLHttpRequest();				
+				//准备发送数据的路径方法
+				var url = this.href;
+				var method = "GET";
+				//建立连接
+				xhr.open(method,url,true);
+				//响应变化，设置回调函数
+				xhr.onreadystatechange = function(){
+					alert(xhr.readyState);
+					//就绪状态为4和响应状态码为200
+					if(xhr.readyState == 4 && xhr.status == 200){
+						//打印响应结果
+						alert(xhr.responseText);
+					}
+				}
+				//发送请求
+				xhr.send(null);
+				//取消默认跳转行为
+				return false;
+			}		
+		}
+	</script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>水波效果应用</title>
+    <style>
+        .rec {
+            width: 400px;
+            height: 200px;
+            position: relative;
+            background: seagreen;
+        }
+        
+        .rec:after {
+            content: '';
+            position: absolute;
+            height: 10px;
+            left: 0;
+            right: 0;
+            bottom: -10px;
+            background: -webkit-radial-gradient(20px 15px ellipse at top, seagreen 10px, transparent 11px);
+            background: radial-gradient(20px 15px ellipse at top, seagreen 10px, transparent 11px);
+            background-size: 20px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="rec"></div>
+
+
+</body>
+
+</html>

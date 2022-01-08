@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>取送货地址</title>
+    <link rel="stylesheet" href="../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../views/css/address.css">
+</head>
+<body>
+<header>
+    <a href="#" class="goback" onclick="javascript:history.go(-1)">返回</a>
+    <div class="head-tab">
+        <div class="active am-u-sm-6">取货地址</div>
+        <div class="am-u-sm-6">送货地址</div>
+    </div>
+    <a href="#" class="manege">管理</a>
+</header>
+
+<div class="address">
+    <ul class="quhuo">
+        <% if(address_qu.status == "SUCCEED"){ %>
+            <% if(address_qu.data && address_qu.data!=null && address_qu.data!=""){%>
+                <% var data = address_qu.data%>
+                <% for(var i=0; i<data.length ; i++) {%>
+                <li class="list">
+                    <div class="title">联系人
+                        <span class="check"  data-sid="<%= data[i].sid %>">
+                            <input type="radio" name="quhuo" onclick="choiceCheckedTake('quhuo',this)">
+                            <img src="../views/images/person/icon-check.png" alt="">
+                        </span>
+                    </div>
+                    <ul class="detail">
+                        <li><div class="am-u-sm-2">姓名：</div><div class="am-u-sm-10"><%= data[i].realname %></div></li>
+                        <li><div class="am-u-sm-2">电话：</div><div class="am-u-sm-10"><%= data[i].mobile %></div></li>
+                        <li><div class="am-u-sm-2">地址：</div><div class="am-u-sm-10"><%= data[i].address %></div></li>
+                    </ul>
+                </li>
+                <% } %>
+            <% }else{ %>
+                <p style="text-align: center;line-height: 4rem">您还没有创建取货地址！</p>
+            <% } %>
+        <% }else{ %>
+            <p style="text-align: center;line-height: 4rem">没有网络，数据跑丢了！</p>
+        <% } %>
+    </ul>
+    <ul class="songhuo hide">
+        <% if(address_song.status == "SUCCEED"){ %>
+            <% if(address_song.data && address_song.data!=null && address_song.data!=""){%>
+                <% var data = address_song.data%>
+                <% for(var i=0; i<data.length ; i++) {%>
+                <li class="list">
+                    <div class="title">联系人
+                            <span class="check" onclick="choiceCheckedTake('check02',this)" data-sid="<%= data[i].sid %>">
+                                <input type="radio" name="songhuo" onclick="choiceCheckedTake('songhuo',this)">
+                                <img src="../views/images/person/icon-check.png" alt="">
+                            </span>
+                    </div>
+                    <ul class="detail">
+                        <li><div class="am-u-sm-2">姓名：</div><div class="am-u-sm-10"><%= data[i].realname %></div></li>
+                        <li><div class="am-u-sm-2">电话：</div><div class="am-u-sm-10"><%= data[i].mobile %></div></li>
+                        <li><div class="am-u-sm-2">地址：</div><div class="am-u-sm-10"><%= data[i].address %></div></li>
+                    </ul>
+                </li>
+                <% } %>
+            <% }else{ %>
+                <p style="text-align: center;line-height: 4rem">您还没有创建收货地址！</p>
+            <% }%>
+        <% }else{ %>
+            <p style="text-align: center;line-height: 4rem">没有网络，数据跑丢了！</p>
+        <% } %>
+    </ul>
+    <div class="small-btn hide" onclick="next()">下一步</div>
+</div>
+
+<input type="hidden" value="0" id="quhuo">
+<input type="hidden" value="0" id="songhuo">
+</body>
+<script src="../commonjs/jquery-2.1.0.js"></script>
+<script src="../views/js/address.js"></script>
+</html>

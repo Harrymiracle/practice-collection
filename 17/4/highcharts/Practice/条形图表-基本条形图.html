@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>highcharts基本条形图</title>
+    <script src="../js/jquery-2.2.3.min.js"></script>
+    <script src="../js/highcharts.js"></script>
+</head>
+<body>
+    <div id="container" style="width: 800px; height: 500px; margin: 0 auto;"></div>
+
+    <script language="javascript">
+        var chart = {   //chart.type描述了图表的类型，默认是line,这里设置图表的类型为条形图
+            type: "bar"
+        };
+        var title = {
+            text: "Historic World Population by Region"
+        };
+        var subtitle = {
+            text: "Source: Wikipedia.org"
+        };
+        var xAxis = {
+            categories: ["Africa", "America", "Asia", "Europe", "Oceania"],
+            title: {   //注意title的属性值是一个对象
+                text: "The Main Five Region of the World"   //不要可以写null
+            }
+        };
+        var yAxis = {
+            min: 0,
+            title: {
+                text: "Population million",
+                align: "high"  //middle中，high高
+            },
+            labels: {
+                overflow: "justify"
+            }
+        };
+        var tooltip = {
+            valueSuffix: "million"  //定义提示的文字
+        };
+        var plotOptions = {        //带有数据标签曲线图表
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            },
+            //配置图表堆叠使用 plotOptions.series.stacking，并设置为 "normal"。
+            // 如果禁用堆叠可设置为 null ， "normal" 通过值设置堆叠， "percent" 堆叠则按百分比。
+            series: {
+                stacking: "normal"
+            }
+        };
+        var legend = {
+            layout: "vertical",
+            align: "right",
+            verticalAlign: "top",
+            x: -40,
+            y: 100,
+            floating: true,
+            borderWidth: 0,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || "#ffffff"),
+            shadow: true
+        };
+        var credits = {     //版权信息，默认是true
+            enabled : false
+        };
+        series = [{
+            name: "Year 1800",
+            data: [107, 31, 635, 203, 2]
+        },{
+            name: "Year 1900",
+            data: [133, 156, 947, 408, 6]
+        },{
+            name: "Year 2008",
+            data: [973, 914, 4054, 732, 34]
+        }];
+
+        var json = {};
+
+        json.chart = chart;
+        json.title = title;
+        json.subtitle = subtitle;
+        json.xAxis = xAxis;
+        json.yAxis = yAxis;
+        json.tooltip = tooltip;
+        json.plotOptions = plotOptions;
+        json.legend = legend;
+        json.credits = credits;
+        json.series = series;
+
+        $("#container").highcharts(json);
+    </script>
+</body>
+</html>

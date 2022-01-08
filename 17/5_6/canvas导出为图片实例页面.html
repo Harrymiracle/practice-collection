@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>canvas导出为图片实例页面</title>
+    <style>
+        * {margin: 0; padding: 0;}
+        .demo {width: 900px; height: auto; margin: 0 auto; border: 1px solid red; text-align: center;}
+        canvas { background-color: #f0f3f9; }
+    </style>
+</head>
+<body>
+    <div class="demo"><canvas id="canvas"></canvas></div>
+
+
+    <script>
+        (function() {
+            if (isNaN(window.screenX)) return;
+            var canvas = document.querySelector("#canvas"),
+                context = canvas.getContext("2d");
+
+            // 添加文字
+            context.save();
+            context.font = "30px 微软雅黑";
+            context.textAlign = "center";
+            context.fillText("点击生成新图片", 150, 85);
+            context.restore();
+
+            // 点击事件
+            canvas.addEventListener("click", function() {
+                this.toBlob && this.toBlob(function(blob) {
+                    var newImg = document.createElement("img"),
+                            url = URL.createObjectURL(blob);
+
+                    newImg.onload = function() {
+                        // 移除
+                        URL.revokeObjectURL(url);
+                    };
+                    newImg.src = url;
+                    document.querySelector(".demo").appendChild(newImg);
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

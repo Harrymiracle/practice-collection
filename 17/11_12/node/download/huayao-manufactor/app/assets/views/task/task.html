@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>我的任务</title>
+    <link rel="stylesheet" href="../../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../css/task.css">
+</head>
+<body>
+    <header>
+        <!--<a href="#" class="task-header01"><img src="../images/task/icon-header01.png" alt=""></a>-->
+        <p>我的任务</p>
+        <!--<a href="#" class="task-header02" onclick="javascript:window.location.href='./tasksubmitsearch.html'"><img src="../images/task/icon-header02.png" alt=""></a>-->
+    </header>
+
+    <div class="task">
+        <ul>
+            <div class="ing"></div>
+            <li class="examine">
+                <div class="order-title">
+                    <div class="am-u-sm-4">阿莫西林</div>
+                    <div class="am-u-sm-5"><span>新都市</span><span class="bg"></span><span>温江市</span></div>
+                    <div class="am-u-sm-3">仓储订单</div>
+                </div>
+                <div class="order-d-s">
+                    <div class="am-u-sm-6">2017-4-15 15:00</div>
+                    <!--<div class="am-u-sm-3">审核中...</div>-->
+                    <div class="am-u-sm-6 count-down">派单倒计时：<span class="count-down">300</span>秒</div>
+                </div>
+                <div class="order-address">
+                    <div class="order-start">
+                        <div class="am-u-sm-10">四川省成都市新都区通祥物流园区2栋3层</div>
+                        <div class="am-u-sm-2"></div>
+                    </div>
+                    <div class="order-end">
+                        <div class="am-u-sm-10">四川省成都市温江区仁和路110号</div>
+                        <div class="am-u-sm-2"></div>
+                    </div>
+                </div>
+            </li>
+            <li class="transport" onclick="goToOrderDetails(this,1)">
+                <div class="order-title">
+                    <div class="am-u-sm-4">阿莫西林</div>
+                    <div class="am-u-sm-5"><span>成都</span><span class="bg"></span><span>重庆</span></div>
+                    <div class="am-u-sm-3">物流订单</div>
+                </div>
+                <div class="order-d-s">
+                    <div class="am-u-sm-6">5月30日 15:00</div>
+                    <div class="am-u-sm-6">运输中...</div>
+                </div>
+                <div class="order-address">
+                    <div class="order-start">四川省成都市新都区通祥物流园区2栋3层</div>
+                    <div class="order-end">重庆渝北区金开大道1596号</div>
+                </div>
+            </li>
+            <!--<li class="transport" onclick="goToOrderDetails(this,2)">-->
+                <!--<div class="order-title">-->
+                    <!--<div class="am-u-sm-9">阿莫西林</div>-->
+                    <!--<div class="am-u-sm-3">物流订单</div>-->
+                <!--</div>-->
+                <!--<div class="order-d-s">-->
+                    <!--<div class="am-u-sm-6">4月15日 15:00</div>-->
+                    <!--<div class="am-u-sm-6">已完成</div>-->
+                <!--</div>-->
+                <!--<div class="order-address">-->
+                    <!--<div class="order-start">四川省成都市新都区中集大道227号</div>-->
+                    <!--<div class="order-end">四川省成都市温江区人和路789号</div>-->
+                <!--</div>-->
+            <!--</li>-->
+        </ul>
+
+        <div class="hide" id="order-type--alert">
+            <div class="am-modal-dialog">
+                <div class="am-modal-bd">
+                    你确定要删除这条任务吗？
+                </div>
+                <div class="am-modal-footer">
+                    <span class="am-modal-btn" onclick="modalDisplay('cancel')">取消</span>
+                    <span class="am-modal-btn" onclick="modalDisplay('submit')">确定</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            <a href="../index2.html">
+                <div class="img"></div>
+                <p class="">首页</p>
+            </a>
+        </div>
+        <div class="">
+            <a href="#">
+                <div class="activeimg"></div>
+                <p class="">任务</p>
+            </a>
+        </div>
+        <div>
+            <a href="../personcenter/personcenter.html">
+                <div class="img"></div>
+                <p class="">我的</p>
+            </a>
+        </div>
+    </footer>
+</body>
+<script src="../../commonjs/jquery-2.1.0.js"></script>
+<script src="../../commonjs/amazeui.min.js"></script>
+<script type="text/javascript">
+    function goToOrderDetails(t,num){
+        window.location.href = './taskdetail.html?type='+num;
+    }
+    $(function(){
+        var num = localStorage.getItem("submitnum");
+        if(num){
+            for(var i=0; i<num; i++){
+                console.log(i)
+                a = i+1;
+                var time = localStorage.getItem("submit-time"+a);
+
+                $('<li class="examine">'+
+                    '<div class="order-title">'+
+                        '<div class="am-u-sm-9">阿莫西林</div>'+
+                        '<div class="am-u-sm-3">仓储订单</div>'+
+                    '</div>'+
+                    '<div class="order-d-s">'+
+                        '<div class="am-u-sm-6">'+time+'</div>'+
+                        '<div class="am-u-sm-6">派单倒计时：<span class="count-down">300</span>秒</div>'+
+                     '</div>'+
+                    '<div class="order-address">'+
+                        '<div class="order-start">'+
+                            '<div class="am-u-sm-10">四川省成都市新都区中集大道227号</div>'+
+                            '<div class="am-u-sm-2"></div>'+
+                        '</div>'+
+                        '<div class="order-end">'+
+                            '<div class="am-u-sm-10">四川省成都市温江区人和路789号</div>'+
+                            '<div class="am-u-sm-2" onclick="delectThisCountDownOrder(this)"></div>'+
+                        '</div>'+
+                    '</div>'+
+                '</li>').appendTo(".task ul div.ing");
+            }
+        }
+    });
+
+    function delectThisCountDownOrder(stop){
+        $('<div class="am-dimmer am-active" data-am-dimmer> </div>').appendTo("body").show();
+        $("#order-type--alert").show();
+        var index = $(stop).parent().parent().parent().attr("id","q");
+        console.log(index)
+    }
+    function modalDisplay(state){
+        if(state == "submit"){
+            var num = localStorage.getItem("submitnum");
+            num--;
+            localStorage.setItem("submitnum",num);
+            $("#q").remove();
+        }
+        $('div.am-dimmer').remove();
+        $("#order-type--alert").hide();
+    }
+</script>
+</html>

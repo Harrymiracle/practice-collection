@@ -1,0 +1,383 @@
+/*重置样式*/
+
+html,
+body,
+div,
+span,
+header,
+footer,
+nav,
+article,
+section,
+aside,
+p,
+ul,
+li,
+ol,
+dl,
+dt,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+form,
+legend,
+fieldset,
+a,
+i,
+em,
+b,
+textarea,
+button,
+select {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-style: normal;
+    text-decoration: none;
+    border: none;
+    box-sizing: border-box;
+    font-weight: lighter;
+    font-family: 'Microsoft YaHei';
+    -webkit-tap-highlight-color: transparent;
+    &:focus {
+        outline: none;
+    }
+}
+
+
+/*公共样式*/
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.clear:after {
+    clear: both;
+    cotent: ' ';
+    display: block;
+}
+
+.clear {
+    zoom: 1;
+}
+
+.backimg {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.margin {
+    margin: 0 auto;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+
+/*图标样式*/
+
+a.lineThree {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 8px;
+    left: 20px;
+    cursor: pointer;
+    span,
+    span:before,
+    span:after {
+        content: '';
+        width: 24px;
+        height: 2px;
+        background: #2aabd2;
+        position: absolute;
+        left: 0;
+    }
+    span {
+        top: 12px;
+        &:before {
+            top: 0;
+            transform: translateY(-7px);
+            transition: all 0.3s;
+        }
+        &:after {
+            transform: translateY(7px);
+            transition: all 0.3s;
+        }
+    }
+    em,
+    em:before,
+    em:after {
+        content: '';
+        width: 4px;
+        height: 4px;
+        background: #2aabd2;
+        position: absolute;
+        left: 0;
+        border-radius: 50%;
+    }
+    em {
+        top: 11px;
+        &:before {
+            top: 0;
+            transform: translateY(-7px);
+            transition: all 0.3s;
+        }
+        &:after {
+            transform: translateY(7px);
+            transition: all 0.3s;
+        }
+    }
+}
+
+a.dotLineThree {
+    left: 130px;
+    span,
+    span:before,
+    span:after {
+        width: 17px;
+    }
+    span {
+        left: 7px;
+    }
+}
+
+a.boxFour {
+    width: 24px;
+    height: 24px;
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 8px;
+    content: '';
+    cursor: pointer;
+    span {
+        width: 10px;
+        height: 10px;
+        display: block;
+        content: '';
+        border: 2px solid #2aabd2;
+        border-radius: 2px;
+        position: relative;
+    }
+    span:after {
+        width: 6px;
+        height: 6px;
+        display: block;
+        content: '';
+        border: 2px solid #2aabd2;
+        border-radius: 2px;
+        position: absolute;
+        top: -2px;
+        right: -16px;
+    }
+    span.down {
+        margin-top: 4px;
+    }
+}
+
+$orange_color: #f4b976;
+$cyan_color: #26b6be;
+$green_color: #00d1b2;
+$red_color: #d80c18;
+$blue_color: #00b0f0;
+$yellowgreen_color: yellowgreen;
+$purple_color: purple;
+@mixin tagcolor($color) {
+    width: 16px;
+    display: block;
+    position: absolute;
+    left: -26px;
+    top: 14px;
+    span.rect {
+        width: 16px;
+        height: 22px;
+        display: block;
+        background: $color;
+        border-radius: 2px 2px 0 0;
+    }
+    span.triangle {
+        width: 0;
+        height: 0;
+        display: block;
+        position: absolute;
+        bottom: -1px;
+        border-width: 0 8px 8px;
+        border-style: solid;
+        border-color: transparent transparent #fff;
+    }
+}
+
+.orange {
+    @include tagcolor(#{$orange_color});
+}
+
+.cyan {
+    @include tagcolor(#{$cyan_color});
+}
+
+.green {
+    @include tagcolor(#{$green_color});
+}
+
+.red {
+    @include tagcolor(#{$red_color});
+}
+
+.blue {
+    @include tagcolor(#{$blue_color});
+}
+
+.yellowgreen {
+    @include tagcolor(#{$yellowgreen_color});
+}
+
+.purple {
+    @include tagcolor(#{$purple_color});
+}
+
+.blanktag {
+    width: 16px;
+    display: block;
+    position: absolute;
+    right: 40px;
+    top: 10px;
+    span.rect {
+        width: 16px;
+        height: 22px;
+        display: block;
+        border: 2px solid #00b0f0;
+        border-radius: 2px 2px 0 0;
+    }
+    span.triangle1,
+    span.triangle2 {
+        width: 0;
+        height: 0;
+        display: block;
+        position: absolute;
+        bottom: 1px;
+        border-width: 0 8px 8px;
+        border-style: solid;
+        border-color: transparent transparent #00b0f0;
+    }
+    span.triangle2 {
+        bottom: -1px;
+        border-color: transparent transparent #fff;
+    }
+}
+
+.rad {
+    width: 22px;
+    height: 22px;
+    display: block;
+    background: #00b0f0;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 70px;
+    span.inner {
+        width: 12px;
+        height: 12px;
+        display: block;
+        background: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+    }
+}
+
+.cross {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 4px;
+    left: 43px;
+    background: #fff;
+    span.horizon {
+        width: 20px;
+        height: 0;
+        border: 1px solid #00b0f0;
+        position: absolute;
+        top: 9px;
+        left: 0;
+    }
+    span.vertic {
+        width: 0;
+        height: 20px;
+        border: 1px solid #00b0f0;
+        position: absolute;
+        top: 0;
+        left: 9px;
+    }
+}
+
+.arrow {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    span.left {
+        width: 14px;
+        height: 14px;
+        display: block;
+        position: absolute;
+        top: 5px;
+        left: 3px;
+        border-left: 2px solid #00b0f0;
+        border-bottom: 2px solid #00b0f0;
+        border-bottom-left-radius: 3px;
+        transform: rotate(45deg);
+    }
+    span.right {
+        width: 20px;
+        height: 0;
+        border: 1px solid #00b0f0;
+        position: absolute;
+        right: 0;
+        top: 11px;
+    }
+}
+
+.checkmark {
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    position: absolute;
+    top: 10px;
+    left: 90px;
+    span {
+        width: 20px;
+        height: 10px;
+        display: block;
+        position: absolute;
+        top: 4px;
+        left: 2px;
+        border: {
+            left: 2px solid #00b0f0;
+            bottom: 2px solid #00b0f0;
+        }
+        transform: rotate(-50deg);
+    }
+}

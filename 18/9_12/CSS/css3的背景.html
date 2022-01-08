@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>css3的背景</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 100px;
+            padding: 20px;
+            margin-bottom: 10px;
+            border: 20px dashed black;
+            background: violet;
+        }
+        
+        .box1 {
+            background-clip: border-box;
+        }
+        
+        .box2 {
+            background-clip: padding-box;
+        }
+        
+        .box3 {
+            background-clip: content-box;
+        }
+        /* 对应background-image的是background-origin的border-box，content-box，padding-box属性 */
+    </style>
+</head>
+
+<body>
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+</body>
+
+</html>

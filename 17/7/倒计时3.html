@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时3</title>
+	<style>
+		.btg_rem_line{height:88px;line-height:88px;font-size:36px;font-weight:bold;border-bottom:1px solid #e3e3e3;text-align:center;}
+		.btg_rem_line span{display:inline-block;padding-left:48px;position:relative;}
+		.btg_rem_line span i{color:#444;}
+		.btg_rem_line span:before{content:'';display:inline-block;width:36px;height:34px;position:absolute;top:50%;left:0;margin-top:-17px;background:url(images/icon.png?v=1) 0 -150px no-repeat;}
+
+	</style>
+</head>
+<body>
+	<div id="countDown" class="btg_rem_line">
+		<span>
+			<i>离结束仅剩</i> <em class="btg_rem_time c-e53546">16天 21：37：46</em>
+		</span>
+	</div>
+
+	<script src="js/jquery-2.1.0.js"></script>
+
+	<script>
+		$(function(){
+			initTimeDown();
+		});
+
+
+		var v =""
+
+		function initTimeDown() {
+			var timeStatus = '2';
+			var countDownSeconds = '2017714';
+			v = countDownSeconds;
+			setInterval(function(){
+				down(--countDownSeconds);
+			}, 1000);
+		}
+		function down(timeNum){
+			if (timeNum <= 0) {
+				$('#countDown').html('<h5 class="yh_ac_end">活动已结束</h5>');
+				$('#voucherListBox').parent().remove();
+			}
+			var day = Math.floor(timeNum / (60 * 60 * 24));
+			var hour = Math.floor(timeNum / (60 * 60) - day * 24);
+			var rewriteH = hour < 10 ? ('0' + hour) : hour;
+			var minute = Math.floor((timeNum % 3600) / 60);
+			var rewriteM = minute < 10 ? ('0' + minute) : minute;
+			var second = Math.floor(timeNum - (day * 24 * 3600 + hour * 60 * 60 + minute * 60));
+			var rewriteS = second < 10 ? ('0' + second) : second;
+			var timeText = day + '天 ' + rewriteH + '：' + rewriteM + '：' + rewriteS;
+			$('#countDown').find('.btg_rem_time').text(timeText);
+		}
+	</script>
+</body>
+</html>

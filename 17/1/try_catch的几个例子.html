@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>try,catch的几个例子</title>
+</head>
+<body>
+  <input type="button" value="View message" onclick="message()" />
+
+  <p>请输入 5 到 10 之间的数:</p>
+  <input id="demo" type="text">
+  <button type="button" onclick="myFunction()">检测输入</button>
+  <p id="message"></p>
+  <script>
+    var txt=""
+    function message(){
+      try{
+        adddlert("Welcome guest!")
+      }catch(err){
+        txt="There was an error on this page.\n\n"
+        txt+="Click OK to continue viewing this page,\n"
+        txt+="or Cancel to return to the home page.\n\n"
+        if(!confirm(txt)){
+          document.location.href="http://www.jb51.net/"
+        }
+      }
+    }
+
+
+/*
+  程序执行过程：
+  1. array[0]的时候由于没有创建array数组,array是个空对象，程序中调用array[0]就会产生object is null的异常 
+  2. catch(err)语句捕获到这个异常通过err.name打印了错误类型,err.message打印了错误的详细信息. 
+  3. finally类似于java的finally,无论有无异常都会执行.*/
+    var array = null;
+    try{
+        document.write("<br /><br />" + array[0]);
+    }catch(err) {
+      document.writeln("<br /><br />" + "Error name: " + err.name + ";");
+      document.writeln("<br /><br />" + "Error message: " + err.message + ".");
+    }finally{
+      alert("object is null");
+    }
+
+
+    function myFunction() {
+      var message, x;
+      message = document.getElementById("message");
+      message.innerHTML = "";
+      x = document.getElementById("demo").value;
+      try { 
+        if(x == "")  throw "为空";
+        if(isNaN(x)) throw "不是一个数字";
+        if(x > 10)   throw "太大";
+        if(x < 5)    throw "太小";
+      }catch(err) {
+        message.innerHTML = "输入的值 " + err;
+      }finally {
+        document.getElementById("demo").value = "";
+      }
+    }
+  </script>
+</body>
+</html>

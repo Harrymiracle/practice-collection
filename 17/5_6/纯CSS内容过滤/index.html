@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>纯CSS内容过滤</title>
+    <link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+    <!--
+      http://www.w3cplus.com/css3/pure-css-content-filter.html
+      套用的一个电商的
+    -->
+    <div class="container">
+        <!-- 必须保证input和label匹配 -->
+        <input type="radio" id="men" name="clothing " />
+        <label for="men">看书</label>
+        <input type="radio" id="women" name="clothing "/>
+        <label for="women">吹风</label>
+        <input type="radio" id="children" name="clothing "/>
+        <label for="children">玩耍</label>
+        <input type="radio" id="reset" name="clothing "/>
+        <label for="reset">重置</label>
+
+        <!-- 要被过滤的内容元素需要与input元素是兄弟元素 -->
+        <div class="tile men">
+            <img src="../images/3.jpg" alt="图片">
+        </div>
+        <div class="tile women">
+            <img src="../images/4.jpg" alt="图片">
+        </div>
+        <div class="tile children">
+            <img src="../images/5.jpg" alt="图片">
+        </div>
+        <div class="tile men">
+            <img src="../images/3.jpg" alt="图片">
+        </div>
+        <div class="tile women">
+            <img src="../images/4.jpg" alt="图片">
+        </div>
+        <div class="tile children">
+            <img src="../images/5.jpg" alt="图片">
+        </div>
+        <div class="tile men">
+            <img src="../images/3.jpg" alt="图片">
+        </div>
+        <div class="tile women">
+            <img src="../images/4.jpg" alt="图片">
+        </div>
+    </div>
+</body>
+</html>

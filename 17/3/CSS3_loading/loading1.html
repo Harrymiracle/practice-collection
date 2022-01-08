@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>loadingOne</title>
+    <style>
+        .spinner {
+            margin: 100px auto;
+            width: 50px;
+            height: 60px;
+            text-align: center;  /*让他的子元素在容器内居中*/
+            font-size: 10px;
+        }
+
+        .spinner > div {
+            background-color: #67CF22;
+            height: 100%;
+            width: 6px;
+            display: inline-block;
+
+            -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+            animation: stretchdelay 1.2s infinite ease-in-out;
+        }
+
+        .spinner .rect2 {  /* 前面要加.spinner,否则权重不够，延迟起不了作用，几个div会一起动. */
+            -webkit-animation-delay: -1.1s;
+            animation-delay: -1.1s;
+        }
+
+        .spinner .rect3 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+
+        .spinner .rect4 {
+            -webkit-animation-delay: -0.9s;
+            animation-delay: -0.9s;
+        }
+
+        .spinner .rect5 {
+            -webkit-animation-delay: -0.8s;
+            animation-delay: -0.8s;
+        }
+
+        @-webkit-keyframes stretchdelay {
+            0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  /*用前40%的时间做动画,后面60%保持0.4的高度*/
+            20% { -webkit-transform: scaleY(1.0) }
+        }
+
+        @keyframes stretchdelay {
+            0%, 40%, 100% { transform: scaleY(0.4);  }
+            20% { transform: scaleY(1.0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+
+
+<!--
+在使用css做一些小的动画时，有些动画我们是需要其循环播放的，而且在部分动画中我们需要上一个循环与下一个循环之间存在一定的时间间隔，这个时候的animation-delay和transition-delay 只会在第一次动画开始的时候生效，而在两个循环之间是不生效的，这时我们就需要用其他的方法来实现循环之间的时间间隔。
+
+   方法：如下面的程序，我们可以把动画执行的总时间设置为4s，然后设置动画从75%开始，用后面的1s来做动画，前面的3s用作每次动画开始之前的延时，这样就可以解决循环播放delay失效的问题。
+
+div{
+      animation: move 4s ease infinite;
+}
+
+/*  此处从75%开始 */
+
+@keyframes move{ 
+      75%{ transform: translateX(0px);}
+      100%{ transform: translateX(100px);}
+}
+-->
+</body>
+
+</html>

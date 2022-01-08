@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>选择订单类型</title>
+    <link rel="stylesheet" href="../../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../css/dist/amazeui.datetimepicker.css">
+    <link rel="stylesheet" href="../css/selectordertype.css">
+</head>
+<body>
+<header>
+    <a href="#" class="goback" onclick="javascript:history.back(-1)"></a>
+    <p>订单需求</p>
+</header>
+
+<div class="selectordertype">
+    <form action="">
+        <div class="list">
+            <label for="" class="am-u-sm-4">父级订单：</label>
+            <div class="am-u-sm-8">
+                <input type="text" placeholder="请输入订单编号">
+            </div>
+        </div>
+        <div class="list">
+            <label for="" class="am-u-sm-4">订单类型：</label>
+            <div class="am-u-sm-8">
+                <select name="" id="">
+                    <option value="">仓储订单</option>
+                    <option value="">物流订单</option>
+                    <option value="">退换货订单</option>
+                </select>
+            </div>
+        </div>
+        <div class="list">
+            <label for="" class="am-u-sm-4">模式：</label>
+            <div class="am-u-sm-8">
+                <select name="" id="">
+                    <option value="">生产-入库</option>
+                    <option value="">退货-入库</option>
+                    <option value="">换货-入库</option>
+                    <option value="">退货-入库</option>
+                    <option value="">换货-入库</option>
+                </select>
+            </div>
+        </div>
+        <div class="list no">
+            <label for="" class="am-u-sm-4">取货要求：</label>
+            <div class="am-u-sm-8 input-check">
+                <div class="input-check">
+                    <span data-state="false"></span>
+                    <input type="checkbox" value="">需要装卸工
+                    <a href="">装卸服务细则</a>
+                </div>
+            </div>
+        </div>
+        <div class="list">
+            <label for="" class="am-u-sm-4">最迟到达时间：</label>
+            <div class="am-u-sm-8 input-check">
+                <input size="16" name="lastArriveTime" type="text" readonly class="form-datetime am-form-field lastArriveTime" placeholder="请选择日期" >
+            </div>
+        </div>
+        <div class="list">
+            <label for="" class="am-u-sm-4">运费付款方式：</label>
+            <div class="am-u-sm-8">
+                <select name="" id="">
+                    <option value="">现付</option>
+                    <option value="">到付</option>
+                    <option value="">月结</option>
+                </select>
+            </div>
+        </div>
+        <div class="list">
+            <label for="" class="am-u-sm-4">交货方式：</label>
+            <div class="am-u-sm-8">
+                <select name="" id="">
+                    <option value="">营业点自提</option>
+                    <option value="">送货上楼</option>
+                    <option value="">送货（不上楼）</option>
+                </select>
+            </div>
+        </div>
+        <div class="list">
+            <label for="" class="am-u-sm-4">回单要求：</label>
+            <div class="am-u-sm-8">
+                <select name="" id="">
+                    <option value="">原件</option>
+                    <option value="">传真</option>
+                    <option value="">无需返单</option>
+                    <option value="">拍照上传</option>
+                </select>
+            </div>
+        </div>
+        <div class="list no">
+            <label for="" class="am-u-sm-4">增值服务：</label>
+            <div class="am-u-sm-8">
+                <div class="input-check"><span data-state="false"></span><input type="checkbox" value="">货物保价<a href="">保价服务细则</a></div>
+                <div class="input-check"><span data-state="false"></span><input type="checkbox" value="">代收货款<a href="">代收货款服务细则</a></div>
+            </div>
+        </div>
+    </form>
+    <div class="button">
+        <span>下一步</span>
+        <span>返回</span>
+    </div>
+</div>
+
+</body>
+<script src="../../commonjs/jquery-2.1.0.js"></script>
+<script src="../../commonjs/amazeui.min.js"></script>
+<script src="../js/amazeui.datetimepicker.js"></script>
+<script>
+    var $dpInput = $('.form-datetime').datetimepicker({
+        format: 'yyyy-mm-dd hh:ii'
+    });
+
+    $(".input-check span").click(function(){
+        var state = $(this).attr("data-state");
+        if(state == "false"){
+            $(this).addClass("active").attr("data-state","true").siblings("input").attr("checked",true);
+        }else {
+            $(this).removeClass("active").attr("data-state","false").siblings("input").attr("checked",false);
+        }
+    });
+
+    function nextGoToDrugChoice(){
+        var a = $(".choice li input[type='radio']:checked").length;
+        console.log(a);
+        if(a && a>0){
+            window.location.href='./tasksubmitsearch.html';
+        }
+    }
+</script>
+</html>

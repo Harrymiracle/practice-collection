@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        // 将string数据转成json格式，给key和value加上双引号
+        function toJson (obj) {
+            return JSON.parse(obj.replace(/ /g, '').replace(/:/g, '=').replace(/"/g, '').replace(/=/g, '":"').replace(/,/g, '","').replace(/{/g, '{"').replace(/}/g, '"}').replace(/}","{/g, '},{'))
+        }
+
+
+        var str = "[{id=1, useViewType=false, name=姓名, code=name, dataType=1, subType=1, tips=请输入姓名, maxLength=32, displayFlag=1, entryFlag=1, mustInputFlag=1, searchFlag=1, fixedFlag=1, createDate=1537156378000}, {id=2, useViewType=false, name=手机, code=mobile, dataType=1, subType=3, tips=请输入手机号, maxLength=128, options=, displayFlag=1, entryFlag=1, mustInputFlag=1, searchFlag=1, fixedFlag=1, createDate=1537156378000}, {id=3, useViewType=false, name=试听课程, code=course, dataType=2, tips=请输入想试听的课程或其他试听需求, maxLength=255, options=, displayFlag=1, entryFlag=1, mustInputFlag=0, searchFlag=1, fixedFlag=1, createDate=1537156378000}, {id=4, useViewType=false, name=身份信息, dataType=2, tips=请添加身份信息, maxLength=255, options=, displayFlag=1, entryFlag=1, mustInputFlag=0, searchFlag=0, fixedFlag=0, unit=, createDate=1537252015000}, {id=5, useViewType=false, name=邮箱, dataType=1, subType=5, tips=邮箱, maxLength=32, options=, displayFlag=1, entryFlag=1, mustInputFlag=1, searchFlag=1, fixedFlag=0, unit=, createDate=1537260167000}]";
+
+        var res = toJson(str);
+        console.log(typeof res);
+        console.log(res);
+
+    </script>
+</body>
+</html>
+

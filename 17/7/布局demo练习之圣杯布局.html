@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>布局demo练习之圣杯布局</title>
+	<style>
+		*{margin:0;padding:0;}
+		body{min-width: 700px;}
+		header, footer{background: tomato;text-align: center;font-weight: bold;padding: 10px 0;}
+		footer{clear: both;}
+		#wrap{padding: 0 190px 0 100px;background: gray;overflow: hidden;}
+		#content,nav,article{float: left;min-height: 300px;}
+		#content{background: blue;width: 100%}
+		nav{background: yellow;width: 100px;margin-left: -100%;position: relative;left: -100px;}
+		article{background: greenyellow;width: 190px;margin-left: -190px;position: relative;right: -190px;}
+	</style>
+</head>
+<body>
+	<header>Header</header>
+	<div id="wrap">
+		<div id="content">Content</div>
+		<nav>Nav</nav>
+		<article id="right">Sider</article>
+	</div>
+	<footer>Footer</footer>
+</body>
+</html>

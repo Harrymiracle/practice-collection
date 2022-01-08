@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /*
+        星星点灯照亮我的家门 附上链接：
+        http://www.zhangxinxu.com/wordpress/2013/08/%E7%BA%AFcss%E6%98%9F%E6%98%9F%E8%AF%84%E5%88%86%E4%BA%A4%E4%BA%92-%E5%85%84%E5%BC%9F%E9%80%89%E6%8B%A9%E5%99%A8/comment-page-1/#comment-355147
+        */
+        .star_bg {
+            width: 115px; height: 20px;
+            margin: 100px auto 0 auto;
+            background: url(images/star.png) repeat-x;
+            position: relative;
+            overflow: hidden;
+        }
+        .star {
+            height: 100%; width: 23px;
+            line-height: 6em;       /*-- 用line-height将label定位到容器外 --*/
+            position: absolute;     /*-- 绝对定位星星容器 --*/
+            z-index: 3;
+        }
+        .star:hover {
+            background: url(images/star.png) repeat-x 0 -20px!important;      /*将hover的权重设为最重*/
+            left: 0; z-index: 2;
+        }
+        .star_1 { left: 0; }    /*设置五个灰色星星的初始位置*/
+        .star_2 { left: 23px; }
+        .star_3 { left: 46px; }
+        .star_4 { left: 69px; }
+        .star_5 { left: 92px; }
+        .star_1:hover { width: 23px; }
+        .star_2:hover { width: 46px; }
+        .star_3:hover { width: 69px; }
+        .star_4:hover { width: 92px; }
+        .star_5:hover { width: 115px; }
+
+        label {
+            display: block; _display:inline;
+            height: 100%; width: 100%;
+            cursor: pointer;
+        }
+
+        /* 幕后的英雄，单选按钮 */
+        /* clip裁剪一个矩形框，我们需要隐藏单选框，且为可用性隐藏。我是使用clip实现的。 */
+        .score { position: absolute; clip: rect(0 0 0 0); }
+        .score:checked + .star {        /*-- 用radio记住选择状态，设置后面的a标签的背景 --*/
+            background: url(images/star.png) repeat-x 0 -20px;
+            left: 0; z-index: 1;
+        }
+
+        /*
+         *
+        + 选择器 如果需要选择紧接在另一个元素后的元素，而且二者有相同的父元素，可以使用相邻兄弟选择器。
+        ~ 选择器 作用是查找某一个指定元素的后面的所有兄弟结点。
+        *
+        */
+        .score_1:checked ~ .star_1 { width: 23px; }
+        .score_2:checked ~ .star_2 { width: 46px; }
+        .score_3:checked ~ .star_3 { width: 69px; }
+        .score_4:checked ~ .star_4 { width: 92px; }
+        .score_5:checked ~ .star_5 { width: 115px; }
+
+        .star_bg:hover .star {  background-image: none; }       /* 经过父级容器，星星背景图去除 */
+
+        /* for IE6-IE8 JS 交互 */
+        .star_checked {
+            background: url(images/star.png) repeat-x 0 -20px;
+            left: 0; z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="starBg" class="star_bg">
+        <input type="radio" id="starScore1" class="score score_1" value="1" name="score">
+        <a href="#starScore1" class="star star_1" title="差"><label for="starScore1">差</label></a>
+        <input type="radio" id="starScore2" class="score score_2" value="2" name="score">
+        <a href="#starScore2" class="star star_2" title="较差"><label for="starScore2">较差</label></a>
+        <input type="radio" id="starScore3" class="score score_3" value="3" name="score">
+        <a href="#starScore3" class="star star_3" title="普通"><label for="starScore3">普通</label></a>
+        <input type="radio" id="starScore4" class="score score_4" value="4" name="score">
+        <a href="#starScore4" class="star star_4" title="较好"><label for="starScore4">较好</label></a>
+        <input type="radio" id="starScore5" class="score score_5" value="5" name="score">
+        <a href="#5" class="star star_5" title="好"><label for="starScore5">好</label></a>
+    </div>
+</body>
+</html>

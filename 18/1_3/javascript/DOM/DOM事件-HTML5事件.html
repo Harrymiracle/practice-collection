@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DOM事件-HTML5事件</title>
+    <style>
+        ul {
+            list-style: square;
+        }
+    </style>
+</head>
+<script src="../js/EventUtil.js"></script>
+
+<body>
+    <!-- contextmenu事件 -->
+    <h4>contextmenu事件</h4>
+    <div id="myDiv" style="border:1px solid red;">Right click or ctrl+click me to get a custom contex menu. Click anywhere else to get the default context menu.</div>
+    <ul id="myMenu" style="position:absolute;visibility:hidden;background-color:silver;">
+        <li><a href="http://www.baidu.com">百度</a></li>
+        <li><a href="http://www.yahoo.com">雅虎</a></li>
+        <li><a href="http://www.nczonline.net">尼古拉斯的网站</a></li>
+    </ul>
+    <script>
+        EventUtil.addHandler(window, 'load', function(event) {
+            var div = document.getElementById('myDiv'),
+                menu = document.getElementById('myMenu');
+
+            EventUtil.addHandler(div, 'contextmenu', function(event) { //给div#myDiv加上contextmenu事件
+                event = EventUtil.getEvent(event);
+                EventUtil.preventDefault(event);
+                menu.style.left = event.clientX + 2 + 'px';
+                menu.style.top = event.clientY + 2 + 'px';
+                menu.style.visibility = 'visible';
+            });
+            EventUtil.addHandler(document, 'click', function(event) {
+                menu.style.visibility = 'hidden';
+            });
+        });
+    </script>
+</body>
+
+</html>

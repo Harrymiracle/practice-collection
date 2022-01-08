@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>基础练习</title>
+	<script src="../../js/vue.js"></script>
+</head>
+<body>
+  <!-- 1、全局注册 -->
+	<div id="app-1">
+		<!-- 在挂载元素中使用 -->
+		<my-component></my-component>		
+	</div>
+
+	<script>
+		//创建一个组件构造器
+		var firstComp = Vue.extend({
+			template: '<p>This is my firstComponent, oh yes.</p>'
+		});
+		//全局注册一个组件
+		Vue.component('my-component',firstComp);
+
+		var vm1 = new Vue({
+			el: '#app-1'
+		});
+	</script>
+
+
+  <!-- 2、局部注册 -->
+  	<div id="app-2">
+  		<my-component></my-component>		<!-- 只能在app-2下使用，在其他地方使用会报错 -->
+  	</div>
+
+  	<script>
+  		var secondComp = Vue.extend({
+  			template: '<p>This is my secondComponent, oh come on, boy.</p>'
+  		});
+  		var vm2 = new Vue({
+  			el: '#app-2',
+  			components: {     //在此属性下局部注册
+  				'my-component':secondComp
+  			}
+  		})
+  	</script>
+
+
+  <!-- 3、 组件中的data属性	 -->
+  	<div id="app-3">
+  		<my-counter></my-counter>
+  		<my-counter></my-counter>
+  		<my-counter></my-counter>
+  	</div>	
+
+  	<script>
+  		var data = {count:0};
+  		var vm3 = new Vue({
+  			el: '#app-3',
+  			components: {
+  				'my-counter': {
+  					template: '<button v-on:click="count+=1">{{count}}</button>',
+  					data: function(){		//data必须返回一个函数，同时return一个新的包含count的对象来达到各个按钮值分离的目的
+		  				return {count: 0}
+		  			}
+  				}
+  			}
+  		})
+  	</script>
+
+
+  <!-- 父组件和子组件	 -->
+  	<div id="app-4">
+  		<parent-component></parent-component>
+  	</div>
+
+  	 <script>	//在版本1中用的起，版本2中用不起
+  		var Child = Vue.extend({
+  			template:'<p>This is a Child component.</p>'
+  		});
+  		var Parent = Vue.extend({
+        // 在Parent组件内使用<child-component>标签.Child组件是在Parent组件中注册的，它只能在父组件的template中使用。
+  			template:'<div><p>This is a Parent component.</p><child-component></child-component></div>',	//同时使用需加上div包裹
+  			components: {
+          // 局部注册Child组件，该组件只能在Parent组件内使用
+  				'child-component': Child
+  			}
+  		});
+  	//	Vue.component('parent-component',Parent);
+  		var vm4 = new Vue({
+  		//	el: '#app-4'
+  			el: '#app-4',
+  			components: {
+  				'parent-component': Parent
+  			}
+  		});
+  	 </script>
+</body>
+</html>

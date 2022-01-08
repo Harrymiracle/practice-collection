@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="wap-font-scale" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>更换手机号</title>
+    <link rel="stylesheet" href="../../commoncss/amazeui.min.css">
+    <link rel="stylesheet" href="../css/changePhoneNum.css">
+</head>
+
+<body>
+    <header>
+        <a href="#" class="goback" onclick="javascript:history.go(-1)">返回</a>
+        <p>更换手机号</p>
+    </header>
+    <div class="regis">
+        <div class="box">
+            <form action="">
+                <fieldset>
+                    <div class="am-form-group">
+                        <img src="../images/login/Phone.png" alt="">
+                        <label for="photonum">验证码</label>
+                        <input type="number" id="photonum" placeholder="" pattern="/^1((3|5|8){1}\d{1}|70)\d{8}$/" />
+                        <button class="getCode">获取验证码</button>
+                    </div>
+                    
+                </fieldset>
+                <div class="submit">
+                    <a href="login.html">下一步</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="../../commonjs/jquery-2.1.0.js"></script>
+    <script src="../js/login.js"></script>
+    <script>
+        var $codeBtn = $("button.getCode");
+        var countDownNum = 60;
+        $(".getCode").on("click",function () {
+            $(this).attr("disabled","disabled");
+            if (countDownNum==60) {
+                var timeKey = setInterval(function () {
+                    countDownNum--;
+                    if (countDownNum<=0) {
+                        $codeBtn.removeAttr("disabled");
+                        $codeBtn.text("获取验证码");
+                        countDownNum = 60;
+                        clearInterval(timeKey);
+                    }else{
+                        $codeBtn.text("还剩 "+countDownNum+" 秒");
+                    }
+                },1000);
+            }
+        })
+    </script>
+</body>
+
+</html>

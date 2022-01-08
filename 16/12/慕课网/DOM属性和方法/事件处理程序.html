@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件处理程序</title>
+</head>
+<body>
+	<input type="button" value="HTML事件处理程序" onclick="showmsg()" />
+	<input type="button" value="DOM0级事件处理程序" id="btn2" />
+	<input type="button" value="DOM2级事件处理程序" id="btn3" />
+	<input type="button" value="事件处理程序跨浏览器解决" id="btn4" />
+
+	<script>
+		function showmsg(){
+			alert("HTML事件处理程序");
+		}
+		function showmsg3(){
+	  		alert("DOM2级事件处理程序");
+	  	}
+	  	function showmsg4(){
+	  		alert("事件处理程序跨浏览器解决");
+	  	}
+	  //1、HTML事件处理程序是把处理函数直接绑定在HTML中，或是把JS代码写在HTML中，比较麻烦，修改要改动多个地方。
+		
+
+	  //2、DOM0级事件处理程序是把元素用js单独取出来，再通过js来把一个函数赋值为一个处理程序的属性，优点是：简单、跨浏览器。
+		var obtn2 = document.getElementById("btn2");
+		obtn2.onclick = function(){
+			alert("DOM0级事件处理程序");
+		}
+		//obtn2.onclick = null; //取消事件处理程序
+
+
+	  //3、DOM2级事件处理程序，可以给一个对象绑定几个事件处理程序
+	  	var obtn3 = document.getElementById("btn3");
+	  	obtn3.addEventListener("click",showmsg,false);
+	  	obtn3.addEventListener("click",showmsg3,false);
+	  	
+	  	obtn3.removeEventListener("click",showmsg,false); //解除事件处理程序
+
+
+	  //4、IE的事件监听器(事件处理函数)是target.attachEvent("onclick",fn)和target.detachEvent("onclick",fn)
+
+
+	  //5、事件处理程序跨浏览器解决方法
+	  	var evtsolute = {
+	  		//添加句柄
+	  		addhandler:function(elem,method,handler){
+	  			if(elem.addEventListener){
+	  				elem.addEventListener(method,handler,false);
+	  			}else if(elem.attachEvent){
+	  				elem.attachEvent("on"+method,handler);
+	  			}else{
+	  		  //elem.onclick === elem["on" + click],如果写成elem."on"+click在语法上有错
+	  				elem["on"+method] = handler;
+	  			}
+	  		},
+	  		//删除句柄
+	  		removehandler:function(elem,method,handler){
+	  			if(elem.removeEventListener){
+	  				elem.removeEventListener(method,handler,false);
+	  			}else if(elem.detachEvent){
+	  				elem.detachEvent("on"+method,handler);
+	  			}else{
+	  				elem["on"+method] = null;
+	  			}
+	  		}
+	  	}	  	
+	  	var obtn4 = document.getElementById("btn4");
+	  	evtsolute.addhandler(obtn4,"click",showmsg3);
+	  	evtsolute.addhandler(obtn4,"click",showmsg4);
+	  	evtsolute.removehandler(obtn4,"click",showmsg3);
+	</script>
+</body>
+</html>

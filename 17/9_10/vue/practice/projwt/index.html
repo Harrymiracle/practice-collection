@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta name="viewport" content="width=750,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta charset="utf-8">
+    <!--<link rel="stylesheet" type="text/css" href="src/assets/css/mui.css"/>-->
+    <title>test-vue</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="static/js/mui.js" type="text/javascript" charset="utf-8"></script>
+	   <script type="text/javascript">
+	   	var el_color;
+	   	//监听路由改变 为#/  #/login  #/login/index1才能点击退出(返回状态码false)，否则执行返回历史操作  (返回状态码true)
+	   	var flage = true;
+	   	window.addEventListener("hashchange", myFunction);
+				function myFunction() {
+//					console.log(location.hash)
+					//这里根据自己根目录而定
+				   if(location.hash == '#/' || location.hash == '#/login' || location.hash == '#/login/index1'){
+				   	flage = false
+				   	//当前状态栏的颜色
+						if(location.hash == '#/login/index1'){
+							el_color = '#00916c'
+						}else{
+							el_color = '#c1c1c1'
+						}
+						function plusReady(){
+							plus.navigator.setStatusBarBackground(el_color);
+						}
+						if(window.plus){
+							plusReady();
+						}else{
+							document.addEventListener('plusready', plusReady, false);
+						}
+				   }else{
+				   	flage = true
+				   		el_color = '#00916c'
+							function plusReady(){
+								plus.navigator.setStatusBarBackground(el_color);
+							}
+							if(window.plus){
+								plusReady();
+							}else{
+								document.addEventListener('plusready', plusReady, false);
+							}
+				   }
+			} 
+			
+			//当上传图片少于3张时，去掉disabled属性，变为可点击状态
+			function removeThis(obj){
+				obj.parentNode.remove()
+				if(document.getElementsByClassName('ex_imgs').length < 3){
+					document.getElementById('file_head').disabled = false
+				}
+			}
+	   </script>
+  </body>
+</html>

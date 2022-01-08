@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <style>
+
+
+    </style>
+
+    <!-- 引入react -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <!-- 引入react-dom -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 引入Babel,使浏览器可以识别JSX语法，如果不使用JSX语法，可以不引入 -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- 本地的file协议的引入上面三个文件有跨域的问题 -->
+</head>
+
+<body>
+    <div id="name_inp"></div>
+    <div id="article_textarea"></div>
+    <div id="favorite_food"></div>
+    <div id="favorite_food_m"></div>
+    <div id="many_inputs"></div>
+
+    <script type="text/babel"> // 必须添加type="text/babel",否则不识别JSX语法
+        class NameForm extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: '' };
+                this.handleChange = this.handleChange.bind(this);
+                this.handleSubmit = this.handleSubmit.bind(this);
+
+            }
+            handleChange(event) {
+                this.setState({ value: event.target.value });
+            }
+            handleSubmit(event) {
+                if (this.state.value !== '') {
+                    console.log('你输入的名字是：', this.state.value);
+                } else {
+                    console.log('你还没输入名字！！！');
+                }
+                event.preventDefault();
+            }
+            render() {
+                return (
+                    <form action="#" onSubmit={this.handleSubmit}>
+                        <label>
+                            名字：<input type="text" value={this.state.value} onChange={this.handleChange} />
+                        </label>
+                        <input type="submit" value="提交" />
+                    </form>
+                )
+            }
+        }
+        ReactDOM.render(
+            <NameForm />,
+            document.getElementById('name_inp')
+        )
+
+
+
+        class ArticleForm extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: '请撰写一篇关于你喜欢的 DOM 元素的文章.' };
+                this.handleChange = this.handleChange.bind(this);
+                this.handleSubmit = this.handleSubmit.bind(this);
+
+            }
+            handleChange(event) {
+                this.setState({ value: event.target.value });
+            }
+            handleSubmit(event) {
+                if (this.state.value !== '') {
+                    console.log('你输入的文章是：', this.state.value);
+                } else {
+                    console.log('你还没输入文章！！！');
+                }
+                event.preventDefault();
+            }
+            render() {
+                return (
+                    <form action="#" onSubmit={this.handleSubmit}>
+                        <label>
+                            文章：<textarea type="text" value={this.state.value} onChange={this.handleChange}></textarea>
+                        </label>
+                        <input type="submit" value="提交" />
+                    </form>
+                )
+            }
+        }
+        ReactDOM.render(
+            <ArticleForm />,
+            document.getElementById('article_textarea')
+        )
+
+
+
+        const foodList = [
+            {
+                eNamel: 'apple',
+                cName: '苹果'
+            },
+            {
+                eNamel: 'eggplant',
+                cName: '茄子'
+            },
+            {
+                eNamel: 'litchi',
+                cName: '荔枝'
+            },
+            {
+                eNamel: 'pumpkin',
+                cName: '南瓜'
+            },
+            {
+                eNamel: 'banana',
+                cName: '香蕉'
+            },
+            {
+                eNamel: 'grape',
+                cName: '葡萄'
+            },
+            {
+                eNamel: 'cucumber',
+                cName: '黄瓜'
+            }
+        ];
+        class FoodForm extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: 'apple' };
+                this.handleChange = this.handleChange.bind(this);
+                this.handleSubmit = this.handleSubmit.bind(this);
+
+            }
+            handleChange(event) {
+                this.setState({ value: event.target.value });
+            }
+            handleSubmit(event) {
+                if (this.state.value !== '') {
+                    console.log('你选择的食物是：', this.state.value);
+                } else {
+                    console.log('你还没有选择食物！！！');
+                }
+                event.preventDefault();
+            }
+            render() {
+                return (
+                    <form action="#" onSubmit={this.handleSubmit}>
+                        <label>
+                            选择你喜欢的食物：
+                            <select value={this.state.value} onChange={this.handleChange}>
+                                {foodList.map((food) =>
+                                    <option key={food.eNamel} value={food.eNamel}>{food.cName}</option>
+                                )}
+                            </select>
+                        </label>
+                        <input type="submit" value="提交" />
+                    </form>
+                )
+            }
+        }
+        ReactDOM.render(
+            <FoodForm />,
+            document.getElementById('favorite_food')
+        )
+
+
+
+        class FoodsForm extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: ['apple', 'cucumber'] };
+                this.handleChange = this.handleChange.bind(this);
+                this.handleSubmit = this.handleSubmit.bind(this);
+
+            }
+            handleChange(event) {
+                let val = this.state.value;
+                let index = val.indexOf(event.target.value);
+                if (index > -1) {
+                    val.splice(index, 1);
+                } else {
+                    val.push(event.target.value);
+                }
+                this.setState({ value: val });
+            }
+            handleSubmit(event) {
+                console.log('你选择的食物是：', this.state.value.toString());
+                event.preventDefault();
+            }
+            render() {
+                return (
+                    <form action="#" onSubmit={this.handleSubmit}>
+                        <label>
+                            选择你喜欢的食物：
+                            <select multiple={true} value={this.state.value} onChange={this.handleChange}>
+                                {foodList.map((food) =>
+                                    <option key={food.eNamel} value={food.eNamel}>{food.cName}</option>
+                                )}
+                            </select>
+                        </label>
+                        <input type="submit" value="提交" />
+                    </form>
+                )
+            }
+        }
+        ReactDOM.render(
+            <FoodsForm />,
+            document.getElementById('favorite_food_m')
+        )
+
+
+
+        class ManyInputs extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    willGo: false,
+                    numOfGuests: 0
+                };
+                this.handleChange = this.handleChange.bind(this);
+                this.handleSubmit = this.handleSubmit.bind(this);
+
+            }
+            handleChange(event) {
+                const target = event.target;
+                const name = target.name;
+                const value = name === 'willGo' ? target.checked : target.value;
+                this.setState({ [name]: value });
+            }
+            handleSubmit(event) {
+                console.log(`将${this.state.willGo ? '参加' : '不参加'}会议。`);
+                if (this.state.willGo) {
+                    console.log(`参加人数是： ${this.state.numOfGuests}人。`);
+                }
+                event.preventDefault();
+            }
+            render() {
+                return (
+                    <form action="#" onSubmit={this.handleSubmit}>
+                        <label>
+                            是否参加：
+                            <input name="willGo" type="checkbox" checked={this.state.willGo} onChange={this.handleChange} />
+                        </label>
+                        <label>
+                            来宾人数：
+                            <input name="numOfGuests" type="number" value={this.state.numOfGuests} onChange={this.handleChange} />
+                        </label>
+                        <input type="submit" value="提交" />
+                    </form>
+                )
+            }
+        }
+        ReactDOM.render(
+            <ManyInputs />,
+            document.getElementById('many_inputs')
+        )
+
+    </script>
+
+
+</body>
+
+</html>

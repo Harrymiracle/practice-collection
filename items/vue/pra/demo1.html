@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue</title>
+	<style>
+		.active{
+			width: 200px;
+			height: 100px;
+			background: green;
+		}
+		.error{border: 5px solid red;}
+
+		.active2{
+			width: 200px;
+			height: 100px;
+			background: blue;
+			margin-top: 10px;
+		}
+		.hasError2{border: 5px solid violet;}
+	</style>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+	<!-- 这里是我们的view部分 -->
+	<div id="app1" v-bind:class="{active:isActive, error:hasError}"></div>
+
+	
+
+
+	<script>
+	//1、
+		var vm1 = new Vue({   //创建的一个vue的实例，它连view和model部分
+			el: "#app1",
+			data: {   	//这里是我们的Model部分
+				isActive: true,
+				hasError: false
+			}
+		})
+
+	
+	</script>
+</body>
+</html>

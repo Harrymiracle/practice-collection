@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <title>地图事件</title>
+    <style type="text/css">
+      html, body, #container{height: 100%; width: 100%; overflow: hidden; margin: 0; font-family: "微软雅黑";}
+    </style>
+  <script src="http://api.map.baidu.com/api?v=2.0&ak=XvM4ueScwPRBKCVFXZ4TGximHHdWpgGk" type="text/javascript"></script>
+</head>
+<body>
+  <div id="container"></div>
+</body>
+</html>
+<script>
+
+////****************基本设置
+  var map = new BMap.Map("container");	//创建Map实例
+  var point = new BMap.Point(116.404, 39.915);	//设置地图中心点坐标
+  map.centerAndZoom(point,12);	//初始化地图并设置地图级别
+
+  //Control：控件的抽象基类，所有控件均继承此类的方法、属性。通过此类您可实现自定义控件。
+  map.addControl(new BMap.MapTypeControl());	//添加地图类型控件，默认位于地图右上方
+  map.addControl(new BMap.ScaleControl());		//添加比例尺控件，默认位于地图的左下方
+  map.addControl(new BMap.OverviewMapControl());//缩略地图控件，默认位于地图的右下方，为一个小箭头
+  //地图平移缩放控件，PC端默认位于地图左上方，它包含控制地图的平移和缩放的功能。移动端提供缩放控件，默认位于地图右下方。
+  map.addControl(new BMap.NavigationControl());
+
+  map.addControl(new BMap.CopyrightControl()); //版权控件，默认位于地图的左下方
+
+  map.setCurrentCity("北京"); 		//设置当前的城市名, 仅当设置城市信息时，MapTypeControl的切换功能才能可用
+  map.enableScrollWheelZoom(true);	//允许鼠标滚动
+
+
+//****************添加地图事件
+  map.addEventListener("click", function(e){  //e.point为点击点
+  	alert("你点击了地图经度为：" + e.point.lng + "; 纬度为：" + e.point.lat + "的位置。");
+  });
+
+  map.addEventListener("dragend", function(){
+  	var center = map.getCenter(); 	//返回当前中心点的坐标
+  	alert("中心点变更为：经度:" + center.lng + ",  纬度:" + center.lat + "。");
+  });
+
+  map.addEventListener("zoomend",function(){
+  	alert("地图缩放至：" + this.getZoom() + "级。");  //地图的getZoom()方法获取的是地图的缩放级
+  });
+
+  
+
+</script>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JSONP跨域2</title>
+    <script src="../js/jquery-2.2.3.min.js"></script>
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <input type="text" id="song" name="搜索框">
+    <input type="button" id="song_search" value="歌曲搜索" name="搜索按钮">
+    <div style="width:200px;height:200px;background:pink" id="song_list"></div>
+    <script type="text/javascript">
+        var searchJsonCallback = function(data) { //定义约定函数需执行的操作，url请求完成是拿到javascript形式的函数调用，数据作为函数的参数
+                //遍历查询结果
+                console.log(data.list);
+                var alb_html = '';
+                //第一个参数为需要遍例的对象或数组，回调函数有两个参数，第一个为对象的成员或数组的索引，第二个为对应变量或内容，此处省略了第二个变量。
+                $.each(data.list, function(index) {
+                        alb_html += '<span>专辑：</span><div style="color:black">' + data.list[0].singername + ' ' + data.list[0].albumname + '</div>';
+                    })
+                    // for(var i in data.list){
+                    //     alb_html+='<span>专辑：</span><div style="color:black">'+data.list[0].singername+' '+data.list[0].albumname+'</div>';
+                    // }
+                $("#song_list").html(alb_html);
+            }
+            //    console.log(typeof searchJsonCallback);   //function
+
+        //根据input框中输入的关键字，动态临时添加一个script标签
+        $("#song_search").on("click", function() {
+            var keyword = $("#song").val();
+            if (keyword == undefined || keyword == "") {
+                alert("歌曲搜索不能为空");
+                return false;
+            } else {
+                $.ajax({
+                    type: "get",
+                    url: "http://cgi.music.soso.com/fcgi-bin/fcg_search_xmldata.q?source=10&w=" + keyword + "&perpage=1&ie=utf-8",
+                    dataType: "jsonp",
+                    jsonp: "callback",
+                    jsonpCallback: "searchJsonCallback",
+                    //        success:searchJsonCallback  //可以替代上面两行代码
+                    success: function(data) {
+                        debugger
+                    }
+                });
+                // var url = "http://cgi.music.soso.com/fcgi-bin/fcg_search_xmldata.q?source=10&w="+keyword+"&perpage=1&ie=utf-8";
+                // // 创建script标签，设置其属性
+                // var script = document.createElement('script');
+                // script.setAttribute('src', url);
+                // // 把script标签加入head，此时调用开始
+                // document.getElementsByTagName('head')[0].appendChild(script); 
+            }
+        });
+    </script>
+    <!--    
+            这个相信大多数人都是见过的，可能你会说这个不就是简单的script脚本的引入吗？对的，就是因为script支持跨域，这个也就是我们常见的CDN。
+        下面的例子是一个简单的JSONP跨域的应用，跨域的目的是要实现数据的传输。我们可以按照这个思路这样去写：首先我们可以在一个域名下面书写一个方法，
+        然后通过在外部加载一个脚本来调用这个方法，向这个方法中去传值，这样就可以实现把外部的数据传到当前的域名的下面，从而实现了跨域。
+        
+            这个就是JSOP在实际中的应用，如果直接用ajax来实现的话，原理也是一样，只不过要把script标签换成ajax调用而已。
+        如果你要全部使用jquery来实现的话，那么只需要把ajax中的dataType类型换成jsonp即可(通过上面的例子我们知道script加载实际上也是一个get请求。
+    -->
+
+    <!--
+        1、ajax和jsonp这两种技术在调用方式上“看起来”很像，目的也一样，都是请求一个url，然后把服务器返回的数据进行处理，因此jquery和ext等框架都把jsonp作为ajax的一种形式进行了封装；
+    　　2、ajax和jsonp其实本质上是不同的东西。ajax的核心是通过XmlHttpRequest获取非本页内容，而jsonp的核心则是通过HTTP来动态添加 script 标签来调用服务器提供的js脚本。
+    　　3、其实ajax与jsonp的区别不在于是否跨域，ajax通过服务端代理一样可以实现跨域，jsonp本身也不排斥同域的数据的获取。
+    　　4、jsonp是一种方式或者说非强制性协议，如同ajax一样，它也不一定非要用json格式来传递数据，如果你愿意，字符串都行，只不过这样不利于用jsonp提供公开服务。
+    　　5、jsonp整个过程中，本地站点一直处于主动的地位，主动的发送请求，主动的加载远程js.而第三方站点则处于被动的响应。
+     -->
+
+</body>
+<script>
+</script>
+
+</html>

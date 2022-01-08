@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ajax</title>
+<style>	
+</style>
+
+</head>
+<body>
+	<label for="username">姓名:</label>
+	<input type="text" id="username" placeholder="username">
+	<br />
+	<label for="age">年龄:</label>
+	<input type="text" id="age" placeholder="age">
+	<br />
+	<input type="button" value="GET" id="btn" onclick="btn_click()">
+	<div id="result"></div>
+</body>
+
+<script>
+	function btn_click(){
+		//创建实例对象
+		var xhr = new XMLHttpRequest();
+		//获取值
+		var username = document.getElementById("username").value;
+		var age = document.getElementById("age").value;
+		//建立连接，配置xmlHttpRequest对象
+		xhr.open("get","Get.aspx?username="+username+"&age="+age,true);
+		//设置回调函数
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				document.getElementById("result").innerHTML = xhr.responseText;
+			}
+		}
+		//发送请求
+		xhr.send(null);
+	}
+	
+</script>
+</html>

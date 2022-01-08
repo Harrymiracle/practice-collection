@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CSS中的clip的运用例子</title>
+    <style>
+        /*例子一、*/
+        /*方法一、*/
+        /*.clip_a{display:block; width:128px; height:128px;margin:20px auto 0 auto;position: relative;overflow: hidden;}
+        .clip_a img{border:0; position:absolute;} 
+        .clip_a:hover{border:0;}
+        .clip_a:hover img{margin-top:-128px;}*/
+
+        /*方法二、*/
+        .clip_a{display:block; width:128px; height:128px;margin:20px auto 0 auto;position: relative;}
+        .clip_a img{border:0; position:absolute; clip:rect(0 128px 128px 0);}   /*position: absolute;此时是必须的*/
+        .clip_a:hover{border:0;}
+        .clip_a:hover img{margin-top:-128px; clip:rect(128px 128px 256px 0);}
+       
+        /*例子二、*/
+        div{
+            width: 600px;
+            height: 400px;
+            margin:20px auto 0 auto;
+            /*position: relative;*/
+        }
+        img{
+            /*position: absolute;不是必须的*/
+            /*position: absolute;*/
+            /*----四个参数分别为上(原图的距离上边)、右(原图的距离左边)、下(原图的距离上边)、左(原图的距离左边)的剪切线的位置，并且不能合并。----*/
+            clip: rect(0px, 600px, 400px, 0px);
+        }
+
+    </style>
+</head>
+<body>
+    <a href="javascript:" class="clip_a">
+        <img src="images/sofa_sprite.png" />
+    </a>
+
+    <div>
+        <img src="images/11.jpg" alt="图片"/>
+    </div>
+</body>
+</html>

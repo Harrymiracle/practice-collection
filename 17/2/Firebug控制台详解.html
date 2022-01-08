@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Firebug控制台详解</title>
+</head>
+<body>
+  <script>
+  //内容来自阮一峰的博客JS-2011
+  //1、显示信息的命令
+    console.info("info");
+    console.error("error");
+    console.warn("warn");
+    console.debug("debug");
+    console.log("123");
+    var a = 2, b = 3;
+    console.log(a + b);
+
+  //2、占位符:占位符的种类比较少，只支持字符（%s）、整数（%d或%i）、浮点数（%f）和对象（%o）四种
+    console.log("%d年%d月%d日",2017,2,3);
+    var dog = {};
+    dog.name = "毛毛";
+    dog.color = "黄";
+    console.log("%o",dog);
+    console.dir(dog);
+
+  //3、如果信息太多，可以分组显示，用到的方法是console.group()和console.groupEnd()。
+    console.group("第一组");
+    console.log("第一组第一条");
+    console.log("第一组第二条");
+    console.groupEnd();
+    console.group("第二组");
+    console.log("第二组第一条");
+    console.log("第二组第二条");
+    console.groupEnd();
+
+  //4、计时功能:console.time()和console.timeEnd()，用来显示代码的运行时间。
+    console.time("计时器一");
+　　for(var i=0;i<1;i++){
+　　　　for(var j=0;j<1000;j++){};
+　　}
+　　console.timeEnd("计时器一");
+
+  //5、性能分析：性能分析（Profiler）就是分析程序各个部分的运行时间，找出瓶颈所在，使用的方法是console.profile()。
+    //  假定有一个函数Foo()，里面调用了另外两个函数funcA()和funcB()，其中funcA()调用10次，funcB()调用1次。
+    function Foo(){     //暂时没用起
+　　　　for(var i=0;i<10;i++){
+            funcA(1000);
+        }
+　　　　funcB(10000);
+　　}
+　　function funcA(count){
+　　　　for(var i=0;i<count;i++){}
+　　}
+　　function funcB(count){
+　　　　for(var i=0;i<count;i++){}
+　　}
+    console.profile('性能分析器一');
+　　Foo();
+　　console.profileEnd();
+
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+@charset "utf-8";
+@import "../../node_modules/mixins-sass/src/mixins";
+@import "../mui/mixins.scss";
+
+
+.package_wrap{
+	.package_empty_bg{
+		@include rem(width,380px);
+		@include rem(height,245px);
+		background:url('../images/package_empty.png');
+		background-size:100% 100%;
+		position:absolute;
+		@include rem(left,180px);
+		@include rem(top,300px);
+	}
+}
+    

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSX</title>
+    <!-- 引入react -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <!-- 引入react-dom -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 引入Babel,使浏览器可以识别JSX语法，如果不使用JSX语法，可以不引入 -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- 本地的file协议的引入上面三个文件有跨域的问题 -->
+</head>
+
+<body>
+    <div id="root"></div>
+    <div id="app"></div>
+    <div id="greet"></div>
+    <div id="pic"></div>
+    <div id="multi"></div>
+    <div id="createEl"></div>
+
+    <script type="text/babel"> // 必须添加type="text/babel",否则不识别JSX语法
+        const el = <h1>Hello World!</h1>;
+        
+        const name = 'Tom';
+        const ele = <h1>Hello {name}!</h1>;
+
+        ReactDOM.render(
+            ele,
+            document.getElementById('root')
+        )
+
+
+        // 在 JSX 中嵌入表达式
+        function formatName(user) {
+            return user.firstName + ' ' + user.lastName;
+        }
+
+        let userOne = {
+            firstName: 'Michael',
+            lastName: 'Jackson'
+        }
+        const element = (
+            <h1>
+                Hello {formatName(userOne)}!
+            </h1>
+        );
+
+        ReactDOM.render(
+            element,
+            document.getElementById('app')
+        )
+
+
+        // JSX 也是一个表达式
+        function greeting(user) {
+            if (user) {
+                return <h1>Hello {formatName(user)}!</h1>;
+            }
+            return <h1>Hello stranger.</h1>;
+        }
+
+        ReactDOM.render(
+            greeting(),
+            document.getElementById('greet')
+        )
+
+
+        let testImg = {
+            imgUrl: '../imgs/test1.jpg'
+        }
+        // 假如一个标签里面没有内容，你可以使用 /> 来闭合标签，就像 XML 语法一样
+        const imgEl = <img src={testImg.imgUrl} />;
+        ReactDOM.render(
+            imgEl,
+            document.getElementById('pic')
+        )
+
+
+        // JSX 标签里能够包含很多子元素
+        const multiEl = <div>
+            <p>Hello! This is "P" element.</p>
+            <span>Glad to meet you!</span>
+        </div>
+        ReactDOM.render(
+            multiEl,
+            document.getElementById('multi')
+        )
+
+
+        // React.createElement() 函数
+        const createEl = React.createElement(
+            'h1',
+            {className: 'greet'},
+            'Hello man!'
+        )
+        ReactDOM.render(
+            createEl,
+            document.querySelector('#createEl')
+        )
+    </script>
+</body>
+
+</html>

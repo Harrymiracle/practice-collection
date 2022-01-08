@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>javascript之创建对象(1)</title>
+</head>
+
+<body>
+    <script>
+        var person = new Object();
+        person.name = 'Tom';
+        person.age = 18;
+        person.say = function() {
+            console.log(this.name + ' ' + this.age);
+        }
+        person.say();
+
+        var person2 = {
+            name: 'Tom',
+            age: 18,
+            say: function() {
+                console.log(this.name + ' ' + this.age);
+            }
+        }
+        person2.say();
+
+        function person3(name, age) {
+            var o = new Object();
+            o.name = name;
+            o.age = age;
+            o.say = function() {
+                console.log(this.name + ' ' + this.age);
+            }
+            return o;
+        }
+        var person3 = person3('Tom', 18).say();
+
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+            this.say = function() {
+                console.log(this.name + ' ' + this.age);
+            }
+        }
+        var person11 = new Person('Tom', 18);
+        var person12 = new Person('Harry', 28);
+        person11.say();
+        person12.say();
+
+        console.log(person11.constructor === Person);
+        console.log(person12.constructor === Person);
+        console.log(person11 instanceof Person);
+        console.log(person12 instanceof Person);
+        console.log(person11 instanceof Object);
+        console.log(person12 instanceof Object);
+
+        Person('Bob', 26);
+        window.say();
+
+        var o = new Object();
+        var person4 = Person.call(o, 'Greg', '30');
+        o.say();
+
+        function Person2() {
+
+        }
+        Person2.prototype.name = 'John';
+        Person2.prototype.age = 20;
+        Person2.prototype.say = function() {
+            console.log(this.name + ' ' + this.age);
+        };
+        var person111 = new Person2();
+        person111.say();
+        var person112 = new Person2();
+        person112.say();
+
+        console.log(Person2.prototype.isPrototypeOf(person111));
+        console.log(Person2.prototype.isPrototypeOf(person112));
+
+        console.log(Object.getPrototypeOf(person111) === Person2.prototype);
+
+        function Person3() {}
+        Person3.prototype.name = 'John';
+        Person3.prototype.age = 20;
+        Person3.prototype.friends = ['Bob', 'Harry']
+        Person3.prototype.say = function() {
+            console.log(this.name + ' ' + this.age);
+        };
+
+        var person1 = new Person3();
+        var person2 = new Person3();
+        person1.friends.push('Lisa');
+        console.log(person2.friends);
+
+
+        function Person4(name, age) {
+            this.name = name;
+            this.age = age;
+            this.friends = ['Bob', 'Harry']
+        }
+
+        Person4.prototype = {
+            constructor: Person4,
+            say: function() {
+                console.log(this.name + ' ' + this.age);
+            }
+        };
+
+        var person1 = new Person4('John', 20);
+        var person2 = new Person4('Lee', 22);
+        person1.friends.push('Lisa');
+        console.log(person2.friends); //'Bob', 'Harry'
+
+        function Person5(name, age) {
+            this.name = name;
+            this.age = age;
+            this.friends = ['Bob', 'Harry'];
+            if (typeof this.say != 'function') {
+                Person5.prototype.say = function() {
+                    console.log(this.name + ' ' + this.age);
+                }
+            }
+        }
+
+        var g = new Person5('Lucy', 18);
+        g.say();
+    </script>
+</body>
+
+</html>

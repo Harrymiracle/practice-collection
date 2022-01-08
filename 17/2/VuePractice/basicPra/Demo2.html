@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vue条件渲染指令</title>
+  <script src="../js/vue.min.js"></script>
+</head>
+<!-- http://www.cnblogs.com/keepfool/p/5619070.html -->
+<body>
+  <div id="vm">
+    <h1>Hello, Vue.js!</h1>
+<!--  v-if是条件渲染指令,根据条件表达式的值来执行插入或是删除元素的行为。  
+      v-if="expression",expression可以是一个返回bool值的表达式，表达式可以是一个bool属性，也可以是一个返回bool的运算式。 -->
+    <h1 v-if="yes">Yes!</h1>
+    <h1 v-if="no">No!</h1>
+    <h1 v-if="age > 25">Age:{{age}}</h1>
+    <h1 v-if="name.indexOf('jack')!=-1">Name{{name}}</h1>
+  </div>
+
+  <div id="vms">
+    <h1>Hello, Vue.js!</h1>
+<!--  v-show也是条件渲染指令,和v-if指令不同的是,
+      使用v-show指令的元素始终会被渲染到HTML,它只是简单地为元素设置CSS的style属性。  -->
+    <h1 v-show="yes">Yes!</h1>
+    <h1 v-show="no">No!</h1>
+    <h1 v-show="age > 25">Age:{{age}}</h1>
+    <h1 v-show="name.indexOf('jack')!=-1">Name{{name}}</h1>
+  </div>
+
+  <div id="vme">
+    <h1>Hello, Vue.js!</h1>
+<!--  可以用v-else指令为v-if或v-show添加一个“else块”。v-else元素必须立即跟在v-if或v-show元素的后面——否则它不能被识别 -->
+    <h1 v-if="age > 25">Age:{{age}}</h1>
+    <h1 v-else="name">Name:{{name}}</h1>
+    <h1>-----------分割线-----------<h1>  
+    <h1 v-show="name.indexOf('jack') >= 0">Name:{{name}}</h1>
+    <h1 v-else="sex">sex:{{sex}}</h1>
+  </div>
+  <script>
+  	var vm = new Vue({
+      el:"#vm",
+      data:{
+        yes: true,
+        no: false,
+        age: 28,
+        name: "Michle"
+      }
+    });
+    //在chrome的console调试面板下，用vm.age = 18等来改变age的值，以调控第四个h1的显示状态，age是定义在选项对象的data属性中的，为什么Vue实例可以直接访问它，是因为每个Vue实例都会代理其选项对象里的data属性。
+
+
+    var vms = new Vue({
+      el:"#vms",
+      data:{
+        yes: true,
+        no: false,
+        age: 28,
+        name: "Michle"
+      }
+    });
+    //在chrome的console调试面板下，用vm.age = 18,来改变age的值，可以看到第四个h1被设置成了style="display:none;
+
+
+    var vme = new Vue({
+      el:"#vme",
+      data:{
+        age: 28,
+        name: "Michle",
+        sex: "male"
+      }
+    });
+    //v-else元素是否渲染在HTML中，取决于前面使用的是v-if还是v-show指令。
+    //这段代码中v-if为true，后面的v-else不会渲染到HTML；v-show为false，但是后面的v-else渲染到HTML了中。
+
+  </script>
+</body>
+</html>

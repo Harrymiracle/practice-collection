@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>增删学生信息表格练习2</title>
+</head>
+    <script type="text/javascript">  
+      window.onload = function(){                  
+     // 鼠标移动改变背景,可以通过给每行绑定鼠标移上事件和鼠标移除事件来改变所在行背景色。
+       var str_tr=document.getElementsByTagName('tr');
+       for(var i=0;i<str_tr.length;i++){
+      //document.all是页面内所有元素的一个集合。document.all(0)表示页面内第一个元素document.all可以判断浏览器是否是IE。  if(document.all){alert("is IE!");} 问号后面的IE低版本的不支持。
+           str_tr[i].setAttribute('onmouseover',document.all ? eval(function(){this.style.background="#f2f2f2"}) : 'javascript:this.style.background="#f2f2f2"'); 
+          //eval(string)函数可计算某个字符串，并执行其中的的 JavaScript 代码。string,必需。要计算的字符串，其中含有要计算的 JavaScript 表达式或要执行的语句。该方法只接受原始字符串作为参数，如果 string 参数不是原始字符串，那么该方法将不作任何改变地返回。因此请不要为 eval() 函数传递 String 对象来作为参数。
+           str_tr[i].setAttribute('onmouseout',document.all ? eval(function(){this.style.background="#fff"}):'javascript:this.style.background="#fff"');
+       }   
+   }
+     
+      // 编写一个函数，供添加按钮调用，动态在表格的最后一行添加子节点；
+    function addtr(){
+        var sNum=prompt('请输入学号','');
+        var sName=prompt('请输入姓名','');
+        if(sNum!=null&&sNum!=''&&sName!=null&&sName!=''){            
+            var newtr=document.createElement('tr');
+            var newtrS=newtr.innerHTML='<td>'+sNum+'</td>'+'<td>'+sName+'</td>'+'<td><a href="javascript:;" onclick="del(this)">删除</a></td>';
+            var oTC=document.getElementById("table").lastChild;
+            oTC.appendChild(newtr); 
+            var otr = document.getElementsByTagName("tr");  //后面的是我加上去的
+            for(var i=0,len=otr.length;i<len;i++){
+              otr[i].onmouseover = function(){
+                this.style.background = "#f2f2f2";
+                this.onmouseout = function(){
+                  this.style.background = "#fff";
+                }
+              }
+            }         
+        }else{
+          alert('请重新输入');
+        }
+     }        
+     
+     // 创建删除函数
+     function del(obj){
+         var oG=obj.parentNode.parentNode.parentNode;
+         var oP=obj.parentNode.parentNode;
+         oG.removeChild(oP);
+     }
+
+  </script> 
+ </head> 
+ <body> 
+     <table border="1" width="50%" id="table">
+     <tr>
+    <th>学号</th>
+    <th>姓名</th>
+    <th>操作</th>
+     </tr>  
+     <tr>
+    <td>xh001</td>
+    <td>王小明</td>
+    <td><a href="javascript:;" onclick="del(this)">删除</a></td>   
+     </tr>
+     <tr>
+    <td>xh002</td>
+    <td>刘小芳</td>
+    <td><a href="javascript:;" onclick="del(this)" >删除</a></td>   
+     </tr>  
+     </table>
+     <input type="button" value="添加一行"  onclick="addtr()"/>   
+ </body>
+</html>

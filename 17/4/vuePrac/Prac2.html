@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue组件</title>
+	<script src="js/vue.min.js"></script>
+</head>
+<body>
+	<div id="app1">
+		<my-component></my-component>	  <!-- 使用组件 -->
+	</div>
+
+	<div id="app2">
+		<my-component></my-component>	
+	</div>
+
+	<div id="app3">
+		<simple-component></simple-component>
+		<simple-component></simple-component>
+		<simple-component></simple-component>
+	</div>
+
+	<div id="app4">
+		<simple-component></simple-component>
+		<simple-component></simple-component>
+		<simple-component></simple-component>
+	</div>
+
+	<div id="app5">
+		<!-- 在应用模板是message可以像一个属性样设置值 -->
+		<child message="hello!"></child>
+		<div>
+			<input type="text" v-model="parentMsg">
+			{{parentMsg}}
+			<br />
+	<!-- :message是v-bind:message的缩写，意思为传递一个值，此处省略: 的话是一个字面量，为传递的一个字符串，因此不能省. -->
+			<child :message="parentMsg"></child>
+		</div>
+	</div>
+
+
+	<script>
+	//1、
+		//	注册组件，第二个参数为创建组件构造器，可以用
+		//	var mycomponent = Vue.extend({ template:'<div>This is my first component.</div>'})
+		Vue.component("my-component",{  
+			template: "<div>我是组件1的内容</div>"
+		})
+		var vm1 = new Vue({
+			el: "#app1"
+		})
+
+
+	//2、	
+		var child = {
+			template: "<div>我是子组件的内容</div>"
+		}
+		var vm2 = new Vue({
+			el: "#app2",
+			components: {
+				//局部注册,只在父组件的范围内使用
+				"my-component": child
+			}	
+		})
+
+
+	//3、
+		var data = {counter:0}
+
+		Vue.component("simple-component",{
+			template: "<button @click='counter+=1'>{{counter}}</button>",
+			data: function(){
+				return data; 	//返回一个共享的data,一个变所有的都受影响
+			}
+		});
+		var vm3 = new Vue({
+			el: "#app3"
+		})
+
+
+	//4、
+		Vue.component("simple-component",{
+			template: "<button @click='counter+=1'>{{counter}}</button>",
+			data: function(){
+				return { counter: 0 };  //为每个组件返回了一个全新的data对象
+			}
+		});
+		var vm4 = new Vue({
+			el: "#app4"
+		})
+
+
+	//5、
+		Vue.component("child", {
+			props: ["message"],   //显示的申明child中的props属性，注意是props,记得加-s
+			template: "<span>{{message}}</span>"	//template中不能把child用着标签 <child></child>
+		})
+		var vm5 = new Vue({
+			el: "#app5",
+			data: {
+				parentMsg: "我是来自父组件的信息。"
+			}
+		})
+
+	</script>
+</body>
+</html>

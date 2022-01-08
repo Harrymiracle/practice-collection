@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>队列控制</title>
+    <style>
+        #demo2 {
+            position: absolute;
+            right: 60px;
+            top: 8px;
+        }
+        
+        #demo1 input,
+        #demo2 input {
+            margin: 10px 0 10px 50px;
+            padding: 3px 8px;
+            font-size: 14px;
+            font-weight: bolder;
+        }
+        
+        .demo1,
+        .demo2 {
+            position: relative;
+            width: 630px;
+            height: 300px;
+            background: #eee;
+            border-top: 5px solid #888;
+            border-bottom: 5px solid #888
+        }
+        
+        .demo1 .one,
+        .demo1 .two,
+        .demo1 .three,
+        .demo1 .four,
+        .demo1 .five,
+        .demo1 .six,
+        .demo1 .seven,
+        .demo2 .one,
+        .demo2 .two,
+        .demo2 .three,
+        .demo2 .four,
+        .demo2 .five,
+        .demo2 .six,
+        .demo2 .seven {
+            display: block;
+            position: absolute;
+            left: 30px;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background: #888;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+            line-height: 30px
+        }
+        
+        .demo1 .two,
+        .demo2 .two {
+            left: 120px
+        }
+        
+        .demo1 .three,
+        .demo2 .three {
+            left: 210px
+        }
+        
+        .demo1 .four,
+        .demo2 .four {
+            left: 300px
+        }
+        
+        .demo1 .five,
+        .demo2 .five {
+            left: 390px
+        }
+        
+        .demo1 .six,
+        .demo2 .six {
+            left: 480px
+        }
+        
+        .demo1 .seven,
+        .demo2 .seven {
+            left: 570px
+        }
+    </style>
+    <script src="../../js/jquery-2.2.3.min.js"></script>
+</head>
+
+<body>
+    <div id="demo1">
+        <input class="stop" type="button" value="停止动画" />
+        <div class="demo1">
+            <span class="one">01</span>
+            <span class="two">02</span>
+            <span class="three">03</span>
+            <span class="four">04</span>
+            <span class="five">05</span>
+            <span class="six">06</span>
+            <span class="seven">07</span>
+        </div>
+    </div>
+    <div id="demo2">
+        <input type="button" value="停止动画" />
+        <div class="demo2">
+            <span class="one">01</span>
+            <span class="two">02</span>
+            <span class="three">03</span>
+            <span class="four">04</span>
+            <span class="five">05</span>
+            <span class="six">06</span>
+            <span class="seven">07</span>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $('.demo1 .one').delay(500).animate({
+                top: '+=270px'
+            }, 500, function() {
+                $('.demo1 .two').delay(500).animate({
+                    top: '+=270px'
+                }, 500, function() {
+                    $('.demo1 .three').delay(500).animate({
+                        top: '+=270px'
+                    }, 500, function() {
+                        $('.demo1 .four').delay(500).animate({
+                            top: '+=270px'
+                        }, 500, function() {
+                            $('.demo1 .five').delay(500).animate({
+                                top: '+=270px'
+                            }, 500, function() {
+                                $('.demo1 .six').delay(500).animate({
+                                    top: '+=270px'
+                                }, 500, function() {
+                                    $('.demo1 .seven').delay(500).animate({
+                                        top: '+=270px'
+                                    }, 500, function() {
+                                        console.log('按序落体运动结束! yeah!')
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+
+            $('#demo1 .stop').click(function() {
+                $('.demo1>span:animated').stop();
+            });
+
+
+            var _slideFun = [
+                function() {
+                    $('.demo2 .one').delay(500).animate({
+                        top: '+=270px'
+                    }, 500, _takeOne);
+                },
+                function() {
+                    $('.demo2 .two').delay(500).animate({
+                        top: '+=270px'
+                    }, 500, _takeOne);
+                },
+                function() {
+                    $('.demo2 .three').delay(500).animate({
+                        top: '+=270px'
+                    }, 500, _takeOne);
+                },
+                function() {
+                    $('.demo2 .four').delay(500).animate({
+                        top: '+=270px'
+                    }, 500, _takeOne);
+                },
+                function() {
+                    $('.demo2 .five').delay(500).animate({
+                        top: '+=270px'
+                    }, 500, _takeOne);
+                },
+                function() {
+                    $('.demo2 .six').delay(500).animate({
+                        top: '+=270px'
+                    }, 500, _takeOne);
+                },
+                function() {
+                    $('.demo2 .seven').delay(500).animate({
+                        top: '+=270px'
+                    }, 500, function() {
+                        console.log('按序落体运动2结束! yeah!')
+                    });
+                },
+            ];
+            $('.demo2').queue('slidelist', _slideFun);
+            var _takeOne = function() {
+                $('.demo2').dequeue('slidelist');
+            };
+
+            _takeOne();
+
+            $('#demo2>input').click(function() {
+                $('.demo2').clearQueue(_takeOne);
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>复选单选文字对齐</title>
+    <style>
+        body {
+            font-size: 12px;
+        }
+        
+        div {
+            margin-bottom: 10px;
+        }
+        
+        p {
+            color: blue;
+            padding-left: 20px;
+            margin-top: 0;
+        }
+        
+        .result {
+            color: red;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .test2 input {
+            vertical-align: text-top;
+        }
+        
+        .test3 input {
+            vertical-align: text-bottom;
+        }
+        
+        .test4 input {
+            vertical-align: top;
+        }
+        
+        .test5 input {
+            vertical-align: middle;
+        }
+        
+        .test6 input {
+            vertical-align: bottom;
+        }
+        
+        .test7 input {
+            vertical-align: -3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test1">
+        <input type="radio">单选框
+        <input type="checkbox">复选框
+        <p>在字体小于16px时，对齐不良。</p>
+    </div>
+    <div class="test2">
+        <input type="radio">单选框
+        <input type="checkbox">复选框
+        <p>vertical-align: text-top;</p>
+    </div>
+    <div class="test3">
+        <input type="radio">单选框
+        <input type="checkbox">复选框
+        <p>vertical-align: text-bottom;</p>
+    </div>
+    <div class="test4">
+        <input type="radio">单选框
+        <input type="checkbox">复选框
+        <p>vertical-align: top;</p>
+    </div>
+    <div class="test5">
+        <input type="radio">单选框
+        <input type="checkbox">复选框
+        <p>vertical-align: middle;</p>
+    </div>
+    <div class="test6">
+        <input type="radio">单选框
+        <input type="checkbox">复选框
+        <p>vertical-align: bottom;</p>
+    </div>
+    <div class="test7">
+        <input type="radio">单选框
+        <input type="checkbox">复选框
+        <p>vertical-align: -3px;</p>
+    </div>
+    <div class="result">14px在chrome下，text-top和top表现更好。14px在firefox下，原来的样子和top表现更好。14px在360下，top表现更好。 12px在chrome下top,text-top更好,firefox下，top表现更好。在360下都不一致。 -3px在各种情况下表现都比较好。
+    </div>
+</body>
+
+</html>

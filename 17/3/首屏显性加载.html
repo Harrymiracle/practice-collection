@@ -1,0 +1,94 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>首屏显性加载</title>
+<style>
+body {
+  margin:0;
+  padding:0;
+}
+
+#loadingbg {
+  background-color : #222222;
+  height : 100%;
+  width : 100%;
+  position : fixed;
+  z-index: 3;
+}
+
+#loadingwrap {
+  height : 20px;
+  width : 200px;
+  box-shadow : 0px 0px 10px #111111 inset;
+  margin: 0 auto;
+  /*vh是CSS3的单位，把屏幕的宽或是高度分为100，50刚好在屏幕的中间位置附近 */
+  margin-top: 50vh;    
+}
+
+#loading {
+  height : 20px;
+  width : 0;
+  text-align: center;
+  background-color : #C9F76F;
+  box-shadow : 0px 0px 5px #222 inset;
+}
+
+.wrap{
+  width : 100%;
+  margin: 0 auto;
+}
+
+.bg-img{
+  width: 100%;
+  max-width:75vh; 
+}
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+  <div id="loadingbg">
+    <div id="loadingwrap">
+      <div id="loading">loading</div>
+    </div>
+  </div>
+ <div class="wrap">
+   <img class="bg-img" src="http://wx.karlew.com/loading/img/1.jpg">
+   <img class="bg-img" src="http://wx.karlew.com/loading/img/2.jpg">
+   <img class="bg-img" src="http://wx.karlew.com/loading/img/3.jpg">
+   <img class="bg-img" src="http://wx.karlew.com/loading/img/4.jpg">
+  <!--  <img class="bg-img" src="http://wx.karlew.com/loading/img/5.jpg"> -->    
+   <img class="bg-img" src="http://wx.karlew.com/loading/img/6.jpg">
+   <img class="bg-img" src="http://wx.karlew.com/loading/img/7.jpg">
+ </div>
+</body>
+</html>
+<script type="text/javascript">
+	var loadNum = 0;
+	var imgNum = $('.bg-img').length;
+	var txtGrad = parseInt(100 / imgNum);
+	var bgGrad = parseInt(200 / imgNum);
+	$('.bg-img').each(function(){
+		//加入complete为了判断图片是否在未绑定load事件就已经加载完成
+		if($(this)[0].complete){
+			loadNum += 1;
+			$("#loading").text(loadNum*txtGrad+"%").width(loadNum*bgGrad+"px")
+			if(loadNum>=imgNum){
+				$("#loading").text("100%").width("200px");
+				$("#loadingbg").animate({opacity:"0"},function(){
+					$(this).hide()
+				})
+			}
+		}else{
+			$(this).load(function(){
+				loadNum += 1;
+				$("#loading").text(loadNum*txtGrad+"%").width(loadNum*bgGrad+"px")
+				if(loadNum>=imgNum){
+					$("#loading").text("100%").width("200px");
+					$("#loadingbg").animate({opacity:"0"},function(){
+						$(this).hide()
+					})
+				}
+			})
+		}
+	})
+</script>

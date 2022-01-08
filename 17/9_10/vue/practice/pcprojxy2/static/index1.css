@@ -1,0 +1,23 @@
+/*公用的*/
+a{text-decoration: none;color:#95c4d1;}
+ul li{list-style: none;}
+p{padding: 0;margin: 0;}
+.addUser{text-align:left;font-size: 20px;}
+.addUser>a{display: block;;width: 86px;height: 40px;line-height:40px;text-align:center;background: #84dac5;color: #fff;border-radius: 6px;margin:20px 0px 20px 10%;}
+
+.bg{width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: #565656;opacity: 0.5;z-index:1;}
+/*表单*/
+.userForm{z-index: 100;position: absolute;left:40%;top:50%;background: #fff;width: 400px;height: 206px;border-radius: 10px;}
+.userForm>p:first-child{padding: 20px 0 0 10px;font-size: 22px; text-align: center; }
+.userForm >p:last-child{display: inline-block;}
+.userForm section lable{font-size: 20px; }
+.userForm section input{-webkit-appearance: none;background-color:transparent; border:1px solid #95c4d1;outline: none;height: 20px;border-radius: 4px;}
+.userForm section{padding: 10px;}
+.userForm .addSucceed{font-size: 20px;display: block;width: 74px;height: 34px;border-radius: 6px;background:#84dac5;color:#fff;line-height:34px;margin-top:14px;}
+/*表格*/
+.tabUser table{width: 80%;border-collapse: collapse;margin: 0 auto;}
+.tabUser table td,th{border: 1px solid #eee;padding: 6px 0;}
+.tabUser table tr>td:nth-child(3){width: 200px;}
+.tabUser table tr>td:nth-child(3) a{display:inline-block;width: 50px;text-align:center;height: 26px;line-height: 26px;border-radius: 4px;margin-left:10px;
+	background: #95c4d1;color: #fff;font-size:14px;}
+	.tabUser table tr>td:nth-child(3) a:first-child{background: #84dac5;}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>javascript之作用域(2)</title>
+</head>
+
+<body>
+    <script>
+        function foo() {
+            var num = 666;
+
+            function bar() {
+                console.log(num);
+            }
+            baz(bar);
+        }
+
+        function baz(f) {
+            f();
+        }
+
+        foo();
+
+
+        // function showMsg(msg) {
+        //     setTimeout(function() {
+        //         console.log(msg);
+        //     }, 3000)
+        // }
+        // showMsg('Hello');
+
+        var arr = [];
+        for (var i = 0; i < 10; i++) {
+            arr[i] = function() {
+                return i;
+            }
+        }
+        console.log(arr[0]()); //10
+        console.log(arr[6]()); //10
+
+        var arr = [];
+        for (var i = 0; i < 10; i++) {
+            arr[i] = (function(j) {
+                return j;
+            })(i)
+        }
+        console.log(arr[0]); //6
+
+
+        for (var i = 0; i < 5; i++) {
+            setTimeout(function timer() {
+                console.log(i);
+            }, i * 1000)
+        }
+
+        var arr = [];
+        for (let i = 0; i < 10; i++) {
+            arr[i] = function() {
+                return i;
+            }
+        }
+        console.log(arr[0]()); //0
+        console.log(arr[6]()); //6
+    </script>
+</body>
+
+</html>

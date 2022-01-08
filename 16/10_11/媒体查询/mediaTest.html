@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TEST</title>	
+	<link rel="stylesheet" media="screen and (max-width:500px)" href="test1.css">
+	<link rel="stylesheet" media="screen and (min-width:500px) and (max-width:800px)" href="test2.css">
+	<link rel="stylesheet" media="screen and (min-width:800px) and (max-width:1000px)" href="test3.css">
+	<style>
+		*{margin:0;padding:0;}
+		@media screen and (min-width:1000px) and (max-width: 1200px){
+			#box{width: 200px;height: 200px;line-height: 200px;text-align: center;margin:0 auto; background: pink;border-radius: 50px;}
+		}
+		@media screen and (min-width: 1200px){
+			#box{background: cyan;width: 150px;height: 150px;border-top:3px solid black;border-left:3px solid black;margin:0 auto;text-align: center;line-height: 150px;box-shadow: 5px 5px 10px tomato;}
+		}
+		
+		#box2{
+			width: 100%;height: 30px;background: black;position: relative;
+		}
+		ul{
+			width: 400px;margin:0 auto;list-style: none;
+		}
+		li{
+			float: left;text-align: center;padding: 5px 0;background: pink;width: 100px;border:1px solid gray;box-sizing:border-box;
+		}
+		#btn{
+			position: absolute;right:10px;top:50%;height: 20px;margin-top: -10px;		
+			display: none;
+		}
+		@media screen and (max-width: 500px){
+			ul{display: none;}
+			#btn{display: inline-block;}
+		}
+	</style>
+</head>
+
+<body>
+	<div id="box">媒体查询</div>
+	<div id="box2">
+		<ul>
+			<li>娱乐</li>
+			<li>足球</li>
+			<li>国际</li>
+			<li>国内</li>
+		</ul>
+		<input type="button" value="我是导航" id="btn">
+	</div>
+
+
+	
+	
+</body>
+
+</html>

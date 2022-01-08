@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>字符串转换成json数据</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+   
+    <script>
+        
+        function toJson(obj) {
+            // return JSON.parse(obj.replace(/ /g, '').replace(/:/g, '=').replace(/"/g, '').replace(/=/g, '":"').replace(/,/g, '","').replace(/{/g, '{"').replace(/}/g, '"}').replace(/}","{/g, '},{'))
+            return JSON.parse(obj.replace)
+        }
+
+       
+        var list = "[{id=1, useViewType=false, name=姓名, code=name, dataType=1, subType=1, tips=请输入姓名, maxLength=32, displayFlag=1, entryFlag=1, mustInputFlag=1, searchFlag=1, fixedFlag=1, unit=, createDate=1535017787000, updateDate=1550051508000}, {id=2, useViewType=false, name=手机, code=mobile, dataType=1, subType=3, tips=请输入手机号, maxLength=128, options=, displayFlag=1, entryFlag=1, mustInputFlag=1, searchFlag=1, fixedFlag=1, unit=, createDate=1535017787000, updateDate=1550051508000}, {id=3, useViewType=false, name=试听课程, code=course, dataType=2, tips=请输入想试听的课程或其他试听需求, maxLength=255, options=, displayFlag=1, entryFlag=1, mustInputFlag=0, searchFlag=1, fixedFlag=1, unit=, createDate=1535017787000, updateDate=1550051508000}, {id=7, useViewType=false, name=test, dataType=1, subType=1, tips=, maxLength=128, options=, displayFlag=1, entryFlag=1, mustInputFlag=1, searchFlag=1, fixedFlag=0, unit=, createDate=1544075686000, updateDate=1550051508000}, {id=8, useViewType=false, name=亨旺烧腊.网址, dataType=1, subType=1, tips=, maxLength=128, options=, displayFlag=1, entryFlag=1, mustInputFlag=1, searchFlag=1, fixedFlag=0, unit=, createDate=1544075770000, updateDate=1550051508000}, {id=10, useViewType=false, name=123, dataType=3, subType=3, tips=, maxLength=6500, options=1,2,3,4,5,6,7, displayFlag=1, entryFlag=1, mustInputFlag=1, searchFlag=1, fixedFlag=0, unit=, createDate=1544075867000, updateDate=1550051508000, optionList=[1, 2, 3, 4, 5, 6, 7]}, {id=11, useViewType=false, name=q0403.cevke.cn, dataType=3, subType=3, tips=请输入姓名, maxLength=6500, options=123,456,789,564, displayFlag=1, entryFlag=1, mustInputFlag=1, searchFlag=1, fixedFlag=0, unit=, createDate=1544075912000, updateDate=1550051508000, optionList=[123, 456, 789, 564]}, {id=12, useViewType=false, name=日期, dataType=1, subType=6, tips=选择日期, maxLength=10, options=, displayFlag=1, entryFlag=1, mustInputFlag=0, searchFlag=0, fixedFlag=0, unit=, createDate=1550029399000, updateDate=1550051508000}, {id=13, useViewType=false, name=日期时间, dataType=1, subType=7, tips=选择日期时间, maxLength=16, options=, displayFlag=1, entryFlag=1, mustInputFlag=0, searchFlag=0, fixedFlag=0, unit=, createDate=1550029399000, updateDate=1550051508000}, {id=14, useViewType=false, name=单选组, dataType=3, subType=1, tips=, maxLength=6500, options=选项一,选项二胜利股份几率大司空见惯,选项三 接送机,选项四sglje, displayFlag=1, entryFlag=1, mustInputFlag=0, searchFlag=0, fixedFlag=0, unit=, createDate=1550029399000, updateDate=1550051508000, optionList=[选项一, 选项二胜利股份几率大司空见惯, 选项三 接送机, 选项四sglje]}, {id=15, useViewType=false, name=下拉框组, dataType=3, subType=3, tips=请选择, maxLength=6500, options=选项一lfdgjle,选项二感觉东,选项三深加工而价格, displayFlag=1, entryFlag=1, mustInputFlag=0, searchFlag=0, fixedFlag=0, unit=, createDate=1550029399000, updateDate=1550051508000, optionList=[选项一lfdgjle, 选项二感觉东, 选项三深加工而价格]}, {id=16, useViewType=false, name=复选组, dataType=3, subType=2, tips=, maxLength=6500, options=选项一,选项二,选项三, displayFlag=1, entryFlag=1, mustInputFlag=0, searchFlag=0, fixedFlag=0, unit=, createDate=1550051508000, optionList=[选项一, 选项二, 选项三]}]";
+
+        function beJson(obj){
+            let n=0;
+            let result='';
+            while((n=list.indexOf('options='))!=-1){
+                console.log(n);
+                result+=list.substring(0, n);
+                let m=list.indexOf(', ', n+1);
+                if(m==-1){
+                    m=list.length;
+                }
+                result+="options='', ";
+                list=list.substring(m+2);
+            }
+            result+=list;
+            obj = result;
+            
+            // obj = obj.replace(/options=(.*?)(, )/g,'options=, ');   //这一段代码抵上面的一堆
+            return JSON.parse(obj.replace(/ /g, '').replace(/"/g, '').replace(/=/g, '":"').replace(/,/g, '","').replace(/{/g, '{"').replace(/}/g, '"}').replace(/}","{/g, '},{').replace(/":"\[/g,'":["').replace(/]"}/g,'"]}'));
+        }
+        var result = beJson(list);
+        console.log(result);
+
+
+
+
+
+    </script>
+</body>
+</html>
