@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组方法</title>
+</head>
+
+<body>
+    <script>
+        // Array.from() 方法对一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例。
+        // 任何有length属性的对象，都可以通过Array.from方法转为数组
+        let arrayLike = { '0': 'a', '1': 'b', '2': 'c', length: 3 };
+
+        // ES5的写法 
+        var arr1 = [].slice.call(arrayLike); // ['a', 'b', 'c'] 
+
+        // ES6的写法 
+        let arr2 = Array.from(arrayLike); // ['a', 'b', 'c'] 
+
+        // Array.from还可以接受第二个参数，作用类似于数组的map方法，用来对每个元素进行处理，将处理后的值放入返回的数组。
+        Array.from(arrayLike, x => x * x); // 等同于 Array.from(arrayLike).map(x => x * x); 
+
+        Array.from([1, 2, 3], (x) => x * x) // [1, 4, 9] 
+
+        // Array.of总是返回参数值组成的数组。如果没有参数，就返回一个空数组。
+        Array.of() // [] 
+        Array.of(undefined) // [undefined] 
+        Array.of(1) // [1] 
+        Array.of(1, 2) // [1, 2] 
+    </script>
+</body>
+
+</html>
