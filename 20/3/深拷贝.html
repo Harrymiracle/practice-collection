@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>深拷贝</title>
 </head>
+
 <body>
     <script>
         //https://www.jianshu.com/p/f4329eb1bace
@@ -12,7 +14,7 @@
         let person = {
             name: 'Tom',
             age: 18,
-            sex: 'male' 
+            sex: 'male'
         };
 
         // 方法一 JSON.stringify和JSON.parse
@@ -22,24 +24,24 @@
         console.log('strP:', strP);      // {name: "Tom", age: 18, sex: "male"}
 
 
-        let obj = {         
-            reg : /^asd$/,
-            fun: function(){},
-            syb:Symbol('foo'),
-            asd:'asd'
-        }; 
+        let obj = {
+            reg: /^asd$/,
+            fun: function () { },
+            syb: Symbol('foo'),
+            asd: 'asd'
+        };
         let cp = JSON.parse(JSON.stringify(obj));
         console.log(cp);
 
 
-        let obj2 = {asd:'asd' }; 
-        let obj3 = {name:'aaaaa'};
+        let obj2 = { asd: 'asd' };
+        let obj3 = { name: 'aaaaa' };
         obj2.ttt1 = obj3;
         obj2.ttt2 = obj3;
-        let cp2 = JSON.parse(JSON.stringify(obj2)); 
-        obj2.ttt1.name = 'change'; 
-        cp2.ttt1.name  = 'change';
-        console.log(obj2,cp2);
+        let cp2 = JSON.parse(JSON.stringify(obj2));
+        obj2.ttt1.name = 'change';
+        cp2.ttt1.name = 'change';
+        console.log(obj2, cp2);
 
 
 
@@ -49,24 +51,55 @@
         let object = {
             a: 1,
             b: 2,
-            c: ['a','b','c']
+            c: ['a', 'b', 'c']
         };
-        let obj1 = Object.assign({},object);
+        let obj1 = Object.assign({}, object);
         object.a = 'changed';
         object.c[0] = 'd';
         console.log('object:', object);
         console.log('obj1:', obj1);
 
         // 方法三 递归
-        // let deepClone = function(arr){
+        let deepClone = function (target) {
+            let res;
+            if (typeof target === 'object') {
+                let beArray = Array.isArray(target);
+                res = beArray ? [] : {};
+                if (beArray) {
+                    for (val of target) {
+                        res.push(deepClone(val));
+                    }
+                } else {
+                    for (key in target) {
+                        if (target.hasOwnProperty(key)) {
+                            res[key] = deepClone(target[key]);
+                        }
+                    }
+                }
+            } else {
+                res = target;
+            }
+            return res;
+        }
 
-        // }
+        let testObject = {
+            a: 1,
+            b: 2,
+            c: ['a', 'b', 'c']
+        };
 
-       
+        let copyObject = deepClone(testObject);
+        console.log(copyObject); // {"a":1,"b":2,"c":["Yeah!","b","c"]}
+        testObject.b = { 'changeB': { 'haha~': 2 } };
+        copyObject.c[0] = 'Yeah!';
+        console.log(testObject); // {"a":1,"b":{"changeB":{"haha~":2}},"c":["a","b","c"]}
+        console.log(copyObject); // {"a":1,"b":2,"c":["Yeah!","b","c"]}
 
 
-       
+
+
 
     </script>
 </body>
+
 </html>
